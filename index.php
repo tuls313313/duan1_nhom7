@@ -20,7 +20,6 @@ $response = match ($act) {
     'intro' => $homeUser->homeIntro(),
     'news' => $homeUser->homeNew(),
 
-
     // Quản trị viên
     'admin' => $homeAdmin->homeAdmin(),
 
