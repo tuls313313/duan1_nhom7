@@ -29,11 +29,14 @@ $response = match ($act) {
     // Quản trị viên
     'admin' => $homeAdmin->homeAdmin(),
 
-    // Mặc định nếu không khớp với bất kỳ trường hợp nào
-    default => function() {
-        http_response_code(404);
-        echo "Trang bạn tìm kiếm không tồn tại.";
-    },
+    default => null,
 };
+
+if ($response === null) {
+    http_response_code(404);
+    echo "<h1>Trang bạn tìm kiếm không tồn tại.</h1>";
+
+}
+
 
 
