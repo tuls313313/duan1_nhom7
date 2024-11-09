@@ -1,8 +1,6 @@
 <?php 
 
 // Require file Common
-// require_once './commons/env.php'; // Khai báo biến môi trường
-// require_once './commons/function.php'; // Hàm hỗ trợ
 require_once './commons/env.php';
 require_once './commons/database.php';
 
