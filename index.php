@@ -10,7 +10,7 @@ require_once './controllers/user/HomeUserController.php';
 require_once './controllers/admin/HomeAdminController.php';
 
 require_once './models/admin/userModels.php';
-
+// hinh
 $User = new HomeUserController();
 $Admin = new HomeAdminController;
 
