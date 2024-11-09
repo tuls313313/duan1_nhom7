@@ -9,4 +9,8 @@ class HomeUserController{
     public function homeIntro(){
         require_once './views/user/intro/intro.php';
     }
+
+    public function homeNews(){
+        require_once './views/user/news/news.php';
+    }
 }

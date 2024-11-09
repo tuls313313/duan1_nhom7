@@ -102,7 +102,7 @@
             <a href="?act=trangchu">Trang chủ</a>
           </li>
           <li class="ng-scope">
-            <a href="#">Giới thiệu</a>
+            <a href="?act=intro">Giới thiệu</a>
           </li>
           <li class="ng-scope ng-has-child1">
             <a href="./Product.html">Sản phẩm <i class="fas fa-plus cong"></i> <i class="fas fa-minus tru hidden"></i></a>
@@ -218,7 +218,7 @@
             </ul>
           </li>
           <li class="ng-scope">
-            <a href="#">Tin tức</a>
+            <a href="?act=intro">Tin tức</a>
           </li>
           <li class="ng-scope">
             <a href="#">Liên hệ</a>
@@ -260,7 +260,7 @@
                 <a href="./registration.html"><i class="fas fa-user-plus mr-3" style="margin-left: 10px;"></i>Đăng kí</a>
               </li>
             </ul>
-            <ul class="nav nav__first right">
+            <!-- <ul class="nav nav__first right">
                 <li class="nav-item nav-item__first nav-item__first-user">
                   <img src="./views/user/assets/img/product/noavatar.png" alt="" class="nav-item__first-img">
                   <span class="nav-item__first-name">Huy Hùng</span>
@@ -279,7 +279,7 @@
                     </li>
                   </ul>
                 </li>
-              </ul>
+              </ul> -->
           </div>
         </div>
       </div>
@@ -356,7 +356,7 @@
               </div>
             </div>
           </li>
-          <li class="header_nav-list-item"><a href="#">Tin tức</a></li>
+          <li class="header_nav-list-item"><a href="?act=intro">Tin tức</a></li>
           <li class="header_nav-list-item"><a href="#">Liên hệ</a></li>
         </ul>
       </div>
