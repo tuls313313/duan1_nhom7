@@ -259,6 +259,9 @@
               <li>
                 <a href="./registration.html"><i class="fas fa-user-plus mr-3" style="margin-left: 10px;"></i>Đăng kí</a>
               </li>
+              <li>
+                <a href="?act=admin/user"><i class="fas fa-user-plus mr-3" style="margin-left: 10px;"></i>admin User</a>
+              </li>
             </ul>
             <!-- <ul class="nav nav__first right">
                 <li class="nav-item nav-item__first nav-item__first-user">
