@@ -18,8 +18,7 @@ $response = match ($act) {
     '/' => $homeUser->homeUser(),
     'trangchu' => $homeUser->homeUser(),
     'intro' => $homeUser->homeIntro(),
-    'news' => $homeUser->homeNews(),
-
+    'news' => $homeUser->homeNew(),
 
     // Quản trị viên
     'admin' => $homeAdmin->homeAdmin(),
