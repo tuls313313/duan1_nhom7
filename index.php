@@ -18,6 +18,8 @@ $response = match ($act) {
     '/' => $homeUser->homeUser(),
     'trangchu' => $homeUser->homeUser(),
     'intro' => $homeUser->homeIntro(),
+    'news' => $homeUser->homeNews(),
+
 
     // Quản trị viên
     'admin' => $homeAdmin->homeAdmin(),
