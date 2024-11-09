@@ -89,6 +89,7 @@
       </div>
     </div>
     <div class="footer__bottom">
-      <p class="footer__text">© Bản quyền thuộc về Huy Hùng</p>
+      <p class="footer__text">© Bản quyền thuộc về Group_7 </p>
     </div>
   </footer>
+  

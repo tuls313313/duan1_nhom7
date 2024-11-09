@@ -15,14 +15,25 @@ $homeUser = new HomeUserController();
 $homeAdmin = new HomeAdminController;
 
 // Route
-$act = $_GET['act'] ?? '/';
 
 // Để bảo bảo tính chất chỉ gọi 1 hàm Controller để xử lý request thì mình sử dụng match
 
-match ($act) {
-    // user
-    '/' => $homeUser->homeUser(),
+$act = $_GET['act'] ?? '/';
 
-    //admin
+$response = match ($act) {
+    // Người dùng
+    '/' => $homeUser->homeUser(),
+    'trangchu' => $homeUser->homeUser(),
+    'intro' => $homeUser->homeIntro(),
+
+    // Quản trị viên
     'admin' => $homeAdmin->homeAdmin(),
+
+    // Mặc định nếu không khớp với bất kỳ trường hợp nào
+    default => function() {
+        http_response_code(404);
+        echo "Trang bạn tìm kiếm không tồn tại.";
+    },
 };
+
+

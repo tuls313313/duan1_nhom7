@@ -28,6 +28,7 @@
   <link rel="stylesheet" href="./views/user/assets/base.css">
   <link rel="stylesheet" href="./views/user/assets/login.css">
   <link rel="stylesheet" href="./views/user/assets/main1.css">
+  <link rel="stylesheet" href="./views/user/assets/intro.css">
   <link rel="stylesheet" href="./views/user/assets/reponsive1.css">
   <link rel="stylesheet" href="./views/user/assets/css/account.css">
   <link rel="stylesheet" href="./views/user/assets/css/cart.css">
@@ -98,7 +99,7 @@
         </div>
         <ul class="la-nav-list-items">
           <li class="ng-scope">
-            <a href="#">Trang chủ</a>
+            <a href="?act=trangchu">Trang chủ</a>
           </li>
           <li class="ng-scope">
             <a href="#">Giới thiệu</a>
@@ -328,8 +329,8 @@
     <nav class="header_nav hidden-sm hidden-xs">
       <div class="container">
         <ul class="header_nav-list nav">
-          <li class="header_nav-list-item"><a href="?act=/" class="active">Trang chủ</a></li>
-          <li class="header_nav-list-item"><a href="#">Giới thiệu</a></li>
+          <li class="header_nav-list-item"><a href="?act=trangchu" class="active">Trang chủ</a></li>
+          <li class="header_nav-list-item"><a href="?act=intro">Giới thiệu</a></li>
           <li class="header_nav-list-item has-mega">
             <a href="#">Sản phẩm<i class="fas fa-angle-right" style="margin-left: 5px;"></i></a>
             <div class="mega-content" style="overflow-x: hidden;">
