@@ -50,7 +50,7 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <?php foreach ($dataDonHang as $value) { ?>
+                  <?php foreach ($listDonHang as $value) { ?>
                     <tr>
                       <td><?= $value['id'] ?></td>
                       <td><?= $value['user_id'] ?></td>
@@ -63,7 +63,7 @@
                       <td><?= $value['create_at'] ?></td>
                       <td><?= $value['update_at'] ?></td>
                       <td>
-                        <button class="btn btn-primary">Xem</button>
+                        <button <?= BASE_URL . '?act=admin/donHang/formEditDonhang' ?> class="btn btn-warning">Sửa</button>
                       </td>
                     </tr>
                   <?php } ?>

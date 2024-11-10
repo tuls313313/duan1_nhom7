@@ -14,4 +14,17 @@ class DonHangModel
         $sql = "SELECT * FROM orders";
         return $this->db->getAll($sql);
     }
+
+    public function getEditDonHang($id)
+    {
+        $sql = "SELECT orders";
+        return $this->db->getAll($sql);
+    }
+
+    public function getListSpDonHang($id)
+    {
+        $sql = "";
+
+        return $this->db->getAll($sql);
+    }
 }
