@@ -70,7 +70,7 @@ class HomeAdminController
             require_once './views/admin/user/editUser.php';
         }
     }
-    public function next(){
+    public function nextedit(){
         if (isset($_POST['editUser'])) {
             $error = [];
             $id = $_GET['id'];

@@ -25,7 +25,7 @@
     <div class="container-fluid">
       <div class="row">
         <div class="col-12">
-        <form action="?act=admin/user/next&id=<?= $dataOneUser['id'] ?>" method="POST">
+        <form action="?act=admin/user/nextedit&id=<?= $dataOneUser['id'] ?>" method="POST">
         <!-- Các trường nhập dữ liệu -->
         <div class="form-group">
             <label for="user">User</label>
