@@ -33,7 +33,7 @@ $response = match ($act) {
 
     'admin/donHang/detail' => $AdminDonHang->detailDonHang(),
 
-    // 'admin/donHang/edit' => $AdminDonHang->editDonHang(),
+    'admin/donHang/edit' => $AdminDonHang->editDonHang(),
 
 };
 

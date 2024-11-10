@@ -64,8 +64,7 @@
                       <td><?= $value['update_at'] ?></td>
                       <td>
                         <a href="?act=admin/donHang/detail&id=<?= $value['id'] ?>" class="btn btn-primary">Xem</a>
-                        <a href="#" class="btn btn-warning">Sửa</a>
-                        <a href="#" class="btn btn-danger">Xóa</a>
+                        <a href="?act=admin/donHang/edit&id=<?= $value['id'] ?>" class="btn btn-warning">Sửa</a>
                       </td>
                     </tr>
                   <?php } ?>

@@ -21,6 +21,7 @@ class DonHangModel
                 INNER JOIN account ON orders.user_id = account.id
                 WHERE orders.id = $id
                 ";
+        // $sql = "SELECT * FROM orders WHERE id=$id";
         return $this->db->getOne($sql);
     }
 

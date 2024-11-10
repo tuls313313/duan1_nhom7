@@ -20,10 +20,28 @@ class AdminDonHangController
     public function detailDonHang()
     {
         $id = $_GET['id'];
-        // var_dump($order_id);die;
+        // var_dump($id);die;
 
         $detail = $this->donHang->detailDonHang($id);
-
-        require_once './views/admin/DonHang/detailDonHang.php';
+        // var_dump($detail); die;
+        // if($detail){
+            require_once './views/admin/DonHang/detailDonHang.php';
+        // }
     }
+
+    public function editDonHang()
+    {
+        $id = $_GET['id'];
+
+        $edit = $this->donHang->detailDonHang($id);
+
+        if($edit){
+            require_once './views/admin/DonHang/editDonHang.php';
+        }else{
+            header("Location:" . '?act=admin/donHang');
+            exit();
+        }
+    }
+
+    
 }
