@@ -41,11 +41,12 @@
                     <tr>
                       <th>id</th>
                       <th>user</th>
-                      <th>password</th>
                       <th>email</th>
                       <th>address</th>
                       <th>tel</th>
+                      <th>ip_address</th>
                       <th>role</th>
+                      <th>status</th>
                       <th>create_at</th>
                       <th>update_at</th>
                       <th>action</th>
@@ -56,11 +57,12 @@
                       <tr>
                         <td><?= $value['id'] ?></td>
                         <td><?= $value['user'] ?></td>
-                        <td><?= $value['password'] ?></td>
                         <td><?= $value['email'] ?></td>
                         <td><?= $value['address'] ?></td>
                         <td><?= $value['tel'] ?></td>
+                        <td><?= $value['ip_address'] ?></td>
                         <td><?= $value['role'] == 1 ? 'Admin' : 'Thành viên' ?></td>
+                        <td><?= $value['status'] == 0 ? 'active' : 'locked'?></td>
                         <td><?= $value['create_at'] ?></td>
                         <td><?= $value['update_at'] ?></td>
                         <td>

@@ -29,7 +29,7 @@ $response = match ($act) {
     'admin/user' => $Admin->UserAdmin(),
     'admin/user/add' =>$Admin->insertUser(),
     'admin/user/edit' => $Admin->editUser(),
-    'admin/user/next' => $Admin->next(),
+    'admin/user/nextedit' => $Admin->nextedit(),
     'admin/user/delete' => $Admin->DeletetUser(),
 };
 
