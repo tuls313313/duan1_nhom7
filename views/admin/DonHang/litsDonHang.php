@@ -63,7 +63,7 @@
                       <td><?= $value['create_at'] ?></td>
                       <td><?= $value['update_at'] ?></td>
                       <td>
-                        <button <?= BASE_URL . '?act=admin/donHang/formEditDonhang' ?> class="btn btn-warning">Sửa</button>
+                        <button class="btn btn-warning">Sửa</button>
                       </td>
                     </tr>
                   <?php } ?>
