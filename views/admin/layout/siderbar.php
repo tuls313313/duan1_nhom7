@@ -283,9 +283,9 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="../tables/jsgrid.html" class="nav-link">
+                <a href="?act=admin/donHang" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>jsGrid</p>
+                  <p>Đơn Hàng</p>
                 </a>
               </li>
             </ul>
