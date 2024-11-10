@@ -15,16 +15,17 @@ class DonHangModel
         return $this->db->getAll($sql);
     }
 
-    public function getEditDonHang($id)
+    public function detailDonHang($id)
     {
-        $sql = "SELECT orders";
-        return $this->db->getAll($sql);
+        $sql = "SELECT * FROM orders
+                INNER JOIN account ON orders.user_id = account.id
+                WHERE orders.id = $id
+                ";
+        return $this->db->getOne($sql);
     }
 
-    public function getListSpDonHang($id)
-    {
-        $sql = "";
+    // public function updateDoHang()
+    // {
 
-        return $this->db->getAll($sql);
-    }
+    // }
 }

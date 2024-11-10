@@ -63,7 +63,9 @@
                       <td><?= $value['create_at'] ?></td>
                       <td><?= $value['update_at'] ?></td>
                       <td>
-                        <button class="btn btn-warning">Sửa</button>
+                        <a href="?act=admin/donHang/detail&id=<?= $value['id'] ?>" class="btn btn-primary">Xem</a>
+                        <a href="#" class="btn btn-warning">Sửa</a>
+                        <a href="#" class="btn btn-danger">Xóa</a>
                       </td>
                     </tr>
                   <?php } ?>

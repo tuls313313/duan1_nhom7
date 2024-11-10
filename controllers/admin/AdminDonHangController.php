@@ -17,16 +17,13 @@ class AdminDonHangController
         }
     }
 
-    public function editDonHang()
+    public function detailDonHang()
     {
-        $don_hang_id = $_GET['id'];
+        $id = $_GET['id'];
+        // var_dump($order_id);die;
 
-        $detailDonHang = $this->donHang->getEditDonHang($don_hang_id);
+        $detail = $this->donHang->detailDonHang($id);
 
-        $sanPhamDonHang = $this->donHang->getListSpDonHang($don_hang_id);
-
-        if($detailDonHang){
-            require_once './views/admin/DonHang/editDonHang.php';
-        }
+        require_once './views/admin/DonHang/detailDonHang.php';
     }
 }

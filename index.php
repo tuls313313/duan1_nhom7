@@ -31,7 +31,9 @@ $response = match ($act) {
 
     'admin/donHang' => $AdminDonHang->getAllDonHang(),
 
-    'admin/donHang/edit' => $AdminDonHang->editDonHang(),
+    'admin/donHang/detail' => $AdminDonHang->detailDonHang(),
+
+    // 'admin/donHang/edit' => $AdminDonHang->editDonHang(),
 
 };
 
