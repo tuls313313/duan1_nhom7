@@ -27,7 +27,7 @@ $response = match ($act) {
 
     // Quản trị viên
     'admin/user' => $Admin->UserAdmin(),
-
+    'admin/user/add' =>$Admin->insertUser(),
 };
 
 
