@@ -28,6 +28,9 @@ $response = match ($act) {
     // Quản trị viên
     'admin/user' => $Admin->UserAdmin(),
     'admin/user/add' =>$Admin->insertUser(),
+    'admin/user/edit' => $Admin->editUser(),
+    'admin/user/next' => $Admin->next(),
+    'admin/user/delete' => $Admin->DeletetUser(),
 };
 
 

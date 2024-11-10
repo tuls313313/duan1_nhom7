@@ -15,7 +15,7 @@
     <div class="container-fluid">
       <div class="row mb-2">
         <div class="col-sm-6">
-          <h1>Trang Admin User</h1>
+          <h1>Trang Admin danh sách thành viên</h1>
         </div>
       </div>
     </div><!-- /.container-fluid -->
@@ -64,9 +64,8 @@
                         <td><?= $value['create_at'] ?></td>
                         <td><?= $value['update_at'] ?></td>
                         <td>
-                          <a class="btn btn-primary" href="#" data-toggle="modal" data-target="#editModal"
-                            data-id="<?= $value['id'] ?>">Edit</a>
-                          <a class="btn btn-danger" href="#">Delete</a>
+                          <a class="btn btn-primary" href="?act=admin/user/edit&id=<?= $value['id'] ?>">Edit</a>
+                          <a class="btn btn-danger" onclick="return confirm('Bạn chắc chắn muốn xóa thành viên?');" href="?act=admin/user/delete&id=<?= $value['id'] ?>">Delete</a>
                         </td>
                       </tr>
                     <?php } ?>
@@ -118,43 +117,7 @@
                   </div>
                 </div>
               </div>
-            </div>
-                      
-            <!-- Edit Modal -->
-            <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel"
-              aria-hidden="true">
-              <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h5 class="modal-title" id="editModalLabel">Chỉnh sửa Thành viên</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                      <span aria-hidden="true">&times;</span>
-                    </button>
-                  </div>
-                  <div class="modal-body">
-                    <!-- Form chỉnh sửa thành viên -->
-                    <form action="edit_user.php" method="POST">
-                      <input type="hidden" id="edit-id" name="id">
-                      <div class="form-group">
-                        <label for="edit-user">User</label>
-                        <input type="text" class="form-control" id="edit-user" name="user">
-                      </div>
-                      <div class="form-group">
-                        <label for="edit-password">Password</label>
-                        <input type="password" class="form-control" id="edit-password" name="password">
-                      </div>
-                      <div class="form-group">
-                        <label for="edit-email">Email</label>
-                        <input type="email" class="form-control" id="edit-email" name="email">
-                      </div>
-                      <!-- Thêm các trường khác ở đây -->
-                      <button type="submit" class="btn btn-primary">Cập nhật</button>
-                    </form>
-                  </div>
-                </div>
-              </div>
-            </div>
-
+            </div>             
             <!-- /.card-body -->
           </div>
           <!-- /.card -->
@@ -186,26 +149,6 @@
       "responsive": true,
     });
   });
-</script>
-<script>
-    // Hàm hiển thị thông báo nổi
-    function showNotification(message) {
-        const notification = document.getElementById('notification');
-        notification.textContent = message;
-        notification.style.display = 'block';
-
-        // Tự động ẩn thông báo sau 3 giây
-        setTimeout(() => {
-            notification.style.display = 'none';
-        }, 3000);
-    }
-
-    // Kiểm tra URL để lấy thông báo
-    const urlParams = new URLSearchParams(window.location.search);
-    const message = urlParams.get('message');
-    if (message) {
-        showNotification(message);
-    }
 </script>
 </body>
 
