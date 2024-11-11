@@ -112,7 +112,7 @@ class HomeAdminController
             $email = $_POST['email'];
             $address = $_POST['address'];
             $tel = $_POST['tel'];
-            if (empty($tel) > 10) {
+            if (strlen(empty($tel)) > 10) {
                 $error[] = ' loi tel';
             } else if (strlen($tel) > 10) {
                 $error[] = ' loi tel';

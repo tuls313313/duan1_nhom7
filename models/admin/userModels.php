@@ -7,7 +7,7 @@ class UserModels{
     }
 
     public function getAllUser(){
-        $sql = "SELECT * FROM account";
+        $sql = "SELECT * FROM account order by id desc";
         return $this->db->getAll($sql);
     }
 
