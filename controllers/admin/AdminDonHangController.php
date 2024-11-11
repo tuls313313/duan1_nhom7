@@ -43,5 +43,24 @@ class AdminDonHangController
         }
     }
 
-    
+    public function postDonHang()
+    {
+        if($_SERVER['REQUEST_METHOD'] == 'POST')
+        {
+            $user_id = $_POST['user_id'] ?? '';
+            $order_date = $_POST['order_date'] ?? '';
+            $status = $_POST['status'] ?? '';
+            $payment = $_POST['payment'] ?? '';
+            $total_amount = $_POST['total_amount'] ?? '';
+            $total_money = $_POST['total_money'] ?? '';
+            $shipping_address = $_POST['shipping_address'] ?? '';
+            $create_at = $_POST['create_at'] ?? '';
+            $update_at = $_POST['update-at'] ?? '';
+
+            $errors = [];
+            if(empty($user_id)){
+                $errors['user_id'] = 'Id';
+            }
+        }   
+    }
 }
