@@ -7,7 +7,7 @@ class UserModels{
     }
 
     public function getAllUser(){
-        $sql = "SELECT * FROM account";
+        $sql = "SELECT * FROM account order by id desc";
         return $this->db->getAll($sql);
     }
 
@@ -20,9 +20,9 @@ class UserModels{
         return $this->db->getOne($sql);
     }
 
-    public function insertUser($user,$password,$email,$address,$tel,$create_at,$update_at,$ip_address){
-        $sql = "INSERT INTO `account`(`user`, `password`, `email`, `address`, `tel`, `create_at`, `update_at`,`ip_address`) 
-        VALUES ('$user', '$password', '$email', '$address', '$tel','$create_at','$update_at','$ip_address')";
+    public function insertUser($user,$password,$email,$address,$tel,$create_at,$ip_address){
+        $sql = "INSERT INTO `account`(`user`, `password`, `email`, `address`, `tel`,  `create_at`,`ip_address`) 
+        VALUES ('$user', '$password', '$email', '$address', '$tel','$create_at','$ip_address')";
         return $this->db->insert($sql);
     }
 

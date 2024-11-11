@@ -67,7 +67,7 @@
                         <td><?= $value['update_at'] ?></td>
                         <td>
                           <a class="btn btn-primary" href="?act=admin/user/edit&id=<?= $value['id'] ?>">Edit</a>
-                          <a class="btn btn-danger" onclick="return confirm('Bạn chắc chắn muốn xóa thành viên?');" href="?act=admin/user/delete&id=<?= $value['id'] ?>">Delete</a>
+                          <a class="btn btn-danger" onclick="return confirm('Bạn chắc chắn muốn xóa thành viên: <?= $value['user'] ?> ?');" href="?act=admin/user/delete&id=<?= $value['id'] ?>">Delete</a>
                         </td>
                       </tr>
                     <?php } ?>
@@ -138,12 +138,12 @@
 <script>
   $(function () {
     $("#example1").DataTable({
-      "responsive": true, "lengthChange": false, "autoWidth": false,
+      "responsive": true, "lengthChange": false, "autoWidth": false,"order": [],
       "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
     }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
     $('#example2').DataTable({
       "paging": true,
-      "lengthChange": false,
+      "lengthChange": true,
       "searching": false,
       "ordering": true,
       "info": true,

@@ -54,12 +54,11 @@ class HomeAdminController
 
             // Lấy địa chỉ IP của người dùng
             $ip_address = $this->getUserIP();
-            $role = $_POST['role'];
             $create_at = $time;
-            $update_at = $time;
+           
             
             if (empty($error)) {
-                $this->user->insertUser($user, $password, $email, $address, $tel, $create_at, $update_at, $ip_address);
+                $this->user->insertUser($user, $password, $email, $address, $tel, $create_at, $ip_address);
                 header("Location: ?act=admin/user&message=success!");
             } else {
                 header("Location: ?act=admin/user&message=error.");
@@ -113,7 +112,7 @@ class HomeAdminController
             $email = $_POST['email'];
             $address = $_POST['address'];
             $tel = $_POST['tel'];
-            if (empty($tel) > 10) {
+            if (strlen(empty($tel)) > 10) {
                 $error[] = ' loi tel';
             } else if (strlen($tel) > 10) {
                 $error[] = ' loi tel';
