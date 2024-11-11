@@ -36,7 +36,7 @@
                 <div class="row">
                   <div class="col-12">
                     <div class="callout callout-info">
-                      <h5></i> Status: <?= $detail['status'] ?></h5>
+                      <h5></i> Status: <?= $detail['status'] == 0 ? 'Đăng chờ' : ($detail['status'] == 1 ? 'Đang giao' : 'Hoàn thành') ?></h5>
                     </div>
                     <!-- Main content -->
                     <div class="invoice p-3 mb-3">
@@ -100,8 +100,8 @@
                                   <td><?= $detail['id'] ?></td>
                                   <td><?= $detail['user_id'] ?></td>
                                   <td><?= $detail['order_date'] ?></td>
-                                  <td><?= $detail['status'] ?></td>
-                                  <td><?= $detail['payment'] ?></td>
+                                  <td><?= $detail['status'] == 0 ? 'Đăng chờ' : ($detail['status'] == 1 ? 'Đang giao' : 'Hoàn thành') ?></td>
+                                  <td><?= $detail['payment'] == 0 ? 'Thanh toán khi nhận hàng' : 'Thanh toán online' ?></td>
                                   <td><?= $detail['total_amount'] ?></td>
                                   <td><?= $detail['total_money'] ?></td>
                                   <td><?= $detail['shipping_address'] ?></td>
