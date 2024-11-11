@@ -6,9 +6,14 @@
 require_once './commons/env.php';
 require_once './commons/database.php';
 
+//user
 require_once './controllers/user/HomeUserController.php';
-require_once './controllers/admin/HomeAdminController.php';
 
+//admin
+//controller
+require_once './controllers/admin/userController.php';
+
+//models
 require_once './models/admin/userModels.php';
 // hinh
 $User = new HomeUserController();
