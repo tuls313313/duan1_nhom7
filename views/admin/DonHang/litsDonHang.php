@@ -55,8 +55,8 @@
                       <td><?= $value['id'] ?></td>
                       <td><?= $value['user_id'] ?></td>
                       <td><?= $value['order_date'] ?></td>
-                      <td><?= $value['status'] ?></td>
-                      <td><?= $value['payment'] ?></td>
+                      <td><?= $value['status'] == 0 ? 'Đang chờ' : ( $value['status'] == 1  ? 'Đang giao' : 'Hoàn Thành' ); ?></td>
+                      <td><?= $value['payment'] == 0 ? 'Thanh toán khi nhận hàng' : 'Thanh toán online' ?></td>
                       <td><?= $value['total_amount'] ?></td>
                       <td><?= $value['total_money'] ?></td>
                       <td><?= $value['shipping_address'] ?></td>

@@ -32,58 +32,60 @@
                             <h3 class="card-title">Form Sửa Đơn Hàng</h3>
                         </div>
                         <section class="content">
-                            <form action="<?= '?act=sua-don-hang' ?>" method="post">
+                            <form action="?act=admin/donHang/editDonHang&id=<?= $edit['id'] ?>" method="post">
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="card card-primary">
                                             <div class="card-header">
-                                                <h3 class="card-title">Sửa Thông Tin Đơn Hàng:</h3>
+                                                <h3 class="card-title">Sửa Thông Tin Đơn Hàng: <?= $edit['user'] ?></h3>
                                             </div>
                                             <div class="card-body">
                                                 <div class="form-group">
-                                                    <label for="inputName">Id</label>
-                                                    <input type="number" id="inputName" class="form-control">
+                                                    <label for="id">Id</label>
+                                                    <input type="number" name="id" class="form-control" value="<?= $edit['id'] ?>" readonly>
                                                 </div>
                                                 <div class="form-group">
-                                                    <label for="inputName">User_id</label>
-                                                    <input type="number" id="inputName" class="form-control">
+                                                    <label for="user_id">User_id</label>
+                                                    <input type="number" name="user_id" class="form-control" value="<?= $edit['user_id'] ?>" readonly>
                                                 </div>
                                                 <div class="form-group">
-                                                    <label for="inputName">Order_date</label>
-                                                    <input type="number" id="inputName" class="form-control">
+                                                    <label for="order_date">Order_date</label>
+                                                    <input type="text" name="order_date" class="form-control" value="<?= $edit['order_date'] ?>" readonly>
                                                 </div>
                                                 <div class="form-group">
-                                                    <label for="inputStatus">Status</label>
-                                                    <select id="inputStatus" class="form-control custom-select">
-                                                        <option disabled>Select one</option>
-                                                        <option>On Hold</option>
-                                                        <option>Canceled</option>
-                                                        <option selected>Success</option>
+                                                    <label for="status">Status</label>
+                                                    <select name="status" class="form-control custom-select">
+                                                        <option value="0" <?= $edit['status'] == 0 ? 'selected' : '' ?> >Đang chờ</option>
+                                                        <option value="1" <?= $edit['status'] == 1 ? 'selected' : ''?> >Đang giao</option>
+                                                        <option value="2" <?= $edit['status'] == 2 ? 'selected' : '' ?> >Hoàn thành</option>
                                                     </select>
                                                 </div>
                                                 <div class="form-group">
-                                                    <label for="inputName">Payment</label>
-                                                    <input type="number" id="inputName" class="form-control">
+                                                    <label for="payment">Payment</label>
+                                                    <select name="payment" class="form-control custom-select">
+                                                        <option value="0" <?= $edit['payment'] == 0 ? 'selected' : '' ?> >Thanh toán khi nhận hàng</option>
+                                                        <option value="1" <?= $edit['payment'] == 1 ? 'selected' : ''?> >Thanh toán online</option>
+                                                    </select>
                                                 </div>
                                                 <div class="form-group">
-                                                    <label for="inputClientCompany">Total_amount</label>
-                                                    <input type="number" id="inputClientCompany" class="form-control" >
+                                                    <label for="total_amount">Total_amount</label>
+                                                    <input type="number" name="total_amount" class="form-control" value="<?= $edit['total_amount'] ?>" readonly>
                                                 </div>
                                                 <div class="form-group">
-                                                    <label for="inputProjectLeader">Total_money</label>
-                                                    <input type="number" id="inputProjectLeader" class="form-control" >
+                                                    <label for="total_money">Total_money</label>
+                                                    <input type="number" name="total_money" class="form-control" value="<?= $edit['total_money'] ?>" readonly>
                                                 </div>
                                                 <div class="form-group">
-                                                    <label for="inputProjectLeader">shipping_address</label>
-                                                    <input type="number" id="inputProjectLeader" class="form-control" >
+                                                    <label for="shipping_address">Shipping_address</label>
+                                                    <input type="text" name="shipping_address" class="form-control" value="<?= $edit['shipping_address'] ?>" readonly>
                                                 </div>
                                                 <div class="form-group">
-                                                    <label for="inputProjectLeader">Create_at</label>
-                                                    <input type="number" id="inputProjectLeader" class="form-control" >
+                                                    <label for="create_at">Create_at</label>
+                                                    <input type="text" name="create_at" class="form-control" value="<?= $edit['create_at'] ?>" readonly>
                                                 </div>
                                                 <div class="form-group">
-                                                    <label for="inputProjectLeader">Update_at</label>
-                                                    <input type="number" id="inputProjectLeader" class="form-control" >
+                                                    <label for="update_at">Update_at</label>
+                                                    <input type="text" name="update_at" class="form-control" value="<?= $edit['update_at'] ?>" readonly>
                                                 </div>
                                             </div>
                                             <!-- /.card-body -->
@@ -92,10 +94,9 @@
                                     </div>
                                 </div>
                                 <div class="card-footer">
-                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                    <button type="submit" class="btn btn-primary" name="editDonHang">Submit</button>
                                 </div>
                             </form>
-
                         </section>
                     </div>
                     <!-- /.col -->
