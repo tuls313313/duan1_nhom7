@@ -37,9 +37,9 @@
                   <div class="col-12">
                     <div class="callout callout-info">
                       <h5>Status:
-                        <?php if ($detail['status'] == 0) {
+                        <?php if ($detail['status_order'] == 0) {
                           echo 'Đang chờ';
-                        } elseif (['status'] == 1) {
+                        } elseif (['status_order'] == 1) {
                           echo 'Đang giao';
                         } else {
                           echo 'Hoàn thành';
@@ -91,10 +91,10 @@
                           <table class="table table-striped">
                             <thead>
                               <tr>
-                                <th>id</th>
+                                <th>id_order</th>
                                 <th>user_id</th>
                                 <th>order_date</th>
-                                <th>status</th>
+                                <th>status_order</th>
                                 <th>payment</th>
                                 <th>total_amount</th>
                                 <th>total_money</th>
@@ -105,13 +105,13 @@
                             </thead>
                             <tbody>
                               <tr>
-                                <td><?= $detail['id'] ?></td>
+                                <td><?= $detail['id_order'] ?></td>
                                 <td><?= $detail['user_id'] ?></td>
                                 <td><?= $detail['order_date'] ?></td>
                                 <td>
-                                  <?php if ($detail['status'] == 0) {
+                                  <?php if ($detail['status_order'] == 0) {
                                     echo 'Đang chờ';
-                                  } elseif (['status'] == 1) {
+                                  } elseif (['status_order'] == 1) {
                                     echo 'Đang giao';
                                   } else {
                                     echo 'Hoàn thành';

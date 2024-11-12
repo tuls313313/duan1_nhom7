@@ -32,7 +32,7 @@
                             <h3 class="card-title">Form Sửa Đơn Hàng</h3>
                         </div>
                         <section class="content">
-                            <form action="?act=admin/donHang/editDonHang&id=<?= $edit['id'] ?>" method="post">
+                            <form action="?act=admin/donHang/editDonHang&id=<?= $edit['id_order'] ?>" method="post">
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="card card-primary">
@@ -50,8 +50,8 @@
                                             <div class="card-body">
                                                 <div class="form-group">
                                                     <label for="id">Id</label>
-                                                    <input type="number" name="id" class="form-control"
-                                                        value="<?= $edit['id'] ?>" readonly>
+                                                    <input type="number" name="id_order" class="form-control"
+                                                        value="<?= $edit['id_order'] ?>" readonly>
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="user_id">User_id</label>
@@ -64,13 +64,13 @@
                                                         value="<?= $edit['order_date'] ?>" readonly>
                                                 </div>
                                                 <div class="form-group">
-                                                    <label for="status">Status</label>
-                                                    <select name="status" class="form-control">
-                                                        <option value="0" <?= $edit['status'] == 0 ? 'selected' : '' ?>>
+                                                    <label for="status_order">status_order</label>
+                                                    <select name="status_order" class="form-control">
+                                                        <option value="0" <?= $edit['status_order'] == 0 ? 'selected' : '' ?>>
                                                             Đang chờ</option>
-                                                        <option value="1" <?= $edit['status'] == 1 ? 'selected' : '' ?>>
+                                                        <option value="1" <?= $edit['status_order'] == 1 ? 'selected' : '' ?>>
                                                             Đang giao</option>
-                                                        <option value="2" <?= $edit['status'] == 2 ? 'selected' : '' ?>>
+                                                        <option value="2" <?= $edit['status_order'] == 2 ? 'selected' : '' ?>>
                                                             Hoàn thành</option>
                                                     </select>
                                                 </div>
@@ -116,7 +116,7 @@
                                 </div>
                                 <div class="card-footer">
                                     <button type="submit" class="btn btn-primary" name="editDonHang"
-                                        onclick="return confirm('Bạn có chắc muốn sửa cho đơn hàng: <?= $edit['id'] ?>')">
+                                        onclick="return confirm('Bạn có chắc muốn sửa cho đơn hàng: <?= $edit['id_order'] ?>')">
                                         Submit
                                     </button>
                                 </div>
