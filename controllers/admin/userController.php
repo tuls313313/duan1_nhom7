@@ -14,7 +14,6 @@ class HomeAdminController
         // if ($dataUser) {
         require_once './views/admin/user/user.php';
         // }
-
         // var_dump(value: $data);
     }
 
