@@ -6,7 +6,7 @@ require_once './commons/database.php';
 
 //user
 require_once './controllers/user/HomeUserController.php';
-require_once './controllers/admin/HomeAdminController.php';
+require_once './controllers/admin/userController.php';
 require_once './controllers/admin/AdminDonHangController.php';
 
 
