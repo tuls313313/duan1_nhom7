@@ -1,8 +1,9 @@
 -- phpMyAdmin SQL Dump
 -- version 5.2.0
 -- https://www.phpmyadmin.net/
+--
 -- Host: localhost:3306
--- Generation Time: Nov 12, 2024 at 03:05 AM
+-- Generation Time: Nov 12, 2024 at 02:56 A
 -- Server version: 8.0.30
 -- PHP Version: 8.1.10
 
@@ -38,8 +39,6 @@ CREATE TABLE `account` (
   `status` tinyint NOT NULL DEFAULT '0' COMMENT '0 là active 1 là locked',
   `create_at` timestamp NULL DEFAULT NULL COMMENT 'tạo acc',
   `update_at` timestamp NULL DEFAULT NULL COMMENT 'cập nhật'
-  `create_at` timestamp NOT NULL COMMENT 'tạo acc',
-  `update_at` timestamp NOT NULL COMMENT 'cập nhật'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
@@ -238,8 +237,7 @@ ALTER TABLE `varianti`
 -- AUTO_INCREMENT for table `account`
 --
 ALTER TABLE `account`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT COMMENT 'pk', AUTO_INCREMENT=20;
-  MODIFY `id` int NOT NULL AUTO_INCREMENT COMMENT 'pk', AUTO_INCREMENT=2;
+MODIFY `id` int NOT NULL AUTO_INCREMENT COMMENT 'pk', AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT for table `cart`
