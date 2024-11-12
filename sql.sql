@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Nov 12, 2024 at 02:56 A
+-- Generation Time: Nov 12, 2024 at 02:56 AM
 -- Server version: 8.0.30
 -- PHP Version: 8.1.10
 
@@ -48,8 +48,6 @@ CREATE TABLE `account` (
 INSERT INTO `account` (`id`, `user`, `password`, `email`, `address`, `tel`, `role`, `ip_address`, `status`, `create_at`, `update_at`) VALUES
 (11, 'admin', 'admin', 'admin@gmail.com', 'Lạng sơn', '097181037', 1, '127.0.0.1', 0, '2024-11-10 13:10:56', '2024-11-10 18:01:12'),
 (18, 'dvprovn', 'muhygty00000', 'pcls313313@gmail.com', 'Lạng sơn', '535', 0, '127.0.0.1', 0, '2024-11-10 17:56:44', '2024-11-11 15:14:25');
-INSERT INTO `account` (`id`, `user`, `password`, `email`, `address`, `tel`, `role`, `create_at`, `update_at`) VALUES
-(1, 'tuls11', 'tuls11', 'tuls11@gmail.com', 'tuls11', '0123456789', 1, '2024-11-09 14:31:20', '2024-11-09 14:31:20');
 
 -- --------------------------------------------------------
 
@@ -110,14 +108,6 @@ CREATE TABLE `orders` (
   `create_at` timestamp NOT NULL COMMENT 'tạo',
   `update_at` timestamp NOT NULL COMMENT 'cập nhật'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
---
--- Dumping data for table `orders`
---
-
-INSERT INTO `orders` (`id`, `user_id`, `order_date`, `status`, `payment`, `total_amount`, `total_money`, `shipping_address`, `create_at`, `update_at`) VALUES
-(1, 1, '2024-11-10 13:27:02', 1, 1, '20.00', '1000000.00', 'Hà Nội', '2024-11-09 14:31:20', '2024-11-09 14:31:20'),
-(2, 1, '2024-11-10 13:27:02', 2, 1, '20.00', '1000000.00', 'Thành Phố Hồ Chí Minh', '2024-11-10 13:27:02', '2024-11-10 13:27:02');
 
 -- --------------------------------------------------------
 
@@ -237,7 +227,7 @@ ALTER TABLE `varianti`
 -- AUTO_INCREMENT for table `account`
 --
 ALTER TABLE `account`
-MODIFY `id` int NOT NULL AUTO_INCREMENT COMMENT 'pk', AUTO_INCREMENT=20;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT COMMENT 'pk', AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT for table `cart`
@@ -261,7 +251,7 @@ ALTER TABLE `comment`
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT COMMENT 'pk', AUTO_INCREMENT=3;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT COMMENT 'pk';
 
 --
 -- AUTO_INCREMENT for table `product`
