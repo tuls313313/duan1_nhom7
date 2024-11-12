@@ -34,6 +34,11 @@ class Database{
         $stmt->execute();
     }
 
+    public function date($date)
+    {
+        return date("d-m-y", strtotime($date));
+    }
+
     public function __destruct(){
         $this->conn = null;
     }
