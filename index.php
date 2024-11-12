@@ -3,15 +3,12 @@
 // Require file Common
 require_once './commons/env.php';
 require_once './commons/database.php';
-
 //user
-require_once './controllers/user/HomeUserController.php';
-require_once './controllers/admin/HomeAdminController.php';
-require_once './controllers/admin/AdminDonHangController.php';
+require_once './controllers/user/userController.php';
 
 
-//admin
 //controller
+require_once './controllers/admin/AdminDonHangController.php';
 require_once './controllers/admin/userController.php';
 
 //models

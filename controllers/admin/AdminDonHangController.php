@@ -12,9 +12,9 @@ class AdminDonHangController
     public function getAllDonHang()
     {
         $listDonHang = $this->donHang->getAllDonHang();
-        if ($listDonHang) {
+        // if ($listDonHang) {
             require_once './views/admin/DonHang/litsDonHang.php';
-        }
+        // }
     }
 
     public function detailDonHang()
