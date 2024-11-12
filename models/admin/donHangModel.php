@@ -25,6 +25,11 @@ class DonHangModel
         return $this->db->getOne($sql);
     }
 
+    public function getOneDonHang($id){
+        $sql = "SELECT * FROM orders WHERE id=$id";
+        return $this->db->getOne($sql);
+    }
+
     public function editDonHang($id, $user_id, $order_date, $status, $payment, 
     $total_amount, $total_money, $shipping_address, $create_at, $update_at)
     {
