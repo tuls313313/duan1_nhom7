@@ -6,11 +6,9 @@ require_once './commons/database.php';
 
 //user
 require_once './controllers/user/HomeUserController.php';
-<<<<<<< HEAD
 require_once './controllers/admin/HomeAdminController.php';
 require_once './controllers/admin/AdminDonHangController.php';
-=======
->>>>>>> b53bff931da6c821b64d22f5b0fd5349f25e66b3
+
 
 //admin
 //controller
@@ -37,7 +35,7 @@ $response = match ($act) {
 
     // Quản trị viên
     'admin/user' => $Admin->UserAdmin(),
-<<<<<<< HEAD
+
 
     'admin/donHang' => $AdminDonHang->getAllDonHang(),
 
@@ -49,12 +47,10 @@ $response = match ($act) {
 
     
 
-=======
     'admin/user/add' =>$Admin->insertUser(),
     'admin/user/edit' => $Admin->editUser(),
     'admin/user/nextedit' => $Admin->nextedit(),
     'admin/user/delete' => $Admin->DeletetUser(),
->>>>>>> b53bff931da6c821b64d22f5b0fd5349f25e66b3
 };
 
 
