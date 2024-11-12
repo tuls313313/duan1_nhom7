@@ -36,7 +36,16 @@
                 <div class="row">
                   <div class="col-12">
                     <div class="callout callout-info">
-                      <h5></i> Status: <?= $detail['status'] == 0 ? 'Đăng chờ' : ($detail['status'] == 1 ? 'Đang giao' : 'Hoàn thành') ?></h5>
+                      <h5>Status:
+                        <?php if ($detail['status'] == 0) {
+                          echo 'Đang chờ';
+                        } elseif (['status'] == 1) {
+                          echo 'Đang giao';
+                        } else {
+                          echo 'Hoàn thành';
+                        }
+                        ?>
+                      </h5>
                     </div>
                     <!-- Main content -->
                     <div class="invoice p-3 mb-3">
@@ -65,11 +74,11 @@
                         </div>
                         <!-- /.col -->
                         <div class="col-sm-4 invoice-col">
-                        <address>
+                          <address>
                             <strong>Thông tin người nhận:</strong><br>
                             <p>Họ và Tên: <?= $detail['user'] ?></p>
                             <p>Email: <?= $detail['email'] ?></p>
-                            <p>Số điện thoại: <?= $detail['tel'] ?></p> 
+                            <p>Số điện thoại: <?= $detail['tel'] ?></p>
                             <p>Địa chỉ: <?= $detail['shipping_address'] ?></p>
                           </address>
                         </div>
@@ -95,19 +104,27 @@
                               </tr>
                             </thead>
                             <tbody>
-                            
-                                <tr>
-                                  <td><?= $detail['id'] ?></td>
-                                  <td><?= $detail['user_id'] ?></td>
-                                  <td><?= $detail['order_date'] ?></td>
-                                  <td><?= $detail['status'] == 0 ? 'Đăng chờ' : ($detail['status'] == 1 ? 'Đang giao' : 'Hoàn thành') ?></td>
-                                  <td><?= $detail['payment'] == 0 ? 'Thanh toán khi nhận hàng' : 'Thanh toán online' ?></td>
-                                  <td><?= $detail['total_amount'] ?></td>
-                                  <td><?= $detail['total_money'] ?></td>
-                                  <td><?= $detail['shipping_address'] ?></td>
-                                  <td><?= $detail['create_at'] ?></td>
-                                  <td><?= $detail['update_at'] ?></td>
-                                </tr>
+                              <tr>
+                                <td><?= $detail['id'] ?></td>
+                                <td><?= $detail['user_id'] ?></td>
+                                <td><?= $detail['order_date'] ?></td>
+                                <td>
+                                  <?php if ($detail['status'] == 0) {
+                                    echo 'Đang chờ';
+                                  } elseif (['status'] == 1) {
+                                    echo 'Đang giao';
+                                  } else {
+                                    echo 'Hoàn thành';
+                                  }
+                                  ?>
+                                </td>
+                                <td><?= $detail['payment'] == 0 ? 'Thanh toán khi nhận hàng' : 'Thanh toán online' ?></td>
+                                <td><?= $detail['total_amount'] ?></td>
+                                <td><?= $detail['total_money'] ?></td>
+                                <td><?= $detail['shipping_address'] ?></td>
+                                <td><?= $detail['create_at'] ?></td>
+                                <td><?= $detail['update_at'] ?></td>
+                              </tr>
                             </tbody>
                           </table>
                         </div>

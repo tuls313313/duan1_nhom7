@@ -28,7 +28,6 @@ class AdminDonHangController
         $detail = $this->donHang->detailDonHang($id);
         // var_dump($detail); die;
         // if($detail){
-        require_once './views/admin/DonHang/editDonHang.php';
         require_once './views/admin/DonHang/detailDonHang.php';
         // }
     }
