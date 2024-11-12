@@ -71,9 +71,9 @@
           </div>
           <ul class="footer__list collapse show" id="demo">
             <li class="footer__item">
-              <a href="?act=trangchu" class="footer__item--link">Trang chủ</a>
+            <a href="<?= BASE_URL ?>?act=trangchu" class="footer__item--link">Trang chủ</a>
             <li class="footer__item">
-              <a href="?act=intro" class="footer__item--link">Giới thiệu</a>
+              <a href="<?= BASE_URL ?>?act=intro" class="footer__item--link">Giới thiệu</a>
             </li>
             <li class="footer__item">
               <a href="./Product.html" class="footer__item--link">Sản phẩm</a>
