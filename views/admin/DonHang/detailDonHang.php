@@ -66,7 +66,7 @@
                         <!-- /.col -->
                         <div class="col-sm-4 invoice-col">
                         <address>
-                            <strong>Thông tin người đặt:</strong><br>
+                            <strong>Thông tin người nhận:</strong><br>
                             <p>Họ và Tên: <?= $detail['user'] ?></p>
                             <p>Email: <?= $detail['email'] ?></p>
                             <p>Số điện thoại: <?= $detail['tel'] ?></p> 

@@ -42,11 +42,11 @@ class AdminDonHangController
     {
         if (isset($_POST['editDonHang'])) {
             $error = [];
-            
+            // var_dump(value: $_POST['editDonHang']); die;
             $id = $_POST['id'];
             $user_id = $_POST['user_id'];
-            $order_date = $_POST['order_date'];// var_dump($order_date); die;
-            $status = $_POST['status'];
+            $order_date = $_POST['order_date'];
+            $status = $_POST['status']; 
             $payment = $_POST['payment'];
             $total_amount = $_POST['total_amount'];
             $total_money = $_POST['total_money'];

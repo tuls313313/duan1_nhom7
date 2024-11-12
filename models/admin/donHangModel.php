@@ -32,7 +32,7 @@ class DonHangModel
         `payment` = '$payment', `total_amount` = '$total_amount', 
         `total_money` = '$total_money', `shipping_address` = '$shipping_address', 
         `create_at` = '$create_at', `update_at` = '$update_at' WHERE `id` = $id";
-        // var_dump($sql); die;
+        // var_dump($sql); die; 
         return $this->db->insert($sql);
     }
 }
