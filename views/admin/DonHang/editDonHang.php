@@ -68,8 +68,8 @@
                                                     <select name="status" class="form-control">
                                                         <option value="0" <?= $edit['status'] == 0 ? 'selected' : '' ?>>
                                                             Đang chờ</option>
-                                                        <option value="1" <?= $edit['status'] == 1 ? 'selected' : '' ?>>Đang
-                                                            giao</option>
+                                                        <option value="1" <?= $edit['status'] == 1 ? 'selected' : '' ?>>
+                                                            Đang giao</option>
                                                         <option value="2" <?= $edit['status'] == 2 ? 'selected' : '' ?>>
                                                             Hoàn thành</option>
                                                     </select>
@@ -115,7 +115,10 @@
                                     </div>
                                 </div>
                                 <div class="card-footer">
-                                    <button type="submit" class="btn btn-primary" name="editDonHang">Submit</button>
+                                    <button type="submit" class="btn btn-primary" name="editDonHang"
+                                        onclick="return confirm('Bạn có chắc muốn sửa cho đơn hàng: <?= $edit['id'] ?>')">
+                                        Submit
+                                    </button>
                                 </div>
                             </form>
                         </section>
@@ -132,7 +135,7 @@
 <?php include_once './views/admin/layout/footer.php'; ?>
 
 <script>
-    $(function () {
+    $(function() {
         $("#example1").DataTable({
             "responsive": true,
             "lengthChange": false,
