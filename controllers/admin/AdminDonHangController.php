@@ -6,15 +6,15 @@ class AdminDonHangController
 
     public function __construct()
     {
-        $this->donHang = new donHangModel();
+        $this->donHang = new DonHangModel();
     }
 
     public function getAllDonHang()
     {
         $listDonHang = $this->donHang->getAllDonHang();
-        if ($listDonHang) {
+        // if ($listDonHang) {
             require_once './views/admin/DonHang/litsDonHang.php';
-        }
+        // }
     }
 
     public function detailDonHang()

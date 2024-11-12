@@ -4,6 +4,7 @@
 --
 -- Host: localhost:3306
 -- Generation Time: Nov 12, 2024 at 03:05 AM
+-- Generation Time: Nov 12, 2024 at 02:56 AM
 -- Server version: 8.0.30
 -- PHP Version: 8.1.10
 
@@ -34,9 +35,12 @@ CREATE TABLE `account` (
   `email` varchar(255) NOT NULL COMMENT 'email',
   `address` varchar(255) NOT NULL COMMENT 'địa chỉ',
   `tel` varchar(10) NOT NULL COMMENT 'sdt',
-  `role` tinyint NOT NULL DEFAULT '0' COMMENT '0 là người dùng,1 là admin',
-  `create_at` timestamp NOT NULL COMMENT 'tạo acc',
-  `update_at` timestamp NOT NULL COMMENT 'cập nhật'
+  `role` tinyint NOT NULL DEFAULT '0' COMMENT '0 là người dùng, 1 là admin',
+  `ip_address` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL COMMENT 'ip ',
+  `status` tinyint NOT NULL DEFAULT '0' COMMENT '0 là active, 1 là locked',
+  `create_at` timestamp NULL DEFAULT NULL COMMENT 'tạo acc',
+  `update_at` timestamp NULL DEFAULT NULL COMMENT 'cập nhật',
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
@@ -45,6 +49,9 @@ CREATE TABLE `account` (
 
 INSERT INTO `account` (`id`, `user`, `password`, `email`, `address`, `tel`, `role`, `create_at`, `update_at`) VALUES
 (1, 'tuls11', 'tuls11', 'tuls11@gmail.com', 'tuls11', '0123456789', 1, '2024-11-09 14:31:20', '2024-11-09 14:31:20');
+INSERT INTO `account` (`id`, `user`, `password`, `email`, `address`, `tel`, `role`, `ip_address`, `status`, `create_at`, `update_at`) VALUES
+(11, 'admin', 'admin', 'admin@gmail.com', 'Lạng sơn', '097181037', 1, '127.0.0.1', 0, '2024-11-10 13:10:56', '2024-11-10 18:01:12'),
+(18, 'dvprovn', 'muhygty00000', 'pcls313313@gmail.com', 'Lạng sơn', '535', 0, '127.0.0.1', 0, '2024-11-10 17:56:44', '2024-11-11 15:14:25');
 
 -- --------------------------------------------------------
 
@@ -233,6 +240,7 @@ ALTER TABLE `varianti`
 --
 ALTER TABLE `account`
   MODIFY `id` int NOT NULL AUTO_INCREMENT COMMENT 'pk', AUTO_INCREMENT=2;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT COMMENT 'pk', AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT for table `cart`

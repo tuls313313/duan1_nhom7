@@ -5,19 +5,18 @@ require_once './commons/env.php';
 require_once './commons/database.php';
 
 //user
-require_once './controllers/user/HomeUserController.php';
+require_once './controllers/user/userController.php';
 require_once './controllers/admin/userController.php';
 require_once './controllers/admin/AdminDonHangController.php';
+require_once './controllers/user/userController.php';
 
-
-//admin
 //controller
+require_once './controllers/admin/AdminDonHangController.php';
 require_once './controllers/admin/userController.php';
 
 //models
 require_once './models/admin/userModels.php';
 require_once './models/admin/donHangModel.php';
-
 $User = new HomeUserController();
 $Admin = new HomeAdminController;
 $AdminDonHang = new AdminDonHangController();
@@ -36,13 +35,10 @@ $response = match ($act) {
     // Quản trị viên
     'admin/user' => $Admin->UserAdmin(),
 
-
+    // Quản Lý Đơn Hàng
     'admin/donHang' => $AdminDonHang->getAllDonHang(),
-
     'admin/donHang/detail' => $AdminDonHang->detailDonHang(),
-
     'admin/donHang/edit' => $AdminDonHang->editDonHang(),
-
     'admin/donHang/editDonHang' => $AdminDonHang->postDonHang(),
 
     
