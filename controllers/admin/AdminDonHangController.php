@@ -3,18 +3,21 @@
 class AdminDonHangController
 {
     public $donHang;
+    public $user;
 
     public function __construct()
     {
         $this->donHang = new DonHangModel();
+        $this->donHang = new donHangModel();
+        $this->user = new UserModels();
     }
 
     public function getAllDonHang()
-    {
+    {   
         $listDonHang = $this->donHang->getAllDonHang();
-        // if ($listDonHang) {
+        if ($listDonHang) {
             require_once './views/admin/DonHang/litsDonHang.php';
-        // }
+        }
     }
 
     public function detailDonHang()
@@ -25,6 +28,7 @@ class AdminDonHangController
         $detail = $this->donHang->detailDonHang($id);
         // var_dump($detail); die;
         // if($detail){
+        require_once './views/admin/DonHang/editDonHang.php';
         require_once './views/admin/DonHang/detailDonHang.php';
         // }
     }
@@ -33,7 +37,9 @@ class AdminDonHangController
     {
         if (isset($_GET['id'])) {
             $id = $_GET['id'];
-            $edit = $this->donHang->detailDonHang($id);
+            $dataUser = $this->user->getAllUser();
+            // var_dump($dataUser); die();
+            $edit = $this->donHang->getOneDonHang($id);
             require_once './views/admin/DonHang/editDonHang.php';
         }
     }

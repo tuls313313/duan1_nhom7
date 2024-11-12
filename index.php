@@ -10,6 +10,7 @@ require_once './controllers/admin/userController.php';
 require_once './controllers/admin/AdminDonHangController.php';
 require_once './controllers/user/userController.php';
 
+
 //controller
 require_once './controllers/admin/AdminDonHangController.php';
 require_once './controllers/admin/userController.php';
@@ -17,6 +18,7 @@ require_once './controllers/admin/userController.php';
 //models
 require_once './models/admin/userModels.php';
 require_once './models/admin/donHangModel.php';
+
 $User = new HomeUserController();
 $Admin = new HomeAdminController;
 $AdminDonHang = new AdminDonHangController();
