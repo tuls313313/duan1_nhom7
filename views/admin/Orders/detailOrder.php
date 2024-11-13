@@ -39,7 +39,7 @@
                       <h5>Status:
                         <?php if ($detail['status_order'] == 0) {
                           echo 'Đang chờ';
-                        } elseif (['status_order'] == 1) {
+                        } elseif ($detail['status_order'] == 1) {
                           echo 'Đang giao';
                         } else {
                           echo 'Hoàn thành';
@@ -111,7 +111,7 @@
                                 <td>
                                   <?php if ($detail['status_order'] == 0) {
                                     echo 'Đang chờ';
-                                  } elseif (['status_order'] == 1) {
+                                  } elseif ($detail['status_order'] == 1) {
                                     echo 'Đang giao';
                                   } else {
                                     echo 'Hoàn thành';

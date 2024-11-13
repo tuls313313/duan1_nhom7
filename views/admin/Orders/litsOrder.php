@@ -50,7 +50,7 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <?php foreach ($listDonHang as $value) { ?>
+                  <?php foreach ($listOrder as $value) { ?>
                     <tr>
                       <td><?= $value['id_order'] ?></td>
                       <td><?= $value['user_id'] ?></td>
@@ -63,8 +63,8 @@
                       <td><?= $value['create_at'] ?></td>
                       <td><?= $value['update_at'] ?></td>
                       <td>
-                        <a href="?act=admin/donHang/detail&id=<?= $value['id_order'] ?>" class="btn btn-primary">Xem</a>
-                        <a href="?act=admin/donHang/edit&id=<?= $value['id_order'] ?>" class="btn btn-warning">Sửa</a>
+                        <a href="?act=admin/order/detail&id=<?= $value['id_order'] ?>" class="btn btn-primary">Xem</a>
+                        <a href="?act=admin/order/edit&id=<?= $value['id_order'] ?>" class="btn btn-warning">Sửa</a>
                       </td>
                     </tr>
                   <?php } ?>

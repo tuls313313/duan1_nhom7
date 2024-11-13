@@ -1,6 +1,6 @@
 <?php
 
-class DonHangModel
+class OrderModel
 {
     public $db;
 
@@ -9,29 +9,34 @@ class DonHangModel
         $this->db = new Database();
     }
 
-    public function getAllDonHang()
+    public function getAllOrder()
     {
         $sql = "SELECT * FROM orders";
         return $this->db->getAll($sql);
     }
 
-    public function detailDonHang($id_order)
+    public function detailOrder($id_order)
     {
-        $sql = "SELECT * FROM orders
+        // $sql = "SELECT * FROM orders
+        //         INNER JOIN account ON orders.user_id = account.id
+        //         WHERE orders.id_order = $id_order";
+        $sql = "SELECT orders.*, account.*, orders.update_at AS update_at_orders FROM orders
                 INNER JOIN account ON orders.user_id = account.id
                 WHERE orders.id_order = $id_order";
 
+        // var_dump($sql);die;
+        
         // $sql = "SELECT * FROM orders WHERE id=$id";
         return $this->db->getOne($sql);
     }
 
-    public function getOneDonHang($id_order)
+    public function getOneOrder($id_order)
     {
         $sql = "SELECT * FROM orders WHERE id_order=$id_order";
         return $this->db->getOne($sql);
     }
 
-    public function editDonHang(
+    public function editOrder(
         $id_order,
         $user_id,
         $order_date,

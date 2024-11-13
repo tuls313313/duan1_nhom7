@@ -32,16 +32,17 @@
                             <h3 class="card-title">Form Sửa Đơn Hàng</h3>
                         </div>
                         <section class="content">
-                            <form action="?act=admin/donHang/editDonHang&id=<?= $edit['id_order'] ?>" method="post">
+                            <form action="?act=admin/order/editOrder&id=<?= $edit['id_order'] ?>" method="post">
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="card card-primary">
                                             <div class="card-header">
                                                 <h3 class="card-title">Sửa Thông Tin Đơn Hàng:
                                                     <?php
+                                                    $userName = '';
                                                     foreach ($dataUser as $user) {
                                                         if ($edit['user_id'] == $user['id']) {
-                                                            echo $user['user'];
+                                                            echo $userName = $user['user'];
                                                         }
                                                     }
                                                     ?>
@@ -115,8 +116,8 @@
                                     </div>
                                 </div>
                                 <div class="card-footer">
-                                    <button type="submit" class="btn btn-primary" name="editDonHang"
-                                        onclick="return confirm('Bạn có chắc muốn sửa cho đơn hàng: <?= $edit['id_order'] ?>')">
+                                    <button type="submit" class="btn btn-primary" name="editOrder"
+                                        onclick="return confirm('Bạn có chắc muốn sửa cho đơn hàng: <?= $userName ?>')">
                                         Submit
                                     </button>
                                 </div>
