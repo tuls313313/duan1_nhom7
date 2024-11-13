@@ -104,8 +104,8 @@
                                   <td><?= $detail['total_amount'] ?></td>
                                   <td><?= $detail['total_money'] ?></td>
                                   <td><?= $detail['shipping_address'] ?></td>
-                                  <td><?= $detail['create_at'] ?></td>
-                                  <td><?= $detail['update_at'] ?></td>
+                                  <td><?= $detail['create_at_orders'] ?></td>
+                                  <td><?= $detail['update_at_orders'] ?></td>
                                 </tr>
                             </tbody>
                           </table>

@@ -17,7 +17,7 @@ class DonHangModel
 
     public function detailDonHang($id_order)
     {
-        $sql = "SELECT * FROM orders
+        $sql = "SELECT orders.*, account.*, orders.update_at AS update_at_orders , orders.create_at as create_at_orders FROM orders
                 INNER JOIN account ON orders.user_id = account.id
                 WHERE orders.id_order = $id_order
                 ";

@@ -1,4 +1,5 @@
 <?php 
+session_start();
 
 // Require file Common
 require_once './commons/env.php';
@@ -21,8 +22,7 @@ $AdminDonHang = new AdminDonHangController();
 // Để bảo bảo tính chất chỉ gọi 1 hàm Controller để xử lý request thì mình sử dụng match
 
 $act = $_GET['act'] ?? '/';
-
-$response = match ($act) {
+match ($act) {
     // Người dùng
     '/' => $User->homeUser(),
     'trangchu' => $User->homeUser(),
@@ -45,6 +45,7 @@ $response = match ($act) {
 
     'admin/user/add' =>$Admin->insertUser(),
     'admin/user/edit' => $Admin->editUser(),
+    'admin/user/nextinsert' => $Admin->nextInsertUser(),
     'admin/user/nextedit' => $Admin->nextedit(),
     'admin/user/delete' => $Admin->DeletetUser(),
 };
