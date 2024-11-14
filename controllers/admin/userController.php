@@ -106,7 +106,8 @@ class HomeAdminController
         if (isset($_GET['id'])) {
             $id = $_GET['id'];
             $dataOneUser = $this->user->getOneUser($id);
-            require_once './views/admin/user/edit.php';        }
+            require_once './views/admin/user/edit.php';       
+         }
     }
     public function nextedit()
     {
@@ -158,7 +159,4 @@ class HomeAdminController
             header("Location: ?act=admin/user&message=success");
         }
     }
-
-
-
 }
