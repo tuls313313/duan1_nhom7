@@ -36,7 +36,16 @@
                 <div class="row">
                   <div class="col-12">
                     <div class="callout callout-info">
-                      <h5></i> Status: <?= $detail['status'] == 0 ? 'Đăng chờ' : ($detail['status'] == 1 ? 'Đang giao' : 'Hoàn thành') ?></h5>
+                      <h5>Status:
+                        <?php if ($detail['status_order'] == 0) {
+                          echo 'Đang chờ';
+                        } elseif ($detail['status_order'] == 1) {
+                          echo 'Đang giao';
+                        } else {
+                          echo 'Hoàn thành';
+                        }
+                        ?>
+                      </h5>
                     </div>
                     <!-- Main content -->
                     <div class="invoice p-3 mb-3">
@@ -65,11 +74,11 @@
                         </div>
                         <!-- /.col -->
                         <div class="col-sm-4 invoice-col">
-                        <address>
-                            <strong>Thông tin người đặt:</strong><br>
+                          <address>
+                            <strong>Thông tin người nhận:</strong><br>
                             <p>Họ và Tên: <?= $detail['user'] ?></p>
                             <p>Email: <?= $detail['email'] ?></p>
-                            <p>Số điện thoại: <?= $detail['tel'] ?></p> 
+                            <p>Số điện thoại: <?= $detail['tel'] ?></p>
                             <p>Địa chỉ: <?= $detail['shipping_address'] ?></p>
                           </address>
                         </div>
@@ -82,10 +91,10 @@
                           <table class="table table-striped">
                             <thead>
                               <tr>
-                                <th>id</th>
+                                <th>id_order</th>
                                 <th>user_id</th>
                                 <th>order_date</th>
-                                <th>status</th>
+                                <th>status_order</th>
                                 <th>payment</th>
                                 <th>total_amount</th>
                                 <th>total_money</th>
@@ -156,25 +165,3 @@
 <!-- /.content-wrapper -->
 <?php include_once './views/admin/layout/footer.php'; ?>
 
-<script>
-  $(function() {
-    $("#example1").DataTable({
-      "responsive": true,
-      "lengthChange": false,
-      "autoWidth": false,
-      "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
-    }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
-    $('#example2').DataTable({
-      "paging": true,
-      "lengthChange": false,
-      "searching": false,
-      "ordering": true,
-      "info": true,
-      "autoWidth": false,
-      "responsive": true,
-    });
-  });
-</script>
-</body>
-
-</html>
