@@ -283,9 +283,9 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="?act=admin/donHang" class="nav-link">
+                <a href="?act=admin/order" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Đơn Hàng</p>
+                  <p>Danh sách đơn hàng</p>
                 </a>
               </li>
             </ul>

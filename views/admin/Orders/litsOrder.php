@@ -50,12 +50,12 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <?php foreach ($listDonHang as $value) { ?>
+                  <?php foreach ($listOrder as $value) { ?>
                     <tr>
-                      <td><?= $value['id'] ?></td>
+                      <td><?= $value['id_order'] ?></td>
                       <td><?= $value['user_id'] ?></td>
                       <td><?= $value['order_date'] ?></td>
-                      <td><?= $value['status'] == 0 ? 'Đang chờ' : ( $value['status'] == 1  ? 'Đang giao' : 'Hoàn Thành' ); ?></td>
+                      <td><?= $value['status_order'] == 0 ? 'Đang chờ' : ( $value['status_order'] == 1  ? 'Đang giao' : 'Hoàn Thành' ); ?></td>
                       <td><?= $value['payment'] == 0 ? 'Thanh toán khi nhận hàng' : 'Thanh toán online' ?></td>
                       <td><?= $value['total_amount'] ?></td>
                       <td><?= $value['total_money'] ?></td>
@@ -63,8 +63,8 @@
                       <td><?= $value['create_at'] ?></td>
                       <td><?= $value['update_at'] ?></td>
                       <td>
-                        <a href="?act=admin/donHang/detail&id=<?= $value['id'] ?>" class="btn btn-primary">Xem</a>
-                        <a href="?act=admin/donHang/edit&id=<?= $value['id'] ?>" class="btn btn-warning">Sửa</a>
+                        <a href="?act=admin/order/detail&id=<?= $value['id_order'] ?>" class="btn btn-primary">Xem</a>
+                        <a href="?act=admin/order/edit&id=<?= $value['id_order'] ?>" class="btn btn-warning">Sửa</a>
                       </td>
                     </tr>
                   <?php } ?>
