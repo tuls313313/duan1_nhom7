@@ -12,7 +12,7 @@ class HomeAdminController
     {
         $dataUser = $this->user->getAllUser();
         // if ($dataUser) {
-        require_once './views/AdminLTE/pages/tables/user/user.php';
+        require_once './views/admin/user/user.php';
         // }
         // var_dump(value: $data);
     }
@@ -20,7 +20,7 @@ class HomeAdminController
 
     public function insertUser()
     {
-        require_once './views/AdminLTE/pages/tables/user/add.php';
+        require_once './views/admin/user/add.php';
     }
 
     public function nextInsertUser(){
@@ -106,8 +106,7 @@ class HomeAdminController
         if (isset($_GET['id'])) {
             $id = $_GET['id'];
             $dataOneUser = $this->user->getOneUser($id);
-            require_once './views/AdminLTE/pages/tables/user/edit.php';        
-        }
+            require_once './views/admin/user/edit.php';        }
     }
     public function nextedit()
     {
