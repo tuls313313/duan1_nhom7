@@ -288,6 +288,12 @@
                   <p>Danh sách đơn hàng</p>
                 </a>
               </li>
+              <li class="nav-item">
+                <a href="?act=admin/categories" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Danh sách danh mục</p>
+                </a>
+              </li>
             </ul>
           </li>
           <li class="nav-header">EXAMPLES</li>
