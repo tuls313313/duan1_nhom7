@@ -44,7 +44,7 @@
                         <div class="form-group">
                           <label for="id">Id</label>
                           <input type="number" name="id" class="form-control"
-                            value="<?= $edit_Categories['id'] ?>">
+                            value="<?= $edit_Categories['id'] ?>" readonly>
                         </div>
                         <div class="form-group">
                           <label for="name">Name</label>
@@ -67,7 +67,7 @@
                   </div>
                 </div>
                 <div class="card-footer">
-                  <button type="submit" class="btn btn-primary" name="name"
+                  <button type="submit" class="btn btn-primary" name="submit"
                     onclick="return confirm('Bạn có chắc muốn sửa cho danh mục: <?= $edit_Categories['name'] ?>')">
                     Submit
                   </button>
