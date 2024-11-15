@@ -33,7 +33,7 @@
                         </div>
                         <!--/.card-header -->
                         <div class="card-body">
-                            <a class="btn btn-success mb-2" href="" data-toggle="modal" data-target="#addModal">Add Danh Mục</a>
+                            <a class="btn btn-success mb-2" href="?act=admin/categories/addCategories">Add Danh Mục</a>
                             <h4 class="text-danger mt-2 mb-2" id="notification" class="notification"></h4>
                             <table id="example1" class="table table-bordered table-striped">
                                 <thead>
@@ -49,10 +49,10 @@
                                         <tr>
                                             <td><?= $value['id'] ?></td>
                                             <td><?= $value['name'] ?></td>
-                                            <td><?= $value['status_categories'] ?></td>
+                                            <td><?= $value['status_categories'] == 0 ? 'Hoạt Động' : 'Không Hoạt Động' ?></td>
                                             <td>
                                                 <a href="?act=admin/categories/edit&id=<?= $value['id'] ?>" class="btn btn-warning">Sửa</a>
-                                                <a href="" class="btn btn-danger">Xóa</a>
+                                                <a href="?act=admin/categories/delete&id=<?= $value['id'] ?>" class="btn btn-danger" onclick="return confirm('Bạn có chắc là muốn xóa danh mục này không: <?= $value['name'] ?>')">Xóa</a>
                                             </td>
                                         </tr>
                                     <?php } ?>
