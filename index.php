@@ -48,9 +48,12 @@ $response = match ($act) {
     'admin/order/editOrder' => $AdminOrder->postOrder(),
 
     // Quản lý danh mục
-    'admin/categories' => $AdminCategories->getAllCategories(),
-    'admin/categories/edit' => $AdminCategories->editCategories(),
-    'admin/categories/editCategories' => $AdminCategories->postCategories(),
+    'admin/categories' => $AdminCategories->getAllCategory(),
+    'admin/categories/edit' => $AdminCategories->editCategory(),
+    'admin/categories/editCategories' => $AdminCategories->postCategory(),
+    'admin/categories/delete' => $AdminCategories->deleteCategory(),
+    'admin/categories/add' => $AdminCategories->addCategory(),
+    'admin/categories/addCategories' => $AdminCategories->formAddCategory(),
 
     // Quản lý tài khoản
     'admin/user/add' =>$Admin->insertUser(),
