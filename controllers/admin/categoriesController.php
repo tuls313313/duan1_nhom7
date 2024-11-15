@@ -7,33 +7,70 @@ class CategoriesController
     public function __construct()
     {
         $this->categories = new categoriesModel();
-        
     }
 
-    public function getAllCategories()
+    public function getAllCategory()
     {
-        $listCategories = $this->categories->getAllCategories();
+        $listCategories = $this->categories->getAllCategory();
         require_once './views/admin/categories/listCategories.php';
     }
 
-    public function editCategories()
+    public function editCategory()
     {
         if(isset($_GET['id'])){
             $id = $_GET['id'];
-            $edit_Categories = $this->categories->getOneCategories($id);
+            $edit_Categories = $this->categories->getOneCategory($id);
             require_once './views/admin/categories/editCategories.php';
         }
     }
 
-    public function postCategories()
+    public function postCategory()
     {
-        if(isset($_POST['id'])){
+        if(isset($_POST['submit'])){
             $error = [];
-            $id = $_POST['id'];
+            $id = $_GET['id'];
             $name = $_POST['name'];
             $status_categories = $_POST['status_categories'];
             if(empty($error)){
-                $this->categories->editCategories($id, $name, $status_categories);
+                $this->categories->editCategory($id, $name, $status_categories);
+                header("Location: ?act=admin/categories&message=success");
+            }else{
+                header("Location: ?act=admin/categories&message=error");
+            }
+        }else{
+            header("Location: ?act=admin/categories&message=error.");
+        }
+    }
+
+    public function deleteCategory()
+    {
+        if(isset($_GET['id'])){
+            $id = $_GET['id'];
+            $delete = $this->categories->deleteCategory($id);
+            header('Location: ?act=admin/categories&message=success');
+        }
+    }
+
+    public function formAddCategory()
+    {
+        require_once "./views/admin/categories/addCategories.php";
+    }
+
+    public function addCategory()
+    {
+        if(empty($_POST['submit'])){
+            $error = [];
+            $name = $_POST['name'];
+            // if(empty($name)){
+            //     $error[] = "Tên danh mục không được để trống";
+            // }
+            $status_categories = $_POST['status_categories'];
+            // if(empty($status_categories)){
+            //     $error[] = "Status không được để trống";
+            // }
+
+            if(empty($error)){
+                $this->categories->inserCategory($name,$status_categories);
                 header("Location: ?act=admin/categories&message=success");
             }else{
                 header("Location: ?act=admin/categories&message=error");
