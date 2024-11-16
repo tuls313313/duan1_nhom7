@@ -54,9 +54,9 @@
                         <div class="form-group">
                           <label for="status_categories">Status_categories</label>
                           <select name="status_categories" class="form-control">
-                            <option value="0" <?= $edit_Categories['status_categories'] == 0 ? 'selected' : '' ?>>
-                              Hoạt Động</option>
                             <option value="1" <?= $edit_Categories['status_categories'] == 1 ? 'selected' : '' ?>>
+                              Hoạt Động</option>
+                            <option value="2" <?= $edit_Categories['status_categories'] == 2 ? 'selected' : '' ?>>
                               Không Hoạt Động</option>
                           </select>
                         </div>
