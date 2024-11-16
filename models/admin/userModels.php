@@ -20,9 +20,9 @@ class UserModels{
         return $this->db->getOne($sql);
     }
 
-    public function insertUser($user,$password,$email,$address,$tel,$create_at,$ip_address){
-        $sql = "INSERT INTO `account`(`user`, `password`, `email`, `address`, `tel`,  `create_at`,`ip_address`) 
-        VALUES ('$user', '$password', '$email', '$address', '$tel','$create_at','$ip_address')";
+    public function insertUser($user,$password,$email,$address,$tel,$create_at){
+        $sql = "INSERT INTO `account`(`user`, `password`, `email`, `address`, `tel`,  `create_at`) 
+        VALUES ('$user', '$password', '$email', '$address', '$tel','$create_at')";
         return $this->db->insert($sql);
     }
 

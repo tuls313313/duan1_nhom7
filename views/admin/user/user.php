@@ -51,7 +51,6 @@
                                         <th>email</th>
                                         <th>address</th>
                                         <th>tel</th>
-                                        <th>ip_address</th>
                                         <th>role</th>
                                         <th>status</th>
                                         <th>create_at</th>
@@ -67,7 +66,6 @@
                                             <td><?= $value['email'] ?></td>
                                             <td><?= $value['address'] ?></td>
                                             <td><?= $value['tel'] ?></td>
-                                            <td><?= $value['ip_address'] ?></td>
                                             <td><?= $value['role'] == 1 ? 'Admin' : 'Thành viên' ?></td>
                                             <td><?= $value['status'] == 0 ? 'active' : 'locked' ?></td>
                                             <td><?= $value['create_at'] ?></td>

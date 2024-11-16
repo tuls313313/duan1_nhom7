@@ -54,8 +54,6 @@ class HomeAdminController
             else if (strlen(trim($_POST['address'])) >= 255) {
                 $error[] = 'Địa chỉ không được quá 255 ký tự';
             }
-            // Lấy địa chỉ IP của người dùng
-            $ip_address = $this->getUserIP();
             $create_at = $time;
             if (empty($error)) {
                 $this->user->insertUser(
@@ -64,9 +62,8 @@ class HomeAdminController
                     $_POST['email'],
                     $_POST['address'],
                     $_POST['tel'],
-                    $create_at,
-                    $ip_address
-                );
+                    $create_at
+                                );
                 header("Location: ?act=admin/user&message=success!");
             } else {
                 $_SESSION['errors'] = $error;
@@ -77,27 +74,6 @@ class HomeAdminController
         }
     }
 
-    // Hàm lấy địa chỉ IP của người dùng
-    public function getUserIP()
-    {
-        // Kiểm tra IP từ HTTP_CLIENT_IP (dùng khi có proxy)
-        if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
-            $ip = $_SERVER['HTTP_CLIENT_IP'];
-        }
-        // Kiểm tra IP từ HTTP_X_FORWARDED_FOR (dùng khi có nhiều proxy)
-        elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
-            // HTTP_X_FORWARDED_FOR có thể chứa nhiều IP, lấy IP công cộng đầu tiên
-            $ipArray = explode(',', $_SERVER['HTTP_X_FORWARDED_FOR']);
-            $ip = trim(end($ipArray)); // Lấy IP cuối cùng nếu có nhiều IP
-        }
-        // Nếu không có proxy, lấy IP từ REMOTE_ADDR
-        else {
-            $ip = $_SERVER['REMOTE_ADDR'];
-        }
-
-        // Trả về 127.0.0.1 nếu là localhost, hoặc trả về IP thật nếu không
-        return ($ip === '::1') ? '127.0.0.1' : $ip;
-    }
 
 
 
