@@ -271,9 +271,9 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="../tables/simple.html" class="nav-link">
+                <a href="?act=admin/comment/list" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Simple Tables</p>
+                  <p>Quản lý bình luận</p>
                 </a>
               </li>
               <li class="nav-item">
