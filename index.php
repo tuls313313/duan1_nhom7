@@ -1,5 +1,5 @@
 <?php 
-
+session_start();
 // Require file Common
 require_once './commons/env.php';
 require_once './commons/database.php';
