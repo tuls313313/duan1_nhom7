@@ -31,7 +31,6 @@ class UserModels{
         `email`='$email',`address`='$address',`tel`='$tel',
         `update_at`='$update_at' ,`role`='$role',`status`='$status' WHERE id=$id ";
         return $this->db->insert($sql);
-        
     }
 
 }
