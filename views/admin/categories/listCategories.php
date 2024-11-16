@@ -49,7 +49,7 @@
                                         <tr>
                                             <td><?= $value['id'] ?></td>
                                             <td><?= $value['name'] ?></td>
-                                            <td><?= $value['status_categories'] == 0 ? 'Hoạt Động' : 'Không Hoạt Động' ?></td>
+                                            <td><?= $value['status_categories'] == 1 ? 'Hoạt Động' : 'Không Hoạt Động' ?></td>
                                             <td>
                                                 <a href="?act=admin/categories/edit&id=<?= $value['id'] ?>" class="btn btn-warning">Sửa</a>
                                                 <a href="?act=admin/categories/delete&id=<?= $value['id'] ?>" class="btn btn-danger" onclick="return confirm('Bạn có chắc là muốn xóa danh mục này không: <?= $value['name'] ?>')">Xóa</a>
