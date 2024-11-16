@@ -277,7 +277,7 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="?act=admin/user" class="nav-link active">
+                <a href="?act=admin/user/list" class="nav-link active">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Danh sách thành viên</p>
                 </a>

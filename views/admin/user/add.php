@@ -37,7 +37,7 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-12">
-                    <form action="?act=admin/user/nextinsert" method="POST">
+                    <form action="?act=admin/user/nextadd" method="POST">
                         <div class="form-group">
                             <label for="user">User</label>
                             <input type="text" class="form-control" name="user"

@@ -38,7 +38,15 @@ match ($act) {
     'news' => $User->homeNew(),
 
     // Quản trị viên
-    'admin/user' => $Admin->UserAdmin(),
+
+    // Quản lý tài khoản
+     'admin/user/list' => $Admin->ListUser(),
+     'admin/user/add' =>$Admin->insertUser(),
+     'admin/user/nextadd' => $Admin->nextInsertUser(),
+     'admin/user/edit' => $Admin->editUser(),
+     'admin/user/nextedit' => $Admin->nextedit(),
+     'admin/user/delete' => $Admin->deletetUser(),
+
 
     // Quản Lý Đơn Hàng
     'admin/order' => $AdminOrder->getAllOrder(),
@@ -54,13 +62,6 @@ match ($act) {
     'admin/categories/add' => $AdminCategories->addCategory(),
     'admin/categories/addCategories' => $AdminCategories->formAddCategory(),
 
-    // Quản lý tài khoản
-    'admin/user/add' =>$Admin->insertUser(),
-    'admin/user/edit' => $Admin->editUser(),
-    'admin/user/nextinsert' => $Admin->nextInsertUser(),
-    'admin/user/nextedit' => $Admin->nextedit(),
-    'admin/user/delete' => $Admin->DeletetUser(),
-
     // quản lý bình luận 
     'admin/comment/list' => $adminCmt->listCmt(),
     'admin/comment/add' => $adminCmt->addCmt(),
@@ -68,6 +69,8 @@ match ($act) {
     'admin/comment/edit' => $adminCmt->editCmt(),
     'admin/comment/nexteditcmt' => $adminCmt->nextEditCmt(),
     'admin/comment/delete' => $adminCmt ->delCmt(),
+
+    
 };
 
 

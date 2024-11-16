@@ -8,11 +8,11 @@ class HomeAdminController
     {
         $this->user = new UserModels();
     }
-    public function UserAdmin()
+    public function ListUser()
     {
         $dataUser = $this->user->getAllUser();
         // if ($dataUser) {
-        require_once './views/admin/user/user.php';
+        require_once './views/admin/user/list.php';
         // }
         // var_dump(value: $data);
     }
@@ -117,22 +117,22 @@ class HomeAdminController
 
             if (empty($error)) {
                 $this->user->editUser($id, $_POST['user'], $_POST['password'], $_POST['email'], $_POST['address'], $_POST['tel'], $update_at, $_POST['role'], $_POST['status']);
-                header("Location: ?act=admin/user&message=success");
+                header("Location: ?act=admin/user/list&message=success");
             } else {
                 $_SESSION['errors'] = $error;
                 header("Location: ?act=admin/user/edit&id=$id");
             }
         } else {
-            header("Location: ?act=admin/user&message=error.");
+            header("Location: ?act=admin/user/list&message=error.");
         }
     }
 
-    public function DeletetUser()
+    public function deletetUser()
     {
         if (isset($_GET['id'])) {
             $id = $_GET['id'];
             $dataOneUser = $this->user->deleteUser($id);
-            header("Location: ?act=admin/user&message=success");
+            header("Location: ?act=admin/user/list&message=success");
         }
     }
 }
