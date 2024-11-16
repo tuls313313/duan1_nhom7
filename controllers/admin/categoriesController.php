@@ -60,20 +60,16 @@ class CategoriesController
     {
         if(empty($_POST['submit'])){
             $error = [];
-            $name = $_POST['name'];
-            // if(empty($name)){
-            //     $error[] = "Tên danh mục không được để trống";
-            // }
-            $status_categories = $_POST['status_categories'];
-            // if(empty($status_categories)){
-            //     $error[] = "Status không được để trống";
-            // }
-
+            // $name = $_POST['name'];
+            if(empty($_POST['name'])){
+                $error[] = "Tên danh mục không được để trống";
+            }
             if(empty($error)){
-                $this->categories->inserCategory($name,$status_categories);
+                $this->categories->inserCategory($_POST['name'],$_POST['status_categories']);
                 header("Location: ?act=admin/categories&message=success");
             }else{
-                header("Location: ?act=admin/categories&message=error");
+                $_SESSION['error'] = $error;
+                header("Location: ?act=admin/categories/addCategories");
             }
         }else{
             header("Location: ?act=admin/categories&message=error.");
