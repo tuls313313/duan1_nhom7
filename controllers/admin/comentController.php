@@ -21,14 +21,11 @@ class ComentController{
     public function nextAddCmt(){
         if(empty($_POST['submit'])){
             $error = [];
-            date_default_timezone_set(timezoneId: 'Asia/Ho_Chi_Minh');
-            $time = date('d-m-y H:i:s');
-            $time_comment = $time;
             if(empty($_POST['conten'])){
                 $error[]= 'conten trống';
             }
             if(empty($error)){
-                $this->cmt->addCmt($_POST['id_user'],$_POST['id_pro'],$_POST['conten'],$time_comment);
+                $this->cmt->addCmt($_POST['id_user'],$_POST['id_pro'],$_POST['conten']);
                 header('location: ?act=admin/comment/list');
             }else{
                 $_SESSION['errors'] = $error;

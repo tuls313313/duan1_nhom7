@@ -20,9 +20,9 @@ class CommentModel{
         return $this->db->getAll($sql);
     }
 
-    public function addCmt($id_user,$id_pro,$conten,$time_comment){
-        $sql = "INSERT INTO `comment`(`id_user`, `id_pro`, `conten`, `time_comment`) 
-        VALUES ('$id_user','$id_pro','$conten','$time_comment')";
+    public function addCmt($id_user,$id_pro,$conten){
+        $sql = "INSERT INTO `comment`(`id_user`, `id_pro`, `conten`) 
+        VALUES ('$id_user','$id_pro','$conten')";
         $this->db->insert($sql);
     }
 
@@ -40,7 +40,6 @@ class CommentModel{
     public function deleteCmt($id_cmt){
         $sql = "DELETE FROM `comment` WHERE id_cmt=$id_cmt";
         return $this->db->getOne($sql);
-
     }
 
 }

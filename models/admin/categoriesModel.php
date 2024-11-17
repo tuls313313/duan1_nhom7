@@ -38,9 +38,8 @@ class CategoriesModel
 
     public function inserCategory($name, $status_categories)
     {
-        $sql = "INSERT INTO categories (`name`, `status_categories`) VALUES ('$name','$status_categories')";
+        // $sql = "INSERT INTO categories (`name`, `status_categories`) VALUES ('$name','$status_categories')";
         $sql1 = " INSERT INTO `categories`(`name`, `status_categories`) VALUES ('$name','$status_categories') ";
-        // var_dump($sql);die;
         return $this->db->insert($sql1);
     }
 }

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Nov 16, 2024 at 02:20 PM
+-- Generation Time: Nov 17, 2024 at 06:10 AM
 -- Server version: 8.0.30
 -- PHP Version: 8.1.10
 
@@ -37,7 +37,7 @@ CREATE TABLE `account` (
   `role` tinyint NOT NULL DEFAULT '0' COMMENT '0 là người dùng,1 là admin',
   `status` tinyint NOT NULL DEFAULT '0' COMMENT '0 là active 1 là locked',
   `create_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'tạo acc',
-  `update_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT 'cập nhật'
+  `update_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'cập nhật'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
@@ -45,8 +45,7 @@ CREATE TABLE `account` (
 --
 
 INSERT INTO `account` (`id`, `user`, `password`, `email`, `address`, `tel`, `role`, `status`, `create_at`, `update_at`) VALUES
-(15, 'dvprovn', '4444444', 'chome1@gmail.com', 'Lạng sơn', '0971810376', 0, 0, '2024-11-10 16:19:49', '2016-11-24 08:55:47'),
-(23, 'tuntphe', 'gfhgngh', 'ntt3132004@gmail.com', 'LANG SON', '0971810376', 0, 0, '2024-11-16 10:18:16', '2024-11-16 13:50:56');
+(15, 'dvprovn', '4444444', 'chome1@gmail.com', 'lạng sơn 1', '0971810376', 0, 1, '2024-11-10 16:19:49', '2024-11-17 06:02:33');
 
 -- --------------------------------------------------------
 
@@ -83,8 +82,8 @@ CREATE TABLE `cart_details` (
   `Quantity` int NOT NULL COMMENT 'số lượng',
   `money` decimal(10,2) NOT NULL COMMENT 'giá',
   `total_money` decimal(10,2) NOT NULL COMMENT 'tổng giá',
-  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'tạo',
-  `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT 'update'
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'tạo',
+  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'update'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
@@ -144,7 +143,7 @@ CREATE TABLE `comment` (
   `id_pro` int NOT NULL COMMENT 'fk product',
   `conten` text NOT NULL COMMENT 'nội dung',
   `status` tinyint NOT NULL DEFAULT '0' COMMENT '0 chờ duyệt,1 đã duyệt',
-  `time_comment` timestamp NULL DEFAULT NULL COMMENT 'thời gian'
+  `time_comment` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'thời gian'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
@@ -152,7 +151,8 @@ CREATE TABLE `comment` (
 --
 
 INSERT INTO `comment` (`id_cmt`, `id_user`, `id_pro`, `conten`, `status`, `time_comment`) VALUES
-(14, 15, 1, 'Tốt', 0, '2016-11-24 10:54:02');
+(14, 15, 1, 'Tốt', 0, '2016-11-24 10:54:02'),
+(20, 15, 1, 'ưadfghmhgfdsfghjk,hgfdsfgh', 1, '2024-11-17 06:05:24');
 
 -- --------------------------------------------------------
 
@@ -395,7 +395,7 @@ ALTER TABLE `varianti`
 -- AUTO_INCREMENT for table `account`
 --
 ALTER TABLE `account`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT COMMENT 'pk', AUTO_INCREMENT=24;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT COMMENT 'pk', AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT for table `cart`
@@ -425,7 +425,7 @@ ALTER TABLE `color`
 -- AUTO_INCREMENT for table `comment`
 --
 ALTER TABLE `comment`
-  MODIFY `id_cmt` int NOT NULL AUTO_INCREMENT COMMENT 'pk', AUTO_INCREMENT=20;
+  MODIFY `id_cmt` int NOT NULL AUTO_INCREMENT COMMENT 'pk', AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT for table `orders`
