@@ -93,7 +93,6 @@
                               <tr>
                                 <th>id_order</th>
                                 <th>user_id</th>
-                                <th>order_date</th>
                                 <th>status_order</th>
                                 <th>payment</th>
                                 <th>total_amount</th>
@@ -107,7 +106,6 @@
                                 <tr>
                                   <td><?= $detail['id_order'] ?></td>
                                   <td><?= $detail['user'] ?></td>
-                                  <td><?= $detail['order_date'] ?></td>
                                   <td><?= $detail['status_order'] == 0 ? 'Đăng chờ' : ($detail['status_order'] == 1 ? 'Đang giao' : 'Hoàn thành') ?></td>
                                   <td><?= $detail['payment'] == 0 ? 'Thanh toán khi nhận hàng' : 'Thanh toán online' ?></td>
                                   <td><?= $detail['total_amount'] ?></td>
