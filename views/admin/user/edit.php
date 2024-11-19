@@ -39,26 +39,31 @@
                 <div class="col-12">
                     <form action="?act=admin/user/nextedit&id=<?= $dataOneUser['id'] ?>" method="POST">
                         <!-- Các trường nhập dữ liệu -->
-                        <div class="form-group">
-                            <label for="user">User</label>
-                            <input type="text" class="form-control" name="user"
-                                value="<?php echo $dataOneUser['user']; ?>" readonly>
+                        <div class="form-group row">
+                            <div class="col-md-6">
+                                <label for="user">User</label>
+                                <input type="text" class="form-control" name="user"
+                                    value="<?php echo $dataOneUser['user']; ?>" readonly>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="password">Password</label>
+                                <input type="password" class="form-control" name="password"
+                                    value="<?php echo $dataOneUser['password']; ?>">
+                            </div>
                         </div>
-                        <div class="form-group">
-                            <label for="password">Password</label>
-                            <input type="password" class="form-control" name="password"
-                                value="<?php echo $dataOneUser['password']; ?>">
+                        <div class="form-group row">
+                            <div class="col-md-6">
+                                <label for="email">Email</label>
+                                <input type="email" class="form-control" name="email"
+                                    value="<?php echo $dataOneUser['email']; ?>" readonly>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="address">Address</label>
+                                <input type="text" class="form-control" name="address"
+                                    value="<?php echo $dataOneUser['address']; ?>">
+                            </div>
                         </div>
-                        <div class="form-group">
-                            <label for="email">Email</label>
-                            <input type="email" class="form-control" name="email"
-                                value="<?php echo $dataOneUser['email']; ?>" readonly>
-                        </div>
-                        <div class="form-group">
-                            <label for="address">address</label>
-                            <input type="text" class="form-control" name="address"
-                                value="<?php echo $dataOneUser['address']; ?>">
-                        </div>
+
                         <div class="form-group">
                             <label for="tel">tel</label>
                             <input type="text" class="form-control" name="tel"
@@ -101,4 +106,3 @@
 
 <!-- /.content-wrapper -->
 <?php include_once './views/admin/layout/footer.php'; ?>
-

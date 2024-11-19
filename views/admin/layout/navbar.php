@@ -6,7 +6,6 @@
       </li>
       <li class="nav-item d-none d-sm-inline-block">
         <a href="?act=trangchu" class="nav-link">Home</a>
-      </li>
     </ul>
 
     <!-- Right navbar links -->

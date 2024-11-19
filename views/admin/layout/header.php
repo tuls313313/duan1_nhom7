@@ -16,6 +16,7 @@
   <!-- Theme style -->
   <link rel="stylesheet" href="./views/admin/asset/dist/css/adminlte.min.css">
   <link rel="stylesheet" href="">
+  <link rel="icon" href="./uploads/img/LogoAdmin.png" type="image/png">
 </head>
 <body class="hold-transition sidebar-mini">
-<div class="wrapper"></div>
+<div class="wrapper">

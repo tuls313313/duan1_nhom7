@@ -8,11 +8,11 @@ class HomeAdminController
     {
         $this->user = new UserModels();
     }
-    public function UserAdmin()
+    public function ListUser()
     {
         $dataUser = $this->user->getAllUser();
         // if ($dataUser) {
-        require_once './views/admin/user/user.php';
+        require_once './views/admin/user/list.php';
         // }
         // var_dump(value: $data);
     }
@@ -26,8 +26,6 @@ class HomeAdminController
     public function nextInsertUser(){
         if (isset($_POST['addUser'])) {
             $error = [];
-            date_default_timezone_set('Asia/Ho_Chi_Minh');
-            $time = date('Y-m-d H:i:s');
             if (empty(trim($_POST['user']))) {
                 $error[] = 'Không được để trống user';
             }else if (strlen(trim(($_POST['user'])) <= 6)) {
@@ -54,23 +52,15 @@ class HomeAdminController
             else if (strlen(trim($_POST['address'])) >= 255) {
                 $error[] = 'Địa chỉ không được quá 255 ký tự';
             }
-            $create_at = $time;
             if (empty($error)) {
-                $this->user->insertUser(
-                    $_POST['user'],
-                    $_POST['password'],
-                    $_POST['email'],
-                    $_POST['address'],
-                    $_POST['tel'],
-                    $create_at
-                                );
-                header("Location: ?act=admin/user&message=success!");
+                $this->user->insertUser(user: $_POST['user'],password: $_POST['password'],email: $_POST['email'],address: $_POST['address'],tel: $_POST['tel'],);
+                header("Location: ?act=admin/user/list&message=success!");
             } else {
                 $_SESSION['errors'] = $error;
                 header("Location: ?act=admin/user/add");
             }
         } else {
-            header("Location: ?act=admin/user&message=error.");
+            header("Location: ?act=admin/user/list&message=error.");
         }
     }
 
@@ -90,9 +80,6 @@ class HomeAdminController
         if (isset($_POST['editUser'])) {
             $error = [];
             $id = $_GET['id'];
-            date_default_timezone_set(timezoneId: 'Asia/Ho_Chi_Minh');
-            $time = date('d-m-y H:i:s');
-            $update_at = $time;
             // empty() kiểm tra có trống hay không
             // trim() kiểm tra không nhận khoảng trắng khi nhận dữ liệu
             // strlen() kiểm tra độ dài của ký tự
@@ -116,23 +103,23 @@ class HomeAdminController
             }
 
             if (empty($error)) {
-                $this->user->editUser($id, $_POST['user'], $_POST['password'], $_POST['email'], $_POST['address'], $_POST['tel'], $update_at, $_POST['role'], $_POST['status']);
-                header("Location: ?act=admin/user&message=success");
+                $this->user->editUser($id, $_POST['user'], $_POST['password'], $_POST['email'], $_POST['address'], $_POST['tel'], $_POST['role'], $_POST['status']);
+                header("Location: ?act=admin/user/list&message=success");
             } else {
                 $_SESSION['errors'] = $error;
                 header("Location: ?act=admin/user/edit&id=$id");
             }
         } else {
-            header("Location: ?act=admin/user&message=error.");
+            header("Location: ?act=admin/user/list&message=error.");
         }
     }
 
-    public function DeletetUser()
+    public function deletetUser()
     {
         if (isset($_GET['id'])) {
             $id = $_GET['id'];
             $dataOneUser = $this->user->deleteUser($id);
-            header("Location: ?act=admin/user&message=success");
+            header("Location: ?act=admin/user/list&message=success");
         }
     }
 }
