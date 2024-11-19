@@ -93,7 +93,6 @@
                               <tr>
                                 <th>id_order</th>
                                 <th>user_id</th>
-                                <th>order_date</th>
                                 <th>status_order</th>
                                 <th>payment</th>
                                 <th>total_amount</th>
@@ -104,27 +103,17 @@
                               </tr>
                             </thead>
                             <tbody>
-                              <tr>
-                                <td><?= $detail['id_order'] ?></td>
-                                <td><?= $detail['user_id'] ?></td>
-                                <td><?= $detail['order_date'] ?></td>
-                                <td>
-                                  <?php if ($detail['status_order'] == 0) {
-                                    echo 'Đang chờ';
-                                  } elseif ($detail['status_order'] == 1) {
-                                    echo 'Đang giao';
-                                  } else {
-                                    echo 'Hoàn thành';
-                                  }
-                                  ?>
-                                </td>
-                                <td><?= $detail['payment'] == 0 ? 'Thanh toán khi nhận hàng' : 'Thanh toán online' ?></td>
-                                <td><?= $detail['total_amount'] ?></td>
-                                <td><?= $detail['total_money'] ?></td>
-                                <td><?= $detail['shipping_address'] ?></td>
-                                <td><?= $detail['create_at'] ?></td>
-                                <td><?= $detail['update_at'] ?></td>
-                              </tr>
+                                <tr>
+                                  <td><?= $detail['id_order'] ?></td>
+                                  <td><?= $detail['user'] ?></td>
+                                  <td><?= $detail['status_order'] == 0 ? 'Đăng chờ' : ($detail['status_order'] == 1 ? 'Đang giao' : 'Hoàn thành') ?></td>
+                                  <td><?= $detail['payment'] == 0 ? 'Thanh toán khi nhận hàng' : 'Thanh toán online' ?></td>
+                                  <td><?= $detail['total_amount'] ?></td>
+                                  <td><?= $detail['total_money'] ?></td>
+                                  <td><?= $detail['shipping_address'] ?></td>
+                                  <td><?= $detail['create_at_orders'] ?></td>
+                                  <td><?= $detail['update_at_orders'] ?></td>
+                                </tr>
                             </tbody>
                           </table>
                         </div>
@@ -174,25 +163,3 @@
 <!-- /.content-wrapper -->
 <?php include_once './views/admin/layout/footer.php'; ?>
 
-<script>
-  $(function() {
-    $("#example1").DataTable({
-      "responsive": true,
-      "lengthChange": false,
-      "autoWidth": false,
-      "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
-    }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
-    $('#example2').DataTable({
-      "paging": true,
-      "lengthChange": false,
-      "searching": false,
-      "ordering": true,
-      "info": true,
-      "autoWidth": false,
-      "responsive": true,
-    });
-  });
-</script>
-</body>
-
-</html>

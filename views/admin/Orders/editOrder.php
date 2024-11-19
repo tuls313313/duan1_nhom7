@@ -32,7 +32,7 @@
                             <h3 class="card-title">Form Sửa Đơn Hàng</h3>
                         </div>
                         <section class="content">
-                            <form action="?act=admin/order/editOrder&id=<?= $edit['id_order'] ?>" method="post">
+                            <form action="?act=admin/order/editOrder&id_order=<?= $edit['id_order'] ?>" method="post">
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="card card-primary">
@@ -58,11 +58,6 @@
                                                     <label for="user_id">User_id</label>
                                                     <input type="number" name="user_id" class="form-control"
                                                         value="<?= $edit['user_id'] ?>" readonly>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="order_date">Order_date</label>
-                                                    <input type="text" name="order_date" class="form-control"
-                                                        value="<?= $edit['order_date'] ?>" readonly>
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="status_order">status_order</label>
@@ -134,26 +129,3 @@
 </div>
 <!-- /.content-wrapper -->
 <?php include_once './views/admin/layout/footer.php'; ?>
-
-<script>
-    $(function() {
-        $("#example1").DataTable({
-            "responsive": true,
-            "lengthChange": false,
-            "autoWidth": false,
-            "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
-        }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
-        $('#example2').DataTable({
-            "paging": true,
-            "lengthChange": false,
-            "searching": false,
-            "ordering": true,
-            "info": true,
-            "autoWidth": false,
-            "responsive": true,
-        });
-    });
-</script>
-</body>
-
-</html>
