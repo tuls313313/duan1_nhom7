@@ -20,18 +20,16 @@ class UserModels{
         return $this->db->getOne($sql);
     }
 
-    public function insertUser($user,$password,$email,$address,$tel,$create_at,$ip_address){
-        $sql = "INSERT INTO `account`(`user`, `password`, `email`, `address`, `tel`,  `create_at`,`ip_address`) 
-        VALUES ('$user', '$password', '$email', '$address', '$tel','$create_at','$ip_address')";
+    public function insertUser($user,$password,$email,$address,$tel){
+        $sql = "INSERT INTO `account`(`user`, `password`, `email`, `address`, `tel`) 
+        VALUES ('$user', '$password', '$email', '$address', '$tel')";
         return $this->db->insert($sql);
     }
 
-    public function editUser($id,$user,$password,$email,$address,$tel,$update_at,$role,$status){
+    public function editUser($id,$user,$password,$email,$address,$tel,$role,$status){
         $sql ="UPDATE `account` SET `user`='$user',`password`='$password',
-        `email`='$email',`address`='$address',`tel`='$tel',
-        `update_at`='$update_at' ,`role`='$role',`status`='$status' WHERE id=$id ";
+        `email`='$email',`address`='$address',`tel`='$tel',`role`='$role',`status`='$status' WHERE id=$id ";
         return $this->db->insert($sql);
-        
     }
 
 }

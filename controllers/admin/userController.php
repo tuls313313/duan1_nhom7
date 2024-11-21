@@ -8,86 +8,62 @@ class HomeAdminController
     {
         $this->user = new UserModels();
     }
-    public function UserAdmin()
+    public function ListUser()
     {
         $dataUser = $this->user->getAllUser();
         // if ($dataUser) {
-        require_once './views/admin/user/user.php';
+        require_once './views/admin/user/list.php';
         // }
         // var_dump(value: $data);
     }
 
+
     public function insertUser()
     {
-        
+        require_once './views/admin/user/add.php';
+    }
+
+    public function nextInsertUser(){
         if (isset($_POST['addUser'])) {
             $error = [];
-            date_default_timezone_set('Asia/Ho_Chi_Minh');
-            $time = date('Y-m-d H:i:s');
-
-            // Lấy các thông tin từ biểu mẫu
-            $user = $_POST['user'];
-            if (empty($user)) {
-                $error[] = 'Lỗi: tên người dùng rỗng';
+            if (empty(trim($_POST['user']))) {
+                $error[] = 'Không được để trống user';
+            }else if (strlen(trim(($_POST['user'])) <= 6)) {
+                $error[] = 'user phải lớn hơn 6 ký tự';
             }
-
-            $password = $_POST['password'];
-            if (empty($password)) {
-                $error[] = 'Lỗi: mật khẩu rỗng';
+            if (empty(trim($_POST['email']))) {
+                $error[] = 'Không được để trống email';
+            }else if (strlen(trim($_POST['email'])) >= 255) {
+                $error[] = 'email không được quá 255 ký tự';
             }
-
-            $email = $_POST['email'];
-            if (empty($email)) {
-                $error[] = 'Lỗi: email rỗng';
+            if (empty(trim($_POST['password']))) {
+                $error[] = 'Không được để trống mật khẩu';
+            } else if (strlen(trim(($_POST['password'])) <= 6)) {
+                $error[] = 'mật khẩu phải lớn hơn 6 ký tự';
             }
-
-            $address = $_POST['address'];
-            if (empty($address)) {
-                $error[] = 'Lỗi: địa chỉ rỗng';
+            if (empty(trim($_POST['tel']))) {
+                $error[] = 'không được để trống số điện thoại';
+            } else if (strlen(trim($_POST['tel'])) != 10) {
+                $error[] = 'số điện thoại không được ít hoặc nhiều hơn 10 số';
             }
-
-            $tel = $_POST['tel'];
-            if (empty($tel) || strlen($tel) > 10) {
-                $error[] = 'Lỗi: số điện thoại không hợp lệ';
+            if (empty(trim($_POST['address']))) {
+                $error[] = 'Không được để trống địa chỉ';
+            } 
+            else if (strlen(trim($_POST['address'])) >= 255) {
+                $error[] = 'Địa chỉ không được quá 255 ký tự';
             }
-
-            // Lấy địa chỉ IP của người dùng
-            $ip_address = $this->getUserIP();
-            $create_at = $time;
-           
-            
             if (empty($error)) {
-                $this->user->insertUser($user, $password, $email, $address, $tel, $create_at, $ip_address);
-                header("Location: ?act=admin/user&message=success!");
+                $this->user->insertUser(user: $_POST['user'],password: $_POST['password'],email: $_POST['email'],address: $_POST['address'],tel: $_POST['tel'],);
+                header("Location: ?act=admin/user/list&message=success!");
             } else {
-                header("Location: ?act=admin/user&message=error.");
+                $_SESSION['errors'] = $error;
+                header("Location: ?act=admin/user/add");
             }
         } else {
-            header("Location: ?act=admin/user&message=error.");
+            header("Location: ?act=admin/user/list&message=error.");
         }
     }
 
-    // Hàm lấy địa chỉ IP của người dùng
-    public function getUserIP()
-    {
-        // Kiểm tra IP từ HTTP_CLIENT_IP (dùng khi có proxy)
-        if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
-            $ip = $_SERVER['HTTP_CLIENT_IP'];
-        }
-        // Kiểm tra IP từ HTTP_X_FORWARDED_FOR (dùng khi có nhiều proxy)
-        elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
-            // HTTP_X_FORWARDED_FOR có thể chứa nhiều IP, lấy IP công cộng đầu tiên
-            $ipArray = explode(',', $_SERVER['HTTP_X_FORWARDED_FOR']);
-            $ip = trim(end($ipArray)); // Lấy IP cuối cùng nếu có nhiều IP
-        }
-        // Nếu không có proxy, lấy IP từ REMOTE_ADDR
-        else {
-            $ip = $_SERVER['REMOTE_ADDR'];
-        }
-
-        // Trả về 127.0.0.1 nếu là localhost, hoặc trả về IP thật nếu không
-        return ($ip === '::1') ? '127.0.0.1' : $ip;
-    }
 
 
 
@@ -96,47 +72,54 @@ class HomeAdminController
         if (isset($_GET['id'])) {
             $id = $_GET['id'];
             $dataOneUser = $this->user->getOneUser($id);
-            require_once './views/admin/user/editUser.php';
-        }
+            require_once './views/admin/user/edit.php';       
+         }
     }
     public function nextedit()
     {
         if (isset($_POST['editUser'])) {
             $error = [];
             $id = $_GET['id'];
-            date_default_timezone_set('Asia/Ho_Chi_Minh');
-            $time = date('Y-m-d H:i:s');
-            $user = $_POST['user'];
-            $password = $_POST['password'];
-            $email = $_POST['email'];
-            $address = $_POST['address'];
-            $tel = $_POST['tel'];
-            if (strlen(empty($tel)) > 10) {
-                $error[] = ' loi tel';
-            } else if (strlen($tel) > 10) {
-                $error[] = ' loi tel';
+            // empty() kiểm tra có trống hay không
+            // trim() kiểm tra không nhận khoảng trắng khi nhận dữ liệu
+            // strlen() kiểm tra độ dài của ký tự
+
+            if (empty(trim($_POST['address']))) {
+                $error[] = 'Không được để trống địa chỉ';
+            } 
+            else if (strlen(trim($_POST['address'])) >= 255) {
+                $error[] = 'Địa chỉ không được quá 255 ký tự';
             }
-            $update_at = $time;
+
+            if (empty(trim($_POST['password']))) {
+                $error[] = 'Không được để trống mật khẩu';
+            } else if (strlen(trim(($_POST['password'])) <= 6)) {
+                $error[] = 'mật khẩu phải lớn hơn 6 ký tự';
+            }
+            if (empty(trim($_POST['tel']))) {
+                $error[] = 'không được để trống số điện thoại';
+            } else if (strlen(trim($_POST['tel'])) != 10) {
+                $error[] = 'số điện thoại không được ít hoặc nhiều hơn 10 số';
+            }
+
             if (empty($error)) {
-                $this->user->editUser($id, $user, $password, $email, $address, $tel, $update_at,$_POST['role'],$_POST['status']);
-                header("Location: ?act=admin/user&message=success");
+                $this->user->editUser($id, $_POST['user'], $_POST['password'], $_POST['email'], $_POST['address'], $_POST['tel'], $_POST['role'], $_POST['status']);
+                header("Location: ?act=admin/user/list&message=success");
             } else {
-                header("Location: ?act=admin/user&message=error");
+                $_SESSION['errors'] = $error;
+                header("Location: ?act=admin/user/edit&id=$id");
             }
         } else {
-            header("Location: ?act=admin/user&message=error.");
+            header("Location: ?act=admin/user/list&message=error.");
         }
     }
 
-    public function DeletetUser()
+    public function deletetUser()
     {
         if (isset($_GET['id'])) {
             $id = $_GET['id'];
             $dataOneUser = $this->user->deleteUser($id);
-            header("Location: ?act=admin/user&message=success");
+            header("Location: ?act=admin/user/list&message=success");
         }
     }
-
-
-
 }

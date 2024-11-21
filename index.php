@@ -1,41 +1,54 @@
 <?php 
+session_start();
 
 // Require file Common
 require_once './commons/env.php';
 require_once './commons/database.php';
+
 //user
 require_once './controllers/user/userController.php';
 
 
-//controller
-require_once './controllers/admin/AdminDonHangController.php';
+//controller admin
+require_once './controllers/admin/orderController.php';
 require_once './controllers/admin/userController.php';
 require_once './controllers/admin/productController.php';
 
-//models
+//models admin
 require_once './models/admin/userModels.php';
 require_once './models/admin/donHangModel.php';
 require_once './models/admin/productModel.php';
 $User = new HomeUserController();
 $Admin = new HomeAdminController;
-$AdminDonHang = new AdminDonHangController();
+// $AdminDonHang = new AdminDonHangController();
 $AdminProduct = new ProductController();
 // $thongke = new Thongke();
 
 // Để bảo bảo tính chất chỉ gọi 1 hàm Controller để xử lý request thì mình sử dụng match
 
 $act = $_GET['act'] ?? '/';
-
-$response = match ($act) {
+match ($act) {
     // Người dùng
     '/' => $User->homeUser(),
     'trangchu' => $User->homeUser(),
     'intro' => $User->homeIntro(),
     'news' => $User->homeNew(),
+    'lienhe' => $User->lienhe(),
+    'dangky' => $User->dangky(),
+    'dangnhap' => $User->dangnhap(),
+    'giohang' => $User->giohang(),
+    'thanhtoan' => $User->thanhtoan(),
+    'chitietsp' => $User->chitietsp(),
 
     // Quản trị viên
-    'admin/user' => $Admin->UserAdmin(),
 
+    // Quản lý tài khoản
+     'admin/user/list' => $Admin->ListUser(),
+     'admin/user/add' =>$Admin->insertUser(),
+     'admin/user/nextadd' => $Admin->nextInsertUser(),
+     'admin/user/edit' => $Admin->editUser(),
+     'admin/user/nextedit' => $Admin->nextedit(),
+     'admin/user/delete' => $Admin->deletetUser(),
 
     'admin/donHang' => $AdminDonHang->getAllDonHang(),
     'admin/donHang/detail' => $AdminDonHang->detailDonHang(),
