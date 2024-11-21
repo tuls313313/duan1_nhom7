@@ -271,9 +271,9 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="../tables/simple.html" class="nav-link">
+                <a href="?act=admin/product" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Simple Tables</p>
+                  <p>Danh Sách Sản Phẩm</p>
                 </a>
               </li>
               <li class="nav-item">
@@ -283,9 +283,15 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="?act=admin/donHang" class="nav-link">
+                <a href="?act=admin/DonHang" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Đơn Hàng</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="?act=admin/thongKe" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Thống kê</p>
                 </a>
               </li>
             </ul>

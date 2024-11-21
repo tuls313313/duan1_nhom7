@@ -62,7 +62,6 @@
                         <td><?= $value['tel'] ?></td>
                         <td><?= $value['ip_address'] ?></td>
                         <td><?= $value['role'] == 1 ? 'Admin' : 'Thành viên' ?></td>
-                        <td><?= $value['status'] == 0 ? 'active' : 'locked'?></td>
                         <td><?= $value['create_at'] ?></td>
                         <td><?= $value['update_at'] ?></td>
                         <td>
@@ -119,7 +118,7 @@
                   </div>
                 </div>
               </div>
-            </div>             
+            </div>
             <!-- /.card-body -->
           </div>
           <!-- /.card -->
@@ -136,9 +135,11 @@
 <?php include_once './views/admin/layout/footer.php'; ?>
 
 <script>
-  $(function () {
+  $(function() {
     $("#example1").DataTable({
-      "responsive": true, "lengthChange": false, "autoWidth": false,
+      "responsive": true,
+      "lengthChange": false,
+      "autoWidth": false,
       "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
     }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
     $('#example2').DataTable({

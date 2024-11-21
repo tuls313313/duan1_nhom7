@@ -10,13 +10,17 @@ require_once './controllers/user/userController.php';
 //controller
 require_once './controllers/admin/AdminDonHangController.php';
 require_once './controllers/admin/userController.php';
+require_once './controllers/admin/productController.php';
 
 //models
 require_once './models/admin/userModels.php';
 require_once './models/admin/donHangModel.php';
+require_once './models/admin/productModel.php';
 $User = new HomeUserController();
 $Admin = new HomeAdminController;
 $AdminDonHang = new AdminDonHangController();
+$AdminProduct = new ProductController();
+// $thongke = new Thongke();
 
 // Để bảo bảo tính chất chỉ gọi 1 hàm Controller để xử lý request thì mình sử dụng match
 
@@ -34,11 +38,8 @@ $response = match ($act) {
 
 
     'admin/donHang' => $AdminDonHang->getAllDonHang(),
-
     'admin/donHang/detail' => $AdminDonHang->detailDonHang(),
-
     'admin/donHang/edit' => $AdminDonHang->editDonHang(),
-
     'admin/donHang/editDonHang' => $AdminDonHang->postDonHang(),
 
     
@@ -47,6 +48,15 @@ $response = match ($act) {
     'admin/user/edit' => $Admin->editUser(),
     'admin/user/nextedit' => $Admin->nextedit(),
     'admin/user/delete' => $Admin->DeletetUser(),
+
+
+    'admin/product' =>$AdminProduct->getAllProduct(),
+    'admin/product/edit' =>$AdminProduct->editProduct(),
+    'admin/product/nextedit' =>$AdminProduct->nexteditProduct(),
+    'admin/product/delete' =>$AdminProduct->DeleteProduct(),
+    'admin/product/add' =>$AdminProduct->insertProduct(),
+    // 'admin/thongKe/tk' =>$thongke->loadallthongke()
+
 };
 
 
