@@ -218,7 +218,7 @@
             </ul>
           </li>
           <li class="ng-scope">
-            <a href="?act=intro">Tin tức</a>
+            <a href="?act=news">Tin tức</a>
           </li>
           <li class="ng-scope">
             <a href="#">Liên hệ</a>
@@ -359,7 +359,7 @@
               </div>
             </div>
           </li>
-          <li class="header_nav-list-item"><a href="?act=intro">Tin tức</a></li>
+          <li class="header_nav-list-item"><a href="?act=news">Tin tức</a></li>
           <li class="header_nav-list-item"><a href="#">Liên hệ</a></li>
         </ul>
       </div>
