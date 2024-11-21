@@ -54,7 +54,7 @@
         </li> -->
         <li class="nav-item">
           <ul class="nav flex-column">
-          <li class="nav-item">
+            <li class="nav-item">
               <a href="?act=admin/statistical" class="nav-link" id="category-link">
                 <i class="fas fa-tachometer-alt nav-icon"></i>
                 Quản lý thống kê
@@ -88,6 +88,12 @@
               <a href="?act=admin/user/list" class="nav-link" id="user-link">
                 <i class="fas fa-users nav-icon"></i>
                 Quản lý thành viên
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="?act=admin/color" class="nav-link" id="user-link">
+                <i class="fas fa-fill-drip nav-icon"></i>
+                Quản lý màu
               </a>
             </li>
           </ul>
