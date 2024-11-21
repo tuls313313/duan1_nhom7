@@ -37,12 +37,12 @@ class ProductController
                 $this->product->insertProduct( $name, $price, $img['name'],
                  $description, 
                  $id_categories);
-                header("Location: ?act=admin/product&message=success");
+                header("Location: ?act=admin/product/list&message=success");
             } else {
-                header("Location: ?act=admin/product&message=error");
+                header("Location: ?act=admin/product/list&message=error");
             }
         } else {
-            header("Location: ?act=admin/product&message=error.");
+            header("Location: ?act=admin/product/list&message=error.");
         }
     }
    
@@ -53,7 +53,7 @@ class ProductController
     if (isset($_GET['id'])) {
         $id = $_GET['id'];
         $dataOneProduct= $this ->product->deleteProduct($id);
-        header("Location: ?act=admin/product&message=success");
+        header("Location: ?act=admin/product/list&message=success");
     }
    }
 
@@ -83,12 +83,12 @@ class ProductController
                 $this->product->editProduct($id, $name, $price, $img,
                  $description, 
                  $id_categories, $status);
-                header("Location: ?act=admin/product&message=success");
+                header("Location: ?act=admin/product/list&message=success");
             } else {
-                header("Location: ?act=admin/product&message=error");
+                header("Location: ?act=admin/product/list&message=error");
             }
         } else {
-            header("Location: ?act=admin/product&message=error.");
+            header("Location: ?act=admin/product/list&message=error.");
         }
     }
 

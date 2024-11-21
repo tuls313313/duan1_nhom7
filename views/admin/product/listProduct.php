@@ -30,13 +30,11 @@
                         <div class="card">
                             <div class="card-header">
                                 <h3 class="card-title"> Danh Sách Sản Phẩm </h3>
-                
                             </div>
-                            <a class="btn btn-success mb-2" href="?act=admin/product/add" data-toggle="modal" data-target="#addModal">Add Thành viên</a>
-
                             <!-- card header -->
                             <div class="card-body">
                                 <table id="example1" class="table table-bordered table-striped">
+                                <a class="btn btn-success mb-2" href="?act=admin/product/add" data-toggle="modal" data-target="#addModal">Thêm sản phẩm</a>
                                     <thead>
                                         <tr>
                                             <th>id</th>
@@ -46,6 +44,7 @@
                                             <th>description</th>
                                             <th>id_categories</th>
                                             <th>status</th>
+                                            <th>action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -60,7 +59,7 @@
                                                 <td><?= $value['id_categories'] ?></td>
                                                 <td><?= $value['status'] == 0 ? 'Hoạt Động' : 'Không Hoạt Động'; ?> </td>
                                                 <td>
-                                                    <a href="?act=admin/product/edit&id=<?= $value['id'] ?>">Sửa</a>
+                                                    <a class="btn btn-primary" href="?act=admin/product/edit&id=<?= $value['id'] ?>">Sửa</a>
                                                     <a class="btn btn-danger" onclick="return confirm('Bạn chắc chắn muốn xóa thành viên: <?= $value['name'] ?> ?');" href="?act=admin/product/delete&id=<?= $value['id'] ?>">Xoá</a>
                                                 </td>
                                             </tr>
@@ -69,8 +68,6 @@
                                 </table>
                             </div>
                         </div>
-
-                        
                         <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="addModalLabel"
                             aria-hidden="true">
                             <div class="modal-dialog" role="document">
@@ -120,25 +117,3 @@
 </div>
 
 <?php include_once './views/admin/layout/footer.php'; ?>
-<script>
-    $(function() {
-        $("#example1").DataTable({
-            "responsive": true,
-            "lengthChange": false,
-            "autoWidth": false,
-            "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
-        }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
-        $('#example2').DataTable({
-            "paging": true,
-            "lengthChange": false,
-            "searching": false,
-            "ordering": true,
-            "info": true,
-            "autoWidth": false,
-            "responsive": true,
-        });
-    });
-</script>
-</body>
-
-</html>

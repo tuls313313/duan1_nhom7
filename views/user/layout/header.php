@@ -360,7 +360,7 @@
             </div>
           </li>
           <li class="header_nav-list-item"><a href="?act=news">Tin tức</a></li>
-          <li class="header_nav-list-item"><a href="#">Liên hệ</a></li>
+          <li class="header_nav-list-item"><a href="?act=lienhe">Liên hệ</a></li>
         </ul>
       </div>
     </nav>

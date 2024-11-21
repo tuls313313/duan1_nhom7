@@ -10,19 +10,27 @@ require_once './controllers/user/userController.php';
 
 
 //controller admin
+require_once './controllers/admin/categoriesController.php';
+require_once './controllers/admin/comentController.php';
 require_once './controllers/admin/orderController.php';
-require_once './controllers/admin/userController.php';
 require_once './controllers/admin/productController.php';
+require_once './controllers/admin/thongkeProduct.php';
+require_once './controllers/admin/userController.php';
 
 //models admin
-require_once './models/admin/userModels.php';
-require_once './models/admin/donHangModel.php';
+require_once './models/admin/categoriesModel.php';
+require_once './models/admin/commentModel.php';
+require_once './models/admin/orderModel.php';
 require_once './models/admin/productModel.php';
+require_once './models/admin/thongkeProduct.php';
+require_once './models/admin/userModels.php';
+
 $User = new HomeUserController();
-$Admin = new HomeAdminController;
-// $AdminDonHang = new AdminDonHangController();
-$AdminProduct = new ProductController();
-// $thongke = new Thongke();
+$AdminUser = new HomeAdminController;
+$AdminOrder = new OrderController();
+$AdminCategories = new CategoriesController();
+$adminCmt = new ComentController();
+$adminProduct = new ProductController();
 
 // Để bảo bảo tính chất chỉ gọi 1 hàm Controller để xử lý request thì mình sử dụng match
 
@@ -43,34 +51,40 @@ match ($act) {
     // Quản trị viên
 
     // Quản lý tài khoản
-     'admin/user/list' => $Admin->ListUser(),
-     'admin/user/add' =>$Admin->insertUser(),
-     'admin/user/nextadd' => $Admin->nextInsertUser(),
-     'admin/user/edit' => $Admin->editUser(),
-     'admin/user/nextedit' => $Admin->nextedit(),
-     'admin/user/delete' => $Admin->deletetUser(),
+     'admin/user/list' => $AdminUser->ListUser(),
+     'admin/user/add' =>$AdminUser->insertUser(),
+     'admin/user/nextadd' => $AdminUser->nextInsertUser(),
+     'admin/user/edit' => $AdminUser->editUser(),
+     'admin/user/nextedit' => $AdminUser->nextedit(),
+     'admin/user/delete' => $AdminUser->deletetUser(),
 
-    'admin/donHang' => $AdminDonHang->getAllDonHang(),
-    'admin/donHang/detail' => $AdminDonHang->detailDonHang(),
-    'admin/donHang/edit' => $AdminDonHang->editDonHang(),
-    'admin/donHang/editDonHang' => $AdminDonHang->postDonHang(),
+    // Quản Lý Đơn Hàng
+    'admin/order' => $AdminOrder->getAllOrder(),
+    'admin/order/detail' => $AdminOrder->detailOrder(),
+    'admin/order/edit' => $AdminOrder->editOrder(),
+    'admin/order/editOrder' => $AdminOrder->postOrder(),
 
-    
+    // Quản lý danh mục
+    'admin/categories' => $AdminCategories->getAllCategory(),
+    'admin/categories/edit' => $AdminCategories->editCategory(),
+    'admin/categories/editCategories' => $AdminCategories->postCategory(),
+    'admin/categories/delete' => $AdminCategories->deleteCategory(),
+    'admin/categories/add' => $AdminCategories->addCategory(),
+    'admin/categories/addCategories' => $AdminCategories->formAddCategory(),
 
-    'admin/user/add' =>$Admin->insertUser(),
-    'admin/user/edit' => $Admin->editUser(),
-    'admin/user/nextedit' => $Admin->nextedit(),
-    'admin/user/delete' => $Admin->DeletetUser(),
+    // quản lý bình luận 
+    'admin/comment/list' => $adminCmt->listCmt(),
+    'admin/comment/add' => $adminCmt->addCmt(),
+    'admin/comment/nextadd' => $adminCmt->nextAddCmt(),
+    'admin/comment/edit' => $adminCmt->editCmt(),
+    'admin/comment/nexteditcmt' => $adminCmt->nextEditCmt(),
+    'admin/comment/delete' => $adminCmt ->delCmt(),
 
 
-    'admin/product' =>$AdminProduct->getAllProduct(),
-    'admin/product/edit' =>$AdminProduct->editProduct(),
-    'admin/product/nextedit' =>$AdminProduct->nexteditProduct(),
-    'admin/product/delete' =>$AdminProduct->DeleteProduct(),
-    'admin/product/add' =>$AdminProduct->insertProduct(),
-    // 'admin/thongKe/tk' =>$thongke->loadallthongke()
-
+    // Quản lý sản phẩm
+    'admin/product/list' => $adminProduct->getAllProduct(),
+    'admin/product/edit' => $adminProduct->editProduct(),
+    "admin/product/nextedit" => $adminProduct->nexteditProduct(),
+    "admin/product/add" => $adminProduct->insertProduct(),
+    "admin/product/delete" =>$adminProduct->DeleteProduct(),
 };
-
-
-
