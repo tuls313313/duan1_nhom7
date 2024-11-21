@@ -10,22 +10,27 @@ require_once './controllers/user/userController.php';
 
 
 //controller admin
-require_once './controllers/admin/orderController.php';
-require_once './controllers/admin/userController.php';
 require_once './controllers/admin/categoriesController.php';
 require_once './controllers/admin/comentController.php';
+require_once './controllers/admin/orderController.php';
+require_once './controllers/admin/productController.php';
+require_once './controllers/admin/thongkeProduct.php';
+require_once './controllers/admin/userController.php';
 
 //models admin
-require_once './models/admin/userModels.php';
-require_once './models/admin/orderModel.php';
 require_once './models/admin/categoriesModel.php';
 require_once './models/admin/commentModel.php';
+require_once './models/admin/orderModel.php';
+require_once './models/admin/productModel.php';
+require_once './models/admin/thongkeProduct.php';
+require_once './models/admin/userModels.php';
 
 $User = new HomeUserController();
-$Admin = new HomeAdminController;
+$AdminUser = new HomeAdminController;
 $AdminOrder = new OrderController();
 $AdminCategories = new CategoriesController();
 $adminCmt = new ComentController();
+$adminProduct = new ProductController();
 
 // Để bảo bảo tính chất chỉ gọi 1 hàm Controller để xử lý request thì mình sử dụng match
 
@@ -46,12 +51,12 @@ match ($act) {
     // Quản trị viên
 
     // Quản lý tài khoản
-     'admin/user/list' => $Admin->ListUser(),
-     'admin/user/add' =>$Admin->insertUser(),
-     'admin/user/nextadd' => $Admin->nextInsertUser(),
-     'admin/user/edit' => $Admin->editUser(),
-     'admin/user/nextedit' => $Admin->nextedit(),
-     'admin/user/delete' => $Admin->deletetUser(),
+     'admin/user/list' => $AdminUser->ListUser(),
+     'admin/user/add' =>$AdminUser->insertUser(),
+     'admin/user/nextadd' => $AdminUser->nextInsertUser(),
+     'admin/user/edit' => $AdminUser->editUser(),
+     'admin/user/nextedit' => $AdminUser->nextedit(),
+     'admin/user/delete' => $AdminUser->deletetUser(),
 
     // Quản Lý Đơn Hàng
     'admin/order' => $AdminOrder->getAllOrder(),
@@ -75,8 +80,11 @@ match ($act) {
     'admin/comment/nexteditcmt' => $adminCmt->nextEditCmt(),
     'admin/comment/delete' => $adminCmt ->delCmt(),
 
-    
+
+    // Quản lý sản phẩm
+    'admin/product/list' => $adminProduct->getAllProduct(),
+    'admin/product/edit' => $adminProduct->editProduct(),
+    "admin/product/nextedit" => $adminProduct->nexteditProduct(),
+    "admin/product/add" => $adminProduct->insertProduct(),
+    "admin/product/delete" =>$adminProduct->DeleteProduct(),
 };
-
-
-

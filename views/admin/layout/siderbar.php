@@ -67,15 +67,21 @@
               </a>
             </li>
             <li class="nav-item">
+              <a href="?act=admin/comment/list" class="nav-link" id="comment-link">
+                <i class="fas fa-comment nav-icon"></i>
+                Quản lý bình luận
+              </a>
+            </li>
+            <li class="nav-item">
               <a href="?act=admin/order" class="nav-link" id="order-link">
                 <i class="fas fa-store nav-icon"></i>
                 Quản lý đơn hàng
               </a>
             </li>
             <li class="nav-item">
-              <a href="?act=admin/comment/list" class="nav-link" id="comment-link">
-                <i class="fas fa-comment nav-icon"></i>
-                Quản lý bình luận
+              <a href="?act=admin/product/list" class="nav-link" id="comment-link">
+                <i class="fas fa-warehouse nav-icon"></i>
+                Quản lý sản phẩm
               </a>
             </li>
             <li class="nav-item">

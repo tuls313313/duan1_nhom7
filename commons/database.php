@@ -42,4 +42,5 @@ class Database{
     public function __destruct(){
         $this->conn = null;
     }
+    
 }

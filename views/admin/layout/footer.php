@@ -7,12 +7,9 @@
 
   <!-- Control Sidebar -->
   <aside class="control-sidebar control-sidebar-dark">
-    <!-- Control sidebar content goes here -->
   </aside>
   <!-- /.control-sidebar -->
-</div>
 <!-- ./wrapper -->
-
 <!-- jQuery -->
 <script src="./views/admin/asset/plugins/jquery/jquery.min.js"></script>
 <!-- Bootstrap 4 -->
