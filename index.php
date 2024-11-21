@@ -14,7 +14,7 @@ require_once './controllers/admin/categoriesController.php';
 require_once './controllers/admin/comentController.php';
 require_once './controllers/admin/orderController.php';
 require_once './controllers/admin/productController.php';
-require_once './controllers/admin/thongkeProduct.php';
+require_once './controllers/admin/thongkeController.php';
 require_once './controllers/admin/userController.php';
 
 //models admin
@@ -22,7 +22,7 @@ require_once './models/admin/categoriesModel.php';
 require_once './models/admin/commentModel.php';
 require_once './models/admin/orderModel.php';
 require_once './models/admin/productModel.php';
-require_once './models/admin/thongkeProduct.php';
+require_once './models/admin/thongkeModel.php';
 require_once './models/admin/userModels.php';
 
 $User = new HomeUserController();
@@ -31,6 +31,7 @@ $AdminOrder = new OrderController();
 $AdminCategories = new CategoriesController();
 $adminCmt = new ComentController();
 $adminProduct = new ProductController();
+$adminstatistical = new ThongkeController();
 
 // Để bảo bảo tính chất chỉ gọi 1 hàm Controller để xử lý request thì mình sử dụng match
 
@@ -87,4 +88,7 @@ match ($act) {
     "admin/product/nextedit" => $adminProduct->nexteditProduct(),
     "admin/product/add" => $adminProduct->insertProduct(),
     "admin/product/delete" =>$adminProduct->DeleteProduct(),
+
+    // quản lý thống kê
+    'admin/statistical' => $adminstatistical->statistical(),
 };

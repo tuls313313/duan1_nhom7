@@ -55,9 +55,9 @@
         <li class="nav-item">
           <ul class="nav flex-column">
           <li class="nav-item">
-              <a href="#" class="nav-link" id="category-link">
+              <a href="?act=admin/statistical" class="nav-link" id="category-link">
                 <i class="fas fa-tachometer-alt nav-icon"></i>
-                Dashboard
+                Quản lý thống kê
               </a>
             </li>
             <li class="nav-item">
