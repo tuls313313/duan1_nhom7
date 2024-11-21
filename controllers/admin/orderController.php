@@ -11,7 +11,7 @@ class OrderController
         $this->user = new UserModels();
     }
 
-    public function getAllOrder()
+    public function listOder()
     {   
         $listOrder = $this->order->getAllOrder();
         if ($listOrder) {
