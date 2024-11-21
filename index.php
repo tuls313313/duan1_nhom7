@@ -91,4 +91,6 @@ match ($act) {
 
     // quản lý thống kê
     'admin/statistical' => $adminstatistical->statistical(),
+    "admin/statisticalV2" => $adminstatistical->thongketheongay(),
+    
 };

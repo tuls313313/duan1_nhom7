@@ -47,13 +47,27 @@ class ThongkeModel
     }
     public function tongDonDangGiao()
     {
-        $sql = "SELECT COUNT(*) AS tongDonDanggiao FROM orders where status_order = 0 ";
+        $sql = "SELECT COUNT(*) AS tongDonDanggiao FROM orders where status_order = 1 ";
         return $this->db->getOne($sql);
     }
     public function tongDonHoanThanh()
     {
-        $sql = "SELECT COUNT(*) AS tongDonHoanThanh FROM orders where status_order = 0 ";
+        $sql = "SELECT COUNT(*) AS tongDonHoanThanh FROM orders where status_order = 2 ";
         return $this->db->getOne($sql);
     }
+
+    public function thongketheongay($start = '', $end = '', $status_order = null) {
+        $sql = "SELECT SUM(total_money) AS total_money 
+                FROM orders 
+                WHERE DATE(create_at) BETWEEN '$start' AND '$end'";
+        
+        if (!empty($status_order)) {
+            $sql .= " AND status_order = '$status_order'";
+        }
+        
+        return $this->db->getOne($sql);
+    }
+    
+    
 }
 ?>

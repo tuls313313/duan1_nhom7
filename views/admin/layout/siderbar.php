@@ -54,12 +54,18 @@
         </li> -->
         <li class="nav-item">
           <ul class="nav flex-column">
-          <li class="nav-item">
+            <li class="nav-item">
               <a href="?act=admin/statistical" class="nav-link" id="category-link">
                 <i class="fas fa-tachometer-alt nav-icon"></i>
                 Quản lý thống kê
               </a>
             </li>
+            <!-- <li class="nav-item">
+              <a href="?act=admin/thongketheongay" class="nav-link" id="category-link">
+                <i class="fas fa-tachometer-alt nav-icon"></i>
+                Quản lý thống kê v2
+              </a>
+            </li> -->
             <li class="nav-item">
               <a href="?act=admin/categories" class="nav-link" id="category-link">
                 <i class="fas fa-th-large nav-icon"></i>
