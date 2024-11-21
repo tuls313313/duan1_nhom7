@@ -71,9 +71,9 @@
           </div>
           <ul class="footer__list collapse show" id="demo">
             <li class="footer__item">
-            <a href="<?= BASE_URL ?>?act=trangchu" class="footer__item--link">Trang chủ</a>
+            <a href="?act=trangchu" class="footer__item--link">Trang chủ</a>
             <li class="footer__item">
-              <a href="<?= BASE_URL ?>?act=intro" class="footer__item--link">Giới thiệu</a>
+              <a href="?act=intro" class="footer__item--link">Giới thiệu</a>
             </li>
             <li class="footer__item">
               <a href="./Product.html" class="footer__item--link">Sản phẩm</a>
@@ -82,7 +82,7 @@
               <a href="?act=news" class="footer__item--link">Tin tức</a>
             </li>
             <li class="footer__item">
-              <a href="./contact.html" class="footer__item--link">Liên hệ</a>
+              <a href="?act=lienhe" class="footer__item--link">Liên hệ</a>
             </li>
           </ul>
         </div>

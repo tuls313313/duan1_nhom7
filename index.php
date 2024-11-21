@@ -36,6 +36,12 @@ match ($act) {
     'trangchu' => $User->homeUser(),
     'intro' => $User->homeIntro(),
     'news' => $User->homeNew(),
+    'lienhe' => $User->lienhe(),
+    'dangky' => $User->dangky(),
+    'dangnhap' => $User->dangnhap(),
+    'giohang' => $User->giohang(),
+    'thanhtoan' => $User->thanhtoan(),
+    'chitietsp' => $User->chitietsp(),
 
     // Quản trị viên
 
@@ -46,7 +52,6 @@ match ($act) {
      'admin/user/edit' => $Admin->editUser(),
      'admin/user/nextedit' => $Admin->nextedit(),
      'admin/user/delete' => $Admin->deletetUser(),
-
 
     // Quản Lý Đơn Hàng
     'admin/order' => $AdminOrder->getAllOrder(),

@@ -68,10 +68,10 @@
     </div>
     <ul class="ul-first-menu">
       <li>
-        <a href="">Đăng nhập</a>
+        <a href="?act=dangnhap">Đăng nhập</a>
       </li>
       <li>
-        <a href="" class="abc">Đăng kí</a>
+        <a href="?act=dangky">Đăng kí</a>
       </li>
     </ul>
     <!-- <ul class="ul-first-menu">
@@ -221,7 +221,7 @@
             <a href="?act=intro">Tin tức</a>
           </li>
           <li class="ng-scope">
-            <a href="#">Liên hệ</a>
+            <a href="?act=lienhe">Liên hệ</a>
           </li>
         </ul>
       </div>
@@ -246,18 +246,18 @@
         <div class="row">
           <div class="col-6 social_link">
             <div class="social-title">Theo dõi: </div>
-            <a href="https://www.facebook.com/zeroryo25/"><i class="fab fa-facebook" style="font-size: 24px; margin-right: 10px"></i></a>
-            <a href=""><i class="fab fa-instagram" style="font-size: 24px; margin-right: 10px;color: pink;"></i></a>
-            <a href=""><i class="fab fa-youtube" style="font-size: 24px; margin-right: 10px;color: red;"></i></a>
-            <a href=""><i class="fab fa-twitter" style="font-size: 24px; margin-right: 10px"></i></a>
+            <a href="#"><i class="fab fa-facebook" style="font-size: 24px; margin-right: 10px"></i></a>
+            <a href="#"><i class="fab fa-instagram" style="font-size: 24px; margin-right: 10px;color: pink;"></i></a>
+            <a href="#"><i class="fab fa-youtube" style="font-size: 24px; margin-right: 10px;color: red;"></i></a>
+            <a href="#"><i class="fab fa-twitter" style="font-size: 24px; margin-right: 10px"></i></a>
           </div>
           <div class="col-6 login_link">
             <ul class="header_link right m-auto">
               <li>
-                <a href="./Login.html"><i class="fas fa-sign-in-alt mr-3"></i>Đăng nhập</a>
+                <a href="?act=dangnhap"><i class="fas fa-sign-in-alt mr-3"></i>Đăng nhập</a>
               </li>
               <li>
-                <a href="./registration.html"><i class="fas fa-user-plus mr-3" style="margin-left: 10px;"></i>Đăng kí</a>
+                <a href="?act=dangky"><i class="fas fa-user-plus mr-3" style="margin-left: 10px;"></i>Đăng kí</a>
               </li>
               <li>
                 <a href="?act=admin/user/list"><i class="fas fa-user-plus mr-3" style="margin-left: 10px;"></i>admin User</a>
@@ -291,7 +291,7 @@
           <div class="col-lg-3 col-100-h">
             <div id="trigger-mobile" class="visible-sm visible-xs"><i class="fas fa-bars"></i></div>
             <div class="logo">
-              <a href="">
+              <a href="?act=trangchu">
                 <img src="./views/user/assets/img/logo/logomain.png" alt="">
               </a>
             </div>
@@ -314,16 +314,16 @@
           </div>
           <div class="col-3 m-auto hidden-sm hidden-xs">
             <div class="item-car clearfix">
-              <a href="./cart.html" class="header__second__cart--icon">
+              <a href="?act=giohang" class="header__second__cart--icon">
                 <i class="fas fa-shopping-cart"></i>
                 <span id="header__second__cart--notice" class="header__second__cart--notice">3</span>
               </a>
             </div>
             <div class="item-like clearfix">
-              <a href="./listlike.html" class="header__second__like--icon">
+              <!-- <a href="./listlike.html" class="header__second__like--icon">
                 <i class="far fa-heart"></i>
                 <span id="header__second__like--notice" class="header__second__like--notice">3</span>
-              </a>
+              </a> -->
             </div>
           </div>
         </div>
@@ -359,8 +359,8 @@
               </div>
             </div>
           </li>
-          <li class="header_nav-list-item"><a href="?act=intro">Tin tức</a></li>
-          <li class="header_nav-list-item"><a href="#">Liên hệ</a></li>
+          <li class="header_nav-list-item"><a href="?act=news">Tin tức</a></li>
+          <li class="header_nav-list-item"><a href="?act=lienhe">Liên hệ</a></li>
         </ul>
       </div>
     </nav>

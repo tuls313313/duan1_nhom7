@@ -24,7 +24,7 @@
                     Đế lót EVA định hình sẵn có thể điều chỉnh theo hình dạng của bàn chân.
                      Đế được sản xuất bằng EVA tự nhiên góp phần tạo đệm cho giày bằng cách
                       hấp thụ tác động từ bàn chân.</p>
-                  <a href="./ProductDetail.html" title="GIÀY ADIDAS 4D FUTURECRAFT" class="btn btn-buynow">Xem ngay <i class="fas fa-arrow-right"
+                  <a href="?act=chitietsp" title="GIÀY ADIDAS 4D FUTURECRAFT" class="btn btn-buynow">Xem ngay <i class="fas fa-arrow-right"
                       style="font-size: 16px;margin-left: 5px;"></i></a>
                 </div>
               </div>
@@ -39,7 +39,7 @@
                       Mang đôi giày adidas xứng tầm tên tuổi của ông, bạn sẽ là ngôi sao đường phố.
                        Từ trên xuống dưới, đôi giày kinh điển này bắt trọn tinh hoa phong cách của kiểu dáng nguyên bản năm 1971,
                      với thiết kế bằng da tối giản và đường nét gọn gàng.</p>
-                  <a href="./ProductDetail.html" class="btn btn-buynow">Xem ngay <i class="fas fa-arrow-right "
+                  <a href="?act=chitietsp" class="btn btn-buynow">Xem ngay <i class="fas fa-arrow-right "
                       style="font-size: 16px;margin-left: 5px;"></i></a>
                 </div>
               </div>
@@ -54,7 +54,7 @@
                       Mang đôi giày adidas xứng tầm tên tuổi của ông, bạn sẽ là ngôi sao đường phố.
                        Từ trên xuống dưới, đôi giày kinh điển này bắt trọn tinh hoa phong cách của kiểu dáng nguyên bản năm 1971,
                      với thiết kế bằng da tối giản và đường nét gọn gàng.</p>
-                  <a href="./ProductDetail.html" class="btn btn-buynow">Xem ngay <i class="fas fa-arrow-right "
+                  <a href="?act=chitietsp" class="btn btn-buynow">Xem ngay <i class="fas fa-arrow-right "
                       style="font-size: 16px;margin-left: 5px;"></i></a>
                 </div>
               </div>
@@ -65,13 +65,13 @@
           <h3 class="product__ne title-product">Sản phẩm mới</h3>
           <div class="row">
             <div class="col-lg-3 col-md-6 col-sm-12 mb-20">
-                <a href="./ProductDetail.html" class="product__new-item">
+                <a href="?act=chitietsp" class="product__new-item">
                   <div class="card" style="width: 100%">
                     <div>
                       <img class="card-img-top" src="./views/user/assets/img/product/ambush1.jpg" alt="Card image cap">
                       <form action="" class="hover-icon hidden-sm hidden-xs">
                         <input type="hidden">
-                        <a href="./pay.html" class="btn-add-to-cart" title="Mua ngay">
+                        <a href="?act=thanhtoan" class="btn-add-to-cart" title="Mua ngay">
                           <i class="fas fa-cart-plus"></i>
                         </a>
                         <a data-toggle="modal" data-target="#myModal" class="quickview" title="Xem nhanh">
@@ -110,13 +110,13 @@
                 </a>
             </div>
             <div class="col-lg-3 col-md-6 col-sm-12 mb-20">
-              <a href="./ProductDetail.html" class="product__new-item">
+              <a href="?act=chitietsp" class="product__new-item">
                 <div class="card" style="width: 100%">
                   <div>
                     <img class="card-img-top" src="./views/user/assets/img/product/aohoodie1.jpg" alt="Card image cap">
                     <form action="" class="hover-icon hidden-sm hidden-xs">
                       <input type="hidden">
-                      <a href="./pay.html" class="btn-add-to-cart" title="Mua ngay">
+                      <a href="?act=thanhtoan" class="btn-add-to-cart" title="Mua ngay">
                         <i class="fas fa-cart-plus"></i>
                       </a>
                       <a data-toggle="modal" data-target="#myModal" class="quickview" title="Xem nhanh">
@@ -155,13 +155,13 @@
               </a>
             </div>
             <div class="col-lg-3 col-md-6 col-sm-12 mb-20">
-              <a href="./ProductDetail.html" class="product__new-item">
+              <a href="?act=chitietsp" class="product__new-item">
                 <div class="card" style="width: 100%">
                   <div>
                     <img class="card-img-top" src="./views/user/assets/img/product/Ao_Gio_Adicolor_Classics_DJen_GN2780_21_model.jpg" alt="Card image cap">
                     <form action="" class="hover-icon hidden-sm hidden-xs">
                       <input type="hidden">
-                      <a href="./pay.html" class="btn-add-to-cart" title="Mua ngay">
+                      <a href="?act=thanhtoan" class="btn-add-to-cart" title="Mua ngay">
                         <i class="fas fa-cart-plus"></i>
                       </a>
                       <a data-toggle="modal" data-target="#myModal" class="quickview" title="Xem nhanh">
@@ -200,13 +200,13 @@
               </a>
             </div>
             <div class="col-lg-3 col-md-6 col-sm-12">
-              <a href="./ProductDetail.html" class="product__new-item">
+              <a href="?act=chitietsp" class="product__new-item">
                 <div class="card" style="width: 100%">
                   <div>
                     <img class="card-img-top" src="./views/user/assets/img/product/áo-ngực-thun-gân-medium-support-3-sọc-believe-this.jpg" alt="Card image cap">
                     <form action="" class="hover-icon hidden-sm hidden-xs">
                       <input type="hidden">
-                      <a href="./pay.html" class="btn-add-to-cart" title="Mua ngay">
+                      <a href="?act=thanhtoan" class="btn-add-to-cart" title="Mua ngay">
                         <i class="fas fa-cart-plus"></i>
                       </a>
                       <a data-toggle="modal" data-target="#myModal" class="quickview" title="Xem nhanh">
@@ -250,13 +250,13 @@
           <h3 class="product__sale title-product">Top sản phẩm hot</h3>
           <div class="row">
             <div class="col-lg-3 col-md-6 col-sm-12 mb-20">
-              <a href="./ProductDetail.html" class="product__new-item">
+              <a href="?act=chitietsp" class="product__new-item">
                 <div class="card" style="width: 100%">
                   <div>
                     <img class="card-img-top" src="./views/user/assets/img/product/vaymidi1.jpg" alt="Card image cap">
                     <form action="" class="hover-icon hidden-sm hidden-xs">
                       <input type="hidden">
-                      <a href="./pay.html" class="btn-add-to-cart" title="Mua ngay">
+                      <a href="?act=thanhtoan" class="btn-add-to-cart" title="Mua ngay">
                         <i class="fas fa-cart-plus"></i>
                       </a>
                       <a data-toggle="modal" data-target="#myModal" class="quickview" title="Xem nhanh">
@@ -295,13 +295,13 @@
               </a>
             </div>
             <div class="col-lg-3 col-md-6 col-sm-12 mb-20">
-              <a href="./ProductDetail.html" class="product__new-item">
+              <a href="?act=chitietsp" class="product__new-item">
                 <div class="card" style="width: 100%">
                   <div>
                     <img class="card-img-top" src="./views/user/assets/img/product/ult1.jpg" alt="Card image cap">
                     <form action="" class="hover-icon hidden-sm hidden-xs">
                       <input type="hidden">
-                      <a href="./pay.html" class="btn-add-to-cart" title="Mua ngay">
+                      <a href="?act=thanhtoan" class="btn-add-to-cart" title="Mua ngay">
                         <i class="fas fa-cart-plus"></i>
                       </a>
                       <a data-toggle="modal" data-target="#myModal" class="quickview" title="Xem nhanh">
@@ -340,13 +340,13 @@
               </a>
             </div>
             <div class="col-lg-3 col-md-6 col-sm-12 mb-20">
-              <a href="./ProductDetail.html" class="product__new-item">
+              <a href="?act=chitietsp" class="product__new-item">
                 <div class="card" style="width: 100%">
                   <div>
                     <img class="card-img-top" src="./views/user/assets/img/product/tuiprimegreen1.jpg" alt="Card image cap">
                     <form action="" class="hover-icon hidden-sm hidden-xs">
                       <input type="hidden">
-                      <a href="./pay.html" class="btn-add-to-cart" title="Mua ngay">
+                      <a href="?act=thanhtoan" class="btn-add-to-cart" title="Mua ngay">
                         <i class="fas fa-cart-plus"></i>
                       </a>
                       <a data-toggle="modal" data-target="#myModal" class="quickview" title="Xem nhanh">
@@ -385,13 +385,13 @@
               </a>
             </div>
             <div class="col-lg-3 col-md-6 col-sm-12">
-              <a href="./ProductDetail.html" class="product__new-item">
+              <a href="?act=chitietsp" class="product__new-item">
                 <div class="card" style="width: 100%">
                   <div>
                     <img class="card-img-top" src="./views/user/assets/img/product/tuicheo1.jpg" alt="Card image cap">
                     <form action="" class="hover-icon hidden-sm hidden-xs">
                       <input type="hidden">
-                      <a href="./pay.html" class="btn-add-to-cart" title="Mua ngay">
+                      <a href="?act=thanhtoan" class="btn-add-to-cart" title="Mua ngay">
                         <i class="fas fa-cart-plus"></i>
                       </a>
                       <a data-toggle="modal" data-target="#myModal" class="quickview" title="Xem nhanh">
@@ -491,13 +491,13 @@
           <h3 class="product__yml title-product">Có thể bạn sẽ thích</h3>
           <div class="row">
             <div class="col-lg-3 col-md-6 col-sm-12 mb-20">
-              <a href="./ProductDetail.html" class="product__new-item">
+              <a href="?act=chitietsp" class="product__new-item">
                 <div class="card" style="width: 100%">
                   <div>
                     <img class="card-img-top" src="./views/user/assets/img/product/sandalduramo1.jpg" alt="Card image cap">
                     <form action="" class="hover-icon hidden-sm hidden-xs">
                       <input type="hidden">
-                      <a href="./pay.html" class="btn-add-to-cart" title="Mua ngay">
+                      <a href="?act=thanhtoan" class="btn-add-to-cart" title="Mua ngay">
                         <i class="fas fa-cart-plus"></i>
                       </a>
                       <a data-toggle="modal" data-target="#myModal" class="quickview" title="Xem nhanh">
@@ -536,13 +536,13 @@
               </a>
             </div>
             <div class="col-lg-3 col-md-6 col-sm-12 mb-20">
-              <a href="./ProductDetail.html" class="product__new-item">
+              <a href="?act=chitietsp" class="product__new-item">
                 <div class="card" style="width: 100%">
                   <div>
                     <img class="card-img-top" src="./views/user/assets/img/product/stansmithgolf2.jpg" alt="Card image cap">
                     <form action="" class="hover-icon hidden-sm hidden-xs">
                       <input type="hidden">
-                      <a href="./pay.html" class="btn-add-to-cart" title="Mua ngay">
+                      <a href="?act=thanhtoan" class="btn-add-to-cart" title="Mua ngay">
                         <i class="fas fa-cart-plus"></i>
                       </a>
                       <a data-toggle="modal" data-target="#myModal" class="quickview" title="Xem nhanh">
@@ -581,13 +581,13 @@
               </a>
             </div>
             <div class="col-lg-3 col-md-6 col-sm-12 mb-20">
-              <a href="./ProductDetail.html" class="product__new-item">
+              <a href="?act=chitietsp" class="product__new-item">
                 <div class="card" style="width: 100%">
                   <div>
                     <img class="card-img-top" src="./views/user/assets/img/product/superfly1.jpg" alt="Card image cap">
                     <form action="" class="hover-icon hidden-sm hidden-xs hidden-sm hidden-xs">
                       <input type="hidden">
-                      <a href="./pay.html" class="btn-add-to-cart" title="Mua ngay">
+                      <a href="?act=thanhtoan" class="btn-add-to-cart" title="Mua ngay">
                         <i class="fas fa-cart-plus"></i>
                       </a>
                       <a data-toggle="modal" data-target="#myModal" class="quickview" title="Xem nhanh">
@@ -626,13 +626,13 @@
               </a>
             </div>
             <div class="col-lg-3 col-md-6 col-sm-12">
-              <a href="./ProductDetail.html" class="product__new-item">
+              <a href="?act=chitietsp" class="product__new-item">
                 <div class="card" style="width: 100%">
                   <div>
                     <img class="card-img-top" src="./views/user/assets/img/product/tatchaybo1.jpg" alt="Card image cap">
                     <form action="" class="hover-icon hidden-sm hidden-xs">
                       <input type="hidden">
-                      <a href="./pay.html" class="btn-add-to-cart" title="Mua ngay">
+                      <a href="?act=thanhtoan" class="btn-add-to-cart" title="Mua ngay">
                         <i class="fas fa-cart-plus"></i>
                       </a>
                       <a data-toggle="modal" data-target="#myModal" class="quickview" title="Xem nhanh">
@@ -876,7 +876,4 @@
     </div>
   </div>
   <!-- end modal -->
-</body>
 <script src="./views/user/assets/css/main.js"></script>
-
-</html>
