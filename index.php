@@ -5,9 +5,9 @@ session_start();
 require_once './commons/env.php';
 require_once './commons/database.php';
 
-//user
-require_once './controllers/user/userController.php';
-
+//controller user
+require_once './controllers/user/homeController.php';
+require_once './controllers/user/account/accountController.php';
 
 //controller admin
 require_once './controllers/admin/categoriesController.php';
@@ -26,8 +26,10 @@ require_once './models/admin/productModel.php';
 require_once './models/admin/thongkeModel.php';
 require_once './models/admin/userModels.php';
 require_once './models/admin/colorModel.php';
+require_once './models/userModels.php';
 
-$User = new HomeUserController();
+$home = new HomeController();
+$User = new AccountController();
 $AdminUser = new HomeAdminController;
 $AdminOrder = new OrderController();
 $AdminCategories = new CategoriesController();
@@ -41,17 +43,23 @@ $AdminColor = new ColorController();
 $act = $_GET['act'] ?? '/';
 match ($act) {
     // Người dùng
-    '/' => $User->homeUser(),
-    'trangchu' => $User->homeUser(),
-    'intro' => $User->homeIntro(),
-    'news' => $User->homeNew(),
-    'lienhe' => $User->lienhe(),
-    'dangky' => $User->dangky(),
-    'dangnhap' => $User->dangnhap(),
-    'giohang' => $User->giohang(),
-    'thanhtoan' => $User->thanhtoan(),
-    'chitietsp' => $User->chitietsp(),
+    '/' => $home->homeUser(),
+    'trangchu' => $home->homeUser(),
+    'intro' => $home->homeIntro(),
+    'news' => $home->homeNew(),
+    'lienhe' => $home->lienhe(),
 
+
+    'giohang' => $home->giohang(),
+    'thanhtoan' => $home->thanhtoan(),
+    'chitietsp' => $home->chitietsp(),
+
+    // 
+    'dangky' => $User->insert(),
+    'nextdangky' => $User->nextinsert(),
+    'dangnhap' => $User->dangnhap(),
+    'nextdangnhap' => $User->nextDangNhap(),
+    'dangxuat' => $User->dangxuat(),
     // Quản trị viên
 
     // Quản lý tài khoản
@@ -94,6 +102,7 @@ match ($act) {
 
     // quản lý thống kê
     'admin/statistical' => $adminstatistical->statistical(),
+    "admin/statisticalV2" => $adminstatistical->thongketheongay(),
 
     // Quản lý color
     'admin/color' => $AdminColor->listColor(),

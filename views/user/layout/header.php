@@ -47,7 +47,7 @@
     crossorigin="anonymous"></script>
 </head>
 <style>
-  
+
 </style>
 
 <body style="background-color: rgb(248, 242, 236);">
@@ -105,7 +105,8 @@
             <a href="?act=intro">Giới thiệu</a>
           </li>
           <li class="ng-scope ng-has-child1">
-            <a href="./Product.html">Sản phẩm <i class="fas fa-plus cong"></i> <i class="fas fa-minus tru hidden"></i></a>
+            <a href="./Product.html">Sản phẩm <i class="fas fa-plus cong"></i> <i
+                class="fas fa-minus tru hidden"></i></a>
             <ul class="ul-has-child1">
               <li class="ng-scope ng-has-child2">
                 <a href="./Product.html">Tất cả sản phẩm <i class="fas fa-plus cong1" onclick="hienthi(1,`abc`)"></i> <i
@@ -240,7 +241,7 @@
       </li>
     </ul>
   </div>
- <header class="header">
+  <header class="header">
     <div class="container">
       <div class="top-link clearfix hidden-sm hidden-xs">
         <div class="row">
@@ -252,37 +253,41 @@
             <a href="#"><i class="fab fa-twitter" style="font-size: 24px; margin-right: 10px"></i></a>
           </div>
           <div class="col-6 login_link">
-            <ul class="header_link right m-auto">
-              <li>
-                <a href="?act=dangnhap"><i class="fas fa-sign-in-alt mr-3"></i>Đăng nhập</a>
-              </li>
-              <li>
-                <a href="?act=dangky"><i class="fas fa-user-plus mr-3" style="margin-left: 10px;"></i>Đăng kí</a>
-              </li>
-              <li>
-                <a href="?act=admin/user/list"><i class="fas fa-user-plus mr-3" style="margin-left: 10px;"></i>admin User</a>
-              </li>
-            </ul>
-            <!-- <ul class="nav nav__first right">
+            <?php if (isset($_SESSION['account'])) {
+              extract($_SESSION['account']);
+              ?>
+              <ul class=" m-auto">
                 <li class="nav-item nav-item__first nav-item__first-user">
                   <img src="./views/user/assets/img/product/noavatar.png" alt="" class="nav-item__first-img">
-                  <span class="nav-item__first-name">Huy Hùng</span>
+                  <span class="nav-item__first-name"><?= $_SESSION['account']['user'] ?></span>
                   <ul class="nav-item__first-menu">
+                    <?php if (isset($_SESSION['account']['role']) && $_SESSION['account']['role'] == 1): ?>
+                      <li class="nav-item__first-item">
+                        <a href="?act=admin/user/list">Trang quản trị</a>
+                      </li>
+                    <?php endif; ?>
                     <li class="nav-item__first-item">
                       <a href="">Tài khoản của tôi</a>
                     </li>
                     <li class="nav-item__first-item">
-                      <a href="">Địa chỉ của tôi</a>
-                    </li>
-                    <li class="nav-item__first-item">
-                      <a href="">Đơn mua</a>
-                    </li>
-                    <li class="nav-item__first-item">
-                      <a href="">Đăng xuất</a>
+                      <a href="?act=dangxuat">Đăng xuất</a>
                     </li>
                   </ul>
                 </li>
-              </ul> -->
+              </ul>
+              <?php
+            } else {
+              ?>
+              <ul class="header_link right m-auto">
+                <li>
+                  <a href="?act=dangnhap"><i class="fas fa-sign-in-alt mr-3"></i>Đăng nhập</a>
+                </li>
+                <li>
+                  <a href="?act=dangky"><i class="fas fa-user-plus mr-3" style="margin-left: 10px;"></i>Đăng kí</a>
+                </li>
+              </ul>
+            <?php } ?>
+
           </div>
         </div>
       </div>
@@ -313,12 +318,19 @@
             </form>
           </div>
           <div class="col-3 m-auto hidden-sm hidden-xs">
-            <div class="item-car clearfix">
+            <?php if(isset($_SESSION['account'])){
+            ?>
+             <div class="item-car clearfix">
               <a href="?act=giohang" class="header__second__cart--icon">
                 <i class="fas fa-shopping-cart"></i>
                 <span id="header__second__cart--notice" class="header__second__cart--notice">3</span>
               </a>
             </div>
+            <?php 
+          }
+           ?>
+         
+           
             <div class="item-like clearfix">
               <!-- <a href="./listlike.html" class="header__second__like--icon">
                 <i class="far fa-heart"></i>
@@ -342,11 +354,11 @@
                   <li class="level1">
                     <a class="hmega" href="#">Tất cả sản phẩm</a>
                     <ul class="level1">
-                        <li class="level2"><a href="">Bóng đá</a></li>
-                        <li class="level2"><a href="">Bóng đá</a></li>
-                        <li class="level2"><a href="">Bóng đá</a></li>
-                        <li class="level2"><a href="">Bóng đá</a></li>
-                      </ul>
+                      <li class="level2"><a href="">Bóng đá</a></li>
+                      <li class="level2"><a href="">Bóng đá</a></li>
+                      <li class="level2"><a href="">Bóng đá</a></li>
+                      <li class="level2"><a href="">Bóng đá</a></li>
+                    </ul>
                   </li>
                 </ul>
                 <div class="col-4">

@@ -15,6 +15,10 @@ class UserModels{
         $sql = "SELECT * FROM account WHERE id=$id";
         return $this->db->getOne($sql);
     }
+    public function checklogin($email,$password){
+        $sql = "SELECT * FROM account WHERE email='$email' AND  password='$password' ";
+        return $this->db->getOne($sql);
+    }
     public function deleteUser($id){
         $sql = "DELETE FROM account WHERE id=$id";
         return $this->db->getOne($sql);
@@ -31,5 +35,7 @@ class UserModels{
         `email`='$email',`address`='$address',`tel`='$tel',`role`='$role',`status`='$status' WHERE id=$id ";
         return $this->db->insert($sql);
     }
+
+
 
 }

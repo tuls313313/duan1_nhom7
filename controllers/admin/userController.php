@@ -16,8 +16,7 @@ class HomeAdminController
         // }
         // var_dump(value: $data);
     }
-
-
+    
     public function insertUser()
     {
         require_once './views/admin/user/add.php';
@@ -63,9 +62,6 @@ class HomeAdminController
             header("Location: ?act=admin/user/list&message=error.");
         }
     }
-
-
-
 
     public function editUser()
     {
