@@ -1,7 +1,5 @@
 <?php 
-
-class HomeUserController{
-    
+class HomeController{
     public function homeUser(){
         require_once './views/user/home/home.php';
     }
@@ -18,10 +16,6 @@ class HomeUserController{
         require_once './views/user/lienhe/lienhe.php';
     }
 
-    public function dangky(){
-        require_once './views/user/dangky/dangky.php';
-    }
-
     public function dangnhap(){
         require_once './views/user/dangnhap/dangnhap.php';
     }
@@ -35,5 +29,5 @@ class HomeUserController{
     public function chitietsp(){
         require_once './views/user/chitietsp/chitietsp.php';
     }
-
 }
+?>
