@@ -15,10 +15,6 @@ class HomeController{
     public function lienhe(){
         require_once './views/user/lienhe/lienhe.php';
     }
-
-    public function dangnhap(){
-        require_once './views/user/dangnhap/dangnhap.php';
-    }
     public function giohang(){
         require_once './views/user/giohang/giohang.php';
     }

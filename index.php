@@ -7,9 +7,7 @@ require_once './commons/database.php';
 
 //controller user
 require_once './controllers/user/homeController.php';
-require_once './controllers/user/regController.php';
-//model user
-require_once './models/user/regModel.php';
+require_once './controllers/user/account/accountController.php';
 
 //controller admin
 require_once './controllers/admin/categoriesController.php';
@@ -25,10 +23,10 @@ require_once './models/admin/commentModel.php';
 require_once './models/admin/orderModel.php';
 require_once './models/admin/productModel.php';
 require_once './models/admin/thongkeModel.php';
-require_once './models/admin/userModels.php';
+require_once './models/userModels.php';
 
 $home = new HomeController();
-$dangky = new RegController();
+$User = new AccountController();
 $AdminUser = new HomeAdminController;
 $AdminOrder = new OrderController();
 $AdminCategories = new CategoriesController();
@@ -47,15 +45,17 @@ match ($act) {
     'news' => $home->homeNew(),
     'lienhe' => $home->lienhe(),
   
-    'dangnhap' => $home->dangnhap(),
+   
     'giohang' => $home->giohang(),
     'thanhtoan' => $home->thanhtoan(),
     'chitietsp' => $home->chitietsp(),
 
-
-    // đăng ký
-    'dangky' => $dangky->insert(),
-    'nextdangky' => $dangky->nextinsert(),
+    // 
+    'dangky' => $User->insert(),
+    'nextdangky' => $User->nextinsert(),
+    'dangnhap' => $User->dangnhap(),
+    'nextdangnhap' => $User->nextDangNhap(),
+    'dangxuat' => $User->dangxuat(),
     // Quản trị viên
 
     // Quản lý tài khoản
