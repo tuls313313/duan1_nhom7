@@ -24,7 +24,7 @@ require_once './models/admin/commentModel.php';
 require_once './models/admin/orderModel.php';
 require_once './models/admin/productModel.php';
 require_once './models/admin/thongkeModel.php';
-require_once './models/admin/userModels.php';
+require_once './models/userModels.php';
 require_once './models/admin/colorModel.php';
 require_once './models/userModels.php';
 
