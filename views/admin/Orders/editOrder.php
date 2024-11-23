@@ -16,7 +16,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Trang Admin Đơn Hàng</h1>
+                    <h1>Form Sửa Đơn Hàng</h1>
                 </div>
             </div>
         </div><!-- /.container-fluid -->
@@ -28,9 +28,9 @@
             <div class="row">
                 <div class="col-12">
                     <div class="card">
-                        <div class="card-header">
+                        <!-- <div class="card-header">
                             <h3 class="card-title">Form Sửa Đơn Hàng</h3>
-                        </div>
+                        </div> -->
                         <section class="content">
                             <form action="?act=admin/order/editOrder&id_order=<?= $edit['id_order'] ?>" method="post">
                                 <div class="row">
@@ -49,61 +49,82 @@
                                                 </h3>
                                             </div>
                                             <div class="card-body">
-                                                <div class="form-group">
-                                                    <label for="id">Id</label>
-                                                    <input type="number" name="id_order" class="form-control"
-                                                        value="<?= $edit['id_order'] ?>" readonly>
+                                                <div class="form-group row">
+                                                    <div class="col-md-6">
+                                                        <label for="id">Id</label>
+                                                        <input type="number" name="id_order" class="form-control"
+                                                            value="<?= $edit['id_order'] ?>" readonly>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <label for="user_id">User_id</label>
+                                                        <input type="number" name="user_id" class="form-control"
+                                                            value="<?= $edit['user_id'] ?>" readonly>
+                                                    </div>
                                                 </div>
-                                                <div class="form-group">
-                                                    <label for="user_id">User_id</label>
-                                                    <input type="number" name="user_id" class="form-control"
-                                                        value="<?= $edit['user_id'] ?>" readonly>
+                                                <div class="form-group row">
+                                                    <div class="col-md-6">
+                                                        <label for="status_order">status_order</label>
+                                                        <select name="status_order" class="form-control">
+                                                            <?php if ($edit['status_order'] == 0): ?>
+                                                                <!-- Trạng thái hiện tại là 'Đang chờ' -->
+                                                                <option value="0" <?= $edit['status_order'] == 0 ? 'selected' : '' ?> disabled>Đang chờ</option>
+                                                                <option value="1" <?= $edit['status_order'] == 1 ? 'selected' : '' ?>>Đang giao</option>
+                                                                <option value="2" <?= $edit['status_order'] == 2 ? 'selected' : '' ?>>Hoàn thành</option>
+                                                            <?php elseif ($edit['status_order'] == 1): ?>
+                                                                <!-- Trạng thái hiện tại là 'Đang giao' -->
+                                                                <option value="0" <?= $edit['status_order'] == 0 ? 'selected' : '' ?> disabled>Đang chờ</option>
+                                                                <option value="1" <?= $edit['status_order'] == 1 ? 'selected' : '' ?>>Đang giao</option>
+                                                                <option value="2" <?= $edit['status_order'] == 2 ? 'selected' : '' ?>>Hoàn thành</option>
+                                                            <?php else: ?>
+                                                                <!-- Trạng thái hiện tại là 'Hoàn thành' -->
+                                                                <option value="0" <?= $edit['status_order'] == 0 ? 'selected' : '' ?> disabled>Đang chờ</option>
+                                                                <option value="1" <?= $edit['status_order'] == 1 ? 'selected' : '' ?> disabled>Đang giao</option>
+                                                                <option value="2" <?= $edit['status_order'] == 2 ? 'selected' : '' ?>>Hoàn thành</option>
+                                                            <?php endif; ?>
+                                                        </select>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <label for="payment">Payment</label>
+                                                        <select name="payment" class="form-control" disabled>
+                                                            <option value="0" <?= $edit['payment'] == 0 ? 'selected' : '' ?>>
+                                                                Thanh toán khi nhận hàng</option>
+                                                            <option value="1" <?= $edit['payment'] == 1 ? 'selected' : '' ?>>
+                                                                Thanh toán online</option>
+                                                        </select>
+                                                    </div>
                                                 </div>
-                                                <div class="form-group">
-                                                    <label for="status_order">status_order</label>
-                                                    <select name="status_order" class="form-control">
-                                                        <option value="0" <?= $edit['status_order'] == 0 ? 'selected' : '' ?>>
-                                                            Đang chờ</option>
-                                                        <option value="1" <?= $edit['status_order'] == 1 ? 'selected' : '' ?>>
-                                                            Đang giao</option>
-                                                        <option value="2" <?= $edit['status_order'] == 2 ? 'selected' : '' ?>>
-                                                            Hoàn thành</option>
-                                                    </select>
+
+                                                <div class="form-group row">
+                                                    <div class="col-md-6">
+                                                        <label for="total_amount">Total_amount</label>
+                                                        <input type="number" name="total_amount" class="form-control"
+                                                            value="<?= $edit['total_amount'] ?>" readonly>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <label for="total_money">Total_money</label>
+                                                        <input type="number" name="total_money" class="form-control"
+                                                            value="<?= $edit['total_money'] ?>" readonly>
+                                                    </div>
                                                 </div>
-                                                <div class="form-group">
-                                                    <label for="payment">Payment</label>
-                                                    <select name="payment" class="form-control">
-                                                        <option value="0" <?= $edit['payment'] == 0 ? 'selected' : '' ?>>
-                                                            Thanh toán khi nhận hàng</option>
-                                                        <option value="1" <?= $edit['payment'] == 1 ? 'selected' : '' ?>>
-                                                            Thanh toán online</option>
-                                                    </select>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="total_amount">Total_amount</label>
-                                                    <input type="number" name="total_amount" class="form-control"
-                                                        value="<?= $edit['total_amount'] ?>" readonly>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="total_money">Total_money</label>
-                                                    <input type="number" name="total_money" class="form-control"
-                                                        value="<?= $edit['total_money'] ?>" readonly>
-                                                </div>
+
                                                 <div class="form-group">
                                                     <label for="shipping_address">Shipping_address</label>
                                                     <input type="text" name="shipping_address" class="form-control"
                                                         value="<?= $edit['shipping_address'] ?>" readonly>
                                                 </div>
-                                                <div class="form-group">
-                                                    <label for="create_at">Create_at</label>
-                                                    <input type="text" name="create_at" class="form-control"
-                                                        value="<?= $edit['create_at'] ?>" readonly>
+                                                <div class="form-group row">
+                                                    <div class="col-md-6">
+                                                        <label for="create_at">Create_at</label>
+                                                        <input type="text" name="create_at" class="form-control"
+                                                            value="<?= $edit['create_at'] ?>" readonly>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <label for="update_at">Update_at</label>
+                                                        <input type="text" name="update_at" class="form-control"
+                                                            value="<?= $edit['update_at'] ?>" readonly>
+                                                    </div>
                                                 </div>
-                                                <div class="form-group">
-                                                    <label for="update_at">Update_at</label>
-                                                    <input type="text" name="update_at" class="form-control"
-                                                        value="<?= $edit['update_at'] ?>" readonly>
-                                                </div>
+
                                             </div>
                                             <!-- /.card-body -->
                                         </div>
