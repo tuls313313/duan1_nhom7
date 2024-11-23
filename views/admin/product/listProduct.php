@@ -54,7 +54,7 @@
                                                 <td><?= $value['name'] ?></td>
                                                 <td><?= $value['price'] ?></td>
                                             
-                                                <td><img src="../upimgs/<?= $value['img'] ?>" alt="<?= $value['img'] ?>"></td>
+                                                <td><img src="./uploads/upimg/<?= $value['img'] ?>" alt="<?= $value['img'] ?>" style="height: 100px; width=100px"></td>
                                                 <td><?= $value['description'] ?></td>
                                                 <td><?= $value['id_categories'] ?></td>
                                                 <td><?= $value['status'] == 0 ? 'Hoạt Động' : 'Không Hoạt Động'; ?> </td>

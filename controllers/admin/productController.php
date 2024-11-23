@@ -25,13 +25,13 @@ class ProductController
             $name = $_POST['name'];
             $price = $_POST['price'];
             $img = $_FILES['img'];
-            $upload = './upimgs/' . basename($img['tmp_name']);
-            move_uploaded_file($img['name'],$upload);
+            $upload = './uploads/upimg/' . basename($img['name']);
+            move_uploaded_file($img['tmp_name'],$upload);
             // var_dump($img); die();
             $description = $_POST['description'];
             $id_categories = $_POST['id_categories'];
             if(empty($id_categories)){
-                $error[] = 'ghfj';
+                $error[] = 'Lỗi';
             }
             if (empty($error)) {
                 $this->product->insertProduct( $name, $price, $img['name'],

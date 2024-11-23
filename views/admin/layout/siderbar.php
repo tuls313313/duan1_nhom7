@@ -96,6 +96,12 @@
                 Quản lý thành viên
               </a>
             </li>
+            <li class="nav-item">
+              <a href="?act=admin/color" class="nav-link" id="user-link">
+                <i class="fas fa-fill-drip nav-icon"></i>
+                Quản lý màu
+              </a>
+            </li>
           </ul>
         </li>
       </ul>

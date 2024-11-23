@@ -16,7 +16,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Trang Thêm Danh Mục</h1>
+                    <h1>Trang Thêm Màu</h1>
                 </div>
             </div>
         </div><!-- /.container-fluid -->
@@ -27,10 +27,10 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-12">
-                    <form action="?act=admin/categories/add" method="POST">
+                    <form action="?act=admin/color/add" method="POST">
                         <div class="form-group">
                             <label for="name">Name</label>
-                            <input type="text" class="form-control" name="name" placeholder="Vui lòng nhập tên danh mục">
+                            <input type="text" class="form-control" name="name" placeholder="Vui lòng nhập tên màu">
                             <?php
                             if (!empty($_SESSION['error'])) {
                                 foreach ($_SESSION['error'] as $error) {
@@ -43,14 +43,14 @@
                             ?>
                         </div>
                         <div class="form-group">
-                            <label for="status_categories">Status_categories</label>
-                            <select name="status_categories" class="form-control">
-                                <option value="1">Hoạt Động</option>
-                                <option value="2">Không Hoạt Động</option>
+                            <label for="status">Status</label>
+                            <select name="status" class="form-control">
+                                <option value="0">Hoạt Động</option>
+                                <option value="1">Không Hoạt Động</option>
                             </select>
                         </div>
                         <!-- Thêm các trường khác ở đây -->
-                        <button type="submit" name="submit" class="btn btn-success">Thêm Mới</button>
+                        <button type="submit" name="submit_color" class="btn btn-success">Thêm Màu Mới</button>
                     </form>
                     <!-- /.card -->
                 </div>
