@@ -1,6 +1,6 @@
 <?php 
 class HomeController{
-    public function homeUser(){
+    public function home(){
         require_once './views/user/home/home.php';
     }
 

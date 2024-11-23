@@ -6,7 +6,7 @@
       <div class="col-sm-12 col-lg-6">
         <h3 class="heading">ĐĂNG KÝ</h3>
 
-        <form action="?act=nextdangky" method="POST" class="form" id="form-1">
+        <form action="?act=user/nextdangky" method="POST" class="form" id="form-1">
           <div class="form-group">
             <label for="user" class="form-label">Tên Đăng Nhập</label>
             <input id="user" name="user" type="text" placeholder="Nhập tên đăng nhập" class="form-control"
@@ -60,7 +60,7 @@
 
           <button name="addUser" class="form-submit btn-blocker" style="border-radius: unset;">Đăng Ký <i
               class="fas fa-arrow-right" style="font-size: 16px; margin-left: 10px;"></i></button>
-          <p style="font-size: 16px; margin: 10px 0;">Bạn đã có tài khoản? <a href="?act=dangnhap"
+          <p style="font-size: 16px; margin: 10px 0;">Bạn đã có tài khoản? <a href="?act=user/dangnhap"
               style="color: black; font-weight: bold">Đăng nhập</a></p>
         </form>
 

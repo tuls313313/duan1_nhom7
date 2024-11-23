@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Nov 18, 2024 at 02:27 PM
+-- Generation Time: Nov 23, 2024 at 04:47 PM
 -- Server version: 8.0.30
 -- PHP Version: 8.1.10
 
@@ -45,9 +45,10 @@ CREATE TABLE `account` (
 --
 
 INSERT INTO `account` (`id`, `user`, `password`, `email`, `address`, `tel`, `role`, `status`, `create_at`, `update_at`) VALUES
-(1, 'user1', 'password1', 'user1@example.com', 'Address 1', '0123456789', 0, 0, '2024-11-18 14:23:49', '2024-11-18 14:23:49'),
-(2, 'user2', 'password2', 'user2@example.com', 'Address 2', '0987654321', 0, 1, '2024-11-18 14:23:49', '2024-11-18 14:23:49'),
-(3, 'admin', 'admin123', 'admin@example.com', 'Admin Address', '0112233445', 1, 0, '2024-11-18 14:23:49', '2024-11-18 14:23:49');
+(1, 'user1', 'password1', 'user1@example.com', 'Address 1', '0123456789', 0, 1, '2024-11-18 14:23:49', '2024-11-18 14:23:49'),
+(2, 'user2', 'password2', 'user2@example.com', 'Address 2', '0987654321', 0, 0, '2024-11-18 14:23:49', '2024-11-18 14:23:49'),
+(3, 'admin', 'admin123', 'admin@example.com', 'Admin', '0112233445', 1, 0, '2024-11-18 14:23:49', '2024-11-18 14:23:49'),
+(45, 'dvprovn', 'dvprovn', 'pcls313313@gmail.com', 'dvprovn', '1234567891', 0, 0, '2024-11-22 09:50:57', '2024-11-22 09:50:57');
 
 -- --------------------------------------------------------
 
@@ -116,7 +117,7 @@ CREATE TABLE `categories` (
 --
 
 INSERT INTO `categories` (`id`, `name`, `status_categories`) VALUES
-(1, 'Danh mục 1', 1),
+(1, 'danh mục 11', 2),
 (2, 'Danh mục 2', 1),
 (3, 'Danh mục 3', 1);
 
@@ -178,7 +179,7 @@ CREATE TABLE `orders` (
   `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'Tên người nhận',
   `tel` varchar(10) NOT NULL COMMENT 'sdt người nhận',
   `shipping_address` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'địa chỉ người nhận',
-  `status_order` tinyint NOT NULL DEFAULT '0' COMMENT '0 là đang chờ,1 đang giao,2 hoàn thành',
+  `status_order` tinyint NOT NULL DEFAULT '1' COMMENT '1 là đang chờ,2 đang giao,3 hoàn thành',
   `payment` tinyint NOT NULL DEFAULT '0' COMMENT '0 là thanh toán khi nhận hàng,1 là thanh toán online',
   `total_amount` int NOT NULL COMMENT 'tổng số lượng đơn hàng',
   `total_money` decimal(10,2) NOT NULL COMMENT 'tổng số tiền',
@@ -191,9 +192,9 @@ CREATE TABLE `orders` (
 --
 
 INSERT INTO `orders` (`id_order`, `user_id`, `id_promotion`, `name`, `tel`, `shipping_address`, `status_order`, `payment`, `total_amount`, `total_money`, `create_at`, `update_at`) VALUES
-(1, 1, 1, 'Nguyễn Văn A', '0123456789', 'Hà Nội', 0, 0, 2, '100000.00', '2024-11-18 14:25:16', '2024-11-18 14:25:16'),
-(2, 2, 2, 'Trần Thị B', '0987654321', 'Hồ Chí Minh', 1, 1, 1, '75000.00', '2024-11-18 14:25:16', '2024-11-18 14:25:16'),
-(3, 3, 3, 'Lê Văn C', '0112233445', 'Đà Nẵng', 2, 0, 1, '100000.00', '2024-11-18 14:25:16', '2024-11-18 14:25:16');
+(1, 1, 1, 'Nguyễn Văn A', '0123456789', 'Hà Nội', 1, 1, 2, '100000.00', '2024-11-18 14:25:16', '2024-11-23 15:41:29'),
+(2, 2, 2, 'Trần Thị B', '0987654321', 'Hồ Chí Minh', 2, 1, 1, '75000.00', '2024-11-18 14:25:16', '2024-11-23 15:53:29'),
+(3, 3, 3, 'Lê Văn C', '0112233445', 'Đà Nẵng', 3, 0, 1, '100000.00', '2024-11-18 14:25:16', '2024-11-23 15:58:58');
 
 -- --------------------------------------------------------
 
@@ -242,9 +243,9 @@ CREATE TABLE `product` (
 --
 
 INSERT INTO `product` (`id`, `id_categories`, `name`, `price`, `img`, `description`, `status`, `created_at`, `updated_at`) VALUES
-(1, 1, 'Sản phẩm 1', '25000.00', 'image1.jpg', 'Mô tả sản phẩm 1', 1, '2024-11-18 14:20:51', '2024-11-18 14:20:51'),
-(2, 1, 'Sản phẩm 2', '75000.00', 'image2.jpg', 'Mô tả sản phẩm 2', 1, '2024-11-18 14:20:51', '2024-11-18 14:20:51'),
-(3, 1, 'Sản phẩm 3', '100000.00', 'image3.jpg', 'Mô tả sản phẩm 3', 1, '2024-11-18 14:20:51', '2024-11-18 14:20:51');
+(1, 1, 'Sản phẩm 1', '25000.00', 'image1.jpg', 'Mô tả sản phẩm 2', 0, '2024-11-18 14:20:51', '2024-11-21 06:52:50'),
+(2, 1, 'Sản phẩm 2', '750.00', 'image2.jpg', 'Mô tả sản phẩm 2', 1, '2024-11-18 14:20:51', '2024-11-21 06:53:00'),
+(3, 1, 'Sản phẩm 3', '100000.00', 'image3.jpg', 'Mô tả sản phẩm 3', 0, '2024-11-18 14:20:51', '2024-11-21 06:43:30');
 
 -- --------------------------------------------------------
 
@@ -417,7 +418,7 @@ ALTER TABLE `varianti`
 -- AUTO_INCREMENT for table `account`
 --
 ALTER TABLE `account`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT COMMENT 'pk', AUTO_INCREMENT=27;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT COMMENT 'pk', AUTO_INCREMENT=46;
 
 --
 -- AUTO_INCREMENT for table `cart`
@@ -465,7 +466,7 @@ ALTER TABLE `order_items`
 -- AUTO_INCREMENT for table `product`
 --
 ALTER TABLE `product`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT COMMENT 'pk', AUTO_INCREMENT=4;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT COMMENT 'pk', AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `promotion`

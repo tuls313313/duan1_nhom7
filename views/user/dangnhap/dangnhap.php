@@ -69,7 +69,7 @@
   <div class="login__form">
     <div class="row">
       <div class="col-sm-12 col-lg-6">
-        <form action="?act=nextdangnhap" method="POST" class="form" id="form-2">
+        <form action="?act=user/nextdangnhap" method="POST" class="form" id="form-2">
           <h3 class="heading">ĐĂNG NHẬP</h3>
           <a href="" class="form__forgot-password">Bạn quên mật khẩu?</a>
           <h2 class="mt-2">
@@ -134,7 +134,7 @@
             <p class="text-login">Các sự kiện sắp tới</p>
           </li>
         </ul>
-        <a href="?act=dangky"><button class="form-submit btn-blocker custom-btn"
+        <a href="?act=user/dangky"><button class="form-submit btn-blocker custom-btn"
             style="border-radius: unset;margin:unset">ĐĂNG KÍ <i class="fas fa-arrow-right"
               style="font-size: 16px;margin-left: 10px;"></i></button></a>
       </div>

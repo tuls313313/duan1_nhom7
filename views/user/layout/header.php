@@ -270,7 +270,7 @@
                       <a href="">Tài khoản của tôi</a>
                     </li>
                     <li class="nav-item__first-item">
-                      <a href="?act=dangxuat">Đăng xuất</a>
+                      <a href="?act=user/dangxuat">Đăng xuất</a>
                     </li>
                   </ul>
                 </li>
@@ -280,10 +280,10 @@
               ?>
               <ul class="header_link right m-auto">
                 <li>
-                  <a href="?act=dangnhap"><i class="fas fa-sign-in-alt mr-3"></i>Đăng nhập</a>
+                  <a href="?act=user/dangnhap"><i class="fas fa-sign-in-alt mr-3"></i>Đăng nhập</a>
                 </li>
                 <li>
-                  <a href="?act=dangky"><i class="fas fa-user-plus mr-3" style="margin-left: 10px;"></i>Đăng kí</a>
+                  <a href="?act=user/dangky"><i class="fas fa-user-plus mr-3" style="margin-left: 10px;"></i>Đăng kí</a>
                 </li>
               </ul>
             <?php } ?>
