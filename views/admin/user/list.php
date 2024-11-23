@@ -1,16 +1,10 @@
 <?php include_once './views/admin/layout/header.php'; ?>
 
-<!-- Navbar -->
 <?php include_once './views/admin/layout/navbar.php'; ?>
 
-<!-- /.navbar -->
-
-<!-- Main Sidebar Container -->
 <?php include_once './views/admin/layout/siderbar.php'; ?>
 
-<!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
-    <!-- Content Header (Page header) -->
     <section class="content-header">
         <div class="container-fluid">
             <div class="row mb-2">
@@ -18,7 +12,7 @@
                     <h1>Trang danh sách thành viên</h1>
                 </div>
             </div>
-        </div><!-- /.container-fluid -->
+        </div>
     </section>
     <?php if (isset($_SESSION['errors']) && !empty($_SESSION['errors'])): ?>
         <h3>
@@ -28,19 +22,13 @@
                 <?php endforeach; ?>
             </ul>
         </h3>
-        <?php unset($_SESSION['errors']); // Xóa lỗi sau khi hiển thị 
-            ?>
+        <?php unset($_SESSION['errors']);?>
     <?php endif; ?>
-    <!-- Main content -->
     <section class="content">
         <div class="container-fluid">
             <div class="row">
                 <div class="col-12">
                     <div class="card">
-                        <div class="card-header">
-                            <a class="btn btn-success mb-2" href="?act=admin/user/add">Add Thành viên</a>
-                        </div>
-                        <!-- /.card-header -->
                         <div class="card-body">
                             <table id="example1" class="table table-bordered table-striped">
                                 <thead>
@@ -81,19 +69,10 @@
                                 </tbody>
                             </table>
                         </div>
-
-                        <!-- /.card-body -->
                     </div>
-                    <!-- /.card -->
                 </div>
-                <!-- /.col -->
             </div>
-            <!-- /.row -->
         </div>
-        <!-- /.container-fluid -->
     </section>
-    <!-- /.content -->
 </div>
-<!-- /.content-wrapper -->
 <?php include_once './views/admin/layout/footer.php'; ?>
-

@@ -30,7 +30,9 @@
                 <div class="col-lg-3 col-6">
                     <div class="card bg-warning text-white shadow-sm">
                         <div class="card-body">
-                            <h3><?php echo number_format($tongdoanhthu['tongdoanhthu'], 0, ',', '.') . ' VND'; ?></h3>
+                        <h3>
+                         <?php echo number_format($tongdoanhthu['tongdoanhthu'] ?? 0, 0, ',', '.') . ' VND'; ?>
+                        </h3>
                             <p>Doanh thu</p>
                         </div>
                         <a href="?act=admin/order" class="card-footer text-white">
