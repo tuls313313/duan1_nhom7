@@ -65,9 +65,9 @@
                                                     <div class="col-md-6">
                                                         <label for="status_order">status_order</label>
                                                         <select name="status_order" class="form-control">
-                                                            <option value="0" <?= $edit['status_order'] == 0 ? 'selected' : '' ?>>Đang chờ</option>
-                                                            <option value="1" <?= $edit['status_order'] == 1 ? 'selected' : '' ?>>Đang giao</option>
-                                                            <option value="2" <?= $edit['status_order'] == 2 ? 'selected' : '' ?>>Hoàn thành</option>
+                                                            <option value="1" <?= $edit['status_order'] == 1 ? 'selected' : '' ?>>Đang chờ</option>
+                                                            <option value="2" <?= $edit['status_order'] == 2 ? 'selected' : '' ?>>Đang giao</option>
+                                                            <option value="3" <?= $edit['status_order'] == 3 ? 'selected' : '' ?>>Hoàn thành</option>
                                                         </select>
                                                         <?php if(!empty($_SESSION['error'])) {
                                                             foreach($_SESSION['error'] as $error) {
@@ -127,8 +127,7 @@
                                     </div>
                                 </div>
                                 <div class="card-footer">
-                                    <button type="submit" class="btn btn-primary" name="editOrder"
-                                        onclick="return confirm('Bạn có chắc muốn sửa cho đơn hàng: <?= $userName ?>')">
+                                    <button type="submit" class="btn btn-primary" name="editOrder">
                                         Submit
                                     </button>
                                 </div>
