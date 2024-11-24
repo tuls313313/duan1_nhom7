@@ -65,27 +65,22 @@
                                                     <div class="col-md-6">
                                                         <label for="status_order">status_order</label>
                                                         <select name="status_order" class="form-control">
-                                                            <?php if ($edit['status_order'] == 0): ?>
-                                                                <!-- Trạng thái hiện tại là 'Đang chờ' -->
-                                                                <option value="0" <?= $edit['status_order'] == 0 ? 'selected' : '' ?> disabled>Đang chờ</option>
-                                                                <option value="1" <?= $edit['status_order'] == 1 ? 'selected' : '' ?>>Đang giao</option>
-                                                                <option value="2" <?= $edit['status_order'] == 2 ? 'selected' : '' ?>>Hoàn thành</option>
-                                                            <?php elseif ($edit['status_order'] == 1): ?>
-                                                                <!-- Trạng thái hiện tại là 'Đang giao' -->
-                                                                <option value="0" <?= $edit['status_order'] == 0 ? 'selected' : '' ?> disabled>Đang chờ</option>
-                                                                <option value="1" <?= $edit['status_order'] == 1 ? 'selected' : '' ?>>Đang giao</option>
-                                                                <option value="2" <?= $edit['status_order'] == 2 ? 'selected' : '' ?>>Hoàn thành</option>
-                                                            <?php else: ?>
-                                                                <!-- Trạng thái hiện tại là 'Hoàn thành' -->
-                                                                <option value="0" <?= $edit['status_order'] == 0 ? 'selected' : '' ?> disabled>Đang chờ</option>
-                                                                <option value="1" <?= $edit['status_order'] == 1 ? 'selected' : '' ?> disabled>Đang giao</option>
-                                                                <option value="2" <?= $edit['status_order'] == 2 ? 'selected' : '' ?>>Hoàn thành</option>
-                                                            <?php endif; ?>
+                                                            <option value="0" <?= $edit['status_order'] == 0 ? 'selected' : '' ?>>Đang chờ</option>
+                                                            <option value="1" <?= $edit['status_order'] == 1 ? 'selected' : '' ?>>Đang giao</option>
+                                                            <option value="2" <?= $edit['status_order'] == 2 ? 'selected' : '' ?>>Hoàn thành</option>
                                                         </select>
+                                                        <?php if(!empty($_SESSION['error'])) {
+                                                            foreach($_SESSION['error'] as $error) {
+                                                                if($error) {
+                                                                    echo "<li class='text-danger'>{$error}</li>";
+                                                                }
+                                                                unset($_SESSION['error']);
+                                                            }
+                                                        } ?>
                                                     </div>
                                                     <div class="col-md-6">
                                                         <label for="payment">Payment</label>
-                                                        <select name="payment" class="form-control" disabled>
+                                                        <select name="payment" class="form-control">
                                                             <option value="0" <?= $edit['payment'] == 0 ? 'selected' : '' ?>>
                                                                 Thanh toán khi nhận hàng</option>
                                                             <option value="1" <?= $edit['payment'] == 1 ? 'selected' : '' ?>>

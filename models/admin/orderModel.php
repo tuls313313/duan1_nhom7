@@ -47,8 +47,6 @@ class OrderModel
         `total_money` = '$total_money', `shipping_address` = '$shipping_address' 
         WHERE `id_order` = $id_order";
         // var_dump($sql); die; 
-
-        // var_dump($sql); die;
         return $this->db->insert($sql);
     }
 }
