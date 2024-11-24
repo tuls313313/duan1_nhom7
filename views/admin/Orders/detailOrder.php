@@ -106,7 +106,7 @@
                                 <tr>
                                   <td><?= $detail['id_order'] ?></td>
                                   <td><?= $detail['user'] ?></td>
-                                  <td><?= $detail['status_order'] == 1 ? 'Đăng chờ' : ($detail['status_order'] == 2 ? 'Đang giao' : 'Hoàn thành') ?></td>
+                                  <td><?= $detail['status_order'] == 1 ? 'Đang chờ' : ($detail['status_order'] == 2 ? 'Đang giao' : 'Hoàn thành') ?></td>
                                   <td><?= $detail['payment'] == 0 ? 'Thanh toán khi nhận hàng' : 'Thanh toán online' ?></td>
                                   <td><?= $detail['total_amount'] ?></td>
                                   <td><?= $detail['total_money'] ?></td>
