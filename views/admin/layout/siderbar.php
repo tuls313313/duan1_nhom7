@@ -108,6 +108,12 @@
                 Quản lý khuyến mãi
               </a>
             </li>
+            <li class="nav-item">
+              <a href="?act=admin/size" class="nav-link" id="user-link">
+                <i class="fas fa-ruler-horizontal nav-icon"></i>
+                Quản lý size
+              </a>
+            </li>
           </ul>
         </li>
       </ul>
