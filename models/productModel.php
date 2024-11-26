@@ -1,5 +1,6 @@
 <?php
-class ProductModel{
+class ProductModel
+{
     public $db;
 
     public function __construct()
@@ -40,17 +41,29 @@ class ProductModel{
 
     public function editProduct($id, $name, $price, $img, $description, $id_categories, $status)
     {
-        if($img){
+        if ($img) {
             $sql = "UPDATE `product` SET `name`='$name',`price`='$price',`img`='$img',`description`='$description',`id_categories`='$id_categories',`status`='$status' WHERE id=$id ";
-
-        }
-        else{
+        } else {
             $sql = "UPDATE `product` SET `name`='$name',`price`='$price',`description`='$description',`id_categories`='$id_categories',`status`='$status' WHERE id=$id ";
-
         }
         return $this->db->insert($sql);
     }
+
+    public function detailSp($id)
+    {
+        $sql = "SELECT product.*, categories.name 
+                FROM product 
+                INNER JOIN categories ON product.id_categories = categories.id 
+                WHERE product.id=$id";
+        return $this->db->getOne($sql);
+    }
+
+    public function product_categories($id)
+    {
+        $sql = "SELECT product.*, categories.name 
+                FROM product 
+                INNER JOIN categories ON product.id_categories = categories.id 
+                WHERE product.id=$id";
+        return $this->db->getAll($sql);
+    }
 }
-
-
-

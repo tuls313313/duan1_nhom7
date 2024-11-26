@@ -20,15 +20,15 @@ require_once './controllers/admin/colorController.php';
 require_once './controllers/admin/sizeController.php';
 
 //models admin
-require_once './models/admin/categoriesModel.php';
-require_once './models/admin/commentModel.php';
+require_once './models/categoriesModel.php';
+require_once './models/commentModel.php';
 require_once './models/admin/orderModel.php';
 require_once './models/productModel.php';
 require_once './models/admin/thongkeModel.php';
 require_once './models/userModels.php';
-require_once './models/admin/colorModel.php';
+require_once './models/colorModel.php';
 require_once './models/userModels.php';
-require_once './models/admin/sizeModel.php';
+require_once './models/sizeModel.php';
 
 $home = new HomeController();
 $User = new AccountController();

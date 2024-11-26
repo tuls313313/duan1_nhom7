@@ -72,7 +72,7 @@
         <div class="row">
           <?php foreach ($datahome as $home) { ?>
             <div class="col-lg-3 col-md-6 col-sm-12 mb-20 mt-2">
-              <a href="?act=chitietsp" class="product__new-item">
+              <a href="?act=chitietsp&id=<?= $home['id'] ?>" class="product__new-item">
                 <div class="card" style="width: 100%">
                   <div>
                     <img class="card-img-top" src="./uploads/upimg/<?=  $home['img'] ?>" alt="">

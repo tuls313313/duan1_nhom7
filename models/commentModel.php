@@ -42,5 +42,14 @@ class CommentModel{
         return $this->db->getOne($sql);
     }
 
+    public function commentProduct($id){
+        $sql = "SELECT comment.*, account.user 
+            FROM comment
+            INNER JOIN account ON comment.id_user = account.id
+            WHERE comment.id_pro = $id";
+            // var_dump($sql);die;
+        return $this->db->getAll($sql);
+    }
+
 }
 ?>
