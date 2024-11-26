@@ -1,6 +1,13 @@
 <?php 
 class HomeController{
+
+    public $home;
+
+    public function __construct(){
+        $this->home =  new ProductModel();
+    }
     public function home(){
+       $datahome= $this->home->getAllProductHome();
         require_once './views/user/home/home.php';
     }
 

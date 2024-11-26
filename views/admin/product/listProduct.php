@@ -52,11 +52,20 @@
                                             <tr>
                                                 <td><?= $value['id'] ?></td>
                                                 <td><?= $value['name'] ?></td>
-                                                <td><?= $value['price'] ?></td>
-                                            
-                                                <td><img src="./uploads/upimg/<?= $value['img'] ?>" alt="<?= $value['img'] ?>" style="height: 100px; width=100px"></td>
+                                                <td><?php echo number_format($value['price'] ?? 0, 0, ',', '.') . ' VND'; ?></td>
+                                                <td class="text-center"><img src="./uploads/upimg/<?= $value['img'] ?>" alt="<?= $value['img'] ?>" style="height: 50px; width=50px;"></td>
                                                 <td><?= $value['description'] ?></td>
-                                                <td><?= $value['id_categories'] ?></td>
+                                                <td>
+                                                    <?php
+                                                    foreach ($listCategories as $listCategori) {
+                                                        if($listCategori['id'] == $value['id_categories']){
+                                                            echo $listCategori['name'] ;
+                                                        }
+                                                       
+                                                    }
+                                                   
+                                                    ?>
+                                                </td>
                                                 <td><?= $value['status'] == 0 ? 'Hoạt Động' : 'Không Hoạt Động'; ?> </td>
                                                 <td>
                                                     <a class="btn btn-primary" href="?act=admin/product/edit&id=<?= $value['id'] ?>">Sửa</a>
@@ -100,7 +109,12 @@
                                             </div>
                                             <div class="form-group">
                                                 <label for="id_categories">Id_categories</label>
-                                                <input type="number" class="form-control" name="id_categories">
+                                                <select name="id_categories" class="form-control" >
+                                                    <?php foreach ($listCategories as $listCategori) { ?>
+                                                        
+                                                    <option value="<?php echo $listCategori['id'] ?>"><?php echo $listCategori['name'] ?></option>
+                                                    <?php var_dump($listCategories); } ?>
+                                                </select>
                                             </div>
                                           
                                             <!-- Thêm các trường khác ở đây -->

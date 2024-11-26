@@ -22,7 +22,7 @@ require_once './controllers/admin/colorController.php';
 require_once './models/admin/categoriesModel.php';
 require_once './models/admin/commentModel.php';
 require_once './models/admin/orderModel.php';
-require_once './models/admin/productModel.php';
+require_once './models/productModel.php';
 require_once './models/admin/thongkeModel.php';
 require_once './models/userModels.php';
 require_once './models/admin/colorModel.php';
@@ -30,7 +30,7 @@ require_once './models/userModels.php';
 
 $home = new HomeController();
 $User = new AccountController();
-$AdminUser = new HomeAdminController;
+$AdminUser = new HomeAdminController();
 $AdminOrder = new OrderController();
 $AdminCategories = new CategoriesController();
 $adminCmt = new ComentController();
