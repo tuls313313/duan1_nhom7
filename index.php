@@ -17,6 +17,7 @@ require_once './controllers/admin/productController.php';
 require_once './controllers/admin/thongkeController.php';
 require_once './controllers/admin/userController.php';
 require_once './controllers/admin/colorController.php';
+require_once './controllers/admin/sizeController.php';
 
 //models admin
 require_once './models/admin/categoriesModel.php';
@@ -27,6 +28,7 @@ require_once './models/admin/thongkeModel.php';
 require_once './models/userModels.php';
 require_once './models/admin/colorModel.php';
 require_once './models/userModels.php';
+require_once './models/admin/sizeModel.php';
 
 $home = new HomeController();
 $User = new AccountController();
@@ -37,6 +39,7 @@ $adminCmt = new ComentController();
 $adminProduct = new ProductController();
 $adminstatistical = new ThongkeController();
 $AdminColor = new ColorController();
+$AdminSize = new SizeController();
 
 // Để bảo bảo tính chất chỉ gọi 1 hàm Controller để xử lý request thì mình sử dụng match
 
@@ -111,4 +114,12 @@ match ($act) {
     'admin/color/delete' => $AdminColor->deleteColor(),
     'admin/color/add' => $AdminColor->addColor(),
     'admin/color/addColor' => $AdminColor->formColor(),
+
+    // Quản lý size
+    'admin/size' => $AdminSize->listSize(),
+    'admin/size/edit' => $AdminSize->editSize(),
+    'admin/size/nextedit' => $AdminSize->nexteditSize(),
+    'admin/size/delete' => $AdminSize->deleteSize(),
+    'admin/size/add' => $AdminSize->addSize(),
+    'admin/size/addSize' => $AdminSize->formSize(),
 };
