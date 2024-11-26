@@ -3,6 +3,9 @@
 <?php include_once './views/admin/layout/siderbar.php'; ?>
 
 <div class="content-wrapper">
+
+
+
     <div class="content-header">
         <div class="container-fluid">
             <div class="row mb-3">
@@ -11,7 +14,20 @@
                 </div>
             </div>
         </div>
+        <?php
+        if (isset($_SESSION['error'])) { ?>
+            <div class=" bg-danger text-center float-right mr-2">
+                <ul class="mb-0 mr-4 pr-5">
+                    <?php foreach ($_SESSION['error'] as $err) { ?>
+                        <li><?php echo htmlspecialchars($err); ?></li>
+                    <?php } ?>
+                </ul>
+            </div>
+            <?php unset($_SESSION['error']);
+        }
+        ?>
     </div>
+
     <section class="content">
         <div class="container-fluid">
             <h5 class="mb-4 text-secondary">Thống kê thành viên</h5>
@@ -30,7 +46,9 @@
                 <div class="col-lg-3 col-6">
                     <div class="card bg-warning text-white shadow-sm">
                         <div class="card-body">
-                            <h3><?php echo number_format($tongdoanhthu['tongdoanhthu'], 0, ',', '.') . ' VND'; ?></h3>
+                            <h3>
+                                <?php echo number_format($tongdoanhthu['tongdoanhthu'] ?? 0, 0, ',', '.') . ' VND'; ?>
+                            </h3>
                             <p>Doanh thu</p>
                         </div>
                         <a href="?act=admin/order" class="card-footer text-white">
@@ -115,36 +133,32 @@
             </div>
         </div>
     </section>
-
     <section class="content mt-4 ">
         <div class="container-fluid">
             <h5 class="mb-4 text-secondary">Thống kê đơn hàng theo ngày</h5>
             <form action="?act=admin/statisticalV2" method="POST" class="row g-3 p-4 rounded shadow-sm bg-light">
-                <!-- Ngày bắt đầu -->
                 <div class="col-md-4">
                     <label for="start_date" class="form-label">Ngày bắt đầu</label>
-                    <input type="date" class="form-control" name="start_date" id="start_date" required>
+                    <input type="date" class="form-control" name="start_date" id="start_date">
                 </div>
-                <!-- Ngày kết thúc -->
                 <div class="col-md-4">
                     <label for="end_date" class="form-label">Ngày kết thúc</label>
-                    <input type="date" class="form-control" name="end_date" id="end_date" required>
+                    <input type="date" class="form-control" name="end_date" id="end_date">
                 </div>
-                <!-- Trạng thái đơn hàng -->
                 <div class="col-md-4">
                     <label for="status_order" class="form-label">Trạng thái đơn hàng</label>
                     <select name="status_order" id="status_order" class="form-select form-control">
                         <option value="" selected>Tất cả</option>
-                        <option value="0">Đang chờ</option>
-                        <option value="1">Đang giao</option>
-                        <option value="2">Hoàn thành</option>
+                        <option value="1">Đang chờ</option>
+                        <option value="2">Đang giao</option>
+                        <option value="3">Hoàn thành</option>
                     </select>
                 </div>
-                <!-- Nút xem thống kê -->
                 <div class="col-12 text-end mt-3 text-center ">
                     <button type="submit" class="btn btn-primary p-3">Xem thống kê</button>
                 </div>
             </form>
+
         </div>
     </section>
 

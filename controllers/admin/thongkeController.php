@@ -26,11 +26,15 @@ class ThongkeController{
         if(empty($_POST['start_date'])){
             $error[] = 'vui lòng chọn ngày bắt đầu';
         }
+        if(empty($_POST['end_date'])){
+            $error[] = 'vui lòng chọn ngày Kết thúc';
+        }
         if(empty($error)){
             $tktn = $this->thongke->thongketheongay($_POST['start_date'],$_POST['end_date'],$_POST['status_order']);
             require_once './views/admin/thongKe/thongkev2.php';
         }
         else{
+            $_SESSION['error'] = $error;
             header('location: ?act=admin/statistical');
         }
         

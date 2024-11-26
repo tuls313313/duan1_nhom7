@@ -23,7 +23,7 @@ require_once './controllers/admin/sizeController.php';
 require_once './models/admin/categoriesModel.php';
 require_once './models/admin/commentModel.php';
 require_once './models/admin/orderModel.php';
-require_once './models/admin/productModel.php';
+require_once './models/productModel.php';
 require_once './models/admin/thongkeModel.php';
 require_once './models/userModels.php';
 require_once './models/admin/colorModel.php';
@@ -32,7 +32,7 @@ require_once './models/admin/sizeModel.php';
 
 $home = new HomeController();
 $User = new AccountController();
-$AdminUser = new HomeAdminController;
+$AdminUser = new HomeAdminController();
 $AdminOrder = new OrderController();
 $AdminCategories = new CategoriesController();
 $adminCmt = new ComentController();
@@ -46,25 +46,23 @@ $AdminSize = new SizeController();
 $act = $_GET['act'] ?? '/';
 match ($act) {
     // Người dùng
-    '/' => $home->homeUser(),
-    'trangchu' => $home->homeUser(),
+    '/' => $home->home(),
+    'trangchu' => $home->home(),
     'intro' => $home->homeIntro(),
     'news' => $home->homeNew(),
     'lienhe' => $home->lienhe(),
-
-
     'giohang' => $home->giohang(),
     'thanhtoan' => $home->thanhtoan(),
     'chitietsp' => $home->chitietsp(),
 
-    // 
-    'dangky' => $User->insert(),
-    'nextdangky' => $User->nextinsert(),
-    'dangnhap' => $User->dangnhap(),
-    'nextdangnhap' => $User->nextDangNhap(),
-    'dangxuat' => $User->dangxuat(),
-    // Quản trị viên
+    //  đăng ký đăng nhập
+    'user/dangky' => $User->insert(),
+    'user/nextdangky' => $User->nextinsert(),
+    'user/dangnhap' => $User->dangnhap(),
+    'user/nextdangnhap' => $User->nextDangNhap(),
+    'user/dangxuat' => $User->dangxuat(),
 
+    // Quản trị viên
     // Quản lý tài khoản
     'admin/user/list' => $AdminUser->ListUser(),
     'admin/user/add' => $AdminUser->insertUser(),

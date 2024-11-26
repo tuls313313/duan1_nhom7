@@ -83,10 +83,10 @@ class AccountController
 
             } else {
                 $_SESSION['value'] = $_POST;
-                header("Location: ?act=dangky&message=error.");
+                header("Location: ?act=user/dangky&message=error.");
             }
         } else {
-            header("Location: ?act=dangky&message=error.");
+            header("Location: ?act=user/dangky&message=error.");
         }
     }
 
@@ -118,13 +118,13 @@ class AccountController
                     header('location: ?act=trangchu');
                 } else {
                     $_SESSION['login_err'] = 'Thông tin đăng nhập không đúng';
-                    header('location: ?act=dangnhap&msg=err');
+                    header('location: ?act=user/dangnhap&msg=err');
                 }
             } else {
-                header('location: ?act=dangnhap&msg=err');
+                header('location: ?act=user/dangnhap&msg=err');
             }
         } else {
-            header('location: ?act=dangnhap&msg=err');
+            header('location: ?act=user/dangnhap&msg=err');
         }
     }
     

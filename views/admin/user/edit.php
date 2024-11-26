@@ -1,14 +1,9 @@
 <?php include_once './views/admin/layout/header.php'; ?>
 
-<!-- Navbar -->
 <?php include_once './views/admin/layout/navbar.php'; ?>
 
-<!-- /.navbar -->
-
-<!-- Main Sidebar Container -->
 <?php include_once './views/admin/layout/siderbar.php'; ?>
 <div class="content-wrapper">
-    <!-- Content Header (Page header) -->
     <section class="content-header">
         <div class="container-fluid">
             <div class="row mb-2">
@@ -16,7 +11,7 @@
                     <h1>Trang chỉnh sửa thành viên: <?php echo $dataOneUser['user']; ?> </h1>
                 </div>
             </div>
-        </div> <!-- /.container-fluid -->
+        </div> 
         <div class="text-danger">
             <?php if (isset($_SESSION['errors']) && !empty($_SESSION['errors'])): ?>
                 <h3>
@@ -26,19 +21,17 @@
                         <?php endforeach; ?>
                     </ul>
                 </h3>
-                <?php unset($_SESSION['errors']); // Xóa lỗi sau khi hiển thị 
+                <?php unset($_SESSION['errors']);
                     ?>
             <?php endif; ?>
         </div>
     </section>
 
-    <!-- Main content -->
     <section class="content">
         <div class="container-fluid">
             <div class="row">
                 <div class="col-12">
                     <form action="?act=admin/user/nextedit&id=<?= $dataOneUser['id'] ?>" method="POST">
-                        <!-- Các trường nhập dữ liệu -->
                         <div class="form-group row">
                             <div class="col-md-6">
                                 <label for="user">User</label>
@@ -47,8 +40,7 @@
                             </div>
                             <div class="col-md-6">
                                 <label for="password">Password</label>
-                                <input type="password" class="form-control" name="password"
-                                    value="<?php echo $dataOneUser['password']; ?>">
+                                <input type="password" class="form-control" name="password" value="<?php echo $dataOneUser['password']; ?>">
                             </div>
                         </div>
                         <div class="form-group row">
@@ -60,14 +52,14 @@
                             <div class="col-md-6">
                                 <label for="address">Address</label>
                                 <input type="text" class="form-control" name="address"
-                                    value="<?php echo $dataOneUser['address']; ?>">
+                                    value="<?php echo $dataOneUser['address']; ?>" readonly>
                             </div>
                         </div>
 
                         <div class="form-group">
                             <label for="tel">tel</label>
                             <input type="text" class="form-control" name="tel"
-                                value="<?php echo $dataOneUser['tel']; ?>">
+                                value="<?php echo $dataOneUser['tel']; ?>" readonly>
                             <div class="form-group">
                                 <label for="role">role</label>
                                 <select class="form-control" name="role">
@@ -86,23 +78,11 @@
                                     </option>
                                 </select>
                             </div>
-
                             <button type="submit" name="editUser" class="btn btn-success">Edit</button>
-                            <!-- onclick="return confirm('Bạn chắc chắn muốn sửa cho user: <?= $dataOneUser['user']; ?> với trạng thái là: <?= $dataOneUser['status'] == 0 ? 'active' : 'locked'; ?>');" -->
-
                     </form>
-                    <!-- /.card -->
                 </div>
-                <!-- /.col -->
             </div>
-            <!-- /.row -->
         </div>
-        <!-- /.container-fluid -->
     </section>
-    <!-- /.content -->
 </div>
-
-<!-- Content Wrapper. Contains page content -->
-
-<!-- /.content-wrapper -->
 <?php include_once './views/admin/layout/footer.php'; ?>
