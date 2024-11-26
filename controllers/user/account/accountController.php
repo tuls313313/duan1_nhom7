@@ -112,14 +112,21 @@ class AccountController
     
             if (!$err) {
                 $checkacc = $this->account->checklogin($_POST['email'], $_POST['password']);
-                
-                if (is_array($checkacc)) {
+                if ($checkacc) {
                     $_SESSION['account'] = $checkacc;
-                    header('location: ?act=trangchu');
+                    if($_SESSION['account']['status'] == 1) {
+                        $_SESSION['login_err'] = 'Tài khoản của bạn đã bị khóa vui lòng liên hệ admin để biết thêm chi tiết';
+                        unset($_SESSION['account']); 
+                        header('location: ?act=user/dangnhap&msg=err');
+                    }else{
+                        header('location: ?act=trangchu&msg=success');
+                    }
                 } else {
                     $_SESSION['login_err'] = 'Thông tin đăng nhập không đúng';
                     header('location: ?act=user/dangnhap&msg=err');
+                    exit;
                 }
+                
             } else {
                 header('location: ?act=user/dangnhap&msg=err');
             }
@@ -133,4 +140,45 @@ class AccountController
         session_unset();
         header('location: ?act=trangchu');
     }
+
+    public function edit(){
+        $id = $_SESSION['account']['id'];
+        $data =  $this->account->getOneUser($id);
+        require_once './views/user/account/account.php';
+    }
+    public function nextEdit(){
+        if(empty($_POST['submit'])){
+            $err  = false;
+            $id = $_SESSION['account']['id'];
+            if (empty(trim($_POST['password']))) {
+                $_SESSION['password'] = 'Không được để trống mật khẩu';
+                $err = true;
+            } else if (strlen(trim($_POST['password'])) <= 6) { 
+                $_SESSION['password'] = 'Mật khẩu phải lớn hơn 6 ký tự';
+                $err = true;
+            }
+            if(!$err){
+                $this->account->editUser1( id: $id,password: $_POST['password']);
+                header("location: ?act=user/dangxuat&msg=success");
+            }
+            else{
+                header("location:  ?act=user/edit&msg=err");
+            }
+        }  
+      
+    }
+
+    public function quenmk(){
+        require_once './views/user/dangnhap/quenmatkhau.php';    
+    }
+
+    public function changeQuenMk(){
+        if(isset($_POST['submit'])){ 
+            $email = $_POST['email'];
+            $data = $this->account->changeQuenMk($email);  
+            require_once './views/user/dangnhap/quenmatkhau.php';          
+        }
+    }
+    
+    
 }

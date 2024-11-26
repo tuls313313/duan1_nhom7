@@ -71,7 +71,7 @@
       <div class="col-sm-12 col-lg-6">
         <form action="?act=user/nextdangnhap" method="POST" class="form" id="form-2">
           <h3 class="heading">ĐĂNG NHẬP</h3>
-          <a href="" class="form__forgot-password">Bạn quên mật khẩu?</a>
+          <a href="?act=user/quenmk" class="form__forgot-password">Bạn quên mật khẩu?</a>
           <h2 class="mt-2">
             <?php if (isset($_SESSION['login_err'])): ?>
               <p class="btn btn-danger"><?= $_SESSION['login_err']; ?></p>

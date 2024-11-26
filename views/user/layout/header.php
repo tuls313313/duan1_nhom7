@@ -62,8 +62,8 @@
             <a href="#"><i class="fab fa-twitter" style="font-size: 24px; margin-right: 10px"></i></a>
           </div>
           <div class="col-6 login_link">
-            <?php if (isset($_SESSION['account'])) {
-              extract($_SESSION['account']);
+            <?php if (isset($_SESSION['account']) ) {
+              // print_r($_SESSION['account']);
               ?>
               <ul class="m-auto">
                 <li class="nav-item nav-item__first nav-item__first-user">
@@ -78,7 +78,7 @@
                       </li>
                     <?php endif; ?>
                     <li class="nav-item__first-item">
-                      <a href="">
+                      <a href="?act=user/edit">
                         <i class="fas fa-user"></i> Tài khoản của tôi
                       </a>
                     </li>

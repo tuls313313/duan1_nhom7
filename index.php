@@ -63,6 +63,10 @@ match ($act) {
   'user/dangnhap' => $User->dangnhap(),
   'user/nextdangnhap' => $User->nextDangNhap(),
   'user/dangxuat' => $User->dangxuat(),
+  'user/edit' => $User->edit(),
+  'user/nextedit' => $User->nextEdit(),
+  'user/quenmk' => $User->quenmk(),
+  'user/changeMK' => $User->changeQuenMk(),
 
   // Quản trị viên
   // Quản lý tài khoản
