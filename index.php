@@ -17,16 +17,17 @@ require_once './controllers/admin/productController.php';
 require_once './controllers/admin/thongkeController.php';
 require_once './controllers/admin/userController.php';
 require_once './controllers/admin/colorController.php';
+require_once './controllers/admin/promotionController.php';
 
-//models admin
+//models
 require_once './models/admin/categoriesModel.php';
 require_once './models/admin/commentModel.php';
 require_once './models/admin/orderModel.php';
-require_once './models/productModel.php';
 require_once './models/admin/thongkeModel.php';
-require_once './models/userModels.php';
 require_once './models/admin/colorModel.php';
 require_once './models/userModels.php';
+require_once './models/productModel.php';
+require_once './models/promotionModel.php';
 
 $home = new HomeController();
 $User = new AccountController();
@@ -37,6 +38,7 @@ $adminCmt = new ComentController();
 $adminProduct = new ProductController();
 $adminstatistical = new ThongkeController();
 $AdminColor = new ColorController();
+$promotion = new PromotionController();
 
 // Để bảo bảo tính chất chỉ gọi 1 hàm Controller để xử lý request thì mình sử dụng match
 
@@ -109,4 +111,18 @@ match ($act) {
     'admin/color/delete' => $AdminColor->deleteColor(),
     'admin/color/add' => $AdminColor->addColor(),
     'admin/color/addColor' => $AdminColor->formColor(),
+
+    // quản lý khuyến mãi
+    'admin/promotion/list' => $promotion->list(),
+    'admin/promotion/add' => $promotion->add(),
+    'admin/promotion/nextadd' => $promotion->nextadd(),
+    'admin/promotion/update' => $promotion->update(),
+    'admin/promotion/nextupdate' => $promotion->nextUpdate(),
+    'admin/promotion/delete' => $promotion->delete(),
+
+
+
+
+    
+
 };

@@ -102,6 +102,12 @@
                 Quản lý màu
               </a>
             </li>
+            <li class="nav-item">
+              <a href="?act=admin/promotion/list" class="nav-link" id="user-link">
+                <i class="fas fa-fill-drip nav-icon"></i>
+                Quản lý khuyến mãi
+              </a>
+            </li>
           </ul>
         </li>
       </ul>
