@@ -16,9 +16,27 @@ class ProductModel
 
     public function getAllProductHome()
     {
-        $sql = "SELECT * FROM product order by id desc limit 4";
+        $sql = "SELECT p.*, SUM(oi.quantity) as total_sold  
+                FROM product p
+                LEFT JOIN order_items oi on p.id = oi.product_id
+                LEFT JOIN orders o on oi.order_id = o.id_order AND o.status_order = 3
+                group by p.id
+                order by id desc limit 4";
         return $this->db->getAll($sql);
     }
+    public function getAllProductHomeViews()
+    {
+        $sql = "SELECT p.*, 
+                       COALESCE(SUM(oi.quantity), 0) AS total_sold
+                FROM product p
+                LEFT JOIN order_items oi ON p.id = oi.product_id
+                LEFT JOIN orders o ON oi.order_id = o.id_order AND o.status_order = 3
+                GROUP BY p.id
+                ORDER BY p.views DESC
+                LIMIT 4";
+        return $this->db->getAll($sql);
+    }
+    
 
     public function getOneProduct($id)
     {

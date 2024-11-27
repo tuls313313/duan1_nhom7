@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Nov 23, 2024 at 04:47 PM
+-- Generation Time: Nov 27, 2024 at 10:41 AM
 -- Server version: 8.0.30
 -- PHP Version: 8.1.10
 
@@ -37,7 +37,7 @@ CREATE TABLE `account` (
   `role` tinyint NOT NULL DEFAULT '0' COMMENT '0 là người dùng,1 là admin',
   `status` tinyint NOT NULL DEFAULT '0' COMMENT '0 là active 1 là locked',
   `create_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'tạo acc',
-  `update_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'cập nhật'
+  `update_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT 'cập nhật'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
@@ -45,9 +45,9 @@ CREATE TABLE `account` (
 --
 
 INSERT INTO `account` (`id`, `user`, `password`, `email`, `address`, `tel`, `role`, `status`, `create_at`, `update_at`) VALUES
-(1, 'user1', 'password1', 'user1@example.com', 'Address 1', '0123456789', 0, 1, '2024-11-18 14:23:49', '2024-11-18 14:23:49'),
+(1, 'user1', 'password1', 'user1@example.com', 'Address 1', '0123456789', 0, 0, '2024-11-18 14:23:49', '2024-11-26 13:58:47'),
 (2, 'user2', 'password2', 'user2@example.com', 'Address 2', '0987654321', 0, 0, '2024-11-18 14:23:49', '2024-11-18 14:23:49'),
-(3, 'admin', 'admin123', 'admin@example.com', 'Admin', '0112233445', 1, 0, '2024-11-18 14:23:49', '2024-11-18 14:23:49'),
+(3, 'admin', 'admin123', 'admin@example.com', 'Lạng sơn', '0971810376', 1, 0, '2024-11-18 14:23:49', '2024-11-26 13:58:09'),
 (45, 'dvprovn', 'dvprovn', 'pcls313313@gmail.com', 'dvprovn', '1234567891', 0, 0, '2024-11-22 09:50:57', '2024-11-22 09:50:57');
 
 -- --------------------------------------------------------
@@ -117,7 +117,7 @@ CREATE TABLE `categories` (
 --
 
 INSERT INTO `categories` (`id`, `name`, `status_categories`) VALUES
-(1, 'danh mục 11', 2),
+(1, 'danh mục 4', 2),
 (2, 'Danh mục 2', 1),
 (3, 'Danh mục 3', 1);
 
@@ -192,8 +192,8 @@ CREATE TABLE `orders` (
 --
 
 INSERT INTO `orders` (`id_order`, `user_id`, `id_promotion`, `name`, `tel`, `shipping_address`, `status_order`, `payment`, `total_amount`, `total_money`, `create_at`, `update_at`) VALUES
-(1, 1, 1, 'Nguyễn Văn A', '0123456789', 'Hà Nội', 1, 1, 2, '100000.00', '2024-11-18 14:25:16', '2024-11-23 15:41:29'),
-(2, 2, 2, 'Trần Thị B', '0987654321', 'Hồ Chí Minh', 2, 1, 1, '75000.00', '2024-11-18 14:25:16', '2024-11-23 15:53:29'),
+(1, 1, 1, 'Nguyễn Văn A', '0123456789', 'Hà Nội', 3, 1, 3, '100000.00', '2024-11-18 14:25:16', '2024-11-27 09:59:25'),
+(2, 2, 2, 'Trần Thị B', '0987654321', 'Hồ Chí Minh', 3, 1, 1, '75000.00', '2024-11-18 14:25:16', '2024-11-27 09:59:23'),
 (3, 3, 3, 'Lê Văn C', '0112233445', 'Đà Nẵng', 3, 0, 1, '100000.00', '2024-11-18 14:25:16', '2024-11-23 15:58:58');
 
 -- --------------------------------------------------------
@@ -217,7 +217,7 @@ CREATE TABLE `order_items` (
 
 INSERT INTO `order_items` (`id`, `order_id`, `product_id`, `quantity`, `price`, `total_money`) VALUES
 (1, 1, 1, 2, '50000.00', '100000.00'),
-(2, 2, 2, 1, '75000.00', '75000.00'),
+(2, 2, 2, 3, '75000.00', '75000.00'),
 (3, 3, 3, 1, '100000.00', '100000.00');
 
 -- --------------------------------------------------------
@@ -230,6 +230,7 @@ CREATE TABLE `product` (
   `id` int NOT NULL COMMENT 'pk',
   `id_categories` int NOT NULL COMMENT 'fk categories',
   `name` varchar(255) NOT NULL COMMENT 'tên',
+  `views` int DEFAULT NULL COMMENT 'views',
   `price` decimal(10,2) NOT NULL COMMENT 'giá',
   `img` varchar(255) NOT NULL COMMENT 'hình ảnh',
   `description` text NOT NULL COMMENT 'mô tả',
@@ -242,10 +243,13 @@ CREATE TABLE `product` (
 -- Dumping data for table `product`
 --
 
-INSERT INTO `product` (`id`, `id_categories`, `name`, `price`, `img`, `description`, `status`, `created_at`, `updated_at`) VALUES
-(1, 1, 'Sản phẩm 1', '25000.00', 'image1.jpg', 'Mô tả sản phẩm 2', 0, '2024-11-18 14:20:51', '2024-11-21 06:52:50'),
-(2, 1, 'Sản phẩm 2', '750.00', 'image2.jpg', 'Mô tả sản phẩm 2', 1, '2024-11-18 14:20:51', '2024-11-21 06:53:00'),
-(3, 1, 'Sản phẩm 3', '100000.00', 'image3.jpg', 'Mô tả sản phẩm 3', 0, '2024-11-18 14:20:51', '2024-11-21 06:43:30');
+INSERT INTO `product` (`id`, `id_categories`, `name`, `views`, `price`, `img`, `description`, `status`, `created_at`, `updated_at`) VALUES
+(1, 1, 'Sản phẩm 1', 3, '25000.00', 'z6070082608776_57d52e9b9afecc4fccee66a5818783cf.jpg', 'Mô tả sản phẩm 2', 0, '2024-11-18 14:20:51', '2024-11-27 08:56:53'),
+(2, 1, 'Sản phẩm 2', 100, '750.00', 'z6070082608776_57d52e9b9afecc4fccee66a5818783cf.jpg', 'Mô tả sản phẩm 2', 0, '2024-11-18 14:20:51', '2024-11-27 09:57:39'),
+(3, 1, 'Sản phẩm 3', 99, '100000.00', 'z6070082608776_57d52e9b9afecc4fccee66a5818783cf.jpg', 'Mô tả sản phẩm 3', 0, '2024-11-18 14:20:51', '2024-11-27 09:57:41'),
+(7, 1, 'Facebook', 1, '20.00', 'z6070082608776_57d52e9b9afecc4fccee66a5818783cf.jpg', 'gdfhjknm', 0, '2024-11-26 02:35:30', '2024-11-27 08:56:51'),
+(8, 1, 'hjhhj,', 4, '5420000.00', 'z6070082608776_57d52e9b9afecc4fccee66a5818783cf.jpg', 'gffhjb', 0, '2024-11-26 02:59:58', '2024-11-27 08:56:55'),
+(9, 2, 'hgjj', 5, '54.00', 'z6070082608776_57d52e9b9afecc4fccee66a5818783cf.jpg', 'gdfhjknm', 0, '2024-11-26 03:01:35', '2024-11-27 08:56:57');
 
 -- --------------------------------------------------------
 
@@ -259,7 +263,7 @@ CREATE TABLE `promotion` (
   `start_date` datetime NOT NULL COMMENT 'bắt đầu',
   `end_date` datetime NOT NULL COMMENT 'kết thúc',
   `quantity` int NOT NULL COMMENT 'số lượng',
-  `min_money` int NOT NULL COMMENT 'số tiền áp dụng',
+  `min_money` decimal(10,2) NOT NULL COMMENT 'số tiền áp dụng',
   `discount_value` decimal(5,2) NOT NULL COMMENT 'giá trị',
   `status` tinyint NOT NULL DEFAULT '0' COMMENT '0 là hoạt động,1 là hết thời gian'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
@@ -269,9 +273,9 @@ CREATE TABLE `promotion` (
 --
 
 INSERT INTO `promotion` (`id`, `code`, `start_date`, `end_date`, `quantity`, `min_money`, `discount_value`, `status`) VALUES
-(1, 'PROMO1', '2024-11-01 00:00:00', '2024-11-30 23:59:59', 10, 50000, '10.00', 0),
-(2, 'PROMO2', '2024-11-05 00:00:00', '2024-12-05 23:59:59', 5, 75000, '15.00', 0),
-(3, 'PROMO3', '2024-10-01 00:00:00', '2024-10-31 23:59:59', 3, 100000, '20.00', 1);
+(1, 'PROMO1', '2024-11-01 00:00:00', '2024-11-30 23:59:59', 10, '50000.00', '10.00', 1),
+(2, 'PROMO2', '2024-11-05 00:00:00', '2024-12-05 23:59:59', 5, '75000.00', '15.00', 1),
+(3, 'PROMO3', '2024-11-26 00:00:00', '2024-11-26 12:59:59', 3, '100000.00', '20.00', 1);
 
 -- --------------------------------------------------------
 
@@ -466,13 +470,13 @@ ALTER TABLE `order_items`
 -- AUTO_INCREMENT for table `product`
 --
 ALTER TABLE `product`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT COMMENT 'pk', AUTO_INCREMENT=5;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT COMMENT 'pk', AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `promotion`
 --
 ALTER TABLE `promotion`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT COMMENT 'pk', AUTO_INCREMENT=4;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT COMMENT 'pk', AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT for table `size`

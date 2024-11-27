@@ -4,7 +4,7 @@
 <!-- content -->
 <div class="container">
   <!-- slide show -->
-  <?php include './views/user/layout/slider.php'; ?>
+<!-- <?php include './views/user/layout/slider.php'; ?> -->
 
   <!-- end slide show -->
   <div class="product">
@@ -75,7 +75,7 @@
               <a href="?act=chitietsp&id=<?= $home['id'] ?>" class="product__new-item">
                 <div class="card" style="width: 100%">
                   <div>
-                    <img class="card-img-top" src="./uploads/upimg/<?=  $home['img'] ?>" alt="">
+                    <img class="card-img-top" src="./uploads/upimg/<?= $home['img'] ?>" alt="">
                     <form action="" class="hover-icon hidden-sm hidden-xs">
                       <input type="hidden">
                       <a href="?act=thanhtoan" class="btn-add-to-cart" title="Mua ngay">
@@ -93,7 +93,8 @@
                     <div class="product__price">
                       <!-- <p class="card-text price-color product__price-old"><?= $home['price'] ?></p> -->
                       <p class="card-text price-color product__price-new">
-                      <td><?php echo number_format($home['price'] ?? 0, 0, ',', '.') . ' VND'; ?></td></p>
+                        <td><?php echo number_format($home['price'] ?? 0, 0, ',', '.') . ' VND'; ?></td>
+                      </p>
                     </div>
                     <div class="home-product-item__action">
                       <!-- <span class="home-product-item__like home-product-item__like--liked">
@@ -107,7 +108,7 @@
                         <i class="home-product-item__star--gold fas fa-star"></i>
                         <i class="fas fa-star"></i> -->
                       </div>
-                      <span class="home-product-item__sold">79 đã bán</span>
+                      <span class="home-product-item__sold"><?= $home['total_sold'] ?? 0 ?> đã bán</span>
                     </div>
                     <!-- <div class="sale-off">
                       <span class="sale-off-percent">20%</span>
@@ -117,194 +118,57 @@
                 </div>
               </a>
             </div>
-            <?php } ?>
-          </div>
-       
+          <?php } ?>
+        </div>
+
       </div>
       <div class="product__sale">
         <h3 class="product__sale title-product">Top sản phẩm hot</h3>
         <div class="row">
-          <div class="col-lg-3 col-md-6 col-sm-12 mb-20">
-            <a href="?act=chitietsp" class="product__new-item">
-              <div class="card" style="width: 100%">
-                <div>
-                  <img class="card-img-top" src="./views/user/assets/img/product/vaymidi1.jpg" alt="Card image cap">
-                  <form action="" class="hover-icon hidden-sm hidden-xs">
-                    <input type="hidden">
-                    <a href="?act=thanhtoan" class="btn-add-to-cart" title="Mua ngay">
-                      <i class="fas fa-cart-plus"></i>
-                    </a>
-                    <a data-toggle="modal" data-target="#myModal" class="quickview" title="Xem nhanh">
-                      <i class="fas fa-search"></i>
-                    </a>
-                  </form>
-                </div>
-                <div class="card-body">
-                  <h5 class="card-title description">
-                    Quần giả váy
-                  </h5>
-                  <div class="product__price">
-                    <p class="card-text price-color product__price-old">1,000,000 đ</p>
-                    <p class="card-text price-color product__price-new">1,000,000 đ</p>
+          <?php foreach ($dataviews as $homeviews) { ?>
+            <div class="col-lg-3 col-md-6 col-sm-12 mb-20">
+              <a href="?act=chitietsp&id=<?= $homeviews['id'] ?>" class="product__new-item">
+                <div class="card" style="width: 100%">
+                  <div>
+                    <img class="card-img-top" src="./uploads/upimg/<?= $homeviews['img'] ?>" alt="Card image cap">
+                    <form action="" class="hover-icon hidden-sm hidden-xs">
+                      <input type="hidden">
+                      <a href="?act=thanhtoan" class="btn-add-to-cart" title="Mua ngay">
+                        <i class="fas fa-cart-plus"></i>
+                      </a>
+                      <a data-toggle="modal" data-target="#myModal" class="quickview" title="Xem nhanh">
+                        <i class="fas fa-search"></i>
+                      </a>
+                    </form>
                   </div>
-                  <div class="home-product-item__action">
-                    <span class="home-product-item__like home-product-item__like--liked">
-                      <i class="home-product-item__like-icon-empty far fa-heart"></i>
-                      <i class="home-product-item__like-icon-fill fas fa-heart"></i>
-                    </span>
-                    <div class="home-product-item__rating">
-                      <i class="home-product-item__star--gold fas fa-star"></i>
-                      <i class="home-product-item__star--gold fas fa-star"></i>
-                      <i class="home-product-item__star--gold fas fa-star"></i>
-                      <i class="home-product-item__star--gold fas fa-star"></i>
-                      <i class="fas fa-star"></i>
+                  <div class="card-body">
+                    <h5 class="card-title description">
+                      <?= $homeviews['name'] ?>
+                    </h5>
+                    <div class="product__price">
+                      <!-- <p class="card-text price-color product__price-old">1,000,000 đ</p> -->
+                      <p class="card-text price-color product__price-new">
+                        <?php echo number_format($homeviews['price'] ?? 0, 0, ',', '.') . ' VND'; ?></p>
                     </div>
-                    <span class="home-product-item__sold">79 đã bán</span>
-                  </div>
-                  <div class="sale-off">
-                    <span class="sale-off-percent">20%</span>
-                    <span class="sale-off-label">GIẢM</span>
-                  </div>
-                </div>
-              </div>
-            </a>
-          </div>
-          <div class="col-lg-3 col-md-6 col-sm-12 mb-20">
-            <a href="?act=chitietsp" class="product__new-item">
-              <div class="card" style="width: 100%">
-                <div>
-                  <img class="card-img-top" src="./views/user/assets/img/product/ult1.jpg" alt="Card image cap">
-                  <form action="" class="hover-icon hidden-sm hidden-xs">
-                    <input type="hidden">
-                    <a href="?act=thanhtoan" class="btn-add-to-cart" title="Mua ngay">
-                      <i class="fas fa-cart-plus"></i>
-                    </a>
-                    <a data-toggle="modal" data-target="#myModal" class="quickview" title="Xem nhanh">
-                      <i class="fas fa-search"></i>
-                    </a>
-                  </form>
-                </div>
-                <div class="card-body">
-                  <h5 class="card-title description">
-                    Giày Ultra
-                  </h5>
-                  <div class="product__price">
-                    <p class="card-text price-color product__price-old">1,000,000 đ</p>
-                    <p class="card-text price-color product__price-new">1,000,000 đ</p>
-                  </div>
-                  <div class="home-product-item__action">
-                    <span class="home-product-item__like home-product-item__like--liked">
-                      <i class="home-product-item__like-icon-empty far fa-heart"></i>
-                      <i class="home-product-item__like-icon-fill fas fa-heart"></i>
-                    </span>
-                    <div class="home-product-item__rating">
-                      <i class="home-product-item__star--gold fas fa-star"></i>
-                      <i class="home-product-item__star--gold fas fa-star"></i>
-                      <i class="home-product-item__star--gold fas fa-star"></i>
-                      <i class="home-product-item__star--gold fas fa-star"></i>
-                      <i class="fas fa-star"></i>
+                    <div class="home-product-item__action">
+                      <span class="home-product-item__like home-product-item__like--liked">
+                        <i class="home-product-item__like-icon-fill fas fa-eye mr-2"></i>
+                        <?= $homeviews['views'] ?>
+                      </span>
+                      <div class="home-product-item__rating">
+                        <!-- <i class="home-product-item__star--gold fas fa-star"></i>
+                        <i class="home-product-item__star--gold fas fa-star"></i>
+                        <i class="home-product-item__star--gold fas fa-star"></i>
+                        <i class="home-product-item__star--gold fas fa-star"></i>
+                        <i class="fas fa-star"></i> -->
+                      </div>
+                      <span class="home-product-item__sold"><?= $homeviews['total_sold'] ?? 0 ?> đã bán</span>
                     </div>
-                    <span class="home-product-item__sold">79 đã bán</span>
-                  </div>
-                  <div class="sale-off">
-                    <span class="sale-off-percent">20%</span>
-                    <span class="sale-off-label">GIẢM</span>
                   </div>
                 </div>
-              </div>
-            </a>
-          </div>
-          <div class="col-lg-3 col-md-6 col-sm-12 mb-20">
-            <a href="?act=chitietsp" class="product__new-item">
-              <div class="card" style="width: 100%">
-                <div>
-                  <img class="card-img-top" src="./views/user/assets/img/product/tuiprimegreen1.jpg"
-                    alt="Card image cap">
-                  <form action="" class="hover-icon hidden-sm hidden-xs">
-                    <input type="hidden">
-                    <a href="?act=thanhtoan" class="btn-add-to-cart" title="Mua ngay">
-                      <i class="fas fa-cart-plus"></i>
-                    </a>
-                    <a data-toggle="modal" data-target="#myModal" class="quickview" title="Xem nhanh">
-                      <i class="fas fa-search"></i>
-                    </a>
-                  </form>
-                </div>
-                <div class="card-body">
-                  <h5 class="card-title description">
-                    Balo
-                  </h5>
-                  <div class="product__price">
-                    <p class="card-text price-color product__price-old">1,000,000 đ</p>
-                    <p class="card-text price-color product__price-new">1,000,000 đ</p>
-                  </div>
-                  <div class="home-product-item__action">
-                    <span class="home-product-item__like home-product-item__like--liked">
-                      <i class="home-product-item__like-icon-empty far fa-heart"></i>
-                      <i class="home-product-item__like-icon-fill fas fa-heart"></i>
-                    </span>
-                    <div class="home-product-item__rating">
-                      <i class="home-product-item__star--gold fas fa-star"></i>
-                      <i class="home-product-item__star--gold fas fa-star"></i>
-                      <i class="home-product-item__star--gold fas fa-star"></i>
-                      <i class="home-product-item__star--gold fas fa-star"></i>
-                      <i class="fas fa-star"></i>
-                    </div>
-                    <span class="home-product-item__sold">79 đã bán</span>
-                  </div>
-                  <div class="sale-off">
-                    <span class="sale-off-percent">20%</span>
-                    <span class="sale-off-label">GIẢM</span>
-                  </div>
-                </div>
-              </div>
-            </a>
-          </div>
-          <div class="col-lg-3 col-md-6 col-sm-12">
-            <a href="?act=chitietsp" class="product__new-item">
-              <div class="card" style="width: 100%">
-                <div>
-                  <img class="card-img-top" src="./views/user/assets/img/product/tuicheo1.jpg" alt="Card image cap">
-                  <form action="" class="hover-icon hidden-sm hidden-xs">
-                    <input type="hidden">
-                    <a href="?act=thanhtoan" class="btn-add-to-cart" title="Mua ngay">
-                      <i class="fas fa-cart-plus"></i>
-                    </a>
-                    <a data-toggle="modal" data-target="#myModal" class="quickview" title="Xem nhanh">
-                      <i class="fas fa-search"></i>
-                    </a>
-                  </form>
-                </div>
-                <div class="card-body">
-                  <h5 class="card-title description">
-                    Túi chéo
-                  </h5>
-                  <div class="product__price">
-                    <p class="card-text price-color product__price-old">1,000,000 đ</p>
-                    <p class="card-text price-color product__price-new">1,000,000 đ</p>
-                  </div>
-                  <div class="home-product-item__action">
-                    <span class="home-product-item__like home-product-item__like--liked">
-                      <i class="home-product-item__like-icon-empty far fa-heart"></i>
-                      <i class="home-product-item__like-icon-fill fas fa-heart"></i>
-                    </span>
-                    <div class="home-product-item__rating">
-                      <i class="home-product-item__star--gold fas fa-star"></i>
-                      <i class="home-product-item__star--gold fas fa-star"></i>
-                      <i class="home-product-item__star--gold fas fa-star"></i>
-                      <i class="home-product-item__star--gold fas fa-star"></i>
-                      <i class="fas fa-star"></i>
-                    </div>
-                    <span class="home-product-item__sold">79 đã bán</span>
-                  </div>
-                  <div class="sale-off">
-                    <span class="sale-off-percent">20%</span>
-                    <span class="sale-off-label">GIẢM</span>
-                  </div>
-                </div>
-              </div>
-            </a>
-          </div>
+              </a>
+            </div>
+          <?php } ?>
         </div>
       </div>
       <section class="awe-section-9">

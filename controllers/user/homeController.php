@@ -17,8 +17,10 @@ class HomeController{
         $this->comment = new CommentModel();
     }
     public function home(){
-       $datahome= $this->home->getAllProductHome();
-        require_once './views/user/home/home.php';
+    $datahome= $this->home->getAllProductHome();
+    $dataviews = $this->home->getAllProductHomeViews();
+    require_once './views/user/home/home.php';
+
     }
 
     public function homeIntro(){
