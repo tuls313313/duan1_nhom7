@@ -57,6 +57,7 @@ class HomeController{
         // var_dump($listColor);die;
         $listSize = $this->size->getAllSize();
         $listComment = $this->comment->commentProduct($id);
+        $congView = $this->home->congView($id);
         require_once './views/user/chitietsp/chitietsp.php';
     }
 }

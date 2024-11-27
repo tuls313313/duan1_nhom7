@@ -45,9 +45,5 @@ class UserModels{
         $sql = "SELECT password FROM account WHERE email = '$email'";
         return $this->db->getOne($sql);       
     }
-    
-    
-
-
 
 }

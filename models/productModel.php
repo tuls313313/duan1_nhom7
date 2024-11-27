@@ -36,6 +36,11 @@ class ProductModel
                 LIMIT 4";
         return $this->db->getAll($sql);
     }
+
+    public function congView($id){
+        $sql = "UPDATE product SET views = views + 1 WHERE id = $id;";
+        return $this->db->getOne($sql);
+    }
     
 
     public function getOneProduct($id)
