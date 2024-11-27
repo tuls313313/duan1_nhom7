@@ -36,11 +36,6 @@ class UserModels{
         return $this->db->insert($sql);
     }
 
-    // public function editUser1($id,$user,$password,$email,$address,$tel){
-    //     $sql ="UPDATE `account` SET `user`='$user',`password`='$password',
-    //     `email`='$email',`address`='$address',`tel`='$tel' WHERE id=$id ";
-    //     return $this->db->insert($sql);
-    // }
     public function editUser1($id,$password){
         $sql ="UPDATE `account` SET `password`='$password' WHERE id=$id ";
         return $this->db->insert($sql);

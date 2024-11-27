@@ -15,27 +15,32 @@
             display: flex;
             justify-content: center;
             align-items: center;
+            background-color: black;
+            background-image: url('http://localhost/duan1_nhom7/uploads/upimg/z6070082608776_57d52e9b9afecc4fccee66a5818783cf.jpg');
+
         }
+       
     </style>
 </head>
 
 <body>
-    <div class="container centered-form">
+    <div class="centered-form">
         <div class="card shadow-lg p-4" style="width: 100%; max-width: 400px;">
             <h3 class="text-center mb-4">Quên mật khẩu</h3>
             <form action="?act=user/changeMK" method="POST">
                 <div class="mb-3">
                     <label for="email" class="form-label">Nhập email của bạn</label>
                     <input type="email" id="email" name="email" class="form-control" placeholder="example@gmail.com"
-                        autocomplete="off">
+                        >
+                    <h4 class="text-success mt-2"><?php if (isset($_SESSION['data_success'])) { echo $_SESSION['data_success']; 
+                    unset($_SESSION['data_success']);} ?></h4>
+                    <h4 class="text-danger mt-2"><?php if (isset($_SESSION['data_err'])) { echo $_SESSION['data_err'];
+                    unset($_SESSION['data_err']);}?></h4>
                 </div>
-                <?php if (isset($data)) {
-                    echo 'Mật khẩu của bạn là: ' . ($data['password'] ?? 'Email không tồn tại');
-                } else {
-                    echo 'Email không tồn tại.';
-                } ?>
-
-                <button type="submit" name="submit" class="btn btn-primary w-100">Gửi</button>
+                <div class="row">
+                <div class="col-6"> <button type="submit" name="submit" class="btn btn-primary w-100">Gửi</button> </div>
+                <div class="col-6"> <a class="btn btn-primary w-100" href="?act=user/dangnhap">Quay lại</a> </div>
+                </div>
             </form>
         </div>
     </div>

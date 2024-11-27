@@ -1,4 +1,8 @@
 <?php
+
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+
 class AccountController
 {
     public $account;
@@ -159,12 +163,50 @@ class AccountController
     public function quenmk(){
         require_once './views/user/dangnhap/quenmatkhau.php';    
     }
+    
 
     public function changeQuenMk(){
         if(isset($_POST['submit'])){ 
             $email = $_POST['email'];
-            $data = $this->account->changeQuenMk($email);  
-            require_once './views/user/dangnhap/quenmatkhau.php';          
+            $data = $this->account->changeQuenMk($email); 
+            if ($data) {
+                // Gửi email chứa mật khẩu
+                $mail = new PHPMailer(true);
+                try {
+                    $mail->isSMTP();
+                    $mail->Host = 'smtp.gmail.com'; 
+                    $mail->SMTPAuth = true; 
+                    $mail->Username = 'tuntph46150@fpt.edu.vn'; 
+                    $mail->Password = 'juyzncaekhnnkxzz'; 
+                    $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+                    $mail->Port = 587; 
+            
+                    // Cấu hình email gửi
+                    $mail->CharSet = 'UTF-8';
+                    $mail->setFrom('tuntph46150@fpt.edu.vn', 'nhom_7');
+                    $mail->addAddress($email);
+                    $mail->isHTML(true);
+                    $mail->Subject = 'Khôi phục mật khẩu';
+                    $mail->Body = "Xin chào,<br><br>Mật khẩu của bạn là: <strong>".$data['password'].".</strong>
+                    <br><br>Vui lòng không chia sẻ thông tin này với bất kỳ ai. <hr>
+                    <p><strong>Thông tin liên hệ:</strong><br>
+                    Nhóm 7<br>
+                    Email: <a href='mailto:tuntph46150@fpt.edu.vn'>tuntph46150@fpt.edu.vn</a><br>
+                    Tel: +84 123 456 789 </p>
+                    <p><small>&copy; 2024 Nhóm 7. Tất cả các thông tin đều được bảo mật.</small></p>";
+                    $mail->send();
+
+                    $_SESSION['data_success'] = "Mật khẩu đã được gửi tới email của bạn.";
+                } catch (Exception) {
+                    $_SESSION['data_err'] = "Không thể gửi email. Lỗi: " . $mail->ErrorInfo;
+                }
+                require_once './views/user/dangnhap/quenmatkhau.php';
+            } else {
+                $_SESSION['data_err'] = "Email không tồn tại.";
+                require_once './views/user/dangnhap/quenmatkhau.php';
+            }
+            
+                      
         }
     }
     

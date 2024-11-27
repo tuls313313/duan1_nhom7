@@ -4,6 +4,8 @@ session_start();
 // Require file Common
 require_once './commons/env.php';
 require_once './commons/database.php';
+require_once './vendor/autoload.php';
+
 
 //controller user
 require_once './controllers/user/homeController.php';
