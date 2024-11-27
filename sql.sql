@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Nov 27, 2024 at 10:41 AM
+-- Generation Time: Nov 27, 2024 at 02:13 PM
 -- Server version: 8.0.30
 -- PHP Version: 8.1.10
 
@@ -153,6 +153,7 @@ CREATE TABLE `comment` (
   `id_user` int NOT NULL COMMENT 'fk account',
   `id_pro` int NOT NULL COMMENT 'fk product',
   `conten` text NOT NULL COMMENT 'nội dung',
+  `rating` tinyint NOT NULL DEFAULT '5' COMMENT 'Giá trị đánh giá (1-5).',
   `status` tinyint NOT NULL DEFAULT '0' COMMENT '0 chờ duyệt,1 đã duyệt',
   `time_comment` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'thời gian'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
@@ -161,10 +162,17 @@ CREATE TABLE `comment` (
 -- Dumping data for table `comment`
 --
 
-INSERT INTO `comment` (`id_cmt`, `id_user`, `id_pro`, `conten`, `status`, `time_comment`) VALUES
-(1, 1, 1, 'Sản phẩm rất tốt!', 1, '2024-11-18 14:27:18'),
-(2, 2, 2, 'Hài lòng với sản phẩm.', 0, '2024-11-18 14:27:18'),
-(3, 3, 3, 'Chưa nhận được hàng.', 0, '2024-11-18 14:27:18');
+INSERT INTO `comment` (`id_cmt`, `id_user`, `id_pro`, `conten`, `rating`, `status`, `time_comment`) VALUES
+(1, 1, 1, 'Sản phẩm rất tốt!', 5, 1, '2024-11-18 14:27:18'),
+(2, 2, 2, 'Hài lòng với sản phẩm.', 5, 1, '2024-11-18 14:27:18'),
+(3, 3, 3, 'Chưa nhận được hàng.', 3, 1, '2024-11-18 14:27:18'),
+(21, 2, 3, 'Công nhận 1122', 5, 1, '2024-11-27 11:08:10'),
+(22, 45, 1, 'Công nhận 2222', 5, 1, '2024-11-27 11:08:35'),
+(24, 3, 9, 'fghj', 5, 1, '2024-11-27 12:52:13'),
+(25, 3, 9, 'okok', 3, 1, '2024-11-27 13:01:53'),
+(27, 3, 8, 'gfhj', 5, 1, '2024-11-27 13:37:24'),
+(29, 3, 8, 'fdghjm,mdfghjkljhgfdghjkl', 5, 1, '2024-11-27 13:45:10'),
+(30, 3, 8, 'fdghjkjgfdghj', 5, 1, '2024-11-27 13:45:28');
 
 -- --------------------------------------------------------
 
@@ -230,7 +238,7 @@ CREATE TABLE `product` (
   `id` int NOT NULL COMMENT 'pk',
   `id_categories` int NOT NULL COMMENT 'fk categories',
   `name` varchar(255) NOT NULL COMMENT 'tên',
-  `views` int DEFAULT NULL COMMENT 'views',
+  `views` int DEFAULT '0' COMMENT 'views',
   `price` decimal(10,2) NOT NULL COMMENT 'giá',
   `img` varchar(255) NOT NULL COMMENT 'hình ảnh',
   `description` text NOT NULL COMMENT 'mô tả',
@@ -244,12 +252,12 @@ CREATE TABLE `product` (
 --
 
 INSERT INTO `product` (`id`, `id_categories`, `name`, `views`, `price`, `img`, `description`, `status`, `created_at`, `updated_at`) VALUES
-(1, 1, 'Sản phẩm 1', 3, '25000.00', 'z6070082608776_57d52e9b9afecc4fccee66a5818783cf.jpg', 'Mô tả sản phẩm 2', 0, '2024-11-18 14:20:51', '2024-11-27 08:56:53'),
-(2, 1, 'Sản phẩm 2', 100, '750.00', 'z6070082608776_57d52e9b9afecc4fccee66a5818783cf.jpg', 'Mô tả sản phẩm 2', 0, '2024-11-18 14:20:51', '2024-11-27 09:57:39'),
-(3, 1, 'Sản phẩm 3', 99, '100000.00', 'z6070082608776_57d52e9b9afecc4fccee66a5818783cf.jpg', 'Mô tả sản phẩm 3', 0, '2024-11-18 14:20:51', '2024-11-27 09:57:41'),
-(7, 1, 'Facebook', 1, '20.00', 'z6070082608776_57d52e9b9afecc4fccee66a5818783cf.jpg', 'gdfhjknm', 0, '2024-11-26 02:35:30', '2024-11-27 08:56:51'),
-(8, 1, 'hjhhj,', 4, '5420000.00', 'z6070082608776_57d52e9b9afecc4fccee66a5818783cf.jpg', 'gffhjb', 0, '2024-11-26 02:59:58', '2024-11-27 08:56:55'),
-(9, 2, 'hgjj', 5, '54.00', 'z6070082608776_57d52e9b9afecc4fccee66a5818783cf.jpg', 'gdfhjknm', 0, '2024-11-26 03:01:35', '2024-11-27 08:56:57');
+(1, 1, 'Sản phẩm 1', 9, '25000.00', 'z6070082608776_57d52e9b9afecc4fccee66a5818783cf.jpg', 'Mô tả sản phẩm 2', 0, '2024-11-18 14:20:51', '2024-11-27 11:11:23'),
+(2, 1, 'Sản phẩm 2', 110, '750.00', 'z6070082608776_57d52e9b9afecc4fccee66a5818783cf.jpg', 'Mô tả sản phẩm 2', 0, '2024-11-18 14:20:51', '2024-11-27 14:09:24'),
+(3, 1, 'Sản phẩm 3', 158, '100000.00', 'z6070082608776_57d52e9b9afecc4fccee66a5818783cf.jpg', 'Mô tả sản phẩm 3', 0, '2024-11-18 14:20:51', '2024-11-27 14:09:35'),
+(7, 1, 'Facebook', 10, '20.00', 'z6070082608776_57d52e9b9afecc4fccee66a5818783cf.jpg', 'gdfhjknm', 0, '2024-11-26 02:35:30', '2024-11-27 14:09:33'),
+(8, 1, 'hjhhj,', 82, '5420000.00', 'z6070082608776_57d52e9b9afecc4fccee66a5818783cf.jpg', 'gffhjb', 0, '2024-11-26 02:59:58', '2024-11-27 14:09:32'),
+(9, 2, 'hgjj', 139, '54.00', 'z6070082608776_57d52e9b9afecc4fccee66a5818783cf.jpg', 'gdfhjknm', 0, '2024-11-26 03:01:35', '2024-11-27 14:12:08');
 
 -- --------------------------------------------------------
 
@@ -452,7 +460,7 @@ ALTER TABLE `color`
 -- AUTO_INCREMENT for table `comment`
 --
 ALTER TABLE `comment`
-  MODIFY `id_cmt` int NOT NULL AUTO_INCREMENT COMMENT 'pk', AUTO_INCREMENT=21;
+  MODIFY `id_cmt` int NOT NULL AUTO_INCREMENT COMMENT 'pk', AUTO_INCREMENT=35;
 
 --
 -- AUTO_INCREMENT for table `orders`
