@@ -39,4 +39,4 @@ class ColorModel
         $sql = "INSERT INTO `color`(`name`, `status`) VALUES ('$name','$status')";
         return $this->db->insert($sql);
     }
-}
+} 
