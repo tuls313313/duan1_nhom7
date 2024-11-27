@@ -61,6 +61,8 @@ match ($act) {
   'giohang' => $home->giohang(),
   'thanhtoan' => $home->thanhtoan(),
   'chitietsp' => $home->chitietsp(),
+  'user/comment/add' => $home->addCmt(),
+
 
   //  đăng ký đăng nhập
   'user/dangky' => $User->insert(),
@@ -98,8 +100,7 @@ match ($act) {
 
   // quản lý bình luận 
   'admin/comment/list' => $adminCmt->listCmt(),
-  'admin/comment/add' => $adminCmt->addCmt(),
-  'admin/comment/nextadd' => $adminCmt->nextAddCmt(),
+  // 'admin/comment/nextadd' => $adminCmt->nextAddCmt(),
   'admin/comment/edit' => $adminCmt->editCmt(),
   'admin/comment/nexteditcmt' => $adminCmt->nextEditCmt(),
   'admin/comment/delete' => $adminCmt->delCmt(),

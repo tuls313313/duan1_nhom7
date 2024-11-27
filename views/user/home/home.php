@@ -9,7 +9,7 @@
   <!-- end slide show -->
   <div class="product">
     <div class="container">
-      <div class="product_popular">
+      <!-- <div class="product_popular">
         <h3 class="product__popular title-product">Sản phẩm phổ biến</h3>
         <div class="row">
           <div class="col-lg-4 col-sm-12 mb-20">
@@ -66,7 +66,7 @@
             </div>
           </div>
         </div>
-      </div>
+      </div> -->
       <div class="product__new">
         <h3 class="product__ne title-product">Sản phẩm mới</h3>
         <div class="row">
@@ -235,7 +235,7 @@
           </div>
         </div>
       </section>
-      <div class="product__yml">
+      <!-- <div class="product__yml">
         <h3 class="product__yml title-product">Có thể bạn sẽ thích</h3>
         <div class="row">
           <div class="col-lg-3 col-md-6 col-sm-12 mb-20">
@@ -421,7 +421,7 @@
             </a>
           </div>
         </div>
-      </div>
+      </div> -->
     </div>
   </div>
   <div class="shoesnews">

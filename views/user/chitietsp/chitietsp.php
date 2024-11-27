@@ -157,6 +157,31 @@
             top: 1px;
         }
     }
+
+    .home-product-item__rating {
+        display: flex;
+        flex-direction: row-reverse;
+        justify-content: flex-start;
+        font-size: 24px;
+        transform-origin: left;
+        margin-bottom: 5px;
+    }
+
+    .home-product-item__rating input {
+        display: none;
+    }
+
+    .home-product-item__rating label {
+        color: #ccc;
+        cursor: pointer;
+    }
+
+    .home-product-item__rating input:checked~label,
+    .home-product-item__rating label:hover,
+    .home-product-item__rating label:hover~label {
+        color: #ffcc00;
+        /* Màu vàng của sao */
+    }
 </style>
 <div class="container">
     <div class="product__detail">
@@ -240,15 +265,9 @@
                     <div class="select-swap">
                         <?php foreach ($listColor as $color) { ?>
                             <div class="form-check form-check-inline">
-                                <input
-                                    type="radio"
-                                    id="option"
-                                    class="form-check-input circle-1"
-                                    name="selector[]"
+                                <input type="radio" id="option" class="form-check-input circle-1" name="selector[]"
                                     value="<?php echo $color['id']; ?>">
-                                <label
-                                    class="form-check-label"
-                                    for="option">
+                                <label class="form-check-label" for="option">
                                     <?php echo $color['name']; ?>
                                 </label>
                             </div>
@@ -272,15 +291,9 @@
                     <div class="select-swap">
                         <?php foreach ($listSize as $size) { ?>
                             <div class="form-check form-check-inline">
-                                <input
-                                    type="radio"
-                                    id="option-<?php echo $size['id']; ?>"
-                                    class="form-check-input circle-1"
-                                    name="selector"
-                                    value="<?php echo $size['id']; ?>">
-                                <label
-                                    class="form-check-label"
-                                    for="option-<?php echo $size['id']; ?>">
+                                <input type="radio" id="option-<?php echo $size['id']; ?>" class="form-check-input circle-1"
+                                    name="selector" value="<?php echo $size['id']; ?>">
+                                <label class="form-check-label" for="option-<?php echo $size['id']; ?>">
                                     <?php echo $size['name']; ?>
                                 </label>
                             </div>
@@ -344,127 +357,80 @@
 </div>
 <div class="product__comment">
     <div class="container">
-        <h2 class="product__describe-heading">Bình luận</h2>
+        <h2 class="product__describe-heading text-center mb-5">Bình luận</h2>
         <div class="row">
+            <!-- Form bình luận -->
             <div class="col-lg-4 col-12 mb-4">
-                <div class="home-product-item__rating"
-                    style="font-size: 24px;transform-origin: left;margin-bottom: 5px">
-                    <i class="home-product-item__star--gold fas fa-star"></i>
-                    <i class="home-product-item__star--gold fas fa-star"></i>
-                    <i class="home-product-item__star--gold fas fa-star"></i>
-                    <i class="home-product-item__star--gold fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                </div>
-                <textarea name="" id="" cols="70" rows="10"></textarea>
-                <button type="submit" class="btn btn-comment">Gửi</button>
+                <form action="?act=user/comment/add&id=<?= $chiTietSp['id'] ?>" method="post"
+                    class="p-3 border rounded shadow-sm">
+                    <div class="mb-3">
+                        <label class="form-label fw-bold">Đánh giá:</label>
+                        <div class="home-product-item__rating d-flex justify-content-center align-items-center">
+                            <input type="radio" id="star5" name="rating" value="5" checked>
+                            <label for="star5" class="fas fa-star me-1"></label>
+
+                            <input type="radio" id="star4" name="rating" value="4">
+                            <label for="star4" class="fas fa-star me-1"></label>
+
+                            <input type="radio" id="star3" name="rating" value="3">
+                            <label for="star3" class="fas fa-star me-1"></label>
+
+                            <input type="radio" id="star2" name="rating" value="2">
+                            <label for="star2" class="fas fa-star me-1"></label>
+
+                            <input type="radio" id="star1" name="rating" value="1">
+                            <label for="star1" class="fas fa-star"></label>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="conten" class="form-label fw-bold">Nội dung:</label>
+                        <h3 class="text-success">
+                            <?php if(isset($_SESSION['success'])) 
+                        echo $_SESSION['success']; unset($_SESSION['success']); ?></h3>
+                        <h3 class="text-danger"><?php if(isset($_SESSION['error'])) 
+                                echo $_SESSION['error']; unset($_SESSION['error']); ?></h3>
+                       <textarea name="conten" id="conten" cols="30" rows="5" class="form-control" placeholder="Viết bình luận của bạn..."></textarea>
+                    </div>
+                    <button type="submit" name="submit" class="btn btn-primary w-100 p-3">
+                        <h3>Gửi bình luận</h3>
+                    </button>
+                </form>
             </div>
+
             <div class="col-lg-8 col-12">
-                <div class="body__comment">
-                    <?php foreach ($listComment as $comment) { ?>
-                        <div class="comment" style="align-items: center;">
-                            <img class="comment-img" src="./views/user/assets/img/product/noavatar.png" alt="">
-                            <div class="comment__content">
-                                <div class="comment__content-heding">
-                                    <h4 class="comment__content-name"><?= $comment['user'] ?></h4>
-                                    <span class="comment__content-time"><?= $comment['time_comment'] ?></span>
+                <div class="comment-section p-4 border rounded shadow-sm">
+                    <?php if (!empty($listComment)) { ?>
+                        <?php foreach ($listComment as $comment) { ?>
+                            <div class="comment d-flex align-items-start mb-4 p-3 border-bottom">
+                                <div class="comment-avatar me-3">
+                                    <img src="./views/user/assets/img/product/noavatar.png" alt="Avatar" style="width: 40px; height: 40px;">
                                 </div>
-                                <div class="home-product-item__rating"
-                                    style="font-size: 14px;transform-origin: left;margin-bottom: 5px">
-                                    <i class="home-product-item__star--gold fas fa-star"></i>
-                                    <i class="home-product-item__star--gold fas fa-star"></i>
-                                    <i class="home-product-item__star--gold fas fa-star"></i>
-                                    <i class="home-product-item__star--gold fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                </div>
-                                <div class="comment__content-content">
-                                    <span><?= $comment['conten'] ?></span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="comment">
-                            <img class="comment-img" src="./views/user/assets/img/product/noavatar.png" alt="">
-                            <div class="comment__content">
-                                <div class="comment__content-heding">
-                                    <h4 class="comment__content-name"><?= $comment['user'] ?></h4>
-                                    <span class="comment__content-time"><?= $comment['time_comment'] ?></span>
-                                </div>
-                                <div class="home-product-item__rating"
-                                    style="font-size: 14px;transform-origin: left;margin-bottom: 5px">
-                                    <i class="home-product-item__star--gold fas fa-star"></i>
-                                    <i class="home-product-item__star--gold fas fa-star"></i>
-                                    <i class="home-product-item__star--gold fas fa-star"></i>
-                                    <i class="home-product-item__star--gold fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                </div>
-                                <div class="comment__content-content">
-                                    <span><?= $comment['conten'] ?></span>
+                                <div class="comment-content">
+                                    <div class="ml-3">
+                                        <h5 class="comment-author fw-bold mb-2"><?= $comment['user'] ?></h5>
+                                        <h5 class="comment-author fw-bold   mt-2"><?= $comment['time_comment'] ?></h5>
+                                    </div>
+                                    <div class="comment-rating mb-2 ml-3" style="font-size: 20px;">
+                                        <?php
+                                        $rating = $comment['rating'];
+                                        for ($i = 0; $i < $rating; $i++) {
+                                            echo "<i class='fas fa-star text-warning'></i>";
+                                        }
+                                        ?>
+                                    </div>
+                                    <h5 class="comment-text ml-3"><?= ($comment['conten']) ?></h5>
                                 </div>
                             </div>
-                        </div>
-                        <div class="comment">
-                            <img class="comment-img" src="./views/user/assets/img/product/noavatar.png" alt="">
-                            <div class="comment__content">
-                                <div class="comment__content-heding">
-                                    <h4 class="comment__content-name"><?= $comment['user'] ?></h4>
-                                    <span class="comment__content-time"><?= $comment['time_comment'] ?></span>
-                                </div>
-                                <div class="home-product-item__rating"
-                                    style="font-size: 14px;transform-origin: left;margin-bottom: 5px">
-                                    <i class="home-product-item__star--gold fas fa-star"></i>
-                                    <i class="home-product-item__star--gold fas fa-star"></i>
-                                    <i class="home-product-item__star--gold fas fa-star"></i>
-                                    <i class="home-product-item__star--gold fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                </div>
-                                <div class="comment__content-content">
-                                    <span><?= $comment['conten'] ?></span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="comment">
-                            <img class="comment-img" src="./views/user/assets/img/product/noavatar.png" alt="">
-                            <div class="comment__content">
-                                <div class="comment__content-heding">
-                                    <h4 class="comment__content-name"><?= $comment['user'] ?></h4>
-                                    <span class="comment__content-time"><?= $comment['time_comment'] ?></span>
-                                </div>
-                                <div class="home-product-item__rating"
-                                    style="font-size: 14px;transform-origin: left;margin-bottom: 5px">
-                                    <i class="home-product-item__star--gold fas fa-star"></i>
-                                    <i class="home-product-item__star--gold fas fa-star"></i>
-                                    <i class="home-product-item__star--gold fas fa-star"></i>
-                                    <i class="home-product-item__star--gold fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                </div>
-                                <div class="comment__content-content">
-                                    <span><?= $comment['conten'] ?></span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="comment">
-                            <img class="comment-img" src="./views/user/assets/img/product/noavatar.png" alt="">
-                            <div class="comment__content">
-                                <div class="comment__content-heding">
-                                    <h4 class="comment__content-name"><?= $comment['user'] ?></h4>
-                                    <span class="comment__content-time"><?= $comment['time_comment'] ?></span>
-                                </div>
-                                <div class="home-product-item__rating" style="font-size: 14px;transform-origin: left;margin-bottom: 5px">
-                                    <i class="home-product-item__star--gold fas fa-star"></i>
-                                    <i class="home-product-item__star--gold fas fa-star"></i>
-                                    <i class="home-product-item__star--gold fas fa-star"></i>
-                                    <i class="home-product-item__star--gold fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                </div>
-                                <div class="comment__content-content">
-                                    <span><?= $comment['conten'] ?></span>
-                                </div>
-                            </div>
-                        </div>
+                        <?php } ?>
+                    <?php } else { ?>
+                        <h4 class="text-muted">Chưa có bình luận nào. Hãy là người đầu tiên bình luận!</h4>
                     <?php } ?>
                 </div>
             </div>
         </div>
     </div>
+
 </div>
 <!-- end product detail -->
 <!-- product relate to -->
@@ -472,9 +438,9 @@
     <div class="container">
         <h3 class="product__relateto-heading">Sản phẩm liên quan</h3>
         <div class="row">
-            <?php foreach ($danhMucLienQuan as $danhMuc) : ?>
+            <?php foreach ($danhMucLienQuan as $danhMuc): ?>
                 <div class="col-lg-3 col-md-6 col-sm-12 mb-20">
-                    <a href="?act=chitietsp" class="product__new-item">
+                    <a href="?act=chitietsp&id=<?= $danhMuc['id'] ?>" class="product__new-item">
                         <div class="card" style="width: 100%">
                             <div>
                                 <img class="card-img-top" src="./uploads/upimg/<?= $danhMuc['img'] ?>" alt="Card image cap">
@@ -494,142 +460,8 @@
                                 </h5>
                                 <div class="product__price">
                                     <!-- <p class="card-text price-color product__price-old">1,000,000 đ</p> -->
-                                    <p class="card-text price-color product__price-new"><?= $danhMuc['price'] . ' VND' ?></p>
-                                </div>
-                                <div class="home-product-item__action">
-                                    <!-- <span class="home-product-item__like home-product-item__like--liked">
-                                    <i class="home-product-item__like-icon-empty far fa-heart"></i>
-                                    <i class="home-product-item__like-icon-fill fas fa-heart"></i>
-                                </span> -->
-                                    <div class="home-product-item__rating">
-                                        <!-- <i class="home-product-item__star--gold fas fa-star"></i>
-                                    <i class="home-product-item__star--gold fas fa-star"></i>
-                                    <i class="home-product-item__star--gold fas fa-star"></i>
-                                    <i class="home-product-item__star--gold fas fa-star"></i>
-                                    <i class="fas fa-star"></i> -->
-                                    </div>
-                                    <span class="home-product-item__sold">79 đã bán</span>
-                                </div>
-                                <!-- <div class="sale-off">
-                                <span class="sale-off-percent">20%</span>
-                                <span class="sale-off-label">GIẢM</span>
-                            </div> -->
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-lg-3 col-md-6 col-sm-12 mb-20">
-                    <a href="?act=chitietsp" class="product__new-item">
-                        <div class="card" style="width: 100%">
-                            <div>
-                                <img class="card-img-top" src="./uploads/upimg/<?= $danhMuc['img'] ?>" alt="Card image cap">
-                                <!-- <form action="" class="hover-icon hidden-sm hidden-xs">
-                      <input type="hidden">
-                      <a href="./pay.html" class="btn-add-to-cart" title="Mua ngay">
-                        <i class="fas fa-cart-plus"></i>
-                      </a>
-                      <a data-toggle="modal" data-target="#myModal" class="quickview" title="Xem nhanh">
-                        <i class="fas fa-search"></i>
-                      </a>
-                    </form> -->
-                            </div>
-                            <div class="card-body">
-                                <h5 class="card-title custom__name-product">
-                                    <?= $chiTietSp['name'] ?>
-                                </h5>
-                                <div class="product__price">
-                                    <!-- <p class="card-text price-color product__price-old">1,000,000 đ</p> -->
-                                    <p class="card-text price-color product__price-new"><?= $danhMuc['price'] . ' VND' ?></p>
-                                </div>
-                                <div class="home-product-item__action">
-                                    <!-- <span class="home-product-item__like home-product-item__like--liked">
-                                    <i class="home-product-item__like-icon-empty far fa-heart"></i>
-                                    <i class="home-product-item__like-icon-fill fas fa-heart"></i>
-                                </span> -->
-                                    <div class="home-product-item__rating">
-                                        <!-- <i class="home-product-item__star--gold fas fa-star"></i>
-                                    <i class="home-product-item__star--gold fas fa-star"></i>
-                                    <i class="home-product-item__star--gold fas fa-star"></i>
-                                    <i class="home-product-item__star--gold fas fa-star"></i>
-                                    <i class="fas fa-star"></i> -->
-                                    </div>
-                                    <span class="home-product-item__sold">79 đã bán</span>
-                                </div>
-                                <!-- <div class="sale-off">
-                                <span class="sale-off-percent">20%</span>
-                                <span class="sale-off-label">GIẢM</span>
-                            </div> -->
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-lg-3 col-md-6 col-sm-12 mb-20">
-                    <a href="?act=chitietsp" class="product__new-item">
-                        <div class="card" style="width: 100%">
-                            <div>
-                                <img class="card-img-top" src="./uploads/upimg/<?= $danhMuc['img'] ?>" alt="Card image cap">
-                                <!-- <form action="" class="hover-icon hidden-sm hidden-xs">
-                      <input type="hidden">
-                      <a href="./pay.html" class="btn-add-to-cart" title="Mua ngay">
-                        <i class="fas fa-cart-plus"></i>
-                      </a>
-                      <a data-toggle="modal" data-target="#myModal" class="quickview" title="Xem nhanh">
-                        <i class="fas fa-search"></i>
-                      </a>
-                    </form> -->
-                            </div>
-                            <div class="card-body">
-                                <h5 class="card-title custom__name-product">
-                                    <?= $chiTietSp['name'] ?>
-                                </h5>
-                                <div class="product__price">
-                                    <!-- <p class="card-text price-color product__price-old">1,000,000 đ</p> -->
-                                    <p class="card-text price-color product__price-new"><?= $danhMuc['price'] . ' VND' ?></p>
-                                </div>
-                                <div class="home-product-item__action">
-                                    <!-- <span class="home-product-item__like home-product-item__like--liked">
-                                    <i class="home-product-item__like-icon-empty far fa-heart"></i>
-                                    <i class="home-product-item__like-icon-fill fas fa-heart"></i>
-                                </span> -->
-                                    <div class="home-product-item__rating">
-                                        <!-- <i class="home-product-item__star--gold fas fa-star"></i>
-                                    <i class="home-product-item__star--gold fas fa-star"></i>
-                                    <i class="home-product-item__star--gold fas fa-star"></i>
-                                    <i class="home-product-item__star--gold fas fa-star"></i>
-                                    <i class="fas fa-star"></i> -->
-                                    </div>
-                                    <span class="home-product-item__sold">79 đã bán</span>
-                                </div>
-                                <!-- <div class="sale-off">
-                                <span class="sale-off-percent">20%</span>
-                                <span class="sale-off-label">GIẢM</span>
-                            </div> -->
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-lg-3 col-md-6 col-sm-12 mb-20">
-                    <a href="?act=chitietsp" class="product__new-item">
-                        <div class="card" style="width: 100%">
-                            <div>
-                                <img class="card-img-top" src="./uploads/upimg/<?= $danhMuc['img'] ?>" alt="Card image cap">
-                                <!-- <form action="" class="hover-icon hidden-sm hidden-xs">
-                      <input type="hidden">
-                      <a href="./pay.html" class="btn-add-to-cart" title="Mua ngay">
-                        <i class="fas fa-cart-plus"></i>
-                      </a>
-                      <a data-toggle="modal" data-target="#myModal" class="quickview" title="Xem nhanh">
-                        <i class="fas fa-search"></i>
-                      </a>
-                    </form> -->
-                            </div>
-                            <div class="card-body">
-                                <h5 class="card-title custom__name-product">
-                                    <?= $chiTietSp['name'] ?>
-                                </h5>
-                                <div class="product__price">
-                                    <!-- <p class="card-text price-color product__price-old">1,000,000 đ</p> -->
-                                    <p class="card-text price-color product__price-new"><?= $danhMuc['price'] . ' VND' ?></p>
+                                    <p class="card-text price-color product__price-new"><?= $danhMuc['price'] . ' VND' ?>
+                                    </p>
                                 </div>
                                 <div class="home-product-item__action">
                                     <!-- <span class="home-product-item__like home-product-item__like--liked">
@@ -656,7 +488,7 @@
             <?php endforeach ?>
         </div>
         <div class="seemore">
-            <a href="./Product.html">Xem thêm</a>
+            <a href="#">Xem thêm</a>
         </div>
     </div>
 </div>
@@ -667,7 +499,7 @@
 <script src="./views/user/assets/js/main.js"></script>
 <script src="./views/user/assets/js/zoomsl.js"></script>
 <script>
-    $(document).ready(function() {
+    $(document).ready(function () {
         $(".big-img").imagezoomsl({
             zoomrange: [3, 3]
 

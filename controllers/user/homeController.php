@@ -60,5 +60,37 @@ class HomeController{
         $congView = $this->home->congView($id);
         require_once './views/user/chitietsp/chitietsp.php';
     }
+
+    public function addCmt() {
+        if (!isset($_SESSION['account']['id'])) {
+            echo 'Vui lòng đăng nhập để bình luận.';
+            header("Location: ?act=user/dangnhap");
+        }
+        if (isset($_POST['submit'])) {
+            $err = false;
+            $id_user = $_SESSION['account']['id']; 
+            $id_pro = $_GET['id']; 
+            $conten = trim($_POST['conten']);
+            $rating = intval($_POST['rating']);
+    
+            if (empty($conten)) {
+                $err = true;
+                $_SESSION['error'] = 'Nội dung bình luận không được để trống.';
+            }
+            if ($rating < 1 || $rating > 5) {
+                $err = true;
+                $_SESSION['error'] = 'Số sao không hợp lệ.';
+            }
+    
+            if (!$err) {
+                $this->comment->addCmt($id_user, $id_pro, htmlspecialchars($conten), $rating);
+                header("Location: ?act=chitietsp&id=$id_pro");
+                $_SESSION['success'] = 'Bạn đã comment thành công';
+            } else {
+                header("Location: ?act=chitietsp&id=$id_pro");
+            }
+        }
+    }
+    
 }
 ?>

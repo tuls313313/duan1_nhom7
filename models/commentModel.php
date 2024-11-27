@@ -20,9 +20,9 @@ class CommentModel{
         return $this->db->getAll($sql);
     }
 
-    public function addCmt($id_user,$id_pro,$conten){
-        $sql = "INSERT INTO `comment`(`id_user`, `id_pro`, `conten`) 
-        VALUES ('$id_user','$id_pro','$conten')";
+    public function addCmt($id_user,$id_pro,$conten,$rating){
+        $sql = "INSERT INTO `comment`(`id_user`, `id_pro`, `conten`, `rating`) 
+        VALUES ('$id_user','$id_pro','$conten','$rating')";
         $this->db->insert($sql);
     }
 
@@ -46,8 +46,7 @@ class CommentModel{
         $sql = "SELECT comment.*, account.user 
             FROM comment
             INNER JOIN account ON comment.id_user = account.id
-            WHERE comment.id_pro = $id";
-            // var_dump($sql);die;
+            WHERE comment.id_pro = $id AND comment.status = 1";
         return $this->db->getAll($sql);
     }
 

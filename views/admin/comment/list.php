@@ -41,13 +41,13 @@
                         <!-- /.card-header -->
                         <div class="card-body">
                             <table id="example1" class="table table-bordered table-striped">
-                            <a class="btn btn-success mb-2" href="?act=admin/comment/add">Add Bình luận</a>
                                 <thead>
                                     <tr>
                                         <th>id_cmt</th>
                                         <th>id_user</th>
                                         <th>id_pro</th>
                                         <th>conten</th>
+                                        <th>rating</th>
                                         <th>status</th>
                                         <th>time_comment</th>
                                         <th>action</th>
@@ -60,6 +60,7 @@
                                             <td><?= $cmt['id_user'] ?></td>
                                             <td><?= $cmt['id_pro'] ?></td>
                                             <td><?= $cmt['conten'] ?></td>
+                                            <td><?= $cmt['rating'] ?></td>
                                             <td><?= $cmt['status'] == 0 ? 'chờ duyệt' : 'đã duyệt' ?></td>
                                             <td><?= $cmt['time_comment'] ?></td>
                                             <td class="text-center">
