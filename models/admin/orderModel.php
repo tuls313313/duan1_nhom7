@@ -9,11 +9,17 @@ class OrderModel
         $this->db = new Database();
     }
 
-    public function getAllOrder()
-    {
-        $sql = "SELECT * FROM orders";
+    public function getAllOrder() {
+        $sql = "
+            SELECT 
+                o.*, 
+                a.user AS user_name
+            FROM orders o
+            LEFT JOIN account a ON o.user_id = a.id
+        ";
         return $this->db->getAll($sql);
     }
+    
 
     public function detailOrder($id_order)
     {

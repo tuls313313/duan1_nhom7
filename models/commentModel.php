@@ -7,10 +7,19 @@ class CommentModel{
         $this->db = new Database();
     }
 
-    public function getAllCmt(){
-        $sql = "SELECT * FROM comment order by id_cmt desc";
+    public function getAllCmt() {
+        $sql = "SELECT 
+                c.*, 
+                u.user AS user_name, 
+                p.name AS product_name
+            FROM comment c
+            LEFT JOIN account u ON c.id_user = u.id
+            LEFT JOIN product p ON c.id_pro = p.id
+            ORDER BY c.id_cmt DESC
+        ";
         return $this->db->getAll($sql);
     }
+    
     public function getAllAccount(){
         $sql = "SELECT * FROM account";
         return $this->db->getAll($sql);

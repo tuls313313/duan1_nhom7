@@ -52,7 +52,7 @@
                   <?php foreach ($listOrder as $value) { ?>
                     <tr>
                       <td><?= $value['id_order'] ?></td>
-                      <td><?= $value['user_id'] ?></td>
+                      <td><?= $value['user_name'] ?></td>
                       <td><?= $value['status_order'] == 1 ? 'Đang chờ' : ( $value['status_order'] == 2  ? 'Đang giao' : 'Hoàn Thành' ); ?></td>
                       <td><?= $value['payment'] == 0 ? 'Thanh toán khi nhận hàng' : 'Thanh toán online' ?></td>
                       <td><?= $value['total_amount'] ?></td>

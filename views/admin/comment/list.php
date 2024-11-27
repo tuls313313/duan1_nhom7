@@ -43,22 +43,22 @@
                             <table id="example1" class="table table-bordered table-striped">
                                 <thead>
                                     <tr>
-                                        <th>id_cmt</th>
-                                        <th>id_user</th>
-                                        <th>id_pro</th>
-                                        <th>conten</th>
-                                        <th>rating</th>
-                                        <th>status</th>
-                                        <th>time_comment</th>
-                                        <th>action</th>
+                                        <th>ID</th>
+                                        <th>User</th>
+                                        <th>Sản phẩm</th>
+                                        <th>Nội dung</th>
+                                        <th>Đánh giá</th>
+                                        <th>Trạng thái</th>
+                                        <th>Thời gian cmt</th>
+                                        <th>Hành động</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <?php foreach ($listCmt as $cmt) { ?>
                                         <tr>
                                             <td><?= $cmt['id_cmt'] ?></td>
-                                            <td><?= $cmt['id_user'] ?></td>
-                                            <td><?= $cmt['id_pro'] ?></td>
+                                            <td><?= $cmt['user_name'] ?></td>
+                                            <td><?= $cmt['product_name'] ?></td>
                                             <td><?= $cmt['conten'] ?></td>
                                             <td><?= $cmt['rating'] ?></td>
                                             <td><?= $cmt['status'] == 0 ? 'chờ duyệt' : 'đã duyệt' ?></td>
