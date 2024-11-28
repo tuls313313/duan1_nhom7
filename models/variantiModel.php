@@ -41,7 +41,7 @@ class VariantiModel{
     LEFT JOIN product p ON v.id_pro = p.id
     LEFT JOIN size s ON v.id_size = s.id
     LEFT JOIN color col ON v.id_color = col.id
-    ORDER BY v.id_var = $id
+    where v.id_var = $id
     ";
         return $this->db->getOne($sql);
     }
@@ -50,13 +50,13 @@ class VariantiModel{
          VALUES ('$id_pro','$id_color','$id_size','$price','$quantity','$img')";
         return $this->db->insert($sql);
     }
-    function edit($id_pro,$id_color,$id_size,$price,$quantity,$img,$id_var){
+    function edit($id_var,$id_pro,$id_color,$id_size,$price,$quantity,$img){
         if($img==''){
             $sql = "UPDATE `varianti` SET `id_pro`='$id_pro',`id_color`='$id_color',`id_size`='$id_size',
             `price`='$price',`quantity`='$quantity' WHERE id_var=$id_var";
         }else{
             $sql = "UPDATE `varianti` SET `id_pro`='$id_pro',`id_color`='$id_color',`id_size`='$id_size',
-            `price`='$price',`quantity`='$quantity',`img`='$img' WHERE id_var=$id_var";    
+            `price`='$price',`quantity`='$quantity',`img`='$img' WHERE `id_var`='$id_var'";    
         }
        
         return $this->db->insert($sql);

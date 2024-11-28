@@ -21,6 +21,7 @@ class ProductModel
                 LEFT JOIN order_items oi on p.id = oi.product_id
                 LEFT JOIN orders o on oi.order_id = o.id_order AND o.status_order = 3
                 group by p.id
+                HAVING p.status = 0
                 order by id desc limit 4";
         return $this->db->getAll($sql);
     }
@@ -32,16 +33,18 @@ class ProductModel
                 LEFT JOIN order_items oi ON p.id = oi.product_id
                 LEFT JOIN orders o ON oi.order_id = o.id_order AND o.status_order = 3
                 GROUP BY p.id
+                HAVING p.status = 0
                 ORDER BY p.views DESC
                 LIMIT 4";
         return $this->db->getAll($sql);
     }
 
-    public function congView($id){
+    public function congView($id)
+    {
         $sql = "UPDATE product SET views = views + 1 WHERE id = $id;";
         return $this->db->getOne($sql);
     }
-    
+
 
     public function getOneProduct($id)
     {
@@ -80,7 +83,8 @@ class ProductModel
     //     return $this->db->getOne($sql);
     // }
 
-    public function getProductDetails($productId) {
+    public function getProductDetails($productId)
+    {
         $sql = "SELECT 
                 p.id AS product_id,
                 p.name AS product_name,
@@ -102,7 +106,8 @@ class ProductModel
         return $this->db->getOne($sql);
     }
 
-    public function getAllProductsByCategory($categoryId) {
+    public function getAllProductsByCategory($categoryId)
+    {
         $sql = "SELECT 
             p.id AS product_id,
             p.name AS product_name,
@@ -121,5 +126,18 @@ class ProductModel
         LIMIT 4
     ";
         return $this->db->getAll($sql);
+    }
+
+    public function getAllProductStatus()
+    {
+        $sql = "SELECT p.*, SUM(oi.quantity) AS sold_quantity
+                FROM product p
+                LEFT JOIN order_items oi ON p.id = oi.product_id
+                WHERE p.status = 0
+                GROUP BY p.id
+                ORDER BY p.id DESC;
+                ";
+        return $this->db->getAll($sql);
+
     }
 }

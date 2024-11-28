@@ -23,28 +23,33 @@
                             <div class="form-group col-md-6">
                                 <label for="id_pro">ID Sản phẩm</label>
                                 <select name="id_pro" class="form-control">
-                                    <?php foreach ($dataProduct as $Product) { ?>
+                                    <?php foreach ($dataProduct as $Product) { 
+                                        if($Product['status'] != 1){?>
                                         <option value="<?= $Product['id'] ?>"><?= $Product['name'] ?></option>
-                                    <?php } ?>
+                                    <?php }} ?>
                                 </select>
                             </div>
                             <div class="form-group col-md-6">
                                 <label for="id_color">Màu sắc</label>
                                 <select name="id_color" class="form-control">
-                                    <?php foreach ($dataColor as $Color) { ?>
+                                    <?php foreach ($dataColor as $Color) { 
+                                        if($Color['status'] != 1){
+                                            ?>
                                         <option value="<?= $Color['id'] ?>"><?= $Color['name'] ?></option>
-                                    <?php } ?>
+                                    <?php }
+                                } ?>
                                 </select>
                             </div>
                         </div>
 
                         <div class="form-row">
                             <div class="form-group col-md-6">
-                                <label for="id_size">Kích thước</label>
+                                <label for="id_size">Size</label>
                                 <select name="id_size" class="form-control">
-                                    <?php foreach ($dataSize as $size) { ?>
+                                    <?php foreach ($dataSize as $size) { 
+                                        if($size['status'] !=1){?>
                                         <option value="<?= $size['id'] ?>"><?= $size['name'] ?></option>
-                                    <?php } ?>
+                                    <?php }} ?>
                                 </select>
                             </div>
                             <div class="form-group col-md-6">

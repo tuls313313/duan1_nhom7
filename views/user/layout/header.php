@@ -161,12 +161,12 @@
           <li class="header_nav-list-item"><a href="?act=trangchu" class="active">Trang chủ</a></li>
           <li class="header_nav-list-item"><a href="?act=intro">Giới thiệu</a></li>
           <li class="header_nav-list-item has-mega">
-            <a href="#">Sản phẩm<i class="fas fa-angle-right" style="margin-left: 5px;"></i></a>
-            <div class="mega-content" style="overflow-x: hidden;">
+            <a href="?act=product">Sản phẩm<i class="fas fa-angle-right" style="margin-left: 5px;"></i></a>
+            <!-- <div class="mega-content" style="overflow-x: hidden;">
               <div class="row">
                 <ul class="col-8 no-padding level0">
                   <li class="level1">
-                    <a class="hmega" href="#">Tất cả sản phẩm</a>
+                    <a class="hmega" href="?act=product">Tất cả sản phẩm</a>
                     <ul class="level1">
                       <li class="level2"><a href="">Bóng đá</a></li>
                       <li class="level2"><a href="">Bóng đá</a></li>
@@ -183,7 +183,7 @@
                   </a>
                 </div>
               </div>
-            </div>
+            </div> -->
           </li>
           <li class="header_nav-list-item"><a href="?act=news">Tin tức</a></li>
           <li class="header_nav-list-item"><a href="?act=lienhe">Liên hệ</a></li>

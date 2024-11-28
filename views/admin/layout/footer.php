@@ -12,6 +12,8 @@
 <!-- ./wrapper -->
 <!-- jQuery -->
 <script src="./views/admin/asset/plugins/jquery/jquery.min.js"></script>
+<script src="https://cdn.ckeditor.com/4.25.0/standard/ckeditor.js"></script>
+
 <!-- Bootstrap 4 -->
 <script src="./views/admin/asset/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- DataTables  & Plugins -->

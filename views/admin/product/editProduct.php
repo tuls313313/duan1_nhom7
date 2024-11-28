@@ -36,10 +36,11 @@
                                     alt="<?= $dataOneProduct['img'] ?>" style="height: 50px; width=50px;"> </p>
                         </div>
                         <div class="form-group">
-                            <label for="description">Description</label>
-                            <input type="text" class="form-control" name="description"
-                                value="<?php echo $dataOneProduct['description']; ?>">
-                        </div>
+                        <label for="description">Description</label>
+                        <textarea name="description" cols="30" rows="10" class="form-control"><?= $dataOneProduct['description']; ?>
+                        </textarea>
+                    </div>
+
                         <div class="form-group">
                             <label for="id_categories">id_categories</label>
                             <select name="id_categories" class="form-control">

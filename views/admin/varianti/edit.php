@@ -18,7 +18,7 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-12">
-                    <form action="?act=admin/variant/nextedit&id=<?= $dataOne['variation_id'] ?>" method="POST"
+                    <form action="?act=admin/variant/nextedit&id=<?=$dataOne['variation_id']?>" method="POST"
                         enctype="multipart/form-data">
                         <div class="form-row">
                             <div class="form-group col-md-6">
@@ -27,7 +27,7 @@
                                     <option value="<?= $dataOne['product_id'] ?>"><?= $dataOne['product_name'] ?>
                                     </option>
                                     <?php foreach ($dataProduct as $Product) {
-                                        if ($dataOne['product_id'] !== $Product['id']) { ?>
+                                        if ($dataOne['product_id'] !== $Product['id'] && $Product['status'] !=1) { ?>
                                             <option value="<?= $Product['id'] ?>"><?= $Product['name'] ?></option>
                                         <?php }
                                     } ?>
@@ -36,24 +36,23 @@
                             <div class="form-group col-md-6">
                                 <label for="id_color">Màu sắc</label>
                                 <select name="id_color" class="form-control">
-                                    <option value="<?= $dataOne['size_id'] ?>"><?= $dataOne['size_name'] ?></option>
-                                    <?php foreach ($dataSize as $size) {
-                                        if ($dataOne['size_id'] !== $size['id']) { ?>
-                                            <option value="<?= $size['id'] ?>"><?= $size['name'] ?></option>
+                                <option value="<?= $dataOne['color_id'] ?>"><?= $dataOne['color_name'] ?></option>
+                                <?php foreach ($dataColor as $color) {
+                                        if ($dataOne['color_id'] !== $color['id'] && $color['status'] !=1) { ?>
+                                            <option value="<?=$color['id'] ?>"><?=$color['name'] ?></option>
                                         <?php }
                                     } ?>
                                 </select>
                             </div>
                         </div>
-
                         <div class="form-row">
                             <div class="form-group col-md-6">
-                                <label for="id_size">Kích thước</label>
+                                <label for="id_size">Size</label>
                                 <select name="id_size" class="form-control">
-                                    <option value="<?= $dataOne['color_id'] ?>"><?= $dataOne['color_name'] ?></option>
-                                    <?php foreach ($dataColor as $color) {
-                                        if ($dataOne['color_id'] !==$color['id']) { ?>
-                                            <option value="<?=$color['id'] ?>"><?=$color['name'] ?></option>
+                                    <option value="<?= $dataOne['size_id'] ?>"><?= $dataOne['size_name'] ?></option>
+                                    <?php foreach ($dataSize as $size) {
+                                        if ($dataOne['size_id'] !== $size['id'] && $size['status'] !=1) { ?>
+                                            <option value="<?= $size['id'] ?>"><?= $size['name'] ?></option>
                                         <?php }
                                     } ?>
                                 </select>
@@ -61,7 +60,8 @@
                             <div class="form-group col-md-6">
                                 <label for="img">Hình ảnh</label>
                                 <input type="file" class="form-control" name="img">
-                                <p><img src="./uploads/var/<?= $dataOne['variation_image'] ?>" alt="Image" height="50" width="50"></p>
+                                <p class="mt-2"><img src="./uploads/var/<?= $dataOne['variation_image'] ?>"
+                                alt="Image" height="70" width="70"></p>
                                 <p class="text-danger">
                                     <?php if (isset($_SESSION['err_i']))
                                         echo $_SESSION['err_i'];

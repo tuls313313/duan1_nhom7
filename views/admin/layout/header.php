@@ -17,6 +17,8 @@
   <link rel="stylesheet" href="./views/admin/asset/dist/css/adminlte.min.css">
   <link rel="stylesheet" href="">
   <link rel="icon" href="./uploads/img/LogoAdmin.png" type="image/png">
+  <script src="https://cdn.ckeditor.com/4.25.0/standard/ckeditor.js"></script>
+
 </head>
 <body class="hold-transition sidebar-mini">
 <div class="wrapper">

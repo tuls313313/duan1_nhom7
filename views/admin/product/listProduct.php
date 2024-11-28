@@ -54,7 +54,7 @@
                                                 <td><?= $value['name'] ?></td>
                                                 <td><?php echo number_format($value['price'] ?? 0, 0, ',', '.') . ' VND'; ?></td>
                                                 <td class="text-center"><img src="./uploads/upimg/<?= $value['img'] ?>" alt="<?= $value['img'] ?>" style="height: 50px; width=50px;"></td>
-                                                <td><?= $value['description'] ?></td>
+                                                <td style="max-width: 150px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;"><?= $value['description'] ?></td>
                                                 <td>
                                                     <?php
                                                     foreach ($listCategories as $listCategori) {

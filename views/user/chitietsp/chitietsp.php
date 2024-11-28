@@ -342,15 +342,7 @@
             <div class="col-1"></div>
             <div class="col-11">
                 <h3 class="name__product"><?= $chitietsp['product_name'] ?></h3>
-                <h3><?= $chitietsp['product_description'] ?></h3>
-                <!-- <p>Phân khúc: Academy (tầm trung).</p> -->
-                <!-- <p>Upper: Synthetic - Da tổng hợp cao cấp.</p>
-                <p>Thiết kế đinh giày: Các đinh cao su hình chữ nhật, xếp chồng chéo với nhau. Theo đánh giá của nhiều
-                    người chơi thì những đinh TF hình chữ nhật lần này giúp đôi giày có thể trụ vững hơn trên sân.</p>
-                <p>Độ ôm chân: Cao</p>
-                <p>Bộ sưu tập: SAFARI PACK - Ra mắt tháng 4/2021</p>
-                <p>PTrên chân các cầu thủ nổi tiếng như: Cristiano Ronaldo, Kylian Mbappé, Erling Haaland, Jadon Sancho,
-                    Leroy Sané, Romelu Lukaku...</p> -->
+                <p ><?=nl2br($chitietsp['product_description'])  ?></p>
             </div>
         </div>
     </div>

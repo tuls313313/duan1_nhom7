@@ -6,6 +6,7 @@ class HomeController{
 
     public $home;
     public $chiTietSp;
+    public $categories;
     public $color;
     public $size;
     public $cart;
@@ -13,11 +14,12 @@ class HomeController{
 
     public function __construct(){
         $this->home =  new ProductModel();
-        $this->chiTietSp =  new ProductModel();
+        $this->chiTietSp = new ProductModel();
         $this->color = new ColorModel();
         $this->size = new SizeModel();
         $this->cart = new CartModel();
         $this->comment = new CommentModel();
+        $this->categories = new CategoriesModel();
     }
     public function home(){
     $datahome= $this->home->getAllProductHome();
@@ -138,6 +140,13 @@ class HomeController{
                 exit(); 
             }
         }
+    }
+
+    public function product(){
+        $listSize = $this->size->getAllSize();
+        $datasp = $this->chiTietSp->getAllProductStatus();
+        $data_cate = $this->categories->getAllCategory();
+        require_once './views/user/product/product.php';
     }
     
     

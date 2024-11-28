@@ -88,7 +88,8 @@ class VariantiController{
             $upimg = './uploads/var/' . basename($img['name']);
             move_uploaded_file($img['tmp_name'],$upimg);
             if(!$err){
-                $this->varianti->edit($id_pro,$id_color,$id_size,$price,$quantity,$img['name'],$id_var);
+                $this->varianti->edit($id_var,$id_pro,$id_color,
+                $id_size,$price,$quantity,$img['name']);
                 $_SESSION['success'] = 'edit varianti thành công';
                 header('location: ?act=admin/varianti/list&msg=success');
             }
