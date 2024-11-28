@@ -322,13 +322,14 @@
                     </div>
                 </form>
                 <div class="product__shopnow">
-                    <button class="shopnow">Mua ngay</button>
-                    <span class="home-product-item__like home-product-item__like--liked">
+                <a href="?act=thanhtoan&id=<?=  $chitietsp['product_id'];?>"><button class="shopnow">Mua ngay</button></a>
+                    
+                    <!-- <span class="home-product-item__like home-product-item__like--liked">
                         <i class="home-product-item__like-icon-empty far fa-heart"
                             style="font-size: 24px;margin-top: 7px;"></i>
                         <i class="home-product-item__like-icon-fill fas fa-heart"
                             style="font-size: 24px;margin-top: 7px;"></i>
-                    </span>
+                    </span> -->
                 </div>
             </div>
         </div>

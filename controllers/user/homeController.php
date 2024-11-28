@@ -57,27 +57,6 @@ class HomeController{
             header("Location: ?act=user/dangnhap");
             exit();
         }
-    
-        // Kiểm tra ID sản phẩm từ URL
-        $id = isset($_GET['id']) ? $_GET['id'] : null;
-        if (!$id) {
-            die('ID sản phẩm không hợp lệ!');
-        }
-    
-        // Lấy chi tiết sản phẩm
-        $chitietsp = $this->chiTietSp->getProductDetails($id);
-    
-        // Kiểm tra dữ liệu POST
-        // if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            if (isset($_POST['color'])) {
-                $selectedColor = $_POST['color']; // Lấy giá trị màu đã chọn
-                var_dump($selectedColor); die(); // Hiển thị ID của màu
-            } else {
-                echo 'Bạn chưa chọn màu!';
-            }
-        // }
-    
-        // Load view thanh toán
         require_once './views/user/thanhtoan/thanhtoan.php';
     }
     

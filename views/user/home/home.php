@@ -81,9 +81,12 @@
                       <a href="?act=thanhtoan" class="btn-add-to-cart" title="Mua ngay">
                         <i class="fas fa-cart-plus"></i>
                       </a>
-                      <a data-toggle="modal" data-target="#myModal" class="quickview" title="Xem nhanh">
+                      <a href="?act=chitietsp&id=<?= $home['id'];?>" class="btn-add-to-cart" title="Xem nhanh">
                         <i class="fas fa-search"></i>
                       </a>
+                      <!-- <a data-toggle="modal" data-target="#myModal" class="quickview" title="Xem nhanh">
+                        <i class="fas fa-search"></i>
+                      </a> -->
                     </form>
                   </div>
                   <div class="card-body">
@@ -133,10 +136,10 @@
                     <img class="card-img-top" src="./uploads/upimg/<?= $homeviews['img'] ?>" alt="Card image cap">
                     <form action="" class="hover-icon hidden-sm hidden-xs">
                       <input type="hidden">
-                      <a href="?act=thanhtoan" class="btn-add-to-cart" title="Mua ngay">
+                      <a href="?act=thanhtoan&id=<?=  $homeviews['id'];?>" class="btn-add-to-cart" title="Mua ngay">
                         <i class="fas fa-cart-plus"></i>
                       </a>
-                      <a data-toggle="modal" data-target="#myModal" class="quickview" title="Xem nhanh">
+                      <a href="?act=chitietsp&id=<?= $homeviews['id'];?>" class="btn-add-to-cart" title="Xem nhanh">
                         <i class="fas fa-search"></i>
                       </a>
                     </form>
@@ -514,7 +517,7 @@
         </div> -->
 
       <!-- Modal body -->
-      <div class="modal-body">
+      <!-- <div class="modal-body">
         <div class="row">
           <div class="col-6">
             <div class="mb-2 main-img-2">
@@ -618,15 +621,15 @@
                 </div>
               </div>
               <div class="product__shopnow">
-                <button class="shopnow2">Mua ngay</button>
+                <a href="?act=thanhtoan&id="> <button class="shopnow2">Mua ngay</button></a>
               </div>
             </div>
           </div>
         </div>
-      </div>
-      <button class="btn-default btn-close" data-dismiss="modal">
+      </div> -->
+      <!-- <button class="btn-default btn-close" data-dismiss="modal">
         <i class="fas fa-times-circle"></i>
-      </button>
+      </button> -->
       <!-- Modal footer -->
       <!-- <div class="modal-footer">
           <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
