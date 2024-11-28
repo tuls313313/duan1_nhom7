@@ -72,21 +72,55 @@ class ProductModel
         return $this->db->insert($sql);
     }
 
-    public function detailSp($id)
-    {
-        $sql = "SELECT product.*, categories.name 
-                FROM product 
-                INNER JOIN categories ON product.id_categories = categories.id 
-                WHERE product.id=$id";
+    // public function detailSp($id)
+    // {
+    //     $sql = "SELECT product.*, categories.name 
+    //             FROM product 
+    //             INNER JOIN categories ON product.id_categories = categories.id 
+    //             WHERE product.id=$id";
+    //     return $this->db->getOne($sql);
+    // }
+
+    public function getProductDetails($productId) {
+        $sql = "SELECT 
+                p.id AS product_id,
+                p.name AS product_name,
+                p.price AS base_price,
+                p.description AS product_description,
+                p.img AS product_image,
+                categories.name AS category_name,
+                v.price AS variant_price,
+                v.quantity AS variant_quantity,
+                v.img AS variant_image,
+                COALESCE(SUM(oi.quantity), 0) AS total_ordered_quantity
+            FROM product p
+            LEFT JOIN categories ON p.id_categories = categories.id
+            LEFT JOIN varianti v ON p.id = v.id_var
+            LEFT JOIN order_items oi ON p.id = oi.product_id
+            WHERE p.id = $productId
+            GROUP BY p.id, v.id_var, categories.id
+        ";
         return $this->db->getOne($sql);
     }
 
-    public function product_categories($id)
-    {
-        $sql = "SELECT product.*, categories.name 
-                FROM product 
-                INNER JOIN categories ON product.id_categories = categories.id 
-                WHERE product.id=$id";
+    public function getAllProductsByCategory($categoryId) {
+        $sql = "SELECT 
+            p.id AS product_id,
+            p.name AS product_name,
+            p.price AS product_price,
+            p.img AS product_image,
+            p.description AS product_description,
+            categories.name AS category_name
+        FROM product p
+        LEFT JOIN categories ON p.id_categories = categories.id
+        WHERE p.id_categories = (
+            SELECT id_categories 
+            FROM product 
+            WHERE id = $categoryId
+        ) 
+        AND p.id != $categoryId
+        LIMIT 4
+    ";
         return $this->db->getAll($sql);
     }
 }

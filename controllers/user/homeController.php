@@ -13,7 +13,7 @@ class HomeController{
         $this->chiTietSp =  new ProductModel();
         $this->color = new ColorModel();
         $this->size = new SizeModel();
-        // $this->cart = new CartModel();
+        $this->cart = new CartModel();
         $this->comment = new CommentModel();
     }
     public function home(){
@@ -35,8 +35,14 @@ class HomeController{
         require_once './views/user/lienhe/lienhe.php';
     }
     public function giohang(){
-        // $listCart = $this->cart->getAllCart();
-        require_once './views/user/giohang/giohang.php';
+        if(isset($_POST['submit'])) {
+        $userId = $_SESSION['account']['id']; 
+        $productId = $_GET['id'];
+        $quantity = intval($_POST['quantity']);
+        $listCart = $this->cart->addToCart($userId, $productId, $quantity);
+            header("location: ?act=chitietsp&id=$productId");
+            // header("location: ?act=giohang");
+        }
     }
     public function themgiohang(){
         
@@ -47,17 +53,18 @@ class HomeController{
     }
 
     public function chitietsp(){
-        $id = $_GET['id'];
+        $productId = $_GET['id'];
         // var_dump($id);die;
-        $chiTietSp = $this->chiTietSp->getOneProduct($id);
-        $categories = $this->chiTietSp->detailSp($id);
-        $danhMucLienQuan = $this->chiTietSp->product_categories($id);
+        // $chiTietSp = $this->chiTietSp->getOneProduct($id);
+        $chitietsp = $this->chiTietSp->getProductDetails($productId);
         // var_dump($chiTietSp);die;
+        $danhMucLienQuan = $this->chiTietSp->getAllProductsByCategory($productId);
+        // // var_dump($chiTietSp);die;
         $listColor = $this->color->getAllColor();
-        // var_dump($listColor);die;
+        // // var_dump($listColor);die;
         $listSize = $this->size->getAllSize();
-        $listComment = $this->comment->commentProduct($id);
-        $congView = $this->home->congView($id);
+        $listComment = $this->comment->commentProduct($productId);
+        $congView = $this->home->congView($productId);
         require_once './views/user/chitietsp/chitietsp.php';
     }
 
