@@ -190,27 +190,27 @@
                 <div class="img-product">
                     <ul class="all-img">
                         <li class="img-item">
-                            <img src="./uploads/upimg/<?= $chiTietSp['img'] ?>" class="small-img" alt="anh 1"
+                            <img src="./uploads/upimg/<?= $chitietsp['product_image'];?>" class="small-img" alt="anh 1"
                                 onclick="changeImg('one')" id="one">
                         </li>
                         <li class="img-item">
-                            <img src="./uploads/upimg/<?= $chiTietSp['img'] ?>" class="small-img" alt="anh 2"
+                            <img src="./uploads/upimg/<?= $chitietsp['product_image'] ?>" class="small-img" alt="anh 2"
                                 onclick="changeImg('two')" id="two">
                         </li>
                         <li class="img-item">
-                            <img src="./uploads/upimg/<?= $chiTietSp['img'] ?>" class="small-img" alt="anh 3"
+                            <img src="./uploads/upimg/<?= $chitietsp['product_image'] ?>" class="small-img" alt="anh 3"
                                 onclick="changeImg('three')" id="three">
                         </li>
                         <li class="img-item">
-                            <img src="./uploads/upimg/<?= $chiTietSp['img'] ?>" class="small-img" alt="anh 4"
+                            <img src="./uploads/upimg/<?= $chitietsp['product_image'] ?>" class="small-img" alt="anh 4"
                                 onclick="changeImg('four')" id="four">
                         </li>
 
                     </ul>
                 </div>
                 <div id="main-img" style="cursor: pointer;">
-                    <img src="./uploads/upimg/<?= $chiTietSp['img'] ?>" class="big-img" alt="ảnh chính" id="img-main"
-                        xoriginal="./uploads/upimg/<?= $chiTietSp['img'] ?>">
+                    <img src="./uploads/upimg/<?= $chitietsp['product_image'] ?>" class="big-img" alt="ảnh chính" id="img-main"
+                        xoriginal="./uploads/upimg/<?= $chitietsp['product_image'] ?>">
                     <!-- <div class="sale-off sale-off-2">
                         <span class="sale-off-percent">20%</span>
                         <span class="sale-off-label">GIẢM</span>
@@ -219,16 +219,16 @@
             </div>
             <div class="col-lg-6 col-12">
                 <div class="product__name">
-                    <h2><?= $chiTietSp['name'] ?></h2>
+                    <h2><?= $chitietsp['product_name'] ?></h2>
                 </div>
                 <div class="status-product">
-                    Trạng thái: <b><?= $chiTietSp['status'] == 0 ? 'Hoạt Động' : 'Không Hoạt Động'; ?></b>
+                    Trạng thái: <b><?= $chitietsp['total_ordered_quantity'] > 0 ? 'Hoạt Động' : 'Không Hoạt Động'; ?></b>
                 </div>
                 <div class="infor-oder">
-                    Loại sản phẩm: <b><?= $categories['name'] ?></b>
+                    Loại sản phẩm: <b><?= $chitietsp['category_name'] ?></b>
                 </div>
                 <div class="product__price">
-                    <h2><?= $chiTietSp['price'] . ' VND' ?></h2>
+                    <h2><?php echo number_format($chitietsp['base_price'] ?? 0, 0, ',', '.' ) . ' VNĐ'?></h2>
                 </div>
                 <!-- <div class="price-old">
                         Giá gốc:
@@ -311,15 +311,14 @@
                         </div> -->
                     </div>
                 </div>
-                <form action="?act=giohang" method="post">
+                
+                <form action="?act=giohang&id=<?= $chitietsp['product_id'] ?>" method="post">
                     <div class="product__wrap">
                         <div class="product__amount">
                             <label for="">Số lượng: </label>
-                            <!-- <input type="button" value="-" class="control" onclick="tru()" id="cong"> -->
-                            <input type="number" style="width: 100px" value="1" class="text-input">
-                            <!-- <input type="button" value="+" class="control" onclick="cong()"> -->
+                            <input type="number" style="width: 100px" value="1" class="text-input" name="quantity">
                         </div>
-                        <button class="add-cart">Thêm vào giỏ</button>
+                        <button class="add-cart" name="submit">Thêm vào giỏ</button>
                     </div>
                 </form>
                 <div class="product__shopnow">
@@ -341,8 +340,8 @@
         <div class="row">
             <div class="col-1"></div>
             <div class="col-11">
-                <h3 class="name__product"><?= $chiTietSp['name'] ?></h3>
-                <h3><?= $chiTietSp['description'] ?></h3>
+                <h3 class="name__product"><?= $chitietsp['product_name'] ?></h3>
+                <h3><?= $chitietsp['product_description'] ?></h3>
                 <!-- <p>Phân khúc: Academy (tầm trung).</p> -->
                 <!-- <p>Upper: Synthetic - Da tổng hợp cao cấp.</p>
                 <p>Thiết kế đinh giày: Các đinh cao su hình chữ nhật, xếp chồng chéo với nhau. Theo đánh giá của nhiều
@@ -440,10 +439,10 @@
         <div class="row">
             <?php foreach ($danhMucLienQuan as $danhMuc): ?>
                 <div class="col-lg-3 col-md-6 col-sm-12 mb-20">
-                    <a href="?act=chitietsp&id=<?= $danhMuc['id'] ?>" class="product__new-item">
+                    <a href="?act=chitietsp&id=<?= $danhMuc['product_id'] ?>" class="product__new-item">
                         <div class="card" style="width: 100%">
                             <div>
-                                <img class="card-img-top" src="./uploads/upimg/<?= $danhMuc['img'] ?>" alt="Card image cap">
+                                <img class="card-img-top" src="./uploads/upimg/<?= $danhMuc['product_image'] ?>" alt="Card image cap">
                                 <!-- <form action="" class="hover-icon hidden-sm hidden-xs">
                       <input type="hidden">
                       <a href="./pay.html" class="btn-add-to-cart" title="Mua ngay">
@@ -456,12 +455,11 @@
                             </div>
                             <div class="card-body">
                                 <h5 class="card-title custom__name-product">
-                                    <?= $chiTietSp['name'] ?>
+                                    <?= $danhMuc['product_name'] ?>
                                 </h5>
                                 <div class="product__price">
                                     <!-- <p class="card-text price-color product__price-old">1,000,000 đ</p> -->
-                                    <p class="card-text price-color product__price-new"><?= $danhMuc['price'] . ' VND' ?>
-                                    </p>
+                                    <p class="card-text price-color product__price-new"><?php echo number_format($danhMuc['product_price'] ?? 0, 0, ',', '.' ) . ' VNĐ'?></p>
                                 </div>
                                 <div class="home-product-item__action">
                                     <!-- <span class="home-product-item__like home-product-item__like--liked">
