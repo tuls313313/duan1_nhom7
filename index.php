@@ -21,6 +21,8 @@ require_once './controllers/admin/userController.php';
 require_once './controllers/admin/colorController.php';
 require_once './controllers/admin/promotionController.php';
 require_once './controllers/admin/sizeController.php';
+require_once './controllers/admin/variantiController.php';
+
 
 
 //models
@@ -34,6 +36,8 @@ require_once './models/productModel.php';
 require_once './models/promotionModel.php';
 require_once './models/sizeModel.php';
 require_once './models/userModels.php';
+require_once './models/variantiModel.php';
+
 
 
 $home = new HomeController();
@@ -47,6 +51,7 @@ $adminstatistical = new ThongkeController();
 $AdminColor = new ColorController();
 $promotion = new PromotionController();
 $AdminSize = new SizeController();
+$vianti = new VariantiController();
 
 // Để bảo bảo tính chất chỉ gọi 1 hàm Controller để xử lý request thì mình sử dụng match
 
@@ -140,4 +145,13 @@ match ($act) {
   'admin/promotion/update' => $promotion->update(),
   'admin/promotion/nextupdate' => $promotion->nextUpdate(),
   'admin/promotion/delete' => $promotion->delete(),
+
+  // varianti - bieens the
+  'admin/varianti/list' => $vianti->listVar(),
+  'admin/varianti/add' => $vianti->addVar(),
+  'admin/varianti/nextadd' => $vianti->nextAddVar(),
+  'admin/variant/edit' => $vianti->editVar(),
+  'admin/variant/nextedit' => $vianti->nextEditVar(),
+  'admin/variant/delete' => $vianti->delVar(),
+
 };
