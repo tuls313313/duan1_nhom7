@@ -54,7 +54,6 @@ class ProductModel
         return $this->db->getOne($sql);
     }
 
-
     public function insertProduct($name, $price, $img, $description, $id_categories)
     {
         $sql = "INSERT INTO `product`(`name`, `price`, `img`, `description`, `id_categories`) 

@@ -11,7 +11,7 @@ class OrderModel
 
     public function getAllOrder() {
         $sql = "
-            SELECT 
+        SELECT 
                 o.*, 
                 a.user AS user_name
             FROM orders o
