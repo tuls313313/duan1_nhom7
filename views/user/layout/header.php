@@ -40,12 +40,18 @@
   <link rel="stylesheet" href="./views/user/assets/css/productdetail.css">
   <link rel="stylesheet" href="./views/user/assets/css/reponsive1.css">
 
-
   <link rel="icon" href="assets/img/logo/main.png" type="image/x-icon" />
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
     integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
     crossorigin="anonymous"></script>
-
+<style>
+  .right{
+    margin-left: 250px;
+  }
+  .svt{
+    left: 150px;
+  }
+</style>
 </head>
 <body style="background-color: rgb(248, 242, 236);">
   <div class="overlay hidden"></div>
@@ -56,16 +62,16 @@
         <div class="row">
           <div class="col-6 social_link">
             <div class="social-title">Theo dõi: </div>
-            <a href="#"><i class="fab fa-facebook" style="font-size: 24px; margin-right: 10px"></i></a>
+            <a href="#"><i class="fab fa-facebook" style="font-size: 24px; margin-right: 10px;color: blue;"></i></a>
             <a href="#"><i class="fab fa-instagram" style="font-size: 24px; margin-right: 10px;color: pink;"></i></a>
             <a href="#"><i class="fab fa-youtube" style="font-size: 24px; margin-right: 10px;color: red;"></i></a>
-            <a href="#"><i class="fab fa-twitter" style="font-size: 24px; margin-right: 10px"></i></a>
+            <a href="#"><i class="fab fa-twitter" style="font-size: 24px; margin-right: 10px;color: blue;"></i></a>
           </div>
-          <div class="col-6 login_link">
+          <div class="col-6 login_link svt">
             <?php if (isset($_SESSION['account']) ) {
               // print_r($_SESSION['account']);
               ?>
-              <ul class="m-auto">
+              <ul class="m-auto svt">
                 <li class="nav-item nav-item__first nav-item__first-user">
                   <img src="./views/user/assets/img/product/noavatar.png" alt="" class="nav-item__first-img">
                   <span class="nav-item__first-name"><?= $_SESSION['account']['user'] ?></span>
@@ -83,6 +89,11 @@
                       </a>
                     </li>
                     <li class="nav-item__first-item">
+                      <a href="?act=user/order_history">
+                        <i class="fas fa-user"></i> Lịch sử mua hàng
+                      </a>
+                    </li>
+                    <li class="nav-item__first-item">
                       <a href="?act=user/dangxuat">
                         <i class="fas fa-sign-out-alt"></i> Đăng xuất
                       </a>
@@ -90,16 +101,15 @@
                   </ul>
                 </li>
               </ul>
-
               <?php
             } else {
               ?>
-              <ul class="header_link right m-auto">
+              <ul class="header_link right">
                 <li>
-                  <a href="?act=user/dangnhap"><i class="fas fa-sign-in-alt mr-3"></i>Đăng nhập</a>
+                  <a href="?act=user/dangnhap"><i class="fas fa-sign-in-alt mr-3 ml-5 mt-3"></i>Đăng nhập</a>
                 </li>
                 <li>
-                  <a href="?act=user/dangky"><i class="fas fa-user-plus mr-3" style="margin-left: 10px;"></i>Đăng kí</a>
+                  <a href="?act=user/dangky"><i class="fas fa-user-plus mr-3 ml-5 mt-3" style="margin-left: 10px;"></i>Đăng kí</a>
                 </li>
               </ul>
             <?php } ?>
@@ -117,18 +127,18 @@
               </a>
             </div>
             <div class="mobile_cart visible-sm visible-xs">
-              <a href="./cart.html" class="header__second__cart--icon">
+              <a href="#" class="header__second__cart--icon">
                 <i class="fas fa-shopping-cart"></i>
                 <span id="header__second__cart--notice" class="header__second__cart--notice">3</span>
               </a>
-              <a href="./listlike.html" class="header__second__like--icon">
+              <a href="#" class="header__second__like--icon">
                 <i class="far fa-heart"></i>
                 <span id="header__second__like--notice" class="header__second__like--notice">3</span>
               </a>
             </div>
           </div>
           <div class="col-lg-6 m-auto pdt15">
-            <form class="example" action="./Product.html">
+            <form class="example" action="?">
               <input type="text" class="input-search" placeholder="Tìm kiếm.." name="search">
               <button type="submit" class="search-btn"><i class="fa fa-search"></i></button>
             </form>

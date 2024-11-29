@@ -209,6 +209,17 @@ class AccountController
                       
         }
     }
+
+    public function history_order(){
+        if (!isset($_SESSION['account']['id'])) {
+            $_SESSION['login_err'] = 'Vui lòng đăng nhập để bình luận.';
+            header("Location: ?act=user/dangnhap");
+            exit();
+        }
+        $id=$_SESSION['account']['id'];
+        $data_order = $this->account->order_history($id);
+        require_once "./views/user/order_history/list.php";
+    }
     
     
 }

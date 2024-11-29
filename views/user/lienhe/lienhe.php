@@ -148,7 +148,7 @@
                 <div class="col-12">
                     <h3 style="text-align: center; margin-top:30px;border-top:1px solid #333;padding-top:10px">Bản đồ cửa hàng</h3>
                     <div class="mapbox">
-                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3919.043789433826!2d106.70723641474923!3d10.807958192300143!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x317528bd0e0d9399%3A0xf97b95c646431c71!2zODYgxJBpbmggQuG7mSBMxKluaCwgUGjGsOG7nW5nIDI2LCBCw6xuaCBUaOG6oW5oLCBUaMOgbmggcGjhu5EgSOG7kyBDaMOtIE1pbmgsIFZp4buHdCBOYW0!5e0!3m2!1svi!2s!4v1634136123250!5m2!1svi!2s" width="100%" height="450"  allowfullscreen="" loading="lazy"></iframe>
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3723.863806019075!2d105.74468687471467!3d21.038134787457583!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x313455e940879933%3A0xcf10b34e9f1a03df!2zVHLGsOG7nW5nIENhbyDEkeG6s25nIEZQVCBQb2x5dGVjaG5pYw!5e0!3m2!1svi!2s!4v1732871547608!5m2!1svi!2s" width="100%" height="500"  allowfullscreen="" loading="lazy"></iframe>
                     </div>
                 </div>
             </div>
@@ -157,26 +157,3 @@
 
 
 <?php include './views/user/layout/footer.php'; ?>
-<script>
-    Validator({
-        form: '#form-1',
-        formGroupSelector: '.form-group',
-        errorSelector: '.form-message',
-        rules: [
-            Validator.isRequired('#fullname', 'Vui lòng nhập tên đầy đủ'),
-            Validator.isRequired('#email'),
-            Validator.isEmail('#email'),
-            Validator.minLength('#password', 6),
-            Validator.isRequired('#password_confirmation'),
-            Validator.isRequired('input[name="gender"]'),
-            Validator.isConfirmed('#password_confirmation', function () {
-                return document.querySelector('#form-1 #password').value;
-            }, 'Mật khẩu nhập lại không chính xác'),
-            Validator.isRequired('#noidung')
-        ],
-        onSubmit: function (data) {
-            // call api
-            console.log(data);
-        }
-    });
-</script>

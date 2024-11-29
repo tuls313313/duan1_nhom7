@@ -88,9 +88,7 @@
                                         </button>
                                     </div>
                                     <div class="modal-body">
-                                        <!-- Form thêm thành viên -->
                                         <form action="?act=admin/product/add" method="POST" enctype="multipart/form-data">
-                                            <!-- Các trường nhập dữ liệu -->
                                             <div class="form-group">
                                                 <label for="name">Name</label>
                                                 <input type="text" class="form-control" name="name">

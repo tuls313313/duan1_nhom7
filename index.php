@@ -80,6 +80,7 @@ match ($act) {
   'user/nextedit' => $User->nextEdit(),
   'user/quenmk' => $User->quenmk(),
   'user/changeMK' => $User->changeQuenMk(),
+  "user/order_history" =>$User->history_order(),
 
   // Quản trị viên
   // Quản lý tài khoản

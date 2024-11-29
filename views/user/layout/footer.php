@@ -76,7 +76,7 @@
               <a href="?act=intro" class="footer__item--link">Giới thiệu</a>
             </li>
             <li class="footer__item">
-              <a href="./Product.html" class="footer__item--link">Sản phẩm</a>
+              <a href="?act=product" class="footer__item--link">Sản phẩm</a>
             </li>
             <li class="footer__item">
               <a href="?act=news" class="footer__item--link">Tin tức</a>

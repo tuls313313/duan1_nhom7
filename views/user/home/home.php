@@ -432,7 +432,7 @@
       <h3 class="shoesnews__title">Tin tức</h3>
       <div class="row">
         <div class="col-lg-4 col-md-4 col-sm-12 mb-20">
-          <a href="./newDetail.html" class="product__new-item">
+          <a href="?act=news" class="product__new-item">
             <div class="card" style="width: 100%">
               <img class="card-img-top" src="./views/user/assets/img/product/new2.jpg" alt="Card image cap"
                 height="230px">
@@ -448,7 +448,7 @@
           </a>
         </div>
         <div class="col-lg-4 col-md-4 col-sm-12 mb-20">
-          <a href="./newDetail.html" class="product__new-item">
+          <a href="?act=news" class="product__new-item">
             <div class="card" style="width: 100%">
               <img class="card-img-top" src="./views/user/assets/img/product/new1.jpg" alt="Card image cap"
                 height="230px">
@@ -472,7 +472,7 @@
           </a>
         </div>
         <div class="col-lg-4 col-md-4 col-sm-12 mb-20">
-          <a href="./newDetail.html" class="product__new-item">
+          <a href="?act=news" class="product__new-item">
             <div class="card" style="width: 100%">
               <img class="card-img-top" src="./views/user/assets/img/product/new3.jpg" alt="Card image cap"
                 height="230px">
@@ -493,7 +493,7 @@
         </div>
       </div>
       <div class="shoesnews__all">
-        <a href="./Product.html" class="shoesnews__all-tittle">Xem tất cả</a> <i class="fi-rs-angle-right"></i>
+        <a href="?act=product" class="shoesnews__all-tittle">Xem tất cả</a> <i class="fi-rs-angle-right"></i>
       </div>
     </div>
   </div>

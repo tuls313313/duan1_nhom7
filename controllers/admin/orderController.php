@@ -45,44 +45,25 @@ class OrderController
     public function postOrder()
     {
         if (isset($_POST['editOrder'])) {
-            $error = [];
-            // var_dump(value: $_POST['editDonHang']); die;
+            $err = false;
             $id_order = $_GET['id_order'];
             $user_id = $_POST['user_id'];
-
-            $status_order = intval($_POST['status_order']);
-            // if ($status_order == 1) {
-            //     $error[] = "Trạng thái mới không hợp lệ. Bạn chỉ có thể chọn 'Đang giao' hoặc 'Hoàn thành'.";
-            // } elseif ($status_order == 2) {
-            //     $error[] = "Trạng thái mới không hợp lệ. Bạn chỉ có thể chọn 'Hoàn thành'.";
-            // } elseif ($status_order == 3) {
-            //     $error[] = "Đơn hàng đã hoàn thành, không thể thay đổi trạng thái.";
-            // } else {
-            //     $error[] = "Trạng thái mới không hợp lệ.";
-            // }
-
-            // $status_order = $_POST['status_order'];
-            // if ($status_order == 3 && !$status_order == 2 && !$status_order == 1) {
-            //     $error[] = "ent";
-            // } 
-            
-            if ($status_order == 3) {
-                // Trạng thái 3 không thể chuyển thành 1 hoặc 2
-                $error[] = "Lỗi: Không thể thay đổi từ trạng thái 3 sang trạng thái 1 hoặc 2.";
-            } elseif ($status_order == 1 || $status_order == 2) {
-                // Trạng thái 1 và 2 có thể chuyển qua lại, hoặc chuyển lên 3
-                // Không có lỗi ở đây
-            } elseif ($status_order != 1 && $status_order != 2 && $status_order != 3) {
-                // Nếu trạng thái không phải là 1, 2 hoặc 3, báo lỗi
-                $error[] = "Trạng thái đơn hàng không hợp lệ.";
+            $edit = $this->order->getOneOrder($id_order);
+            $current_status = $edit['status_order'];
+            $status_order = $_POST['status_order']; 
+            if($current_status == 3){
+                $_SESSION['status'] = 'đơn đã thành công không thể thay đổi';
+                $err = true;
             }
-
-            // var_dump($status_order);die;
+            else if($current_status == 4){
+                $_SESSION['status'] = 'đơn đã hủy không thể thay đổi';
+                $err = true;
+            }
             $payment = $_POST['payment'];
             $total_amount = $_POST['total_amount'];
             $total_money = $_POST['total_money'];
             $shipping_address = $_POST['shipping_address'];
-            if (empty($error)) {
+            if (!$err) {
                 $this->order->editOrder(
                     $id_order,
                     $user_id,
@@ -92,10 +73,10 @@ class OrderController
                     $total_money,
                     $shipping_address
                 );
+                $_SESSION['success'] = 'đã cập nhật thành công';
                 header("Location: ?act=admin/order&message=success");
             } else {
-                $_SESSION['error'] = $error;
-                header("Location: ?act=admin/order&message=error");
+                header("Location: ?act=admin/order/edit&id=$id_order");
             }
         } else {
             header("Location: ?act=admin/order&message=error.");

@@ -37,12 +37,14 @@
                   <div class="col-12">
                     <div class="callout callout-info">
                       <h5>Status:
-                        <?php if ($detail['status_order'] == 0) {
+                        <?php if ($detail['status_order'] == 1) {
                           echo 'Đang chờ';
-                        } elseif ($detail['status_order'] == 1) {
+                        } else if ($detail['status_order'] == 2) {
                           echo 'Đang giao';
-                        } else {
+                        } else if ($detail['status_order'] == 3) {
                           echo 'Hoàn thành';
+                        }else {
+                          echo 'Hủy đơn';
                         }
                         ?>
                       </h5>
