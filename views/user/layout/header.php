@@ -46,7 +46,7 @@
     crossorigin="anonymous"></script>
 <style>
   .right{
-    margin-left: 250px;
+    margin-left: 120px;
   }
   .svt{
     left: 150px;

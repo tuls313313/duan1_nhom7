@@ -95,8 +95,9 @@
                             <li>P&T SHOP xin hân hạnh phục vụ quý khách với những bộ quần áo phục kiện rất nhiều khách
                                 hàng
                                 tại Việt Nam ưa thích và chọn lựa.</li>
+                           
                             <li class="footer__item">
-                                <p><i class="fas fa-search-location footer__item-icon"></i> Ho Chi Minh, Viet Nam</p>
+                                <p><i class="fas fa-search-location footer__item-icon"></i>Hà Nội, Việt Nam</p>
                             </li>
                             <li class="footer__item">
                                 <p><i class="fas fa-phone-square-alt footer__item-icon"></i> Phone: <a
@@ -115,32 +116,34 @@
                         <span class="text-contact">Bạn hãy điền nội dung tin nhắn vào form dưới đây
                             và gửi cho chúng tôi. Chúng tôi sẽ trả lời bạn sau khi nhận được.
                         </span>
+                        <br>
+                        <h4 class="text-success"><?php if(isset($_SESSION['success&err'])) echo $_SESSION['success&err']; unset($_SESSION['success&err']) ?></h4>
                         <form action="" method="POST" class="form" id="form-1">
                             <div class="form-group">
                                 <label for="fullname" class="form-label">Tên đầy đủ</label>
-                                <input id="fullname" name="fullname" type="text" placeholder="VD: Sơn Đặng"
-                                    class="form-control">
-                                <span class="form-message"></span>
+                                <input id="fullname" name="name" type="text" placeholder="VD: Sơn Đặng"
+                                    class="form-control" value="<?php if(isset($_SESSION['account']['user'])) echo $_SESSION['account']['user'] ?? null ?>">
+                                <p class="text-danger"><?php if(isset($_SESSION['name_err'])) echo  $_SESSION['name_err']; unset( $_SESSION['name_err']); ?></p>
                             </div>
                             <div class="form-group">
                                 <label for="email" class="form-label">Email</label>
                                 <input id="email" name="email" type="text" placeholder="VD: email@domain.com"
-                                    class="form-control">
-                                <span class="form-message"></span>
-                            </div>
+                                    class="form-control"  value="<?php if(isset($_SESSION['account']['user'])) echo $_SESSION['account']['email'] ?? null ?>">
+                                    <p class="text-danger"><?php if(isset( $_SESSION['email_err'])) echo   $_SESSION['email_err']; unset(  $_SESSION['email_err']); ?></p>
+                                    </div>
                             <div class="form-group">
                                 <label for="phone" class="form-label">Điện thoại</label>
-                                <input id="phone" pattern="[0-9]{10}" name="phone" type="tel" placeholder="0912*******"
-                                    class="form-control">
-                                <span class="form-message"></span>
-                            </div>
-                            <label for="phone" class="form-label">Nội dung</label>
+                                <input id="phone" name="tel" type="tel" placeholder="0912*******"
+                                    class="form-control"  value="<?php if(isset($_SESSION['account']['user'])) echo $_SESSION['account']['tel'] ?? null ?>">
+                                    <p class="text-danger"><?php if(isset( $_SESSION['tel_err'])) echo   $_SESSION['tel_err']; unset(  $_SESSION['tel_err']); ?></p>
+                                </div>
                             <div class="form-group">
-                                <textarea name="noidung" id="noidung" cols="70" rows="10"></textarea>
-                                <span class="form-message"></span>
+                            <label for="phone" class="form-label">Nội dung</label>
+                                <p class="text-danger"><?php if(isset($_SESSION['message_err'])) echo  $_SESSION['message_err']; unset( $_SESSION['message_err']); ?></p>
+                                <textarea name="message" id="noidung" cols="70" rows="10"></textarea>
                             </div>
 
-                            <button class="form-submit btn-blocker">Gửi tin nhắn<i class="fas fa-arrow-right"
+                            <button name="submitSenmail" class="form-submit btn-blocker">Gửi tin nhắn<i class="fas fa-arrow-right"
                                     style="font-size: 16px;margin-left: 10px;"></i></button>
                         </form>
                     </div>
