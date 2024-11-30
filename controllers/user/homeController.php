@@ -1,4 +1,5 @@
 <?php
+
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
@@ -13,6 +14,7 @@ class HomeController
     public $size;
     public $cart;
     public $comment;
+    public $user;
 
     public function __construct()
     {
@@ -23,13 +25,13 @@ class HomeController
         $this->cart = new CartModel();
         $this->comment = new CommentModel();
         $this->categories = new CategoriesModel();
+        $this->user = new userModels();
     }
     public function home()
     {
         $datahome = $this->home->getAllProductHome();
         $dataviews = $this->home->getAllProductHomeViews();
         require_once './views/user/home/home.php';
-
     }
 
     public function homeIntro()
@@ -44,47 +46,47 @@ class HomeController
 
     public function lienhe()
     {
-        if(isset($_POST['submitSenmail'])){
+        if (isset($_POST['submitSenmail'])) {
             $err = false;
             $name = $_POST['name'];
-            if(empty($name)){
+            if (empty($name)) {
                 $_SESSION['name_err'] = 'Vui lòng điền tên';
                 $err = true;
             }
             $email = $_POST['email'];
-            if(empty($email)){
+            if (empty($email)) {
                 $_SESSION['email_err'] = 'Vui lòng điền email';
                 $err = true;
             }
             $tel = $_POST['tel'];
-            if(empty($tel)){
+            if (empty($tel)) {
                 $_SESSION['tel_err'] = 'Vui lòng điền số điện thoại';
                 $err = true;
             }
             $message = $_POST['message'];
-            if(empty($message)){
+            if (empty($message)) {
                 $_SESSION['message_err'] = 'Vui lòng Nhập nội dung';
                 $err = true;
             }
-            if(!$err){
+            if (!$err) {
                 $mail = new PHPMailer(true);
-            try {
-                $mail->isSMTP();
-                $mail->Host = 'smtp.gmail.com';
-                $mail->SMTPAuth = true;
-                $mail->Username = $this->email;
-                $mail->Password = 'juyzncaekhnnkxzz';
-                $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
-                $mail->Port = 587;
-                $mail->CharSet = 'UTF-8';
-                $mail->setFrom($this->email, 'nhom_7');
-                $mail->addAddress($this->emailA);
-                $mail->isHTML(true);
-                $mail->Subject = 'Thông báo Liên hệ '.$tel.'';
-                $mail->Body = 'Tài khoản: ' .$name. ' Vừa gửi thông tin liên hệ: 
-                                      <br>Email: '.$email.'
-                                      <br>phone: '.$tel.'
-                                      <br>Nội dung: '.$message.'
+                try {
+                    $mail->isSMTP();
+                    $mail->Host = 'smtp.gmail.com';
+                    $mail->SMTPAuth = true;
+                    $mail->Username = $this->email;
+                    $mail->Password = 'juyzncaekhnnkxzz';
+                    $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+                    $mail->Port = 587;
+                    $mail->CharSet = 'UTF-8';
+                    $mail->setFrom($this->email, 'nhom_7');
+                    $mail->addAddress($this->emailA);
+                    $mail->isHTML(true);
+                    $mail->Subject = 'Thông báo Liên hệ ' . $tel . '';
+                    $mail->Body = 'Tài khoản: ' . $name . ' Vừa gửi thông tin liên hệ: 
+                                      <br>Email: ' . $email . '
+                                      <br>phone: ' . $tel . '
+                                      <br>Nội dung: ' . $message . '
                                       <br>
                                       <br>Vui lòng không chia sẻ thông tin này với bất kỳ ai. <hr>
                                       <p><strong>Thông tin liên hệ:</strong><br>
@@ -92,35 +94,44 @@ class HomeController
                                       Email: <a href="mailto:' . $this->email . '">' . $this->email . '</a><br>
                                       Tel: +84 123 456 789 </p>
                                       <p><small>&copy; 2024 Nhóm 7. Tất cả các thông tin đều được bảo mật.</small></p>';
-                $mail->send();
-                $_SESSION['success&err'] = 'Bạn đã gửi thông tin thành công,chúng tôi sẽ liên hệ với bạn sớm nhất, xin cảm ơn.';
-                header("Location: ?act=lienhe&msg=success");
-                exit();
-            } catch (Exception) {
-                // error_log($mail->ErrorInfo,  3,'errors.log');
-                $_SESSION['success&err'] = "Không thể gửi email. Lỗi: " . $mail->ErrorInfo;
-                header("Location: ?act=lienhe&msg=err");
-                exit();
-            }
+                    $mail->send();
+                    $_SESSION['success&err'] = 'Bạn đã gửi thông tin thành công,chúng tôi sẽ liên hệ với bạn sớm nhất, xin cảm ơn.';
+                    header("Location: ?act=lienhe&msg=success");
+                    exit();
+                } catch (Exception) {
+                    // error_log($mail->ErrorInfo,  3,'errors.log');
+                    $_SESSION['success&err'] = "Không thể gửi email. Lỗi: " . $mail->ErrorInfo;
+                    header("Location: ?act=lienhe&msg=err");
+                    exit();
+                }
             }
         }
         require_once './views/user/lienhe/lienhe.php';
     }
-    public function giohang()
+    public function themgiohang()
     {
         if (isset($_POST['submit'])) {
             $userId = $_SESSION['account']['id'];
-            $productId = $_GET['id'];
+            $id_pro = $_GET['id'];
+            $id_cart = $_GET['id'];
+            $id_size = $_POST['id_size'];
+            $id_color = $_POST['id_color'];
+            // var_dump($id_color, $id_size );die();
             $quantity = intval($_POST['quantity']);
-            $listCart = $this->cart->addToCart($userId, $productId, $quantity);
-            header("location: ?act=chitietsp&id=$productId");
-            // header("location: ?act=giohang");
+            $money = intval($_POST['money']);
+            $listCart = $this->cart->addToCart($userId, $id_cart,$id_pro,$id_color,$id_size,$quantity,$money);
+            // header("location: ?act=chitietsp&id=$productId");
+            header("location: ?act=giohang");
         }
     }
-    public function themgiohang()
+    public function giohang()
     {
-
-        // require_once './views/user/giohang/giohang.php';
+        if (isset($_SESSION['account']['id'])) {
+            // var_dump($categories);die;
+            $userId = intval($_SESSION['account']['id']);
+            $listCart = $this->cart->getAllDetailCart($userId);
+        }
+        require_once './views/user/giohang/giohang.php';
     }
     public function thanhtoan()
     {
@@ -137,14 +148,13 @@ class HomeController
     {
         $productId = $_GET['id'];
         // var_dump($id);die;
-        // $chiTietSp = $this->chiTietSp->getOneProduct($id);
         $chitietsp = $this->chiTietSp->getProductDetails($productId);
-        // var_dump($chiTietSp);die;
+        // var_dump($chitietsp);die;
         $danhMucLienQuan = $this->chiTietSp->getAllProductsByCategory($productId);
-        // // var_dump($chiTietSp);die;
-        $listColor = $this->color->getAllColor();
+        // // var_dump($danhMucLienQuan);die;
+        $listColor = $this->color->getColorDetails();
         // // var_dump($listColor);die;
-        $listSize = $this->size->getAllSize();
+        $listSize = $this->size->getSizeDetails();
         $listComment = $this->comment->commentProduct($productId);
         $congView = $this->home->congView($productId);
         require_once './views/user/chitietsp/chitietsp.php';
@@ -221,7 +231,4 @@ class HomeController
         $data_cate = $this->categories->getAllCategory();
         require_once './views/user/product/product.php';
     }
-
-
 }
-?>

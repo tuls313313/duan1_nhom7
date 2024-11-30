@@ -38,4 +38,19 @@ class SizeModel
         $sql = "INSERT INTO `size`(`name`, `status`) VALUES ('$name','$status')";
         return $this->db->insert($sql);
     }
+
+    public function getSizeDetails()
+    {
+        $sql = "SELECT 
+                s.id AS size_id,
+                s.name AS size_name,
+                MAX(v.id_size) AS varianti_id
+            FROM 
+                size s
+            JOIN 
+                varianti v ON s.id = v.id_size
+            GROUP BY 
+                s.id, s.name;";
+    return $this->db->getAll($sql);
+    }
 }
