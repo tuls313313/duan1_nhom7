@@ -72,8 +72,21 @@ class UserModels
                 o.create_at as create_at
         FROM account a
         INNER JOIN orders o ON a.id = o.user_id
-        INNER JOIN order_items oi ON o.id_order = oi.order_id
         WHERE a.id = $id";
         return $this->db->getAll($sql);
+    }
+
+    public function history_order($id){
+        $sql = "SELECT  oi.order_id as id_oi, 
+                        oi.id_color as color_oi, 
+                        oi.id_size as size_oi, 
+                        oi.quantity as quantity_oi, 
+                        oi.price as price_oi,
+                        p.name as name_p
+                FROM order_items oi
+                INNER JOIN orders o ON oi.id = o.id_order
+                INNER JOIN product p ON oi.product_id = p.id
+                WHERE oi.order_id = $id";
+        return $this->db->getOne($sql);
     }
 }

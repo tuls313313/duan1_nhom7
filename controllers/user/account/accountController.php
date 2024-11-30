@@ -6,10 +6,15 @@ use PHPMailer\PHPMailer\Exception;
 class AccountController
 {
     public $account;
+    public  $color;
+
+    public $size;
 
     public function __construct()
     {
         $this->account = new UserModels();
+        $this->color = new ColorModel();
+        $this->size = new SizeModel();
     }
     public function insert()
     {
@@ -212,14 +217,24 @@ class AccountController
 
     public function history_order(){
         if (!isset($_SESSION['account']['id'])) {
-            $_SESSION['login_err'] = 'Vui lòng đăng nhập để bình luận.';
+            $_SESSION['login_err'] = 'Vui lòng đăng nhập để xem được giỏ hàng.';
             header("Location: ?act=user/dangnhap");
             exit();
         }
-        $id=$_SESSION['account']['id'];
+        
+        $id = $_SESSION['account']['id'];
         $data_order = $this->account->order_history($id);
         require_once "./views/user/order_history/list.php";
     }
+
+    public function order_history(){
+        $id_oi = $_GET['id'];
+        $data_oi = $this->account->history_order( $id_oi); 
+        $color = $this->color->getAllColor();
+        $size = $this->size->getAllSize();
+        require_once "./views/user/order_history/view_order_details.php";
+    }
+    
     
     
 }
