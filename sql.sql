@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Nov 30, 2024 at 05:41 AM
+-- Generation Time: Nov 30, 2024 at 06:40 AM
 -- Server version: 8.0.30
 -- PHP Version: 8.1.10
 
@@ -60,7 +60,7 @@ CREATE TABLE `cart` (
   `id_cart` int NOT NULL COMMENT 'pk',
   `id_user` int NOT NULL COMMENT 'fk user',
   `status` tinyint NOT NULL DEFAULT '0' COMMENT '0 chưa mua,1 đã mua',
-  `total_money` int NOT NULL COMMENT 'tổng giá',
+  `total_money` decimal(10,2) NOT NULL COMMENT 'tổng giá',
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'tạo',
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT 'update'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
@@ -70,24 +70,11 @@ CREATE TABLE `cart` (
 --
 
 INSERT INTO `cart` (`id_cart`, `id_user`, `status`, `total_money`, `created_at`, `updated_at`) VALUES
-(1, 1, 1, 1000, '2024-11-18 14:23:52', '2024-11-18 14:23:52'),
-(2, 2, 2, 2000, '2024-11-18 14:23:52', '2024-11-18 14:23:52'),
-(3, 3, 3, 3000, '2024-11-18 14:23:52', '2024-11-18 14:23:52'),
-(4, 3, 0, 100000, '2024-11-28 07:44:14', '2024-11-28 07:44:14'),
-(5, 3, 0, 100000, '2024-11-28 07:44:23', '2024-11-28 07:44:23'),
-(6, 3, 0, 300000, '2024-11-28 07:45:06', '2024-11-28 07:45:06'),
-(7, 3, 0, 54, '2024-11-28 07:49:54', '2024-11-28 07:49:54'),
-(8, 3, 0, 540000, '2024-11-30 02:57:56', '2024-11-30 02:57:56'),
-(9, 3, 0, 1080000, '2024-11-30 02:58:58', '2024-11-30 02:58:58'),
-(10, 3, 0, 2700000, '2024-11-30 03:33:43', '2024-11-30 03:33:43'),
-(11, 3, 0, 2700000, '2024-11-30 03:34:42', '2024-11-30 03:34:42'),
-(12, 3, 0, 0, '2024-11-30 03:52:13', '2024-11-30 03:52:13'),
-(13, 3, 0, 0, '2024-11-30 03:59:34', '2024-11-30 03:59:34'),
-(14, 3, 0, 0, '2024-11-30 04:00:51', '2024-11-30 04:00:51'),
-(15, 3, 0, 0, '2024-11-30 04:05:00', '2024-11-30 04:05:00'),
-(16, 3, 0, 540, '2024-11-30 04:07:24', '2024-11-30 04:07:24'),
-(17, 3, 0, 1080, '2024-11-30 04:54:35', '2024-11-30 04:54:35'),
-(18, 3, 0, 540, '2024-11-30 04:56:37', '2024-11-30 04:56:37');
+(46, 3, 0, '100.00', '2024-11-30 06:28:10', '2024-11-30 06:28:10'),
+(47, 3, 0, '100.00', '2024-11-30 06:28:23', '2024-11-30 06:28:23'),
+(48, 3, 0, '100.00', '2024-11-30 06:30:30', '2024-11-30 06:30:30'),
+(49, 3, 0, '200.00', '2024-11-30 06:32:10', '2024-11-30 06:32:10'),
+(50, 3, 0, '400.00', '2024-11-30 06:38:10', '2024-11-30 06:38:10');
 
 -- --------------------------------------------------------
 
@@ -113,21 +100,11 @@ CREATE TABLE `cart_details` (
 --
 
 INSERT INTO `cart_details` (`id_detail`, `id_cart`, `id_pro`, `id_color`, `id_size`, `Quantity`, `money`, `total_money`, `created_at`, `updated_at`) VALUES
-(1, 1, 1, 0, 0, 2, '25000.00', '50000.00', '2024-11-18 14:24:12', '2024-11-18 14:24:12'),
-(2, 2, 2, 0, 0, 1, '75000.00', '75000.00', '2024-11-18 14:24:12', '2024-11-18 14:24:12'),
-(3, 3, 3, 0, 0, 1, '100000.00', '100000.00', '2024-11-18 14:24:12', '2024-11-18 14:24:12'),
-(4, 4, 3, 0, 0, 1, '100000.00', '100000.00', '2024-11-28 07:44:14', '2024-11-28 07:44:14'),
-(5, 5, 3, 0, 0, 1, '100000.00', '100000.00', '2024-11-28 07:44:23', '2024-11-28 07:44:23'),
-(6, 6, 3, 0, 0, 3, '100000.00', '300000.00', '2024-11-28 07:45:06', '2024-11-28 07:45:06'),
-(7, 7, 9, 0, 0, 1, '54.00', '54.00', '2024-11-28 07:49:54', '2024-11-28 07:49:54'),
-(8, 8, 9, 0, 0, 1, '540000.00', '540000.00', '2024-11-30 02:57:56', '2024-11-30 02:57:56'),
-(9, 9, 9, 0, 0, 2, '540000.00', '1080000.00', '2024-11-30 02:58:58', '2024-11-30 02:58:58'),
-(10, 9, 9, 2, 1, 3, '0.00', '0.00', '2024-11-30 03:59:34', '2024-11-30 03:59:34'),
-(11, 9, 9, 1, 1, 1, '0.00', '0.00', '2024-11-30 04:00:51', '2024-11-30 04:00:51'),
-(12, 9, 9, 1, 2, 1, '0.00', '0.00', '2024-11-30 04:05:00', '2024-11-30 04:05:00'),
-(13, 9, 9, 1, 2, 1, '540.00', '540.00', '2024-11-30 04:07:24', '2024-11-30 04:07:24'),
-(14, 9, 9, 1, 1, 2, '540.00', '1080.00', '2024-11-30 04:54:35', '2024-11-30 04:54:35'),
-(15, 9, 9, 1, 1, 1, '540.00', '540.00', '2024-11-30 04:56:37', '2024-11-30 04:56:37');
+(22, 46, 3, 1, 1, 1, '100.00', '100.00', '2024-11-30 06:28:10', '2024-11-30 06:28:10'),
+(23, 47, 3, 2, 2, 1, '100.00', '100.00', '2024-11-30 06:28:23', '2024-11-30 06:28:23'),
+(24, 48, 7, 1, 1, 1, '100.00', '100.00', '2024-11-30 06:30:30', '2024-11-30 06:30:30'),
+(25, 49, 8, 1, 1, 1, '200.00', '200.00', '2024-11-30 06:32:10', '2024-11-30 06:32:10'),
+(26, 50, 3, 1, 2, 4, '100.00', '400.00', '2024-11-30 06:38:10', '2024-11-30 06:38:10');
 
 -- --------------------------------------------------------
 
@@ -286,10 +263,10 @@ CREATE TABLE `product` (
 INSERT INTO `product` (`id`, `id_categories`, `name`, `views`, `price`, `img`, `description`, `status`, `created_at`, `updated_at`) VALUES
 (1, 1, 'Nike Air Max', 58, '200000.00', 'z6070082608776_57d52e9b9afecc4fccee66a5818783cf.jpg', 'Nike Air Max – Biểu tượng của sự thoải mái và phong cách\r\nNike Air Max là dòng giày thể thao mang tính biểu tượng của Nike, nổi bật với công nghệ đệm khí Air Max Unit, mang lại cảm giác êm ái vượt trội và thiết kế thời thượng. Đây là một lựa chọn hoàn hảo cho cả hoạt động hàng ngày và các buổi luyện tập.\r\n\r\nChất liệu:\r\nThân giày: Làm từ vải dệt cao cấp hoặc da tổng hợp, giúp giày nhẹ, thoáng khí, và bền bỉ.\r\nĐế giữa: Công nghệ Air Max tích hợp túi khí lớn, tăng cường khả năng hấp thụ lực khi di chuyển.\r\nĐế ngoài: Cao su chống trơn trượt, giúp người dùng thoải mái trên mọi địa hình.\r\n\r\nThiết kế:\r\nKiểu dáng hiện đại, phối màu sắc độc đáo, phù hợp với nhiều phong cách khác nhau.\r\nLogo Nike Swoosh được in nổi bật ở hai bên, tạo điểm nhấn đặc trưng.\r\nCổ giày và lưỡi gà được đệm êm, mang lại sự thoải mái tối đa khi mang trong thời gian dài.\r\n\r\nCông nghệ:\r\nAir Max Unit: Túi khí lớn ở đế giữa mang lại sự êm ái và đàn hồi tuyệt vời, giảm tác động lên bàn chân khi vận động.\r\nHệ thống đệm tiên tiến hỗ trợ tốt cho các hoạt động thể thao như chạy bộ, đi bộ, hoặc tập gym.\r\n\r\nPhong cách ứng dụng:\r\nThể thao: Lý tưởng cho các buổi tập luyện nhờ khả năng hỗ trợ và độ bền.\r\nThời trang: Là món đồ không thể thiếu cho những ai yêu thích phong cách streetwear và phong cách năng động.\r\n\r\nMàu sắc:\r\nPhổ biến với các tông màu kinh điển như trắng, đen, xám, hoặc các phiên bản phối màu giới hạn.\r\n\r\nKết luận:\r\nNike Air Max không chỉ là một đôi giày thể thao, mà còn là biểu tượng của phong cách, sự đổi mới và công nghệ tiên tiến. Đây là lựa chọn hoàn hảo cho cả những người yêu thể thao và tín đồ thời trang.                                                                        ', 0, '2024-11-18 14:20:51', '2024-11-29 14:39:12'),
 (2, 2, 'Clarks Leather Shoes', 128, '150000.00', 'z6070082608776_57d52e9b9afecc4fccee66a5818783cf.jpg', 'Giày công sở da cao cấp', 0, '2024-11-18 14:20:51', '2024-11-30 02:23:00'),
-(3, 3, 'Birkenstock Arizona', 251, '100000.00', 'z6070082608776_57d52e9b9afecc4fccee66a5818783cf.jpg', 'Dép quai thoáng mát', 0, '2024-11-18 14:20:51', '2024-11-29 14:51:04'),
-(7, 3, 'Birkenstock Arizona b', 47, '100000.00', 'z6070082608776_57d52e9b9afecc4fccee66a5818783cf.jpg', 'Dép quai thoáng mát b', 0, '2024-11-26 02:35:30', '2024-11-29 14:51:07'),
-(8, 1, 'Nike Air Max A', 114, '200000.00', 'z6070082608776_57d52e9b9afecc4fccee66a5818783cf.jpg', 'Nike Air Max – Biểu tượng của sự thoải mái và phong cách\r\nNike Air Max là dòng giày thể thao mang tính biểu tượng của Nike, nổi bật với công nghệ đệm khí Air Max Unit, mang lại cảm giác êm ái vượt trội và thiết kế thời thượng. Đây là một lựa chọn hoàn hảo cho cả hoạt động hàng ngày và các buổi luyện tập.\r\n\r\nChất liệu:\r\nThân giày: Làm từ vải dệt cao cấp hoặc da tổng hợp, giúp giày nhẹ, thoáng khí, và bền bỉ.\r\nĐế giữa: Công nghệ Air Max tích hợp túi khí lớn, tăng cường khả năng hấp thụ lực khi di chuyển.\r\nĐế ngoài: Cao su chống trơn trượt, giúp người dùng thoải mái trên mọi địa hình.\r\n\r\nThiết kế:\r\nKiểu dáng hiện đại, phối màu sắc độc đáo, phù hợp với nhiều phong cách khác nhau.\r\nLogo Nike Swoosh được in nổi bật ở hai bên, tạo điểm nhấn đặc trưng.\r\nCổ giày và lưỡi gà được đệm êm, mang lại sự thoải mái tối đa khi mang trong thời gian dài.\r\n\r\nCông nghệ:\r\nAir Max Unit: Túi khí lớn ở đế giữa mang lại sự êm ái và đàn hồi tuyệt vời, giảm tác động lên bàn chân khi vận động.\r\nHệ thống đệm tiên tiến hỗ trợ tốt cho các hoạt động thể thao như chạy bộ, đi bộ, hoặc tập gym.\r\n\r\nPhong cách ứng dụng:\r\nThể thao: Lý tưởng cho các buổi tập luyện nhờ khả năng hỗ trợ và độ bền.\r\nThời trang: Là món đồ không thể thiếu cho những ai yêu thích phong cách streetwear và phong cách năng động.\r\n\r\nMàu sắc:\r\nPhổ biến với các tông màu kinh điển như trắng, đen, xám, hoặc các phiên bản phối màu giới hạn.\r\n\r\nKết luận:\r\nNike Air Max không chỉ là một đôi giày thể thao, mà còn là biểu tượng của phong cách, sự đổi mới và công nghệ tiên tiến. Đây là lựa chọn hoàn hảo cho cả những người yêu thể thao và tín đồ thời trang.                                                                                                ', 0, '2024-11-26 02:59:58', '2024-11-30 04:29:18'),
-(9, 2, 'Oxford Elegance', 456, '540000.00', 'z6070082608776_57d52e9b9afecc4fccee66a5818783cf.jpg', '        Oxford Elegance là một mẫu giày công sở cao cấp với thiết kế thanh lịch và tinh tế, mang lại sự sang trọng cho người sử dụng. \r\nDưới đây là mô tả chi tiết về sản phẩm này: \r\n\r\nChất liệu: Được làm từ da thật cao cấp, giày Oxford Elegance sở hữu một bề mặt bóng mịn và bền bỉ. Da có độ mềm mại và độ chắc chắn giúp giày luôn giữ được form dáng đẹp mắt.  \r\n\r\n-Thiết kế\r\nMũi giày: Mũi giày vuông nhẹ, tạo nên vẻ lịch lãm nhưng không kém phần thoải mái. Mặt trên: Thiết kế đơn giản với những đường chỉ khéo léo, không có quá nhiều chi tiết phức tạp nhưng vẫn rất nổi bật. \r\n\r\nCổ giày: Cổ giày được làm vừa vặn với chân, ôm sát mà không gây cảm giác khó chịu. Màu sắc: Chủ yếu có sẵn trong các màu sắc cổ điển như đen, nâu và nâu đậm. Những màu này dễ dàng kết hợp với nhiều trang phục khác nhau, từ bộ vest cho đến quần tây.  \r\n\r\nĐế giày: Đế giày được làm từ cao su chống trơn, giúp tăng cường độ bám và độ bền khi di chuyển trên các bề mặt khác nhau, đồng thời mang đến sự thoải mái khi sử dụng lâu dài.\r\n\r\nỨng dụng: Oxford Elegance là sự lựa chọn lý tưởng cho các sự kiện trang trọng, như đi làm, dự tiệc cưới, hay các cuộc họp quan trọng. Nó cũng là món đồ không thể thiếu trong tủ đồ của những quý ông yêu thích sự thanh lịch và chuyên nghiệp. \r\n \r\nGiày Oxford Elegance không chỉ mang đến sự thoải mái mà còn thể hiện được phong cách lịch lãm, khiến bạn luôn nổi bật trong mọi hoàn cảnh.                                                                                                                                                            ', 0, '2024-11-26 03:01:35', '2024-11-30 05:09:56');
+(3, 3, 'Birkenstock Arizona', 272, '100000.00', 'z6070082608776_57d52e9b9afecc4fccee66a5818783cf.jpg', 'Dép quai thoáng mát', 0, '2024-11-18 14:20:51', '2024-11-30 06:38:02'),
+(7, 3, 'Birkenstock Arizona b', 51, '100000.00', 'z6070082608776_57d52e9b9afecc4fccee66a5818783cf.jpg', 'Dép quai thoáng mát b', 0, '2024-11-26 02:35:30', '2024-11-30 06:31:06'),
+(8, 1, 'Nike Air Max A', 119, '200000.00', 'z6070082608776_57d52e9b9afecc4fccee66a5818783cf.jpg', 'Nike Air Max – Biểu tượng của sự thoải mái và phong cách\r\nNike Air Max là dòng giày thể thao mang tính biểu tượng của Nike, nổi bật với công nghệ đệm khí Air Max Unit, mang lại cảm giác êm ái vượt trội và thiết kế thời thượng. Đây là một lựa chọn hoàn hảo cho cả hoạt động hàng ngày và các buổi luyện tập.\r\n\r\nChất liệu:\r\nThân giày: Làm từ vải dệt cao cấp hoặc da tổng hợp, giúp giày nhẹ, thoáng khí, và bền bỉ.\r\nĐế giữa: Công nghệ Air Max tích hợp túi khí lớn, tăng cường khả năng hấp thụ lực khi di chuyển.\r\nĐế ngoài: Cao su chống trơn trượt, giúp người dùng thoải mái trên mọi địa hình.\r\n\r\nThiết kế:\r\nKiểu dáng hiện đại, phối màu sắc độc đáo, phù hợp với nhiều phong cách khác nhau.\r\nLogo Nike Swoosh được in nổi bật ở hai bên, tạo điểm nhấn đặc trưng.\r\nCổ giày và lưỡi gà được đệm êm, mang lại sự thoải mái tối đa khi mang trong thời gian dài.\r\n\r\nCông nghệ:\r\nAir Max Unit: Túi khí lớn ở đế giữa mang lại sự êm ái và đàn hồi tuyệt vời, giảm tác động lên bàn chân khi vận động.\r\nHệ thống đệm tiên tiến hỗ trợ tốt cho các hoạt động thể thao như chạy bộ, đi bộ, hoặc tập gym.\r\n\r\nPhong cách ứng dụng:\r\nThể thao: Lý tưởng cho các buổi tập luyện nhờ khả năng hỗ trợ và độ bền.\r\nThời trang: Là món đồ không thể thiếu cho những ai yêu thích phong cách streetwear và phong cách năng động.\r\n\r\nMàu sắc:\r\nPhổ biến với các tông màu kinh điển như trắng, đen, xám, hoặc các phiên bản phối màu giới hạn.\r\n\r\nKết luận:\r\nNike Air Max không chỉ là một đôi giày thể thao, mà còn là biểu tượng của phong cách, sự đổi mới và công nghệ tiên tiến. Đây là lựa chọn hoàn hảo cho cả những người yêu thể thao và tín đồ thời trang.                                                                                                ', 0, '2024-11-26 02:59:58', '2024-11-30 06:33:09'),
+(9, 2, 'Oxford Elegance', 499, '540000.00', 'z6070082608776_57d52e9b9afecc4fccee66a5818783cf.jpg', '        Oxford Elegance là một mẫu giày công sở cao cấp với thiết kế thanh lịch và tinh tế, mang lại sự sang trọng cho người sử dụng. \r\nDưới đây là mô tả chi tiết về sản phẩm này: \r\n\r\nChất liệu: Được làm từ da thật cao cấp, giày Oxford Elegance sở hữu một bề mặt bóng mịn và bền bỉ. Da có độ mềm mại và độ chắc chắn giúp giày luôn giữ được form dáng đẹp mắt.  \r\n\r\n-Thiết kế\r\nMũi giày: Mũi giày vuông nhẹ, tạo nên vẻ lịch lãm nhưng không kém phần thoải mái. Mặt trên: Thiết kế đơn giản với những đường chỉ khéo léo, không có quá nhiều chi tiết phức tạp nhưng vẫn rất nổi bật. \r\n\r\nCổ giày: Cổ giày được làm vừa vặn với chân, ôm sát mà không gây cảm giác khó chịu. Màu sắc: Chủ yếu có sẵn trong các màu sắc cổ điển như đen, nâu và nâu đậm. Những màu này dễ dàng kết hợp với nhiều trang phục khác nhau, từ bộ vest cho đến quần tây.  \r\n\r\nĐế giày: Đế giày được làm từ cao su chống trơn, giúp tăng cường độ bám và độ bền khi di chuyển trên các bề mặt khác nhau, đồng thời mang đến sự thoải mái khi sử dụng lâu dài.\r\n\r\nỨng dụng: Oxford Elegance là sự lựa chọn lý tưởng cho các sự kiện trang trọng, như đi làm, dự tiệc cưới, hay các cuộc họp quan trọng. Nó cũng là món đồ không thể thiếu trong tủ đồ của những quý ông yêu thích sự thanh lịch và chuyên nghiệp. \r\n \r\nGiày Oxford Elegance không chỉ mang đến sự thoải mái mà còn thể hiện được phong cách lịch lãm, khiến bạn luôn nổi bật trong mọi hoàn cảnh.                                                                                                                                                            ', 0, '2024-11-26 03:01:35', '2024-11-30 06:35:25');
 
 -- --------------------------------------------------------
 
@@ -475,13 +452,13 @@ ALTER TABLE `account`
 -- AUTO_INCREMENT for table `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `id_cart` int NOT NULL AUTO_INCREMENT COMMENT 'pk', AUTO_INCREMENT=19;
+  MODIFY `id_cart` int NOT NULL AUTO_INCREMENT COMMENT 'pk', AUTO_INCREMENT=51;
 
 --
 -- AUTO_INCREMENT for table `cart_details`
 --
 ALTER TABLE `cart_details`
-  MODIFY `id_detail` int NOT NULL AUTO_INCREMENT COMMENT 'pk', AUTO_INCREMENT=16;
+  MODIFY `id_detail` int NOT NULL AUTO_INCREMENT COMMENT 'pk', AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT for table `categories`

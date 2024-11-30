@@ -141,6 +141,8 @@ class HomeController
             header("location: ?act=chitietsp&id=$id_pro");
            }
         }
+
+        
     }
     public function giohang()
     {
