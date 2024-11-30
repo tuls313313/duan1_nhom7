@@ -48,4 +48,21 @@ class OrderModel
         // var_dump($sql); die; 
         return $this->db->insert($sql);
     }
+
+    public function insertOrder($user_id, $id_promotion , $name, $tel, $shipping_address, $payment, $total_amount, $total_money,
+    $product_id,$id_color,$id_size,$quantity,$price) {
+       $name = "' $name'";
+       $shipping_address = "' $shipping_address'";
+       $sql = "INSERT INTO `orders` (`user_id`, `id_promotion`, `name`, `tel`, `shipping_address`, `payment`, `total_amount`, `total_money`) 
+                VALUES ($user_id, $id_promotion, $name, $tel, $shipping_address, $payment, $total_amount, $total_money)";
+       $order_id = $this->db->insert($sql);
+
+       $sql_s = "INSERT INTO `order_items`(`order_id`, `product_id`, `id_color`, `id_size`, `quantity`, `price`) 
+       VALUES ('$order_id','$product_id','$id_color','$id_size','$quantity','$price')";
+       return $this->db->insert($sql_s);
+
+    }
+
+    
+    
 }

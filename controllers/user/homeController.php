@@ -16,6 +16,8 @@ class HomeController
     public $comment;
     public $user;
 
+    public $order;
+
     public function __construct()
     {
         $this->home = new ProductModel();
@@ -26,6 +28,7 @@ class HomeController
         $this->comment = new CommentModel();
         $this->categories = new CategoriesModel();
         $this->user = new userModels();
+        $this->order = new OrderModel();
     }
     public function home()
     {
@@ -111,39 +114,54 @@ class HomeController
     public function themgiohang()
     {
         if (!isset($_SESSION['account']['id'])) {
-            $_SESSION['login_err'] = 'Vui lòng đăng nhập để bình luận.';
+            $_SESSION['login_err'] = 'Vui lòng đăng nhập để mua hàng.';
             header("Location: ?act=user/dangnhap");
             exit();
         }
-        
-        if (isset($_POST['submit'])) {
-            $err = false;
-            $userId = $_SESSION['account']['id'];
-            $id_pro = $_GET['id'];
-            $id_size = $_POST['id_size'];
-            if(empty($id_size)){
-                $_SESSION['err_z'] = 'Vui lòng chọn size';
-                $err = true;
-            }
-            $id_color = $_POST['id_color'];
-            if(empty($id_color)){
-                $_SESSION['err_c'] = 'Vui lòng chọn màu';
-                $err = true;
-            }
-            $quantity = intval($_POST['quantity']);
-            $money = intval($_POST['money']);
-            $total_money =  $quantity * $money;
-           if(!$err){
-            $listCart = $this->cart->addToCart($userId,$total_money,
-            $id_pro,$id_color,$id_size,$quantity,$money);
-            header("location: ?act=giohang");
-           }else{
-            header("location: ?act=chitietsp&id=$id_pro");
-           }
+        $id_pro = $_GET['id'];
+        $userId = $_SESSION['account']['id'];
+        $id_size = $_POST['id_size'] ?? null;
+        $id_color = $_POST['id_color'] ?? null;
+        $quantity = intval($_POST['quantity']);
+        if (empty($quantity) >= 1) {
+            $_SESSION['err_q'] = 'Vui lòng nhập số lượng hợp lệ và lớn hơn 1';
+            $err = true;
+        }        
+        $money = intval($_POST['money']);
+        $total_money = $quantity * $money;
+
+        $err = false;
+        if (empty($id_size)) {
+            $_SESSION['err_z'] = 'Vui lòng chọn size';
+            $err = true;
+        }
+        if (empty($id_color)) {
+            $_SESSION['err_c'] = 'Vui lòng chọn màu';
+            $err = true;
         }
 
-        
+        if ($err) {
+            header("Location: ?act=chitietsp&id=$id_pro");
+            exit();
+        }
+
+        if (isset($_POST['submitAdd'])) {
+            $this->cart->addToCart($userId, $total_money, $id_pro, $id_color, $id_size, $quantity, $money);
+            header("Location: ?act=giohang");
+            exit();
+        } 
+        else if (isset($_POST['buyNow'])) {
+            $id = $_GET['id'];
+            $chitietsp = $this->chiTietSp->getProductDetails( $id );
+            $_SESSION['buyNow1'] = $chitietsp;
+            $_SESSION['buyNow'] = ['id_pro' => $id_pro,'id_size' => $id_size,'id_color' => 
+            $id_color,'quantity' => $quantity,'money' => $money,'total_money' => $total_money,];
+            $data_color = $this->color->getOneColor($_SESSION['buyNow']['id_color']);
+            $data_size = $this->size->getOneSize($_SESSION['buyNow']['id_size']);
+            require_once './views/user/thanhtoan/thanhtoan.php';
+        }
     }
+
     public function giohang()
     {
         if (isset($_SESSION['account']['id'])) {
@@ -154,13 +172,26 @@ class HomeController
         require_once './views/user/giohang/giohang.php';
     }
     public function thanhtoan()
-    {
-        if (!isset($_SESSION['account']['id'])) {
-            $_SESSION['login_err'] = 'Vui lòng đăng nhập để mua hàng.';
-            header("Location: ?act=user/dangnhap");
-            exit();
+    { 
+        
+        $user_id = $_SESSION['account']['id'];
+        $id_promotion =  "null";
+        $name = $_POST['hoten'];
+        $address = $_POST['diachi'];
+        $tel = $_POST['sdt'];
+        $payment = $_POST['payment'];
+        $total_amount = $_SESSION['buyNow']['quantity'];
+        $product_id = $_SESSION['buyNow']['id_pro'];
+        $id_color = $_SESSION['buyNow']['id_size'];
+        $id_size = $_SESSION['buyNow']['id_color'];
+        $quantity = $_SESSION['buyNow']['quantity'];
+        $price = $_SESSION['buyNow']['money'];
+        $total_money = intval($quantity * $price);
+        if(isset($_POST['submit'])){
+        $this->order->insertOrder($user_id,  $id_promotion,$name,$tel,$address,$payment,
+        $total_amount, $total_money,$product_id,$id_color,$id_size,$quantity,$price);
+        header("Location: ?act=user/order_history");
         }
-        require_once './views/user/thanhtoan/thanhtoan.php';
     }
 
 
@@ -173,7 +204,6 @@ class HomeController
         $danhMucLienQuan = $this->chiTietSp->getAllProductsByCategory($productId);
         // // var_dump($danhMucLienQuan);die;
         $listColor = $this->color->getColorDetails();
-        // // var_dump($listColor);die;
         $listSize = $this->size->getSizeDetails();
         $listComment = $this->comment->commentProduct($productId);
         $congView = $this->home->congView($productId);

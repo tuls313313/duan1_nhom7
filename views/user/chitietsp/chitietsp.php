@@ -260,11 +260,14 @@
 
                 <form action="?act=themgiohang&id=<?= $chitietsp['product_id'] ?>" method="post">
                     <div class="product__price">
-                        <h2>
-                            <input type="text" name="money" value="<?php echo number_format($chitietsp['product_price'] ?? 0, 0, ',', '.') . ' VNĐ' ?>" readonly>
+                        <input type="hidden" name="money" value="<?php echo $chitietsp['product_price'] ?>">
+                        <!-- <h2>
+                            
+                        </h2> -->
+                    </div>
+                    <div class="product__price">
+                        <h2><?php echo number_format($chitietsp['product_price'] ?? 0, 0, ',', '.') . ' VNĐ' ?>
                         </h2>
-                        
-                        <!-- <h2></h2> -->
                     </div>
                     <div class="product__color d-flex" style="align-items: center;">
                         <div class="title" style="font-size: 16px; margin-right: 10px;">
@@ -305,20 +308,18 @@
                         <div class="product__amount">
                             <label for="">Số lượng: </label>
                             <input type="number" style="width: 100px" value="1" class="text-input" name="quantity">
+                            <h5 class="text-danger"><?php if(isset( $_SESSION['err_q'])) echo  $_SESSION['err_q']; unset( $_SESSION['err_q'] ); ?></h5>
+
                         </div>
-                        <button class="add-cart" name="submit">Thêm vào giỏ</button>
+                        <button class="add-cart" name="submitAdd">Thêm vào giỏ</button>
+                    </div>
+                    <div class="product__shopnow">
+                    <button class="shopnow" name="buyNow">Mua ngay</button>
                     </div>
                 </form>
-                <div class="product__shopnow">
+                <!-- <div class="product__shopnow">
                     <a href="?act=thanhtoan&id=<?= $chitietsp['product_id']; ?>"><button class="shopnow">Mua ngay</button></a>
-
-                    <!-- <span class="home-product-item__like home-product-item__like--liked">
-                        <i class="home-product-item__like-icon-empty far fa-heart"
-                            style="font-size: 24px;margin-top: 7px;"></i>
-                        <i class="home-product-item__like-icon-fill fas fa-heart"
-                            style="font-size: 24px;margin-top: 7px;"></i>
-                    </span> -->
-                </div>
+                </div> -->
             </div>
         </div>
     </div>
@@ -341,7 +342,7 @@
         <div class="row">
             <!-- Form bình luận -->
             <div class="col-lg-4 col-12 mb-4">
-                <form action="?act=user/comment/add&id=<?= $chiTietSp['id'] ?>" method="post"
+                <form action="?act=user/comment/add&id=<?=$chitietsp['product_id']?>" method="post"
                     class="p-3 border rounded shadow-sm">
                     <div class="mb-3">
                         <label class="form-label fw-bold">Đánh giá:</label>
@@ -456,7 +457,7 @@
                                     <i class="home-product-item__star--gold fas fa-star"></i>
                                     <i class="fas fa-star"></i> -->
                                     </div>
-                                    <span class="home-product-item__sold">79 đã bán</span>
+                                    <!-- <span class="home-product-item__sold">79 đã bán</span> -->
                                 </div>
                                 <!-- <div class="sale-off">
                                 <span class="sale-off-percent">20%</span>
@@ -469,7 +470,7 @@
             <?php endforeach ?>
         </div>
         <div class="seemore">
-            <a href="#">Xem thêm</a>
+            <a href="?act=product">Xem thêm</a>
         </div>
     </div>
 </div>
