@@ -14,11 +14,10 @@ class CartModel
         return $this->db->getAll($sql);
     }
 
-    public function addToCart($userId,$id_cart,$id_pro,$id_color,$id_size,$quantity,$money) {
-        $total_money = $quantity * $money;
+    public function addToCart($userId,$total_money,$id_pro,$id_color,$id_size,$quantity,$money) {
         $sql = "INSERT INTO `cart`(`id_user`,`total_money`) 
         VALUES ($userId,$total_money)";
-         $this->db->insert($sql);
+        $id_cart = $this->db->insert($sql);
         
         $sqlDetails = "INSERT INTO `cart_details`( `id_cart`, `id_pro`, `id_color`, `id_size`, `Quantity`, `money`, `total_money`) 
         VALUES ('$id_cart','$id_pro','$id_color','$id_size','$quantity','$money','$total_money')";
@@ -27,19 +26,7 @@ class CartModel
 
     public function getAllDetailCart($userId)
     {
-        // $sql = "SELECT 
-        //         cd.	id_detail  AS cart_detail_id,
-        //         cd.id_cart,
-        //         cd.id_pro,
-        //         cd.Quantity,
-        //         cd.money AS cart_price,
-        //         p.name AS product_name,
-        //         p.price AS product_price,
-        //         p.img AS product_image
-        //     FROM 
-        //         cart_details cd
-        //     JOIN 
-        //         product p ON cd.id_pro = p.id";
+       
         $sql = "SELECT DISTINCT 
                         c.id_cart AS cart_id,
                         p.name AS product_name,

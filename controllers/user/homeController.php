@@ -110,18 +110,36 @@ class HomeController
     }
     public function themgiohang()
     {
+        if (!isset($_SESSION['account']['id'])) {
+            $_SESSION['login_err'] = 'Vui lòng đăng nhập để bình luận.';
+            header("Location: ?act=user/dangnhap");
+            exit();
+        }
+        
         if (isset($_POST['submit'])) {
+            $err = false;
             $userId = $_SESSION['account']['id'];
             $id_pro = $_GET['id'];
-            $id_cart = $_GET['id'];
             $id_size = $_POST['id_size'];
+            if(empty($id_size)){
+                $_SESSION['err_z'] = 'Vui lòng chọn size';
+                $err = true;
+            }
             $id_color = $_POST['id_color'];
-            // var_dump($id_color, $id_size );die();
+            if(empty($id_color)){
+                $_SESSION['err_c'] = 'Vui lòng chọn màu';
+                $err = true;
+            }
             $quantity = intval($_POST['quantity']);
             $money = intval($_POST['money']);
-            $listCart = $this->cart->addToCart($userId, $id_cart,$id_pro,$id_color,$id_size,$quantity,$money);
-            // header("location: ?act=chitietsp&id=$productId");
+            $total_money =  $quantity * $money;
+           if(!$err){
+            $listCart = $this->cart->addToCart($userId,$total_money,
+            $id_pro,$id_color,$id_size,$quantity,$money);
             header("location: ?act=giohang");
+           }else{
+            header("location: ?act=chitietsp&id=$id_pro");
+           }
         }
     }
     public function giohang()

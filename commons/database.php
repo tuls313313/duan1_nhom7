@@ -32,7 +32,9 @@ class Database{
     public function insert($sql){
         $stmt = $this->conn->prepare($sql);
         $stmt->execute();
+        return $this->conn->lastInsertId();
     }
+    
 
     public function date($date)
     {
