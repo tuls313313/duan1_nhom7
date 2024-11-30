@@ -165,7 +165,7 @@
                   </div>
                 </div>
                 <div class="col-md-1 col-2 text-right">
-                  <a onclick="xoa(1)"><i class="fas fa-trash"></i></a>
+                <a onclick="xoa(1)"><i class="fas fa-trash"></i></a>
                 </div>
               </div>
               <!-- <div class="row cart-body-row cart-body-row-2" style="align-items: center;">

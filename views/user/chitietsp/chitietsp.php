@@ -263,7 +263,7 @@
                         <h2>
                             <input type="text" name="money" value="<?php echo number_format($chitietsp['product_price'] ?? 0, 0, ',', '.') . ' VNĐ' ?>" readonly>
                         </h2>
-                        
+
                         <!-- <h2></h2> -->
                     </div>
                     <div class="product__color d-flex" style="align-items: center;">
