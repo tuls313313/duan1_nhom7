@@ -28,14 +28,14 @@ class ProductModel
     public function getAllProductHomeViews()
     {
         $sql = "SELECT p.*, 
-                       COALESCE(SUM(oi.quantity), 0) AS total_sold
-                FROM product p
-                LEFT JOIN order_items oi ON p.id = oi.product_id
-                LEFT JOIN orders o ON oi.order_id = o.id_order AND o.status_order = 3
-                GROUP BY p.id
-                HAVING p.status = 0
-                ORDER BY p.views DESC
-                LIMIT 4";
+                    COALESCE(SUM(oi.quantity), 0) AS total_sold
+                    FROM product p
+                    LEFT JOIN order_items oi ON p.id = oi.product_id
+                    LEFT JOIN orders o ON oi.order_id = o.id_order AND o.status_order = 3
+                    GROUP BY p.id
+                    HAVING p.status = 0
+                    ORDER BY p.views DESC
+                    LIMIT 4";
         return $this->db->getAll($sql);
     }
 
@@ -88,20 +88,30 @@ class ProductModel
         $sql = "SELECT 
                 p.id AS product_id,
                 p.name AS product_name,
-                p.price AS base_price,
+                p.price AS product_price,
                 p.description AS product_description,
+                p.status AS product_status,
                 p.img AS product_image,
-                categories.name AS category_name,
+                cs.name AS category_name,
+                c.name AS color_name,
+                s.name AS size_name,
                 v.price AS variant_price,
                 v.quantity AS variant_quantity,
-                v.img AS variant_image,
-                COALESCE(SUM(oi.quantity), 0) AS total_ordered_quantity
-            FROM product p
-            LEFT JOIN categories ON p.id_categories = categories.id
-            LEFT JOIN varianti v ON p.id = v.id_var
-            LEFT JOIN order_items oi ON p.id = oi.product_id
-            WHERE p.id = $productId
-            GROUP BY p.id, v.id_var, categories.id
+                c.id AS id_color,
+                s.id AS id_size,
+                v.img AS varianti_img
+            FROM 
+                product p
+            JOIN 
+                categories cs ON p.id_categories = cs.id    
+            JOIN 
+                varianti v ON p.id = v.id_pro
+            JOIN 
+                color c ON v.id_color = c.id
+            JOIN 
+                size s ON v.id_size = s.id
+            WHERE 
+                p.id = $productId
         ";
         return $this->db->getOne($sql);
     }
@@ -138,6 +148,5 @@ class ProductModel
                 ORDER BY p.id DESC;
                 ";
         return $this->db->getAll($sql);
-
     }
 }

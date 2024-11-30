@@ -64,6 +64,7 @@ match ($act) {
   'news' => $home->homeNew(),
   'lienhe' => $home->lienhe(),
   'giohang' => $home->giohang(),
+  'themgiohang' => $home->themgiohang(),
   'thanhtoan' => $home->thanhtoan(),
   'chitietsp' => $home->chitietsp(),
   'product' => $home->product(),

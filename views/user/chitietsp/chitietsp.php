@@ -190,7 +190,7 @@
                 <div class="img-product">
                     <ul class="all-img">
                         <li class="img-item">
-                            <img src="./uploads/upimg/<?= $chitietsp['product_image'];?>" class="small-img" alt="anh 1"
+                            <img src="./uploads/upimg/<?= $chitietsp['product_image']; ?>" class="small-img" alt="anh 1"
                                 onclick="changeImg('one')" id="one">
                         </li>
                         <li class="img-item">
@@ -222,14 +222,12 @@
                     <h2><?= $chitietsp['product_name'] ?></h2>
                 </div>
                 <div class="status-product">
-                    Trạng thái: <b><?= $chitietsp['total_ordered_quantity'] > 0 ? 'Hoạt Động' : 'Không Hoạt Động'; ?></b>
+                    Trạng thái: <b><?= $chitietsp['product_status'] >= 0 ? 'Hoạt Động' : 'Không Hoạt Động'; ?></b>
                 </div>
                 <div class="infor-oder">
                     Loại sản phẩm: <b><?= $chitietsp['category_name'] ?></b>
                 </div>
-                <div class="product__price">
-                    <h2><?php echo number_format($chitietsp['base_price'] ?? 0, 0, ',', '.' ) . ' VNĐ'?></h2>
-                </div>
+
                 <!-- <div class="price-old">
                         Giá gốc:
                         <del>650.000đ</del>
@@ -258,61 +256,48 @@
                   
                 </div>
               </div> -->
-                <div class="product__color d-flex" style="align-items: center;">
-                    <div class="title" style="font-size: 16px; margin-right: 10px;">
-                        Màu:
-                    </div>
-                    <div class="select-swap">
-                        <?php foreach ($listColor as $color) { ?>
-                            <div class="form-check form-check-inline">
-                                <input type="radio" id="option" class="form-check-input circle-1" name="selector[]"
-                                    value="<?php echo $color['id']; ?>">
-                                <label class="form-check-label" for="option">
-                                    <?php echo $color['name']; ?>
-                                </label>
-                            </div>
-                        <?php } ?>
-                        <!-- <div class="circlecheck">
-                            <input type="radio" id="g-option" class="circle-2" name="selector">
-                            <label for="g-option"></label>
-                            <div class="outer-circle"></div>
-                        </div>
-                        <div class="circlecheck">
-                            <input type="radio" id="h-option" class="circle-3" name="selector">
-                            <label for="h-option"></label>
-                            <div class="outer-circle"></div>
-                        </div> -->
-                    </div>
-                </div>
-                <div class="product__size d-flex" style="align-items: center;">
-                    <div class="title" style="font-size: 16px; margin-right: 10px;">
-                        Kích thước:
-                    </div>
-                    <div class="select-swap">
-                        <?php foreach ($listSize as $size) { ?>
-                            <div class="form-check form-check-inline">
-                                <input type="radio" id="option-<?php echo $size['id']; ?>" class="form-check-input circle-1"
-                                    name="selector" value="<?php echo $size['id']; ?>">
-                                <label class="form-check-label" for="option-<?php echo $size['id']; ?>">
-                                    <?php echo $size['name']; ?>
-                                </label>
-                            </div>
-                        <?php } ?>
 
-                        <!-- <div class="swatch-element" data-value="39">
-                            <input type="radio" class="variant-1" id="swatch-1-39" name="mau" value="thanh"
-                                onclick="check()">
-                            <label for="swatch-1-39" class="sd"><span>39</span></label>
-                        </div>
-                        <div class="swatch-element" data-value="40">
-                            <input type="radio" class="variant-1" id="swatch-1-40" name="mau" value="hieu"
-                                onclick="check()">
-                            <label for="swatch-1-40" class="sd"><span>40</span></label>
-                        </div> -->
+
+                <form action="?act=themgiohang&id=<?= $chitietsp['product_id'] ?>" method="post">
+                    <div class="product__price">
+                        <h2>
+                            <input type="text" name="money" value="<?php echo number_format($chitietsp['product_price'] ?? 0, 0, ',', '.') . ' VNĐ' ?>" readonly>
+                        </h2>
+                        
+                        <!-- <h2></h2> -->
                     </div>
-                </div>
-                
-                <form action="?act=giohang&id=<?= $chitietsp['product_id'] ?>" method="post">
+                    <div class="product__color d-flex" style="align-items: center;">
+                        <div class="title" style="font-size: 16px; margin-right: 10px;">
+                            Màu:
+                        </div>
+                        <div class="select-swap">
+                            <?php foreach ($listColor as $color) { ?>
+                                <div class="form-check form-check-inline">
+                                    <input type="radio" id="option" class="form-check-input circle-1" name="id_color"
+                                        value="<?php echo $color['color_id']; ?>">
+                                    <label class="form-check-label" for="option">
+                                        <?php echo $color['color_name']; ?>
+                                    </label>
+                                </div>
+                            <?php } ?>
+                        </div>
+                    </div>
+                    <div class="product__size d-flex" style="align-items: center;">
+                        <div class="title" style="font-size: 16px; margin-right: 10px;">
+                            Kích thước:
+                        </div>
+                        <div class="select-swap">
+                            <?php foreach ($listSize as $size) { ?>
+                                <div class="form-check form-check-inline">
+                                    <input type="radio" id="option-<?php echo $size['size_id']; ?>" class="form-check-input circle-1"
+                                        name="id_size" value="<?php echo $size['size_id']; ?>">
+                                    <label class="form-check-label" for="option-<?php echo $size['size_id']; ?>">
+                                        <?php echo $size['size_name']; ?>
+                                    </label>
+                                </div>
+                            <?php } ?>
+                        </div>
+                    </div>
                     <div class="product__wrap">
                         <div class="product__amount">
                             <label for="">Số lượng: </label>
@@ -322,8 +307,8 @@
                     </div>
                 </form>
                 <div class="product__shopnow">
-                <a href="?act=thanhtoan&id=<?=  $chitietsp['product_id'];?>"><button class="shopnow">Mua ngay</button></a>
-                    
+                    <a href="?act=thanhtoan&id=<?= $chitietsp['product_id']; ?>"><button class="shopnow">Mua ngay</button></a>
+
                     <!-- <span class="home-product-item__like home-product-item__like--liked">
                         <i class="home-product-item__like-icon-empty far fa-heart"
                             style="font-size: 24px;margin-top: 7px;"></i>
@@ -342,7 +327,7 @@
             <div class="col-1"></div>
             <div class="col-11">
                 <h3 class="name__product"><?= $chitietsp['product_name'] ?></h3>
-                <p ><?=nl2br($chitietsp['product_description'])  ?></p>
+                <p><?= nl2br($chitietsp['product_description'])  ?></p>
             </div>
         </div>
     </div>
@@ -374,15 +359,17 @@
                             <label for="star1" class="fas fa-star"></label>
                         </div>
                     </div>
-                    
+
                     <div class="mb-3">
                         <label for="conten" class="form-label fw-bold">Nội dung:</label>
                         <h3 class="text-success">
-                            <?php if(isset($_SESSION['success'])) 
-                        echo $_SESSION['success']; unset($_SESSION['success']); ?></h3>
-                        <h3 class="text-danger"><?php if(isset($_SESSION['error'])) 
-                                echo $_SESSION['error']; unset($_SESSION['error']); ?></h3>
-                       <textarea name="conten" id="conten" cols="30" rows="5" class="form-control" placeholder="Viết bình luận của bạn..."></textarea>
+                            <?php if (isset($_SESSION['success']))
+                                echo $_SESSION['success'];
+                            unset($_SESSION['success']); ?></h3>
+                        <h3 class="text-danger"><?php if (isset($_SESSION['error']))
+                                                    echo $_SESSION['error'];
+                                                unset($_SESSION['error']); ?></h3>
+                        <textarea name="conten" id="conten" cols="30" rows="5" class="form-control" placeholder="Viết bình luận của bạn..."></textarea>
                     </div>
                     <button type="submit" name="submit" class="btn btn-primary w-100 p-3">
                         <h3>Gửi bình luận</h3>
@@ -452,7 +439,7 @@
                                 </h5>
                                 <div class="product__price">
                                     <!-- <p class="card-text price-color product__price-old">1,000,000 đ</p> -->
-                                    <p class="card-text price-color product__price-new"><?php echo number_format($danhMuc['product_price'] ?? 0, 0, ',', '.' ) . ' VNĐ'?></p>
+                                    <p class="card-text price-color product__price-new"><?php echo number_format($danhMuc['product_price'] ?? 0, 0, ',', '.') . ' VNĐ' ?></p>
                                 </div>
                                 <div class="home-product-item__action">
                                     <!-- <span class="home-product-item__like home-product-item__like--liked">
@@ -490,7 +477,7 @@
 <script src="./views/user/assets/js/main.js"></script>
 <script src="./views/user/assets/js/zoomsl.js"></script>
 <script>
-    $(document).ready(function () {
+    $(document).ready(function() {
         $(".big-img").imagezoomsl({
             zoomrange: [3, 3]
 
