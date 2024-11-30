@@ -141,18 +141,34 @@ class HomeController
             header("location: ?act=chitietsp&id=$id_pro");
            }
         }
-
-        
     }
     public function giohang()
     {
         if (isset($_SESSION['account']['id'])) {
             // var_dump($categories);die;
             $userId = intval($_SESSION['account']['id']);
+            // $id_cart = $_POST['id_cart'];
+            // var_dump($id_cart);die();
             $listCart = $this->cart->getAllDetailCart($userId);
         }
         require_once './views/user/giohang/giohang.php';
     }
+
+    public function xoagiohang()
+    {
+        if(isset($_GET['id'])){
+            $cart_id = $_GET['id'];
+            var_dump($cart_id);die();
+            $deleteCart = $this->cart->deleteCart($cart_id);
+            header("Location: ?act=giohang");
+        }
+    }
+
+    // public function suagiohang()
+    // {
+
+    // }
+
     public function thanhtoan()
     {
         if (!isset($_SESSION['account']['id'])) {
