@@ -282,6 +282,7 @@
                             <?php } ?>
                         </div>
                     </div>
+                    <h5 class="text-danger"><?php if(isset($_SESSION['err_c'])) echo $_SESSION['err_c']; unset($_SESSION['err_c'] ); ?></h5>
                     <div class="product__size d-flex" style="align-items: center;">
                         <div class="title" style="font-size: 16px; margin-right: 10px;">
                             Kích thước:
@@ -298,6 +299,8 @@
                             <?php } ?>
                         </div>
                     </div>
+                    <h5 class="text-danger"><?php if(isset($_SESSION['err_z'])) echo $_SESSION['err_z']; unset($_SESSION['err_z'] ); ?></h5>
+
                     <div class="product__wrap">
                         <div class="product__amount">
                             <label for="">Số lượng: </label>

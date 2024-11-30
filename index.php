@@ -82,6 +82,7 @@ match ($act) {
   'user/quenmk' => $User->quenmk(),
   'user/changeMK' => $User->changeQuenMk(),
   "user/order_history" =>$User->history_order(),
+  "user/orders_history" => $User->order_history(),
 
   // Quản trị viên
   // Quản lý tài khoản

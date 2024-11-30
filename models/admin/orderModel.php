@@ -39,15 +39,8 @@ class OrderModel
         return $this->db->getOne($sql);
     }
 
-    public function editOrder(
-        $id_order,
-        $user_id,
-        $status_order,
-        $payment,
-        $total_amount,
-        $total_money,
-        $shipping_address,
-    ) {
+    public function editOrder($id_order,$user_id,$status_order,$payment,$total_amount,$total_money,$shipping_address,)
+    {
         $sql = "UPDATE `orders` SET `user_id` = '$user_id', `status_order` = '$status_order', 
         `payment` = '$payment', `total_amount` = '$total_amount', 
         `total_money` = '$total_money', `shipping_address` = '$shipping_address' 
