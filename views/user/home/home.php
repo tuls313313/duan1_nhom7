@@ -78,9 +78,9 @@
                     <img class="card-img-top" src="./uploads/upimg/<?= $home['img'] ?>" alt="">
                     <form action="" class="hover-icon hidden-sm hidden-xs">
                       <input type="hidden">
-                      <a href="?act=thanhtoan" class="btn-add-to-cart" title="Mua ngay">
+                      <!-- <a href="?act=thanhtoan" class="btn-add-to-cart" title="Mua ngay">
                         <i class="fas fa-cart-plus"></i>
-                      </a>
+                      </a> -->
                       <a href="?act=chitietsp&id=<?= $home['id'];?>" class="btn-add-to-cart" title="Xem nhanh">
                         <i class="fas fa-search"></i>
                       </a>
@@ -136,9 +136,9 @@
                     <img class="card-img-top" src="./uploads/upimg/<?= $homeviews['img'] ?>" alt="Card image cap">
                     <form action="" class="hover-icon hidden-sm hidden-xs">
                       <input type="hidden">
-                      <a href="?act=thanhtoan&id=<?=  $homeviews['id'];?>" class="btn-add-to-cart" title="Mua ngay">
+                      <!-- <a href="?act=thanhtoan&id=<?=  $homeviews['id'];?>" class="btn-add-to-cart" title="Mua ngay">
                         <i class="fas fa-cart-plus"></i>
-                      </a>
+                      </a> -->
                       <a href="?act=chitietsp&id=<?= $homeviews['id'];?>" class="btn-add-to-cart" title="Xem nhanh">
                         <i class="fas fa-search"></i>
                       </a>

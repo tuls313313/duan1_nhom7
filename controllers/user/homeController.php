@@ -15,7 +15,7 @@ class HomeController
     public $cart;
     public $comment;
     public $user;
-
+    public $api;
     public $order;
 
     public function __construct()
@@ -29,6 +29,7 @@ class HomeController
         $this->categories = new CategoriesModel();
         $this->user = new userModels();
         $this->order = new OrderModel();
+        $this->api = new ApiModel();
     }
     public function home()
     {
@@ -172,27 +173,71 @@ class HomeController
         require_once './views/user/giohang/giohang.php';
     }
     public function thanhtoan()
-    { 
-        
-        $user_id = $_SESSION['account']['id'];
-        $id_promotion =  "null";
-        $name = $_POST['hoten'];
-        $address = $_POST['diachi'];
-        $tel = $_POST['sdt'];
-        $payment = $_POST['payment'];
-        $total_amount = $_SESSION['buyNow']['quantity'];
-        $product_id = $_SESSION['buyNow']['id_pro'];
-        $id_color = $_SESSION['buyNow']['id_size'];
-        $id_size = $_SESSION['buyNow']['id_color'];
-        $quantity = $_SESSION['buyNow']['quantity'];
-        $price = $_SESSION['buyNow']['money'];
-        $total_money = intval($quantity * $price);
-        if(isset($_POST['submit'])){
-        $this->order->insertOrder($user_id,  $id_promotion,$name,$tel,$address,$payment,
-        $total_amount, $total_money,$product_id,$id_color,$id_size,$quantity,$price);
-        header("Location: ?act=user/order_history");
+{ 
+    $user_id = $_SESSION['account']['id'];
+    $id_promotion = "null";
+    $name = $_POST['hoten'];
+    $address = $_POST['diachi'];
+    $tel = $_POST['sdt'];
+    $payment = $_POST['payment'];
+    $total_amount = $_SESSION['buyNow']['quantity'];
+    $product_id = $_SESSION['buyNow']['id_pro'];
+    $id_color = $_SESSION['buyNow']['id_size'];
+    $id_size = $_SESSION['buyNow']['id_color'];
+    $quantity = $_SESSION['buyNow']['quantity'];
+    $price = $_SESSION['buyNow']['money'];
+    $total_money = intval($quantity * $price);
+
+    if (isset($_POST['submit'])) {
+        $id_order=$this->order->insertOrder($user_id, $id_promotion, $name, $tel, $address, $payment,
+            $total_amount, $total_money, $product_id, $id_color, $id_size, $quantity, $price);
+            $data =$this->order->getOneOrder_detail($id_order);
+            $data1 =$this->order->getOneOrder($data['order_id']);
+            // var_dump( $data);
+            $_SESSION['data'] = $data;
+            $_SESSION['data1'] = $data1;
+            $magd = $_SESSION['data1']['id_order'];
+
+
+        if ($payment == 0) {  
+            header("Location: ?act=user/order_history"); 
+        } else {
+            header("Location: ?act=user/orderOnl&id=$magd");
+           
         }
     }
+}
+
+    public function thanhtoanonl(){
+        require_once './views/user/thanhtoan/thanhtoanonl.php';
+    }
+
+    
+    public function get_tt_onl() {
+        $password = 'Tu3132004';
+        $accountNumber = '4729781';
+        $token = '5972E99F-7D13-D6F9-6104-104038B2FDB6';
+        $data = $this->api->fetchTransactionHistory($password, $accountNumber, $token);
+        $_SESSION['data_bank'] = $data;
+    
+        if (!empty($_SESSION['data_bank'])) {
+            $dataBank = $_SESSION['data_bank'];
+            $found = false;
+            $magd = $_SESSION['data1']['id_order'];
+            foreach ($dataBank['transactions'] as $transaction) {
+                if (strpos($transaction['description'], $magd) !== false) {
+                    $found = true;
+                    break;
+                }
+            }
+            if ($found) {
+                $id= $_SESSION['id_tran'];
+               $this->api->update($id);
+            }
+        }
+    }
+    
+    
 
 
     public function chitietsp()

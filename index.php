@@ -37,6 +37,9 @@ require_once './models/promotionModel.php';
 require_once './models/sizeModel.php';
 require_once './models/userModels.php';
 require_once './models/variantiModel.php';
+require_once './models/apiModel.php';
+
+
 
 
 
@@ -70,6 +73,10 @@ match ($act) {
   'product' => $home->product(),
   'user/comment/add' => $home->addCmt(),
   'user/order' => $home->thanhtoan(),
+  'user/orderOnl' => $home->thanhtoanonl(),
+  'user/get_tt_onl' => $home->get_tt_onl(),
+
+
 
 
   //  đăng ký đăng nhập
