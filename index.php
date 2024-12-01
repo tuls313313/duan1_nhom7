@@ -68,7 +68,7 @@ match ($act) {
   'lienhe' => $home->lienhe(),
   'giohang' => $home->giohang(),
   'themgiohang' => $home->themgiohang(),
-  'xoagiohang' => $home->xoagiohang(),
+  'xoagiohang' => $home->xoacart(),
   'thanhtoan' => $home->thanhtoan(),
   'chitietsp' => $home->chitietsp(),
   'product' => $home->product(),

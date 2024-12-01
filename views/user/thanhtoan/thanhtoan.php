@@ -43,13 +43,14 @@
             <div class="col-lg-6 col-12">
                 <div class=" shadow-lg rounded p-5" style="background-color: #f3f3f3;">
                     <h2 class="mb-4 text-secondary">Thông tin đơn hàng</h2>
+                    <!-- <?php var_dump($_SESSION['buyNow1']) ?> -->
                     <div class="row mb-3 align-items-center">
                         <div class="col-4">
-                            <img src="./uploads/upimg/<?= $_SESSION['buyNow1']['product_image'] ?>" alt="Product Image"
+                            <img src="./uploads/upimg/<?= $_SESSION['buyNow1']['img'] ?>" alt="Product Image"
                                 class="img-fluid rounded">
                         </div>
                         <div class="col-6">
-                            <h5 class="fw-semibold"><strong>Tên sản phẩm:</strong > <?= $_SESSION['buyNow1']['product_name'] ?></h5>
+                            <h5 class="fw-semibold"><strong>Tên sản phẩm:</strong > <?= $_SESSION['buyNow1']['name'] ?></h5>
                             <p><strong>Size:</strong>
                             <?php if($data_size['id'] == $_SESSION['buyNow']['id_size']) echo $data_size['name'] ?>
                             </p>

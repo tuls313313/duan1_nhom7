@@ -147,6 +147,7 @@ class HomeController
         }
 
         if (isset($_POST['submitAdd'])) {
+            
             $this->cart->addToCart($userId, $total_money, $id_pro, $id_color, $id_size, $quantity, $money);
             header("Location: ?act=giohang");
             exit();
@@ -171,17 +172,21 @@ class HomeController
             // $id_cart = $_POST['id_cart'];
             // var_dump($id_cart);die();
             $listCart = $this->cart->getAllDetailCart($userId);
+            //  var_dump($listCart);
         }
         require_once './views/user/giohang/giohang.php';
     }
 
-    public function xoagiohang()
+    public function xoacart()
     {
-        if(isset($_GET['id'])){
-            $cart_id = $_GET['id'];
-            // var_dump($cart_id);die();
-            $deleteCart = $this->cart->deleteCart($cart_id);
-            header("Location: ?act=giohang");
+        if(isset($_POST['delete'])){
+            $cart_id = $_POST['cart_id'];
+            $cart_detail_id = $_POST['cart_detail_id'];
+            $deleteCart = $this->cart->deleteCart($cart_detail_id,$cart_id);
+            $_SESSION['success'] = 'Xóa giỏ hàng thành công';
+           header('location: ?act=giohang');
+        }else{
+            header('location: ?act=giohang');
         }
     }
 
@@ -215,6 +220,7 @@ class HomeController
 
 
         if ($payment == 0) {  
+            $_SESSION['success'] = 'Bạn đã mua hàng thành công';
             header("Location: ?act=user/order_history"); 
         } else {
             header("Location: ?act=user/orderOnl&id=$magd");
