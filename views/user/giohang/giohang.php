@@ -1,206 +1,124 @@
 <?php include './views/user/layout/header.php'; ?>
-<!-- <div class="container"> -->
-
-<!-- <?php include './views/user/layout/slider.php'; ?> -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
 <style>
-  form.example input[type=text] {
+  .cart-container {
+    background-color: #ffffff;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin-top: 20px;
+  }
+
+  .cart-heading {
+    background-color: #f8f9fa;
     padding: 10px;
-    font-size: 17px;
-    border: 1px solid grey;
-    float: left;
-    width: 80%;
-    background: #f1f1f1;
+    font-weight: bold;
+    text-align: center;
+    border-bottom: 2px solid #007bff;
   }
 
-  form.example button {
-    float: left;
-    width: 20%;
-    padding: 10px;
-    background: #2196F3;
-    color: white;
-    font-size: 17px;
-    border: 1px solid grey;
-    border-left: none;
-    cursor: pointer;
+  .cart-item {
+    padding: 10px 0;
+    border-bottom: 1px solid #ddd;
   }
 
-  form.example button:hover {
-    background: #0b7dda;
+  .cart-item:last-child {
+    border-bottom: none;
   }
 
-  form.example::after {
-    content: "";
-    clear: both;
-    display: table;
+  .cart-img {
+    max-width: 60px;
+    height: auto;
+    border-radius: 5px;
   }
 
-  /* Mobile & tablet  */
-  @media (max-width: 1023px) {}
-
-  /* tablet */
-  @media (min-width: 740px) and (max-width: 1023px) {
-    .cart-wrap {
-      padding-top: 8px;
-      padding-bottom: 46px
-    }
-
-    .cart-body-left {
-      width: 100%;
-    }
-
-    .cart-body-right {
-      margin-top: 8px;
-      width: 100%;
-      padding: 16px;
-    }
+  .cart-total {
+    text-align: right;
+    font-weight: bold;
+    font-size: 18px;
+    margin-top: 15px;
   }
 
-  /* mobile */
-  @media (max-width: 739px) {
-    .cart-wrap {
-      padding-top: 8px;
-      padding-bottom: 46px;
-    }
+  .cart-buttons {
+    text-align: right;
+    margin-top: 20px;
+  }
 
-    .cart-body-left {
-      width: 100%;
-    }
+  .btn-primary,
+  .btn-success {
+    margin-left: 10px;
+  }
 
-    .cart-body-right {
-      margin-top: 8px;
-      width: 100%;
-      padding: 16px;
-    }
-
-    .cart-body-row {
-      flex-direction: row;
-      /* margin-left: -12px;
-    margin-right: -12px; */
-    }
-
-    .card-info {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-    }
-
-    .card-info-img {
-      grid-row: span 3;
-    }
-
-    .cart-quantity {
-      margin-top: 5px;
-    }
+  .text-small {
+    font-size: 14px;
   }
 </style>
-<div class="cart">
-  <div class="container">
-    <div class="cart-wrap">
-      <div class="cart-content">
-        <form action="" class="form-cart">
-          <div class="cart-body-left">
-            <div class="cart-heding hidden-xs">
-              <div class="row cart-row">
-                <div class="container">
-                  <div class="row text-center">
-                    <div class="col-3">Sản phẩm</div>
-                    <div class="col-1">Đơn giá</div>
-                    <div class="col-2">Số lượng</div>
-                    <div class="col-1">Màu</div>
-                    <div class="col-1">Kích thước</div>
-                    <div class="col-1">Thành tiền</div>
-                    <div class="col-2">Thao tác</div>
-                  </div>
-                </div>
-                <div class="col-1"></div>
-              </div>
-            </div>
-            <div class="cart-body">
-              <div class="row cart-body-row cart-body-row-1" style="align-items: center;">
-                <div class="col-md-11 col-10" style="text-align: center;">
-                  <div class="row card-info" style="align-items: center;">
-                    <?php $tongTienGioHanng = 0;
-                    foreach ($listCart as $cart) : ?>
-                      <div class="col-md-2 col-12 card-info-img">
-                        <a href=""><img class="cart-img" src="./uploads/upimg/<?= $cart['product_image'] ?>" alt=""></a>
-                      </div>
-                      <div class="col-md-1 col-11">
-                        <a href="" class="cart-name">
-                          <h5><?php echo $cart['product_name'] ?></h5>
-                        </a>
-                      </div>
-                      <div class="col-md-2 col-12" style="font-size: 16px;">
-                        <span><?php echo number_format($cart['product_price'] ?? 0, 0, ',', '.') . ' VNĐ' ?></span>
-                      </div>
-                      <div class="col-md-2 col-12">
-                        <div class="cart-quantity">
-                          <!-- <input type="button" value="-" class="control" onclick="tru(1)"> -->
-                          <input type="text" value="<?php echo $cart['product_quantity'] ?>" class="text-input" name="product_quantity">
-                          <!-- <input type="button" value="+" class="control" onclick="cong(1)"> -->
-                        </div>
-                      </div>
-                      <div class="col-md-1 col-11" style="font-size: 16px;">
-                        <div class="cart-color">
-                          <!-- <input type="button" value="-" class="control" onclick="tru(1)"> -->
-                          <span><?php echo $cart['color_name'] ?></span>
-                          <!-- <input type="button" value="+" class="control" onclick="cong(1)"> -->
-                        </div>
-                      </div>
-                      <div class="col-md-1 col-11" style="font-size: 16px;">
-                        <div class="cart-size">
-                          <!-- <input type="button" value="-" class="control" onclick="tru(1)"> -->
-                          <span><?php echo $cart['size_name'] ?></span>
-                          <!-- <input type="button" value="+" class="control" onclick="cong(1)"> -->
-                        </div>
-                      </div>
-                      <div class="col-md-2 col-12 hidden-xs" style="font-size: 16px;">
-                        <span>
-                          <?php
-                          $tongTien = 0;
-                          $tongTien = $cart['product_price'] * $cart['product_quantity'];
-                          $tongTienGioHanng += $tongTien;
-                          echo number_format($tongTien, 0, ',', '.') . ' VNĐ';
-                          ?>
-                        </span>
-                      </div>
-                      <div class="col-md-1 col-2 text-right">
-                        <!-- <a href="" class="btn btn-warning">Sửa</a> -->
-                        <a href="?act=xoagiohang&id=<?= $cart['cart_detail_id'] ?>" onclick="return confirm('Bạn có chắc muốn xóa sản phẩm này không?')" class="btn btn-danger">Xóa</a>
-                      </div>
-                    <?php endforeach; ?>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="cart-footer">
-              <div class="row cart-footer-row">
-                <div class="col-1"></div>
-                <div class="col-11 continue">
-                  <a href="?act=trangchu">
-                    <i class="fas fa-chevron-left"></i>
-                    Tiếp tục mua sắm
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="cart-body-right">
-            <div class="cart-total">
-              <label for="">Thành tiền:</label>
-              <span class="total__price">
-                <?php
-                echo number_format($tongTienGioHanng, 0, ',', '.') . ' VNĐ';
-                ?>
-              </span>
-            </div>
-            <div class="cart-buttons">
-              <a style="display: block; text-align: center;" href="?act=thanhtoan" class="chekout">THANH TOÁN</a>
-            </div>
-          </div>
-        </form>
+
+<div class="container">
+  <div class="cart-container">
+    <div class="cart-heading">
+      <div class="row">
+        <div class="col-2 fs-4">Sản phẩm</div>
+        <div class="col-2 fs-4">Đơn giá</div>
+        <div class="col-2 fs-4">Số lượng</div>
+        <div class="col-2 fs-4">Màu</div>
+        <div class="col-1 fs-4">Kích thước</div>
+        <div class="col-2 fs-4">Thành tiền</div>
+        <div class="col-1 fs-4">acttion</div>
       </div>
+    </div>
+
+    <div class="cart-body">
+      <?php
+      $tongTienGioHanng = 0;
+      foreach ($listCart as $cart): ?>
+        <div class="row cart-item align-items-center text-center">
+          <div class="col-2">
+            <img src="./uploads/upimg/<?= $cart['product_image'] ?>" class="cart-img" alt="">
+            <div class="text-small"><?= $cart['product_name'] ?></div>
+          </div>
+          <div class="col-2 fs-5"><?= number_format($cart['product_price'], 0, ',', '.') . ' VNĐ' ?></div>
+          <div class="col-2 fs-5">
+            <input type="number" min="1" value="<?= $cart['product_quantity'] ?>" name="product_quantity"
+              class="text-center">
+          </div>
+          <div class="col-2 fs-5"><?= $cart['color_name'] ?></div>
+          <div class="col-1 fs-5"><?= $cart['size_name'] ?></div>
+          <div class="col-2 fs-5">
+            <?php
+            $tongTien = $cart['product_price'] * $cart['product_quantity'];
+            $tongTienGioHanng += $tongTien;
+            echo number_format($tongTien, 0, ',', '.') . ' VNĐ';
+            ?>
+
+          </div>
+          <div class="col-1">
+            <form action="?act=xoagiohang" method="post">
+              <input type="hidden" name="cart_id" value="<?= $cart['cart_id'] ?>">
+              <input type="hidden" name="cart_detail_id" value="<?= $cart['cart_detail_id'] ?>">
+              <button name="delete" onclick="return confirm('Bạn có chắc muốn xóa sản phẩm này không?')"
+                class="btn btn-danger">
+                Xóa
+              </button>
+            </form>
+          </div>
+
+        </div>
+
+      <?php endforeach;?>
+    </div>
+    <hr>
+
+    <div class="cart-total text-danger">
+      Thành tiền: <?= number_format($tongTienGioHanng, 0, ',', '.') . ' VNĐ' ?>
+    </div>
+
+    <div class="cart-buttons">
+      <p class="fs-4 text-success"><?php if(isset($_SESSION['success'])) echo $_SESSION['success']; unset($_SESSION['success']); ?></p>
+      <a href="?act=trangchu" class="btn btn-secondary fs-5">Tiếp tục mua sắm</a>
+      <a href="?act=thanhtoangiohang" class="btn btn-success fs-5">Thanh toán</a>
     </div>
   </div>
 </div>
-
 
 <?php include './views/user/layout/footer.php'; ?>

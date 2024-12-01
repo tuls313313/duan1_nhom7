@@ -34,6 +34,11 @@ class Database{
         $stmt->execute();
         return $this->conn->lastInsertId();
     }
+
+    public function excute($sql){
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute();
+    }
     
 
     public function date($date)

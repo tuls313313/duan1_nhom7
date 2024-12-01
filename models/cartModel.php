@@ -28,29 +28,6 @@ class CartModel
 
     public function getAllDetailCart($userId)
     {
-        // $sql = "SELECT DISTINCT 
-        //                 c.id_cart AS cart_id,
-        //                 p.name AS product_name,
-        //                 p.img AS product_image,
-        //                 v.price AS product_price,
-        //                 cd.Quantity,
-        //                 s.name AS size_name,
-        //                 col.name AS color_name,
-        //                 (cd.quantity * v.price) AS total_price
-        //             FROM 
-        //                 cart c
-        //             JOIN 
-        //                 cart_details cd ON c.id_cart = cd.id_cart
-        //             JOIN 
-        //                 varianti v ON cd.id_pro = v.id_pro
-        //             JOIN 
-        //                 product p ON v.id_pro = p.id
-        //             JOIN 
-        //                 size s ON v.id_size = s.id
-        //             JOIN 
-        //                 color col ON v.id_color = col.id
-        //             WHERE 
-        //                 c.status = 0 AND c.id_user = $userId";
         $sql = "SELECT 
                     cd.id_detail AS cart_detail_id,
                     c.id_cart AS cart_id,
@@ -94,9 +71,5 @@ class CartModel
         return $this->db->getOne($sqlCart);
     }
 
-    // public function editCart($cart_id, $userId, $total_money, $id_pro, $id_color, $id_size, $quantity, $money) 
-    // {
-    //     $sql = "";
-    //     return $this->db->insert($sql);
-    // }
+
 }
