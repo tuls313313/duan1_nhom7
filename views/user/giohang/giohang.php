@@ -102,12 +102,13 @@
               <div class="row cart-row">
                 <div class="container">
                   <div class="row text-center">
-                    <div class="col-4">Sản phẩm</div>
+                    <div class="col-3">Sản phẩm</div>
                     <div class="col-1">Đơn giá</div>
                     <div class="col-2">Số lượng</div>
                     <div class="col-1">Màu</div>
                     <div class="col-1">Kích thước</div>
-                    <div class="col-2">Thành tiền</div>
+                    <div class="col-1">Thành tiền</div>
+                    <div class="col-2">Thao tác</div>
                   </div>
                 </div>
                 <div class="col-1"></div>
@@ -122,7 +123,7 @@
                       <div class="col-md-2 col-12 card-info-img">
                         <a href=""><img class="cart-img" src="./uploads/upimg/<?= $cart['product_image'] ?>" alt=""></a>
                       </div>
-                      <div class="col-md-2 col-12">
+                      <div class="col-md-1 col-11">
                         <a href="" class="cart-name">
                           <h5><?php echo $cart['product_name'] ?></h5>
                         </a>
@@ -133,18 +134,18 @@
                       <div class="col-md-2 col-12">
                         <div class="cart-quantity">
                           <!-- <input type="button" value="-" class="control" onclick="tru(1)"> -->
-                          <input type="text" value="<?php echo $cart['Quantity'] ?>" class="text-input" id="text_so_luong-1" onkeypress='validate(event)'>
+                          <input type="text" value="<?php echo $cart['product_quantity'] ?>" class="text-input" id="text_so_luong-1" name="product_quantity">
                           <!-- <input type="button" value="+" class="control" onclick="cong(1)"> -->
                         </div>
                       </div>
-                      <div class="col-md-1 col-12" style="font-size: 16px;">
+                      <div class="col-md-1 col-11" style="font-size: 16px;">
                         <div class="cart-color">
                           <!-- <input type="button" value="-" class="control" onclick="tru(1)"> -->
                           <span><?php echo $cart['color_name'] ?></span>
                           <!-- <input type="button" value="+" class="control" onclick="cong(1)"> -->
                         </div>
                       </div>
-                      <div class="col-md-1 col-12" style="font-size: 16px;">
+                      <div class="col-md-1 col-11" style="font-size: 16px;">
                         <div class="cart-size">
                           <!-- <input type="button" value="-" class="control" onclick="tru(1)"> -->
                           <span><?php echo $cart['size_name'] ?></span>
@@ -155,17 +156,18 @@
                         <span>
                           <?php
                           $tongTien = 0;
-                          $tongTien = $cart['product_price'] * $cart['Quantity'];
+                          $tongTien = $cart['product_price'] * $cart['product_quantity'];
                           $tongTienGioHanng += $tongTien;
                           echo number_format($tongTien, 0, ',', '.') . ' VNĐ';
                           ?>
                         </span>
                       </div>
+                      <div class="col-md-1 col-2 text-right">
+                        <button href="" class="btn btn-warning">Sửa</button>
+                        <button href="?act=xoagiohang&id=<?= $cart['cart_id'] ?>" onclick="return confirm('Bạn có chắc muốn xóa sản phẩm này không?')" class="btn btn-danger">Xóa</button>
+                      </div>
                     <?php endforeach; ?>
                   </div>
-                </div>
-                <div class="col-md-1 col-2 text-right">
-                  <a onclick="xoa(1)"><i class="fas fa-trash"></i></a>
                 </div>
               </div>
               <!-- <div class="row cart-body-row cart-body-row-2" style="align-items: center;">
