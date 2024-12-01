@@ -115,31 +115,38 @@ class HomeController
             header("Location: ?act=user/dangnhap");
             exit();
         }
-        
+
         if (isset($_POST['submit'])) {
             $err = false;
             $userId = $_SESSION['account']['id'];
             $id_pro = $_GET['id'];
             $id_size = $_POST['id_size'];
-            if(empty($id_size)){
+            if (empty($id_size)) {
                 $_SESSION['err_z'] = 'Vui lòng chọn size';
                 $err = true;
             }
             $id_color = $_POST['id_color'];
-            if(empty($id_color)){
+            if (empty($id_color)) {
                 $_SESSION['err_c'] = 'Vui lòng chọn màu';
                 $err = true;
             }
             $quantity = intval($_POST['quantity']);
             $money = intval($_POST['money']);
             $total_money =  $quantity * $money;
-           if(!$err){
-            $listCart = $this->cart->addToCart($userId,$total_money,
-            $id_pro,$id_color,$id_size,$quantity,$money);
-            header("location: ?act=giohang");
-           }else{
-            header("location: ?act=chitietsp&id=$id_pro");
-           }
+            if (!$err) {
+                $listCart = $this->cart->addToCart(
+                    $userId,
+                    $total_money,
+                    $id_pro,
+                    $id_color,
+                    $id_size,
+                    $quantity,
+                    $money
+                );
+                header("location: ?act=giohang");
+            } else {
+                header("location: ?act=chitietsp&id=$id_pro");
+            }
         }
     }
     public function giohang()
@@ -156,11 +163,16 @@ class HomeController
 
     public function xoagiohang()
     {
-        if(isset($_GET['id'])){
-            $cart_id = $_GET['id'];
-            var_dump($cart_id);die();
-            $deleteCart = $this->cart->deleteCart($cart_id);
-            header("Location: ?act=giohang");
+        if (isset($_GET['id'])) {
+            $cart_id = intval($_GET['id']);
+            $detail_id = intval($_GET['id']);
+            // var_dump( $cart_id,$detail_id);die();
+            $deleteCart = $this->cart->deleteCart($cart_id, $detail_id);
+            if ($deleteCart) {
+                header("Location: ?act=giohang&success");
+            } else {
+                header("Location: ?act=giohang&error");
+            }
         }
     }
 

@@ -134,7 +134,7 @@
                       <div class="col-md-2 col-12">
                         <div class="cart-quantity">
                           <!-- <input type="button" value="-" class="control" onclick="tru(1)"> -->
-                          <input type="text" value="<?php echo $cart['product_quantity'] ?>" class="text-input" id="text_so_luong-1" name="product_quantity">
+                          <input type="text" value="<?php echo $cart['product_quantity'] ?>" class="text-input" name="product_quantity">
                           <!-- <input type="button" value="+" class="control" onclick="cong(1)"> -->
                         </div>
                       </div>
@@ -163,8 +163,8 @@
                         </span>
                       </div>
                       <div class="col-md-1 col-2 text-right">
-                        <button href="" class="btn btn-warning">Sửa</button>
-                        <button href="?act=xoagiohang&id=<?= $cart['cart_id'] ?>" onclick="return confirm('Bạn có chắc muốn xóa sản phẩm này không?')" class="btn btn-danger">Xóa</button>
+                        <a href="" class="btn btn-warning">Sửa</a>
+                        <a href="?act=xoagiohang&id=<?= $cart['cart_detail_id'] ?>" onclick="return confirm('Bạn có chắc muốn xóa sản phẩm này không?')" class="btn btn-danger">Xóa</a>
                       </div>
                     <?php endforeach; ?>
                   </div>
