@@ -26,7 +26,7 @@ require_once './controllers/admin/variantiController.php';
 
 
 //models
-require_once './models/admin/orderModel.php';
+require_once './models/orderModel.php';
 require_once './models/admin/thongkeModel.php';
 require_once './models/cartModel.php';
 require_once './models/categoriesModel.php';
@@ -37,13 +37,16 @@ require_once './models/promotionModel.php';
 require_once './models/sizeModel.php';
 require_once './models/userModels.php';
 require_once './models/variantiModel.php';
+require_once './models/apiModel.php';
+
+
 
 
 
 $home = new HomeController();
 $User = new AccountController();
 $AdminUser = new HomeAdminController();
-$AdminOrder = new OrderController();
+$order = new OrderController();
 $AdminCategories = new CategoriesController();
 $adminCmt = new ComentController();
 $adminProduct = new ProductController();
@@ -66,11 +69,15 @@ match ($act) {
   'giohang' => $home->giohang(),
   'themgiohang' => $home->themgiohang(),
   'xoagiohang' => $home->xoagiohang(),
-  // 'suagiohang' => $home->suagiohang(),
   'thanhtoan' => $home->thanhtoan(),
   'chitietsp' => $home->chitietsp(),
   'product' => $home->product(),
   'user/comment/add' => $home->addCmt(),
+  'user/order' => $home->thanhtoan(),
+  'user/orderOnl' => $home->thanhtoanonl(),
+  'user/get_tt_onl' => $home->get_tt_onl(),
+
+
 
 
   //  đăng ký đăng nhập
@@ -96,10 +103,10 @@ match ($act) {
   'admin/user/delete' => $AdminUser->deletetUser(),
 
   // Quản Lý Đơn Hàng
-  'admin/order' => $AdminOrder->listOder(),
-  'admin/order/detail' => $AdminOrder->detailOrder(),
-  'admin/order/edit' => $AdminOrder->editOrder(),
-  'admin/order/editOrder' => $AdminOrder->postOrder(),
+  'admin/order' => $order->listOder(),
+  'admin/order/detail' => $order->detailOrder(),
+  'admin/order/edit' => $order->editOrder(),
+  'admin/order/editOrder' => $order->postOrder(),
 
   // Quản lý danh mục
   'admin/categories' => $AdminCategories->getAllCategory(),

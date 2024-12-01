@@ -227,12 +227,21 @@ class AccountController
         require_once "./views/user/order_history/list.php";
     }
 
+
     public function order_history(){
         $id_oi = $_GET['id'];
-        $data_oi = $this->account->history_order( $id_oi); 
-        $color = $this->color->getAllColor();
-        $size = $this->size->getAllSize();
-        require_once "./views/user/order_history/view_order_details.php";
+        if(isset($_POST['xemchitiet'])){
+            $data_oi = $this->account->history_order( $id_oi); 
+            $color = $this->color->getAllColor();
+            $size = $this->size->getAllSize();
+            require_once "./views/user/order_history/view_order_details.php";
+        }else{
+            if(isset($_POST['huydon'])){
+                $this->account->huydon($id_oi);
+                header('location: ?act=user/order_history');
+            }
+        }
+       
     }
     
     

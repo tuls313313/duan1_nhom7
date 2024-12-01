@@ -66,6 +66,7 @@ class ProductModel
 
     public function editProduct($id, $name, $price, $img, $description, $id_categories, $status)
     {
+        
         if ($img) {
             $sql = "UPDATE `product` SET `name`='$name',`price`='$price',`img`='$img',`description`='$description',`id_categories`='$id_categories',`status`='$status' WHERE id=$id ";
         } else {
@@ -74,45 +75,67 @@ class ProductModel
         return $this->db->insert($sql);
     }
 
-    // public function detailSp($id)
-    // {
-    //     $sql = "SELECT product.*, categories.name 
-    //             FROM product 
-    //             INNER JOIN categories ON product.id_categories = categories.id 
-    //             WHERE product.id=$id";
-    //     return $this->db->getOne($sql);
-    // }
-
-    public function getProductDetails($productId)
+    public function getAllProductDetails($productId)
     {
         $sql = "SELECT 
-                p.id AS product_id,
-                p.name AS product_name,
-                p.price AS product_price,
-                p.description AS product_description,
-                p.status AS product_status,
-                p.img AS product_image,
-                cs.name AS category_name,
-                c.name AS color_name,
-                s.name AS size_name,
-                v.price AS variant_price,
-                v.quantity AS variant_quantity,
-                c.id AS id_color,
-                s.id AS id_size,
-                v.img AS varianti_img
-            FROM 
-                product p
-            JOIN 
-                categories cs ON p.id_categories = cs.id    
-            JOIN 
-                varianti v ON p.id = v.id_pro
-            JOIN 
-                color c ON v.id_color = c.id
-            JOIN 
-                size s ON v.id_size = s.id
-            WHERE 
-                p.id = $productId
-        ";
+            p.id AS product_id,
+            p.name AS product_name,
+            p.img AS product_img,
+            p.price AS product_price,
+            p.status AS product_status,
+            cs.name AS categories_name,
+            c.id AS color_id,
+            c.name AS color_name,
+            s.id AS size_id,
+            s.name AS size_name,
+            v.quantity AS variant_quantity,
+            v.img AS variant_image,
+            v.id_var AS variant_id
+        FROM 
+            varianti v
+        JOIN 
+            product p ON v.id_pro = p.id
+        JOIN 
+            color c ON v.id_color = c.id
+        JOIN 
+            size s ON v.id_size = s.id
+        JOIN 
+            categories cs ON p.id_categories = cs.id
+        WHERE 
+            p.id = $productId";
+
+        return $this->db->getAll($sql);
+    }
+    public function getOneProductDetails($productId)
+    {
+        $sql = "SELECT 
+            p.id AS product_id,
+            p.name AS product_name,
+            p.img AS product_img,
+            p.price AS product_price,
+            p.status AS product_status,
+            p.description as product_description,
+            cs.name AS categories_name,
+            c.id AS color_id,
+            c.name AS color_name,
+            s.id AS size_id,
+            s.name AS size_name,
+            v.quantity AS variant_quantity,
+            v.img AS variant_image,
+            v.id_var AS variant_id
+        FROM 
+            varianti v
+        JOIN 
+            product p ON v.id_pro = p.id
+        JOIN 
+            color c ON v.id_color = c.id
+        JOIN 
+            size s ON v.id_size = s.id
+        JOIN 
+            categories cs ON p.id_categories = cs.id
+        WHERE 
+            p.id = $productId";
+
         return $this->db->getOne($sql);
     }
 
