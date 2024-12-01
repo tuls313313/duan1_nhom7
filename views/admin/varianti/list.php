@@ -32,7 +32,6 @@
                                         <th>Size</th>
                                         <th>Màu</th>
                                         <th>Giá</th>
-                                        <th>Số lượng</th>
                                         <th>Hình ảnh</th>
                                         <th>Hành động</th>
                                     </tr>
@@ -44,7 +43,6 @@
                                             <td><?= $value['product_name'] ?></td>
                                             <td><?= $value['size_name'] ?></td>
                                             <td><?= $value['color_name'] ?></td>
-                                            <td><?= $value['variation_price'] ?></td>
                                             <td><?= $value['variation_quantity'] ?></td>
                                             <td><img src="./uploads/var/<?= $value['variation_image'] ?>" alt="Image" height="50" width="50"></td>
                                             <td>

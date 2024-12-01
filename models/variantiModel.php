@@ -13,7 +13,6 @@ class VariantiModel{
             p.name AS product_name,
             s.name AS size_name,
             col.name AS color_name,
-            v.price AS variation_price,
             v.quantity AS variation_quantity,
             v.img AS variation_image
         FROM varianti v

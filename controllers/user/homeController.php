@@ -153,7 +153,7 @@ class HomeController
         } 
         else if (isset($_POST['buyNow'])) {
             $id = $_GET['id'];
-            $chitietsp = $this->chiTietSp->getProductDetails( $id );
+            $chitietsp = $this->chiTietSp->getOneProduct( $id );
             $_SESSION['buyNow1'] = $chitietsp;
             $_SESSION['buyNow'] = ['id_pro' => $id_pro,'id_size' => $id_size,'id_color' => 
             $id_color,'quantity' => $quantity,'money' => $money,'total_money' => $total_money,];
@@ -179,16 +179,13 @@ class HomeController
     {
         if(isset($_GET['id'])){
             $cart_id = $_GET['id'];
-            var_dump($cart_id);die();
+            // var_dump($cart_id);die();
             $deleteCart = $this->cart->deleteCart($cart_id);
             header("Location: ?act=giohang");
         }
     }
 
-    // public function suagiohang()
-    // {
 
-    // }
 
     public function thanhtoan()
 { 
@@ -261,13 +258,11 @@ class HomeController
     public function chitietsp()
     {
         $productId = $_GET['id'];
-        // var_dump($id);die;
-        $chitietsp = $this->chiTietSp->getProductDetails($productId);
-        // var_dump($chitietsp);die;
+        $chitietspall = $this->chiTietSp->getAllProductDetails($productId);
+        $chitietspone = $this->chiTietSp->getOneProductDetails($productId);
+
         $danhMucLienQuan = $this->chiTietSp->getAllProductsByCategory($productId);
-        // // var_dump($danhMucLienQuan);die;
-        $listColor = $this->color->getColorDetails();
-        $listSize = $this->size->getSizeDetails();
+        
         $listComment = $this->comment->commentProduct($productId);
         $congView = $this->home->congView($productId);
         require_once './views/user/chitietsp/chitietsp.php';
