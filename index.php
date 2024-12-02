@@ -70,10 +70,12 @@ match ($act) {
   'themgiohang' => $home->themgiohang(),
   'xoagiohang' => $home->xoacart(),
   'thanhtoan' => $home->thanhtoan(),
+  'thanhtoangiohang' =>$home->thanhtoangiohang(),
   'chitietsp' => $home->chitietsp(),
   'product' => $home->product(),
   'user/comment/add' => $home->addCmt(),
   'user/order' => $home->thanhtoan(),
+  'user/order/giohang' => $home->nextthanhtoangiohang(),
   'user/orderOnl' => $home->thanhtoanonl(),
   'user/get_tt_onl' => $home->get_tt_onl(),
 

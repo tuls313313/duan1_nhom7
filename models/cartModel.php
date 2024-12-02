@@ -68,5 +68,14 @@ class CartModel
         return $this->db->excute($sql_cart);
     }
 
+    public function congCartDetails($id){
+        $sql = "UPDATE `cart_details` SET `Quantity` = `Quantity` + 1 WHERE id_detail = $id;";
+        return $this->db->excute($sql);
+    }
+    public function truCartDetails($id){
+        $sql = "UPDATE `cart_details` SET `Quantity` = `Quantity` - 1 WHERE id_detail = $id;";
+        return $this->db->excute($sql);
+    }
+
 
 }
