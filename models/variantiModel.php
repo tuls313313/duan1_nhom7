@@ -33,7 +33,6 @@ class VariantiModel{
         s.name AS size_name,
         col.id AS color_id,
         col.name AS color_name,
-        v.price AS variation_price,
         v.quantity AS variation_quantity,
         v.img AS variation_image
     FROM varianti v
@@ -44,18 +43,18 @@ class VariantiModel{
     ";
         return $this->db->getOne($sql);
     }
-    public function addVarianti($id_pro,$id_color,$id_size,$price,$quantity,$img){
-        $sql = "INSERT INTO `varianti`(`id_pro`, `id_color`, `id_size`, `price`, `quantity`, `img`)
-         VALUES ('$id_pro','$id_color','$id_size','$price','$quantity','$img')";
+    public function addVarianti($id_pro,$id_color,$id_size,$quantity,$img){
+        $sql = "INSERT INTO `varianti`(`id_pro`, `id_color`, `id_size`, `quantity`, `img`)
+         VALUES ('$id_pro','$id_color','$id_size','$quantity','$img')";
         return $this->db->insert($sql);
     }
-    function edit($id_var,$id_pro,$id_color,$id_size,$price,$quantity,$img){
+    function edit($id_var,$id_pro,$id_color,$id_size,$quantity,$img){
         if($img==''){
             $sql = "UPDATE `varianti` SET `id_pro`='$id_pro',`id_color`='$id_color',`id_size`='$id_size',
-            `price`='$price',`quantity`='$quantity' WHERE id_var=$id_var";
+            `quantity`='$quantity' WHERE id_var=$id_var";
         }else{
             $sql = "UPDATE `varianti` SET `id_pro`='$id_pro',`id_color`='$id_color',`id_size`='$id_size',
-            `price`='$price',`quantity`='$quantity',`img`='$img' WHERE `id_var`='$id_var'";    
+            `quantity`='$quantity',`img`='$img' WHERE `id_var`='$id_var'";    
         }
        
         return $this->db->insert($sql);

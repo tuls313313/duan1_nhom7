@@ -72,17 +72,7 @@
                         </div>
 
                         <div class="form-row">
-                            <div class="form-group col-md-6">
-                                <label for="price">Giá</label>
-                                <input type="number" class="form-control" name="price"
-                                    value="<?= $dataOne['variation_price'] ?>" >
-                                <p class="text-danger">
-                                    <?php if (isset($_SESSION['err_p']))
-                                        echo $_SESSION['err_p'];
-                                    unset($_SESSION['err_p']); ?>
-                                </p>
-                            </div>
-                            <div class="form-group col-md-6">
+                            <div class="form-group col-md-12">
                                 <label for="quantity">Số lượng</label>
                                 <input type="number" class="form-control" name="quantity"
                                     value="<?= $dataOne['variation_quantity'] ?>"

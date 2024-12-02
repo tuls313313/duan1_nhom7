@@ -26,11 +26,6 @@ class VariantiController{
             $id_pro = $_POST['id_pro'];
             $id_color = $_POST['id_color'];
             $id_size = $_POST['id_size'];
-            $price = $_POST['price'];
-            if(empty($price)){
-                $_SESSION['err_p'] = 'Vui lòng nhập số lượng';
-                $err = true;
-            }
             $quantity = $_POST['quantity'];
             if(empty($quantity)){
                 $_SESSION['err_q'] = 'Vui lòng nhập số lượng';
@@ -44,7 +39,7 @@ class VariantiController{
             $upimg = './uploads/var/' . basename($img['name']);
             move_uploaded_file($img['tmp_name'],$upimg);
             if(!$err){
-                $this->varianti->addVarianti($id_pro,$id_color,$id_size,$price,$quantity,$img['name']);
+                $this->varianti->addVarianti($id_pro,$id_color,$id_size,$quantity,$img['name']);
                 $_SESSION['success'] = 'Thêm mới varianti thành công';
                 header('location: ?act=admin/varianti/list&msg=success');
             }
@@ -69,12 +64,7 @@ class VariantiController{
             $id_var= $_GET['id'];
             $id_pro = $_POST['id_pro'];
             $id_color = $_POST['id_color'];
-            $id_size = $_POST['id_size'];
-            $price = $_POST['price'];
-            if(empty($price)){
-                $_SESSION['err_p'] = 'Vui lòng nhập số lượng';
-                $err = true;
-            }
+            $id_size = $_POST['id_size'];           
             $quantity = $_POST['quantity'];
             if(empty($quantity)){
                 $_SESSION['err_q'] = 'Vui lòng nhập số lượng';
@@ -89,7 +79,7 @@ class VariantiController{
             move_uploaded_file($img['tmp_name'],$upimg);
             if(!$err){
                 $this->varianti->edit($id_var,$id_pro,$id_color,
-                $id_size,$price,$quantity,$img['name']);
+                $id_size,$quantity,$img['name']);
                 $_SESSION['success'] = 'edit varianti thành công';
                 header('location: ?act=admin/varianti/list&msg=success');
             }
