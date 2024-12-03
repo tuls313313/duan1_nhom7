@@ -78,7 +78,7 @@ match ($act) {
   'user/order/giohang' => $home->nextthanhtoangiohang(),
   'user/orderOnl' => $home->thanhtoanonl(),
   'user/get_tt_onl' => $home->get_tt_onl(),
-
+  'search_product' => $home->search_product(),
 
 
 

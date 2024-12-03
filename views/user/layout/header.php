@@ -138,9 +138,9 @@
             </div>
           </div>
           <div class="col-lg-6 m-auto pdt15">
-            <form class="example" action="?">
+            <form class="example" action="?act=search_product" method="POST">
               <input type="text" class="input-search" placeholder="Tìm kiếm.." name="search">
-              <button type="submit" class="search-btn"><i class="fa fa-search"></i></button>
+              <button type="submit" name="submit" class="search-btn">Tìm kiếm</button>
             </form>
           </div>
           <div class="col-3 m-auto hidden-sm hidden-xs">

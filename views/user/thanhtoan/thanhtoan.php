@@ -60,7 +60,7 @@
                             <p><strong>Số lượng:</strong> <?= $_SESSION['buyNow']['quantity'] ?></p>
                         </div>
                        
-                            <span class="fw-bold"><?= $_SESSION['buyNow']['quantity'] ?></span>
+                            <!-- <span class="fw-bold"><?= $_SESSION['buyNow']['quantity'] ?></span> -->
                         
                     </div>
 

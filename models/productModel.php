@@ -172,4 +172,12 @@ class ProductModel
                 ";
         return $this->db->getAll($sql);
     }
+
+    public function searchProducts($keyword)
+    {
+        $keyword = "%" . $keyword . "%";
+        $sql = "SELECT * FROM product WHERE name LIKE '%$keyword%'";
+        // var_dump($sql);
+        return $this->db->getAll($sql);
+    }
 }
