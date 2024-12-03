@@ -73,10 +73,11 @@
                             <button type="submit" name="xemchitiet" class="btn btn-primary">Xem chi tiết</button>
                         <?php
                             if ($data['status_o'] != 4 && $data['status_o'] != 3 && $data['status_o'] != 2) { 
+                                if($data['payment_status'] = 0){
                         ?>
                                 <button type="submit" name="huydon" class="btn btn-danger ml-1">Hủy đơn</button>
                         <?php
-                            }
+                                }}
                         ?>
 
                         </form>

@@ -20,32 +20,28 @@ class CartModel
         $sql = "INSERT INTO `cart`(`id_user`,`total_money`) 
         VALUES ($userId,$total_money)";
         $id_cart = $this->db->insert($sql);
-
-        $sqlDetails = "INSERT INTO `cart_details`( `id_cart`, `id_pro`, `id_color`, `id_size`, `Quantity`, `money`, `total_money`) 
-        VALUES ('$id_cart','$id_pro','$id_color','$id_size','$quantity','$money','$total_money')";
+        
+        $sqlDetails = "INSERT INTO `cart_details`( `id_cart`, `id_pro`, `id_color`, `id_size`, `Quantity`, `money`) 
+        VALUES ('$id_cart','$id_pro','$id_color','$id_size','$quantity','$money')";
         return $this->db->insert($sqlDetails);
     }
 
     public function getAllDetailCart($userId)
     {
         $sql = "SELECT 
-                    cd.id_detail AS cart_detail_id,
                     c.id_cart AS cart_id,
                     c.status AS cart_status,
                     c.total_money AS cart_total_money,
+                    cd.id_detail AS cart_detail_id,
+                    cd.quantity AS product_quantity,
+                    cd.money AS product_price,
                     p.id AS product_id,
                     p.name AS product_name,
-                    p.price AS product_price,
                     p.img AS product_image,
                     col.id AS color_id,
                     col.name AS color_name,
                     s.id AS size_id,
-                    s.name AS size_name,
-                    cd.quantity AS product_quantity,
-                    cd.money AS product_unit_price,
-                    cd.total_money AS product_total_price,
-                    cd.created_at AS detail_created_at,
-                    cd.updated_at AS detail_updated_at
+                    s.name AS size_name
                 FROM 
                     cart_details cd
                 JOIN 
@@ -59,6 +55,7 @@ class CartModel
                 WHERE 
                     c.status = 0 
                     AND c.id_user = $userId";
+
         return $this->db->getAll($sql);
     }
 

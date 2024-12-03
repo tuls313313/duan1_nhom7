@@ -87,6 +87,7 @@
       <?php
       $tongTienGioHanng = 0;
       foreach ($listCart as $cart): ?>
+
         <div class="row cart-item align-items-center text-center">
           <div class="col-2">
             <img src="./uploads/upimg/<?= $cart['product_image'] ?>" class="cart-img" alt="">
@@ -96,10 +97,10 @@
           <div class="col-2 fs-5">
             <div class="d-flex justify-content-center align-items-center">
               <form action="?act=xoagiohang&id=<?= $cart['cart_detail_id'] ?>" method="post">
+
                 <button class="quantity bg-blue mr-2" name="tru"><i class="bi bi-dash"></i></button>
                 <input type="number" name="quantity" value="<?= $cart['product_quantity'] ?>" class="quantity-input" readonly>
-                <button class="quantity ml-2" name="cong"><i class="bi bi-plus"></i></button>
-              </form>
+                <button class="quantity ml-2" name="cong">+</button>
             </div>
             <p><?php if (isset($_SESSION['err_qua'])) echo $_SESSION['err_qua'];
                 unset($_SESSION['err_qua']); ?></p>
@@ -134,8 +135,8 @@
     <div class="cart-buttons">
       <p class="fs-4 text-success"><?php if (isset($_SESSION['success'])) echo $_SESSION['success'];
                                     unset($_SESSION['success']); ?></p>
-      <a href="?act=trangchu" class="btn btn-secondary fs-5">Tiếp tục mua sắm</a>
-      <a href="?act=thanhtoangiohang" class="btn btn-success fs-5">Thanh toán</a>
+      <a href="?act=product" class="btn btn-secondary fs-5">Tiếp tục mua sắm</a>
+      <a href="#" class="btn btn-success fs-5">Thanh toán</a>
     </div>
   </div>
 </div>

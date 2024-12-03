@@ -7,7 +7,7 @@ class ApiModel{
     }
 
     public function fetchTransactionHistory($password, $accountNumber, $token) {
-        $url = "https://api.web2m.com/historyapiacbv3/$password/$accountNumber/$token";
+        $url = "https://.web2m.com/historyapiacbv3/$password/$accountNumber/$token";
        
     
         $ch = curl_init();
