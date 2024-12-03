@@ -400,7 +400,13 @@ class HomeController
                 // var_dump($datasp);
                 require_once './views/user/product/product.php';
                 // header("Location: ?act=product");
+            }else{
+                require_once './views/user/product/product.php';
+                $_SESSION['err_search'] = 'Không tìm thấy sản phẩm nào có tên như vậy!';
             }
+        }else{
+            require_once './views/user/product/product.php';
+            $_SESSION['err_search'] = 'Không có sản phẩm nào!';
         }
         
     }

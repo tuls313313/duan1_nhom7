@@ -43,6 +43,7 @@
                     <div class="sort-left col-12 col-lg-6">
                         <h1 class="coll-name">Tất cả sản phẩm</h1>
                     </div>
+                    
                     <div class="sort-right col-12 col-lg-6">
                         <div class="sortby">
                             <label for="">Sắp xếp theo:</label>
@@ -67,9 +68,10 @@
                         </div>
                     </div>
                 </div>
+                <h3 class="text-danger"><?php if (isset($_SESSION['err_search'])) echo $_SESSION['err_search']; unset($_SESSION['err_search']); ?></h3>
                 <div class="loadmore row">
                     <!-- <?php var_dump($datasp) ?> -->
-                    <?php foreach ($datasp as $value) { ?>
+                    <?php if(isset($datasp)) foreach ($datasp as $value) { ?>
                         <div class="col-lg-4 col-md-6 col-12 mb-4">
                             <a href="?act=chitietsp&id=<?= $value['id']; ?>" class="product__new-item">
                                 <div class="card h-100">
