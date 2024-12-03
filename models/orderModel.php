@@ -67,13 +67,63 @@ class OrderModel
        $sql_tran = "INSERT INTO `transactions`( `id_order`) VALUES ('$order_id')";
 
        $id_tran = $this->db->insert($sql_tran);
-    $_SESSION['id_tran'] =  $id_tran;
+       $_SESSION['id_tran'] =  $id_tran;
        $sql_s = "INSERT INTO `order_items`(`order_id`, `product_id`, `id_color`, `id_size`, `quantity`, `price`) 
        VALUES ('$order_id','$product_id','$id_color','$id_size','$quantity','$price')";
        return $this->db->insert($sql_s);
 
 
     }
+
+    public function insertGiohang($id_cart, $user_id, $id_promotion, $name, $tel, $address, $payment) {
+        $name = "'$name'";
+        $address = "'$address'";
+    
+        $id_cart_arr = explode(",", $id_cart);
+        $order_ids = []; 
+    
+        foreach ($id_cart_arr as $id) {
+            $sql_o = "INSERT INTO orders (user_id, id_promotion, name, tel, shipping_address, total_amount, total_money, payment)
+                      SELECT $user_id, $id_promotion, $name, $tel, $address, SUM(cd.Quantity), SUM(cd.total_money), $payment
+                      FROM cart_details cd
+                      JOIN cart c ON c.id_cart = cd.id_cart
+                      WHERE cd.id_cart = $id
+                      GROUP BY cd.id_cart;";
+    
+            $data_o = $this->db->insert($sql_o); 
+            if ($data_o) {
+                $sql_oi = "INSERT INTO order_items (order_id, product_id, id_color, id_size, quantity, price)
+                           SELECT
+                               $data_o AS order_id,
+                               cd.id_pro,
+                               cd.id_color,
+                               cd.id_size,
+                               cd.Quantity,
+                               cd.money
+                           FROM cart_details cd
+                           WHERE cd.id_cart = $id;";
+                $this->db->insert($sql_oi);
+    
+                $sql_tran = "INSERT INTO transactions (id_order, status)
+                             VALUES ($data_o, 0);";
+                $this->db->excute($sql_tran);
+    
+                $sql_cart = "UPDATE cart
+                             SET status = 1
+                             WHERE id_cart = $id;";
+                $this->db->excute($sql_cart);
+    
+                $order_ids[] = $data_o;
+            }
+        }
+    
+        $_SESSION['data_o'] = $order_ids;
+        return $order_ids;
+    }
+    
+    
+    
+    
 
     
     

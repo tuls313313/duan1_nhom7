@@ -17,7 +17,7 @@
         </div>
         <div class="card-body">
             <h5 class="text-success"><?php if (isset($_SESSION['success']))
-                echo $_SESSION['success'] ?></h5>
+                echo $_SESSION['success']; unset($_SESSION['success']) ?></h5>
                 <p class="fs-custom"><strong> Tên tài khoản: </strong> <?= $_SESSION['account']['user']; ?></p>
             <p class="fs-custom"><strong> Email: </strong> <?= $_SESSION['account']['email']; ?></p>
             <p class="fs-custom"> <strong> Số điện thoại: </strong> <?= $_SESSION['account']['tel']; ?></p>

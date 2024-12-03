@@ -238,6 +238,7 @@ class AccountController
         }else{
             if(isset($_POST['huydon'])){
                 $this->account->huydon($id_oi);
+                $_SESSION['success'] = 'đã hủy thành công '.$id_oi.'';
                 header('location: ?act=user/order_history');
             }
         }

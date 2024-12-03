@@ -31,7 +31,7 @@
                                         <th>Tên Sản phẩm</th>
                                         <th>Size</th>
                                         <th>Màu</th>
-                                        <th>Giá</th>
+                                        <th>số lượng</th>
                                         <th>Hình ảnh</th>
                                         <th>Hành động</th>
                                     </tr>

@@ -1,6 +1,9 @@
 <?php include './views/user/layout/header.php'; ?>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+
 <style>
+  
   .cart-container {
     background-color: #ffffff;
     padding: 20px;
@@ -52,6 +55,20 @@
   .text-small {
     font-size: 14px;
   }
+
+  .quantity-btn {
+    font-size: 20px;
+    cursor: pointer;
+    padding: 5px;
+  }
+
+  .quantity-input {
+    text-align: center;
+    width: 50px;
+    font-size: 14px;
+  }
+
+  
 </style>
 
 <div class="container">
@@ -64,10 +81,10 @@
         <div class="col-2 fs-4">Màu</div>
         <div class="col-1 fs-4">Kích thước</div>
         <div class="col-2 fs-4">Thành tiền</div>
-        <div class="col-1 fs-4">acttion</div>
+        <div class="col-1 fs-4">Hành động</div>
       </div>
     </div>
-
+    <h1 class="text-danger mt-2 mb-2"><?php if(isset($_SESSION['err'])) echo $_SESSION['err']; unset($_SESSION['err']); ?></h1>
     <div class="cart-body">
       <?php
       $tongTienGioHanng = 0;
@@ -79,8 +96,14 @@
           </div>
           <div class="col-2 fs-5"><?= number_format($cart['product_price'], 0, ',', '.') . ' VNĐ' ?></div>
           <div class="col-2 fs-5">
-            <input type="number" min="1" value="<?= $cart['product_quantity'] ?>" name="product_quantity"
-              class="text-center">
+            <div class="d-flex justify-content-center align-items-center">
+            <form action="?act=xoagiohang&id=<?= $cart['cart_detail_id'] ?>" method="post">
+
+            <button class="quantity bg-blue mr-2"name="tru"><i class="bi bi-dash"></i></button>
+            <input type="number" name="quantity" value="<?= $cart['product_quantity'] ?>" class="quantity-input" readonly>
+            <button class="quantity ml-2" name="cong">cong</button>
+            </div>
+          <p><?php if(isset( $_SESSION['err_qua'])) echo $_SESSION['err_qua']; unset( $_SESSION['err_qua']);?></p>
           </div>
           <div class="col-2 fs-5"><?= $cart['color_name'] ?></div>
           <div class="col-1 fs-5"><?= $cart['size_name'] ?></div>
@@ -90,22 +113,17 @@
             $tongTienGioHanng += $tongTien;
             echo number_format($tongTien, 0, ',', '.') . ' VNĐ';
             ?>
-
           </div>
           <div class="col-1">
-            <form action="?act=xoagiohang" method="post">
               <input type="hidden" name="cart_id" value="<?= $cart['cart_id'] ?>">
               <input type="hidden" name="cart_detail_id" value="<?= $cart['cart_detail_id'] ?>">
-              <button name="delete" onclick="return confirm('Bạn có chắc muốn xóa sản phẩm này không?')"
-                class="btn btn-danger">
+              <button name="delete" onclick="return confirm('Bạn có chắc muốn xóa sản phẩm này không?')" class="btn btn-danger">
                 Xóa
               </button>
             </form>
           </div>
-
         </div>
-
-      <?php endforeach;?>
+      <?php $_SESSION['listcart'] = $listCart; endforeach; ?>
     </div>
     <hr>
 

@@ -167,10 +167,7 @@ class HomeController
     public function giohang()
     {
         if (isset($_SESSION['account']['id'])) {
-            // var_dump($categories);die;
             $userId = intval($_SESSION['account']['id']);
-            // $id_cart = $_POST['id_cart'];
-            // var_dump($id_cart);die();
             $listCart = $this->cart->getAllDetailCart($userId);
             //  var_dump($listCart);
         }
@@ -185,12 +182,27 @@ class HomeController
             $deleteCart = $this->cart->deleteCart($cart_detail_id,$cart_id);
             $_SESSION['success'] = 'Xóa giỏ hàng thành công';
            header('location: ?act=giohang');
-        }else{
+        }else if(isset($_POST['cong'])){
+            $id = $_GET['id'];
+            $this->cart->congCartDetails($id);
             header('location: ?act=giohang');
+        }else if(isset($_POST['tru'])){
+            $quantity = $_POST['quantity']; 
+            if ($quantity > 1) {
+                $id = $_GET['id'];
+                $this->cart->truCartDetails($id); 
+                header('location: ?act=giohang'); 
+                exit(); 
+            } else {
+                $_SESSION['err_qua'] = 'Số lượng không được nhỏ hơn 1'; 
+                header('location: ?act=giohang'); 
+                exit();
+            }
+            
+           
+           
         }
     }
-
-
 
     public function thanhtoan()
 { 
@@ -233,7 +245,6 @@ class HomeController
         require_once './views/user/thanhtoan/thanhtoanonl.php';
     }
 
-    
     public function get_tt_onl() {
         $password = 'Tu3132004';
         $accountNumber = '4729781';
@@ -257,9 +268,43 @@ class HomeController
             }
         }
     }
-    
-    
 
+    public function thanhtoangiohang(){
+        if(isset($_SESSION['listcart'])){
+            require_once './views/user/giohang/ttgiohang.php';
+        }else{
+            header('location: ?act=giohang');
+            $_SESSION['err'] = 'Bạn chưa có đơn hàng nào cần thanh toán';
+        }
+    }
+    public function nextthanhtoangiohang(){
+        if (isset($_POST['submitTTgioh'])) {
+            $check = false;
+            $id_cart = $_POST['id_cart'];
+            $user_id = $_SESSION['account']['id'];
+            $id_promotion = "null";
+            $name = $_POST['hoten'];
+            $address = $_POST['diachi'];
+            $tel = $_POST['sdt'];
+            $payment = $_POST['payment'];
+            $id_cart_string = implode(',', $id_cart );
+            if ((int)$payment === 0) {  
+                $_SESSION['success'] = 'bạn đã mua hàng thành công giỏ hàng Mã: ' .$id_cart_string.'';
+                unset($_SESSION['listcart']);
+                header("Location: ?act=user/order_history"); 
+            }else{
+                header("Location: ?act=thanhtoangiohang"); 
+                $_SESSION['err'] = 'Chức năng thanh toán online đóng khi mua thông qua giỏ hàng';
+                $check = true;
+            }
+            if(!$check){
+                $this->order->insertGiohang($id_cart_string,$user_id,$id_promotion,$name,$tel,$address,$payment);
+            }
+           
+            
+        }
+        
+    }
 
     public function chitietsp()
     {
