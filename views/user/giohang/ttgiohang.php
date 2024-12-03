@@ -1,6 +1,6 @@
-<?php include './views/user/layout/header.php'; 
+<?php include './views/user/layout/header.php';
 
-use Vtiful\Kernel\Format;?>
+use Vtiful\Kernel\Format; ?>
 
 <!-- Nhúng Bootstrap 5 từ CDN -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -60,10 +60,10 @@ use Vtiful\Kernel\Format;?>
                             $sizeName = $item['size_name'];
                             $quantity = $item['product_quantity'];
                             $id_cart = $item['cart_id'];
-                           
-                            ?>
+
+                    ?>
                             <div class="row mb-3 align-items-center">
-                            <input type="hidden" name="id_cart[]" value="<?= $id_cart ?>">
+                                <input type="hidden" name="id_cart[]" value="<?= $id_cart ?>">
                                 <div class="col-4">
                                     <img src="./uploads/upimg/<?= htmlspecialchars($productImage) ?>" alt="Product Image"
                                         class="img-fluid rounded">
@@ -75,10 +75,10 @@ use Vtiful\Kernel\Format;?>
                                     <p><strong>Màu sắc:</strong> <?= htmlspecialchars($colorName) ?></p>
                                     <p><strong>Số lượng:</strong> <?= htmlspecialchars($quantity) ?></p>
                                 </div>
-                                <span class="fw-bold"><?= htmlspecialchars($quantity) ?></span>
+                                <!-- <span class="fw-bold"><?= htmlspecialchars($quantity) ?></span> -->
                             </div>
-                            <?php
-                            
+                    <?php
+
                         }
                     } else {
                         echo "Không có sản phẩm trong giỏ hàng.";
@@ -88,15 +88,16 @@ use Vtiful\Kernel\Format;?>
                     <div class="mb-3">
                         <label for="promotion" class="form-label fw-semibold">Nhập mã giảm giá</label>
                         <div class="input-group">
-                            <input type="text" name="promotion" id="promotion" class="form-control"placeholder="Nhập mã tại đây">
+                            <input type="text" name="promotion" id="promotion" class="form-control" placeholder="Nhập mã tại đây">
                             <button type="button" class="btn btn-outline-primary">Áp dụng</button>
-                            
+
                         </div>
                     </div>
-                    
+
                     <div class="mb-3">
                         <label for="payment" class="form-label fw-semibold">Phương thức thanh toán</label>
-                        <h4 class="text-danger mt-2 mb-2"> <?php if(isset( $_SESSION['err'])) echo  $_SESSION['err']; unset( $_SESSION['err']); ?> </h4>
+                        <h4 class="text-danger mt-2 mb-2"> <?php if (isset($_SESSION['err'])) echo  $_SESSION['err'];
+                                                            unset($_SESSION['err']); ?> </h4>
                         <select name="payment" class="form-control">
                             <option value="0">Thanh toán khi nhận hàng</option>
                             <option value="1">Thanh toán online</option>
