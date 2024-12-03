@@ -145,6 +145,7 @@ class HomeController
             header("Location: ?act=chitietsp&id=$id_pro");
             exit();
         }
+        
 
         if (isset($_POST['submitAdd'])) {
             
@@ -205,7 +206,7 @@ class HomeController
     }
 
     public function thanhtoan()
-{ 
+    { 
     $user_id = $_SESSION['account']['id'];
     $id_promotion = "null";
     $name = $_POST['hoten'];
@@ -251,7 +252,9 @@ class HomeController
         $token = '5972E99F-7D13-D6F9-6104-104038B2FDB6';
         $data = $this->api->fetchTransactionHistory($password, $accountNumber, $token);
         $_SESSION['data_bank'] = $data;
-    
+        echo '<pre>';
+        print_r($data);
+        echo '<pre>';
         if (!empty($_SESSION['data_bank'])) {
             $dataBank = $_SESSION['data_bank'];
             $found = false;
@@ -269,51 +272,14 @@ class HomeController
         }
     }
 
-    public function thanhtoangiohang(){
-        if(isset($_SESSION['listcart'])){
-            require_once './views/user/giohang/ttgiohang.php';
-        }else{
-            header('location: ?act=giohang');
-            $_SESSION['err'] = 'Bạn chưa có đơn hàng nào cần thanh toán';
-        }
-    }
-    public function nextthanhtoangiohang(){
-        if (isset($_POST['submitTTgioh'])) {
-            $check = false;
-            $id_cart = $_POST['id_cart'];
-            $user_id = $_SESSION['account']['id'];
-            $id_promotion = "null";
-            $name = $_POST['hoten'];
-            $address = $_POST['diachi'];
-            $tel = $_POST['sdt'];
-            $payment = $_POST['payment'];
-            $id_cart_string = implode(',', $id_cart );
-            if ((int)$payment === 0) {  
-                $_SESSION['success'] = 'bạn đã mua hàng thành công giỏ hàng Mã: ' .$id_cart_string.'';
-                unset($_SESSION['listcart']);
-                header("Location: ?act=user/order_history"); 
-            }else{
-                header("Location: ?act=thanhtoangiohang"); 
-                $_SESSION['err'] = 'Chức năng thanh toán online đóng khi mua thông qua giỏ hàng';
-                $check = true;
-            }
-            if(!$check){
-                $this->order->insertGiohang($id_cart_string,$user_id,$id_promotion,$name,$tel,$address,$payment);
-            }
-           
-            
-        }
-        
-    }
+   
 
     public function chitietsp()
     {
         $productId = $_GET['id'];
         $chitietspall = $this->chiTietSp->getAllProductDetails($productId);
         $chitietspone = $this->chiTietSp->getOneProductDetails($productId);
-
         $danhMucLienQuan = $this->chiTietSp->getAllProductsByCategory($productId);
-        
         $listComment = $this->comment->commentProduct($productId);
         $congView = $this->home->congView($productId);
         require_once './views/user/chitietsp/chitietsp.php';

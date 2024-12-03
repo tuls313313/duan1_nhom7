@@ -10,13 +10,12 @@ class OrderModel
     }
 
     public function getAllOrder() {
-        $sql = "
-        SELECT 
+        $sql = "SELECT 
                 o.*, 
                 a.user AS user_name
             FROM orders o
-            LEFT JOIN account a ON o.user_id = a.id
-        ";
+            LEFT JOIN account a ON o.user_id = a.id 
+            ORDER BY o.id_order DESC";
         return $this->db->getAll($sql);
     }
     

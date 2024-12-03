@@ -4,7 +4,7 @@
 <!-- content -->
 <div class="container">
   <!-- slide show -->
-<!-- <?php include './views/user/layout/slider.php'; ?> -->
+<?php include './views/user/layout/slider.php'; ?>
 
   <!-- end slide show -->
   <div class="product">
