@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Dec 04, 2024 at 05:37 AM
+-- Generation Time: Dec 04, 2024 at 11:48 AM
 -- Server version: 8.0.30
 -- PHP Version: 8.1.10
 
@@ -70,19 +70,18 @@ CREATE TABLE `cart` (
 --
 
 INSERT INTO `cart` (`id_cart`, `id_user`, `status`, `total_money`, `created_at`, `updated_at`) VALUES
-(110, 3, 1, '540000.00', '2024-12-02 11:18:29', '2024-12-02 11:18:42'),
-(112, 3, 1, '100000.00', '2024-12-03 02:57:58', '2024-12-03 03:26:33'),
-(113, 3, 1, '540000.00', '2024-12-03 03:25:31', '2024-12-03 03:26:33'),
-(114, 3, 1, '100000.00', '2024-12-03 03:25:42', '2024-12-03 03:26:33'),
-(115, 3, 1, '540000.00', '2024-12-03 03:46:21', '2024-12-03 03:50:01'),
-(116, 3, 1, '200000.00', '2024-12-03 03:46:37', '2024-12-03 03:50:01'),
-(119, 3, 0, '150000.00', '2024-12-03 13:42:21', '2024-12-03 13:42:21'),
-(120, 3, 0, '150000.00', '2024-12-03 14:02:50', '2024-12-03 14:02:50'),
-(121, 3, 0, '150000.00', '2024-12-03 14:03:44', '2024-12-03 14:03:44'),
-(122, 3, 0, '150000.00', '2024-12-03 14:04:58', '2024-12-03 14:04:58'),
-(123, 3, 0, '150000.00', '2024-12-03 14:05:33', '2024-12-03 14:05:33'),
-(124, 3, 0, '150000.00', '2024-12-03 14:05:50', '2024-12-03 14:05:50'),
-(125, 3, 0, '540000.00', '2024-12-03 14:06:15', '2024-12-03 14:06:15');
+(150, 3, 1, '1080000.00', '2024-12-04 09:37:53', '2024-12-04 10:38:49'),
+(151, 3, 1, '150000.00', '2024-12-04 09:38:11', '2024-12-04 10:38:49'),
+(153, 3, 1, '200000.00', '2024-12-04 10:54:13', '2024-12-04 11:15:02'),
+(154, 3, 1, '540000.00', '2024-12-04 11:03:55', '2024-12-04 11:15:02'),
+(155, 3, 1, '100000.00', '2024-12-04 11:15:21', '2024-12-04 11:15:51'),
+(156, 3, 1, '150000.00', '2024-12-04 11:15:29', '2024-12-04 11:15:51'),
+(157, 3, 1, '100000.00', '2024-12-04 11:25:52', '2024-12-04 11:25:56'),
+(158, 3, 1, '100000.00', '2024-12-04 11:26:04', '2024-12-04 11:26:09'),
+(159, 3, 1, '200000.00', '2024-12-04 11:31:23', '2024-12-04 11:31:38'),
+(160, 3, 1, '200000.00', '2024-12-04 11:38:02', '2024-12-04 11:38:10'),
+(161, 3, 1, '540000.00', '2024-12-04 11:41:11', '2024-12-04 11:48:29'),
+(162, 3, 1, '200000.00', '2024-12-04 11:48:23', '2024-12-04 11:48:29');
 
 -- --------------------------------------------------------
 
@@ -105,14 +104,18 @@ CREATE TABLE `cart_details` (
 --
 
 INSERT INTO `cart_details` (`id_detail`, `id_cart`, `id_pro`, `id_color`, `id_size`, `Quantity`, `money`) VALUES
-(86, 110, 9, 1, 1, 1, '540000.00'),
-(88, 112, 7, 1, 1, 1, '100000.00'),
-(89, 113, 9, 2, 1, 1, '540000.00'),
-(90, 114, 7, 1, 1, 1, '100000.00'),
-(91, 115, 9, 2, 2, 9, '540000.00'),
-(92, 116, 8, 2, 2, 7, '200000.00'),
-(95, 124, 2, 1, 1, 2, '150000.00'),
-(96, 125, 9, 1, 1, 1, '540000.00');
+(121, 150, 9, 1, 1, 2, '540000.00'),
+(122, 151, 2, 3, 1, 1, '150000.00'),
+(124, 153, 3, 2, 1, 2, '100000.00'),
+(125, 154, 9, 2, 2, 1, '540000.00'),
+(126, 155, 7, 1, 1, 1, '100000.00'),
+(127, 156, 2, 1, 2, 1, '150000.00'),
+(128, 157, 3, 2, 2, 1, '100000.00'),
+(129, 158, 7, 1, 1, 1, '100000.00'),
+(130, 159, 7, 1, 1, 2, '100000.00'),
+(131, 160, 8, 2, 2, 1, '200000.00'),
+(132, 161, 9, 2, 2, 1, '540000.00'),
+(133, 162, 8, 2, 2, 1, '200000.00');
 
 -- --------------------------------------------------------
 
@@ -217,13 +220,8 @@ CREATE TABLE `orders` (
 --
 
 INSERT INTO `orders` (`id_order`, `user_id`, `id_promotion`, `name`, `tel`, `shipping_address`, `status_order`, `payment`, `total_amount`, `total_money`, `create_at`, `update_at`) VALUES
-(301, 3, NULL, 'admin', '971810376', 'Lạng sơn', 3, 0, 1, '540000.00', '2024-12-02 11:18:42', '2024-12-03 03:02:01'),
-(302, 3, NULL, ' admin', '971810376', ' Lạng sơn', 1, 1, 1, '100000.00', '2024-12-03 03:10:33', '2024-12-03 03:10:33'),
-(303, 3, NULL, 'admin', '971810376', 'Lạng sơn', 1, 0, 1, '100000.00', '2024-12-03 03:26:33', '2024-12-03 03:26:33'),
-(304, 3, NULL, 'admin', '971810376', 'Lạng sơn', 1, 0, 1, '540000.00', '2024-12-03 03:26:33', '2024-12-03 03:26:33'),
-(305, 3, NULL, 'admin', '971810376', 'Lạng sơn', 1, 0, 1, '100000.00', '2024-12-03 03:26:33', '2024-12-03 03:26:33'),
-(306, 3, NULL, 'admin', '971810376', 'Lạng sơn', 1, 0, 9, '540000.00', '2024-12-03 03:50:01', '2024-12-03 03:50:01'),
-(307, 3, NULL, 'admin', '971810376', 'Lạng sơn', 3, 0, 7, '200000.00', '2024-12-03 03:50:01', '2024-12-03 03:50:37');
+(359, 3, NULL, ' admin', '971810376', ' Lạng sơn', 1, 0, 1, '540000.00', '2024-12-04 11:48:12', '2024-12-04 11:48:12'),
+(360, 3, NULL, 'admin', '971810376', 'Lạng sơn', 1, 0, 2, '740000.00', '2024-12-04 11:48:29', '2024-12-04 11:48:29');
 
 -- --------------------------------------------------------
 
@@ -234,25 +232,22 @@ INSERT INTO `orders` (`id_order`, `user_id`, `id_promotion`, `name`, `tel`, `shi
 CREATE TABLE `order_items` (
   `id` int NOT NULL COMMENT 'pk',
   `order_id` int NOT NULL COMMENT 'fk order',
-  `product_id` int NOT NULL COMMENT 'fk product',
-  `id_color` int NOT NULL,
-  `id_size` int NOT NULL,
-  `quantity` int NOT NULL COMMENT 'số lượng',
-  `price` decimal(10,2) NOT NULL COMMENT 'giá'
+  `product_id` int DEFAULT NULL COMMENT 'fk product',
+  `cart_id` int DEFAULT NULL COMMENT 'fk cart',
+  `id_color` int DEFAULT NULL,
+  `id_size` int DEFAULT NULL,
+  `quantity` int DEFAULT NULL COMMENT 'số lượng',
+  `price` decimal(10,2) DEFAULT NULL COMMENT 'giá'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `order_items`
 --
 
-INSERT INTO `order_items` (`id`, `order_id`, `product_id`, `id_color`, `id_size`, `quantity`, `price`) VALUES
-(261, 301, 9, 1, 1, 1, '540000.00'),
-(262, 302, 7, 1, 1, 1, '100000.00'),
-(263, 303, 7, 1, 1, 1, '100000.00'),
-(264, 304, 9, 2, 1, 1, '540000.00'),
-(265, 305, 7, 1, 1, 1, '100000.00'),
-(266, 306, 9, 2, 2, 9, '540000.00'),
-(267, 307, 8, 2, 2, 7, '200000.00');
+INSERT INTO `order_items` (`id`, `order_id`, `product_id`, `cart_id`, `id_color`, `id_size`, `quantity`, `price`) VALUES
+(318, 359, 9, NULL, 1, 1, 1, '540000.00'),
+(319, 360, 9, 161, 2, 2, 1, '540000.00'),
+(320, 360, 8, 162, 2, 2, 1, '200000.00');
 
 -- --------------------------------------------------------
 
@@ -279,11 +274,11 @@ CREATE TABLE `product` (
 
 INSERT INTO `product` (`id`, `id_categories`, `name`, `views`, `price`, `img`, `description`, `status`, `created_at`, `updated_at`) VALUES
 (1, 1, 'Nike Air Max', 58, '200000.00', 'z6070082608776_57d52e9b9afecc4fccee66a5818783cf.jpg', 'Nike Air Max – Biểu tượng của sự thoải mái và phong cách\r\nNike Air Max là dòng giày thể thao mang tính biểu tượng của Nike, nổi bật với công nghệ đệm khí Air Max Unit, mang lại cảm giác êm ái vượt trội và thiết kế thời thượng. Đây là một lựa chọn hoàn hảo cho cả hoạt động hàng ngày và các buổi luyện tập.\r\n\r\nChất liệu:\r\nThân giày: Làm từ vải dệt cao cấp hoặc da tổng hợp, giúp giày nhẹ, thoáng khí, và bền bỉ.\r\nĐế giữa: Công nghệ Air Max tích hợp túi khí lớn, tăng cường khả năng hấp thụ lực khi di chuyển.\r\nĐế ngoài: Cao su chống trơn trượt, giúp người dùng thoải mái trên mọi địa hình.\r\n\r\nThiết kế:\r\nKiểu dáng hiện đại, phối màu sắc độc đáo, phù hợp với nhiều phong cách khác nhau.\r\nLogo Nike Swoosh được in nổi bật ở hai bên, tạo điểm nhấn đặc trưng.\r\nCổ giày và lưỡi gà được đệm êm, mang lại sự thoải mái tối đa khi mang trong thời gian dài.\r\n\r\nCông nghệ:\r\nAir Max Unit: Túi khí lớn ở đế giữa mang lại sự êm ái và đàn hồi tuyệt vời, giảm tác động lên bàn chân khi vận động.\r\nHệ thống đệm tiên tiến hỗ trợ tốt cho các hoạt động thể thao như chạy bộ, đi bộ, hoặc tập gym.\r\n\r\nPhong cách ứng dụng:\r\nThể thao: Lý tưởng cho các buổi tập luyện nhờ khả năng hỗ trợ và độ bền.\r\nThời trang: Là món đồ không thể thiếu cho những ai yêu thích phong cách streetwear và phong cách năng động.\r\n\r\nMàu sắc:\r\nPhổ biến với các tông màu kinh điển như trắng, đen, xám, hoặc các phiên bản phối màu giới hạn.\r\n\r\nKết luận:\r\nNike Air Max không chỉ là một đôi giày thể thao, mà còn là biểu tượng của phong cách, sự đổi mới và công nghệ tiên tiến. Đây là lựa chọn hoàn hảo cho cả những người yêu thể thao và tín đồ thời trang.                                                                        ', 0, '2024-11-18 14:20:51', '2024-11-29 14:39:12'),
-(2, 2, 'Clarks Leather Shoes', 327, '150000.00', 'z6070082608776_57d52e9b9afecc4fccee66a5818783cf.jpg', 'Giày công sở da cao cấp', 0, '2024-11-18 14:20:51', '2024-12-03 16:08:20'),
-(3, 3, 'Birkenstock Arizona', 360, '100000.00', 'z6070082608776_57d52e9b9afecc4fccee66a5818783cf.jpg', 'Dép quai thoáng mát', 0, '2024-11-18 14:20:51', '2024-12-03 13:29:24'),
-(7, 3, 'Birkenstock Arizona b', 144, '100000.00', 'z6070082608776_57d52e9b9afecc4fccee66a5818783cf.jpg', 'Dép quai thoáng mát b', 0, '2024-11-26 02:35:30', '2024-12-03 13:29:11'),
-(8, 1, 'Nike Air Max A', 233, '200000.00', 'z6070082608776_57d52e9b9afecc4fccee66a5818783cf.jpg', 'Nike Air Max – Biểu tượng của sự thoải mái và phong cách\r\nNike Air Max là dòng giày thể thao mang tính biểu tượng của Nike, nổi bật với công nghệ đệm khí Air Max Unit, mang lại cảm giác êm ái vượt trội và thiết kế thời thượng. Đây là một lựa chọn hoàn hảo cho cả hoạt động hàng ngày và các buổi luyện tập.\r\n\r\nChất liệu:\r\nThân giày: Làm từ vải dệt cao cấp hoặc da tổng hợp, giúp giày nhẹ, thoáng khí, và bền bỉ.\r\nĐế giữa: Công nghệ Air Max tích hợp túi khí lớn, tăng cường khả năng hấp thụ lực khi di chuyển.\r\nĐế ngoài: Cao su chống trơn trượt, giúp người dùng thoải mái trên mọi địa hình.\r\n\r\nThiết kế:\r\nKiểu dáng hiện đại, phối màu sắc độc đáo, phù hợp với nhiều phong cách khác nhau.\r\nLogo Nike Swoosh được in nổi bật ở hai bên, tạo điểm nhấn đặc trưng.\r\nCổ giày và lưỡi gà được đệm êm, mang lại sự thoải mái tối đa khi mang trong thời gian dài.\r\n\r\nCông nghệ:\r\nAir Max Unit: Túi khí lớn ở đế giữa mang lại sự êm ái và đàn hồi tuyệt vời, giảm tác động lên bàn chân khi vận động.\r\nHệ thống đệm tiên tiến hỗ trợ tốt cho các hoạt động thể thao như chạy bộ, đi bộ, hoặc tập gym.\r\n\r\nPhong cách ứng dụng:\r\nThể thao: Lý tưởng cho các buổi tập luyện nhờ khả năng hỗ trợ và độ bền.\r\nThời trang: Là món đồ không thể thiếu cho những ai yêu thích phong cách streetwear và phong cách năng động.\r\n\r\nMàu sắc:\r\nPhổ biến với các tông màu kinh điển như trắng, đen, xám, hoặc các phiên bản phối màu giới hạn.\r\n\r\nKết luận:\r\nNike Air Max không chỉ là một đôi giày thể thao, mà còn là biểu tượng của phong cách, sự đổi mới và công nghệ tiên tiến. Đây là lựa chọn hoàn hảo cho cả những người yêu thể thao và tín đồ thời trang.                                                                                                ', 0, '2024-11-26 02:59:58', '2024-12-03 14:06:05'),
-(9, 2, 'Oxford Elegance', 694, '540000.00', 'z6070082608776_57d52e9b9afecc4fccee66a5818783cf.jpg', '        Oxford Elegance là một mẫu giày công sở cao cấp với thiết kế thanh lịch và tinh tế, mang lại sự sang trọng cho người sử dụng. \r\nDưới đây là mô tả chi tiết về sản phẩm này: \r\n\r\nChất liệu: Được làm từ da thật cao cấp, giày Oxford Elegance sở hữu một bề mặt bóng mịn và bền bỉ. Da có độ mềm mại và độ chắc chắn giúp giày luôn giữ được form dáng đẹp mắt.  \r\n\r\n-Thiết kế\r\nMũi giày: Mũi giày vuông nhẹ, tạo nên vẻ lịch lãm nhưng không kém phần thoải mái. Mặt trên: Thiết kế đơn giản với những đường chỉ khéo léo, không có quá nhiều chi tiết phức tạp nhưng vẫn rất nổi bật. \r\n\r\nCổ giày: Cổ giày được làm vừa vặn với chân, ôm sát mà không gây cảm giác khó chịu. Màu sắc: Chủ yếu có sẵn trong các màu sắc cổ điển như đen, nâu và nâu đậm. Những màu này dễ dàng kết hợp với nhiều trang phục khác nhau, từ bộ vest cho đến quần tây.  \r\n\r\nĐế giày: Đế giày được làm từ cao su chống trơn, giúp tăng cường độ bám và độ bền khi di chuyển trên các bề mặt khác nhau, đồng thời mang đến sự thoải mái khi sử dụng lâu dài.\r\n\r\nỨng dụng: Oxford Elegance là sự lựa chọn lý tưởng cho các sự kiện trang trọng, như đi làm, dự tiệc cưới, hay các cuộc họp quan trọng. Nó cũng là món đồ không thể thiếu trong tủ đồ của những quý ông yêu thích sự thanh lịch và chuyên nghiệp. \r\n \r\nGiày Oxford Elegance không chỉ mang đến sự thoải mái mà còn thể hiện được phong cách lịch lãm, khiến bạn luôn nổi bật trong mọi hoàn cảnh.                                                                                                                                                            ', 0, '2024-11-26 03:01:35', '2024-12-03 15:05:43');
+(2, 2, 'Clarks Leather Shoes', 329, '150000.00', 'z6070082608776_57d52e9b9afecc4fccee66a5818783cf.jpg', 'Giày công sở da cao cấp', 0, '2024-11-18 14:20:51', '2024-12-04 11:15:26'),
+(3, 3, 'Birkenstock Arizona', 369, '100000.00', 'z6070082608776_57d52e9b9afecc4fccee66a5818783cf.jpg', 'Dép quai thoáng mát', 0, '2024-11-18 14:20:51', '2024-12-04 11:25:49'),
+(7, 3, 'Birkenstock Arizona b', 156, '100000.00', 'z6070082608776_57d52e9b9afecc4fccee66a5818783cf.jpg', 'Dép quai thoáng mát b', 0, '2024-11-26 02:35:30', '2024-12-04 11:31:21'),
+(8, 1, 'Nike Air Max A', 241, '200000.00', 'z6070082608776_57d52e9b9afecc4fccee66a5818783cf.jpg', 'Nike Air Max – Biểu tượng của sự thoải mái và phong cách\r\nNike Air Max là dòng giày thể thao mang tính biểu tượng của Nike, nổi bật với công nghệ đệm khí Air Max Unit, mang lại cảm giác êm ái vượt trội và thiết kế thời thượng. Đây là một lựa chọn hoàn hảo cho cả hoạt động hàng ngày và các buổi luyện tập.\r\n\r\nChất liệu:\r\nThân giày: Làm từ vải dệt cao cấp hoặc da tổng hợp, giúp giày nhẹ, thoáng khí, và bền bỉ.\r\nĐế giữa: Công nghệ Air Max tích hợp túi khí lớn, tăng cường khả năng hấp thụ lực khi di chuyển.\r\nĐế ngoài: Cao su chống trơn trượt, giúp người dùng thoải mái trên mọi địa hình.\r\n\r\nThiết kế:\r\nKiểu dáng hiện đại, phối màu sắc độc đáo, phù hợp với nhiều phong cách khác nhau.\r\nLogo Nike Swoosh được in nổi bật ở hai bên, tạo điểm nhấn đặc trưng.\r\nCổ giày và lưỡi gà được đệm êm, mang lại sự thoải mái tối đa khi mang trong thời gian dài.\r\n\r\nCông nghệ:\r\nAir Max Unit: Túi khí lớn ở đế giữa mang lại sự êm ái và đàn hồi tuyệt vời, giảm tác động lên bàn chân khi vận động.\r\nHệ thống đệm tiên tiến hỗ trợ tốt cho các hoạt động thể thao như chạy bộ, đi bộ, hoặc tập gym.\r\n\r\nPhong cách ứng dụng:\r\nThể thao: Lý tưởng cho các buổi tập luyện nhờ khả năng hỗ trợ và độ bền.\r\nThời trang: Là món đồ không thể thiếu cho những ai yêu thích phong cách streetwear và phong cách năng động.\r\n\r\nMàu sắc:\r\nPhổ biến với các tông màu kinh điển như trắng, đen, xám, hoặc các phiên bản phối màu giới hạn.\r\n\r\nKết luận:\r\nNike Air Max không chỉ là một đôi giày thể thao, mà còn là biểu tượng của phong cách, sự đổi mới và công nghệ tiên tiến. Đây là lựa chọn hoàn hảo cho cả những người yêu thể thao và tín đồ thời trang.                                                                                                ', 0, '2024-11-26 02:59:58', '2024-12-04 11:48:20'),
+(9, 2, 'Oxford Elegance', 708, '540000.00', 'z6070082608776_57d52e9b9afecc4fccee66a5818783cf.jpg', '        Oxford Elegance là một mẫu giày công sở cao cấp với thiết kế thanh lịch và tinh tế, mang lại sự sang trọng cho người sử dụng. \r\nDưới đây là mô tả chi tiết về sản phẩm này: \r\n\r\nChất liệu: Được làm từ da thật cao cấp, giày Oxford Elegance sở hữu một bề mặt bóng mịn và bền bỉ. Da có độ mềm mại và độ chắc chắn giúp giày luôn giữ được form dáng đẹp mắt.  \r\n\r\n-Thiết kế\r\nMũi giày: Mũi giày vuông nhẹ, tạo nên vẻ lịch lãm nhưng không kém phần thoải mái. Mặt trên: Thiết kế đơn giản với những đường chỉ khéo léo, không có quá nhiều chi tiết phức tạp nhưng vẫn rất nổi bật. \r\n\r\nCổ giày: Cổ giày được làm vừa vặn với chân, ôm sát mà không gây cảm giác khó chịu. Màu sắc: Chủ yếu có sẵn trong các màu sắc cổ điển như đen, nâu và nâu đậm. Những màu này dễ dàng kết hợp với nhiều trang phục khác nhau, từ bộ vest cho đến quần tây.  \r\n\r\nĐế giày: Đế giày được làm từ cao su chống trơn, giúp tăng cường độ bám và độ bền khi di chuyển trên các bề mặt khác nhau, đồng thời mang đến sự thoải mái khi sử dụng lâu dài.\r\n\r\nỨng dụng: Oxford Elegance là sự lựa chọn lý tưởng cho các sự kiện trang trọng, như đi làm, dự tiệc cưới, hay các cuộc họp quan trọng. Nó cũng là món đồ không thể thiếu trong tủ đồ của những quý ông yêu thích sự thanh lịch và chuyên nghiệp. \r\n \r\nGiày Oxford Elegance không chỉ mang đến sự thoải mái mà còn thể hiện được phong cách lịch lãm, khiến bạn luôn nổi bật trong mọi hoàn cảnh.                                                                                                                                                            ', 0, '2024-11-26 03:01:35', '2024-12-04 11:48:05');
 
 -- --------------------------------------------------------
 
@@ -349,13 +344,8 @@ CREATE TABLE `transactions` (
 --
 
 INSERT INTO `transactions` (`id`, `id_order`, `status`, `create_at`, `update_at`) VALUES
-(107, 301, 0, '2024-12-02 11:18:42', '2024-12-02 11:18:42'),
-(108, 302, 1, '2024-12-03 03:10:33', '2024-12-03 03:17:32'),
-(109, 303, 0, '2024-12-03 03:26:33', '2024-12-03 03:26:33'),
-(110, 304, 0, '2024-12-03 03:26:33', '2024-12-03 03:26:33'),
-(111, 305, 0, '2024-12-03 03:26:33', '2024-12-03 03:26:33'),
-(112, 306, 0, '2024-12-03 03:50:01', '2024-12-03 03:50:01'),
-(113, 307, 0, '2024-12-03 03:50:01', '2024-12-03 03:50:01');
+(149, 359, 0, '2024-12-04 11:48:12', '2024-12-04 11:48:12'),
+(150, 360, 0, '2024-12-04 11:48:29', '2024-12-04 11:48:29');
 
 -- --------------------------------------------------------
 
@@ -502,13 +492,13 @@ ALTER TABLE `account`
 -- AUTO_INCREMENT for table `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `id_cart` int NOT NULL AUTO_INCREMENT COMMENT 'pk', AUTO_INCREMENT=126;
+  MODIFY `id_cart` int NOT NULL AUTO_INCREMENT COMMENT 'pk', AUTO_INCREMENT=163;
 
 --
 -- AUTO_INCREMENT for table `cart_details`
 --
 ALTER TABLE `cart_details`
-  MODIFY `id_detail` int NOT NULL AUTO_INCREMENT COMMENT 'pk', AUTO_INCREMENT=97;
+  MODIFY `id_detail` int NOT NULL AUTO_INCREMENT COMMENT 'pk', AUTO_INCREMENT=134;
 
 --
 -- AUTO_INCREMENT for table `categories`
@@ -532,13 +522,13 @@ ALTER TABLE `comment`
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id_order` int NOT NULL AUTO_INCREMENT COMMENT 'pk', AUTO_INCREMENT=308;
+  MODIFY `id_order` int NOT NULL AUTO_INCREMENT COMMENT 'pk', AUTO_INCREMENT=361;
 
 --
 -- AUTO_INCREMENT for table `order_items`
 --
 ALTER TABLE `order_items`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT COMMENT 'pk', AUTO_INCREMENT=268;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT COMMENT 'pk', AUTO_INCREMENT=322;
 
 --
 -- AUTO_INCREMENT for table `product`
@@ -562,7 +552,7 @@ ALTER TABLE `size`
 -- AUTO_INCREMENT for table `transactions`
 --
 ALTER TABLE `transactions`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=114;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=151;
 
 --
 -- AUTO_INCREMENT for table `varianti`
