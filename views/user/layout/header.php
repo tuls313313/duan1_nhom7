@@ -144,12 +144,12 @@
             </form>
           </div>
           <div class="col-3 m-auto hidden-sm hidden-xs">
+          
             <?php if (isset($_SESSION['account'])) {
               ?>
               <div class="item-car clearfix">
                 <a href="?act=giohang" class="header__second__cart--icon">
                   <i class="fas fa-shopping-cart"></i>
-                  <span id="header__second__cart--notice" class="header__second__cart--notice">3</span>
                 </a>
               </div>
               <?php

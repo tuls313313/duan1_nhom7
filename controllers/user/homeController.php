@@ -121,8 +121,8 @@ class HomeController
         }
         $id_pro = $_GET['id'];
         $userId = $_SESSION['account']['id'];
-        $id_size = $_POST['id_size'] ?? null;
-        $id_color = $_POST['id_color'] ?? null;
+        $id_size = $_POST['id_size'];
+        $id_color = $_POST['id_color'];
         $quantity = intval($_POST['quantity']);
         if (empty($quantity) >= 1) {
             $_SESSION['err_q'] = 'Vui lòng nhập số lượng hợp lệ và lớn hơn 1';
@@ -146,7 +146,6 @@ class HomeController
             exit();
         }
         if (isset($_POST['submitAdd'])) {
-
             $this->cart->addToCart($userId, $total_money, $id_pro, $id_color, $id_size, $quantity, $money);
             header("Location: ?act=giohang");
             exit();
@@ -157,8 +156,7 @@ class HomeController
             $_SESSION['buyNow'] = [
                 'id_pro' => $id_pro,
                 'id_size' => $id_size,
-                'id_color' =>
-                    $id_color,
+                'id_color' => $id_color,
                 'quantity' => $quantity,
                 'money' => $money,
                 'total_money' => $total_money,
@@ -175,6 +173,8 @@ class HomeController
             $userId = intval($_SESSION['account']['id']);
             $listCart = $this->cart->getAllDetailCart($userId);
             $_SESSION['list_cart'] = $listCart;
+        }else{
+
         }
         require_once './views/user/giohang/giohang.php';
     }
@@ -221,7 +221,7 @@ class HomeController
         $quantity = $_SESSION['buyNow']['quantity'];
         $price = $_SESSION['buyNow']['money'];
         $total_money = intval($quantity * $price);
-
+        // var_dump($_SESSION['buyNow']);
         if (isset($_POST['submit'])) {
             $id_order = $this->order->insertOrder(
                 $user_id,$id_promotion,$name,$tel,$address,$payment,
@@ -230,7 +230,6 @@ class HomeController
             );
             $data = $this->order->getOneOrder_detail($id_order);
             $data1 = $this->order->getOneOrder($data['order_id']);
-            // var_dump( $data);
             $_SESSION['data'] = $data;
             $_SESSION['data1'] = $data1;
             $magd = $_SESSION['data1']['id_order'];
@@ -252,6 +251,7 @@ class HomeController
     }
 
     public function next_tt_giohang(){
+        $err = false;
         $user_id = $_SESSION['account']['id'];
         $id_promotion = "null";
         $name = $_POST['hoten'];
@@ -261,8 +261,10 @@ class HomeController
         $total_amount = $_POST['total_amount'];
         $total_money = $_POST['total_money'];
         $cart_id = $_POST['cart_id'];
+        if(empty($cart_id)){     
+            header("Location: ?act=product");
+        }
         $cart_id_str = implode(',', $cart_id);
-
         if(isset($_POST['submit'])){
             $this->order->insertGioHang($user_id,$id_promotion,$name,$tel,
             $address,$payment,$total_amount,$total_money,$cart_id_str);
@@ -281,7 +283,7 @@ class HomeController
                 header("Location: ?act=user/orderOnl&id=$magd");
     
             }
-        } 
+        }
     }
 
     public function thanhtoanonl()

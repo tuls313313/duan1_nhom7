@@ -84,7 +84,8 @@
     <h1 class="text-danger mt-2 mb-2"><?php if (isset($_SESSION['err'])) echo $_SESSION['err']; unset($_SESSION['err']); ?></h1>
     <div class="cart-body">
       <?php
-      foreach ($listCart as $cart):?>
+      foreach ($listCart as $cart): ?>
+       
           <form action="?act=xoagiohang&id=<?= $cart['cart_detail_id'] ?>" method="post">
         <div class="row cart-item align-items-center text-center">
           <div class="col-2">
@@ -117,7 +118,7 @@
           </div>
         </div>
         </form>
-      <?php $_SESSION['listcart'] = $listCart; endforeach; ?>
+      <?php endforeach; ?>
     </div>
     <hr>
 
@@ -129,7 +130,10 @@
       <p class="fs-4 text-success"><?php if (isset($_SESSION['success'])) echo $_SESSION['success'];
                                     unset($_SESSION['success']); ?></p>
       <a href="?act=product" class="btn btn-secondary fs-5">Tiếp tục mua sắm</a>
-      <a href="?act=ttgiohang" class="btn btn-success fs-5">Thanh toán</a>
+      <?php
+      if (!empty($listCart)) {
+      echo '<a href="?act=ttgiohang" name="thanhtoan" class="btn btn-success fs-5">Thanh toán</a>'; 
+      }?>
     </div>
   </div>
 </div>

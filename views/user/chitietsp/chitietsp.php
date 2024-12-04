@@ -250,6 +250,8 @@
                                 }
                                 ?>
                                 <div class="form-check form-check-inline">
+                                <p><?= $variant['variant_quantity'] ?></p>
+
                                     <input type="radio" id="color_<?= $colorId ?>" class="form-check-input circle-1"
                                         name="id_color" value="<?= $colorId ?>"
                                         onclick="filterSizesByColor(<?= $colorId ?>)">
@@ -257,6 +259,7 @@
                                         <?= $colorName; ?>
                                     </label>
                                 </div>
+
                             <?php } ?>
                         </div>
                     </div>
@@ -273,11 +276,13 @@
                             <?php
                             $sizeDisplayed = [];
                             foreach ($chitietspall as $variant) {
+                               
                                 if (!in_array($variant['size_name'], $sizeDisplayed)) {
                                     echo '<div class="form-check form-check-inline">';
                                     echo '<input type="radio" class="form-check-input circle-1" name="id_size" value="' . $variant['size_id'] . '" id="size_' . $variant['size_id'] . '">';
                                     echo '<label class="form-check-label" for="size_' . $variant['size_id'] . '">' . $variant['size_name'] . '</label>';
                                     echo '</div>';
+                                    
                                     $sizeDisplayed[] = $variant['size_name'];
                                 }
                             }
@@ -447,38 +452,42 @@
     <?php include './views/user/layout/footer.php'; ?>
     <script src="./views/user/assets/js/main.js"></script>
     <script src="./views/user/assets/js/zoomsl.js"></script>
-    <!-- kích thước và size -->
     <script>
-        const allProductVariants = <?php echo json_encode($chitietspall); ?>;
+    const allProductVariants = <?php echo json_encode($chitietspall); ?>;
 
-        function filterSizesByColor(colorId) {
-            const availableSizes = allProductVariants.filter(variant => variant.color_id === colorId);
+    function filterSizesByColor(colorId) {
+        const availableSizes = allProductVariants.filter(variant => variant.color_id === colorId);
 
-            const sizeOptionsContainer = document.getElementById('size-options');
-            sizeOptionsContainer.innerHTML = '';
+        const sizeOptionsContainer = document.getElementById('size-options');
+        sizeOptionsContainer.innerHTML = '';
 
-            availableSizes.forEach((variant, index) => {
-                const sizeOption = document.createElement('div');
-                sizeOption.classList.add('form-check', 'form-check-inline');
-                const input = document.createElement('input');
-                input.type = 'radio';
-                input.id = 'size_' + index;
-                input.classList.add('form-check-input', 'circle-1');
-                input.name = 'id_size';
-                input.value = variant.size_id;
+        availableSizes.forEach((variant) => {
+            const sizeOption = document.createElement('div');
+            sizeOption.classList.add('form-check', 'form-check-inline');
 
-                const label = document.createElement('label');
-                label.classList.add('form-check-label');
-                label.setAttribute('for', 'size_' + index);
-                label.textContent = variant.size_name;
+            const input = document.createElement('input');
+            input.type = 'radio';
+            input.classList.add('form-check-input', 'circle-1');
+            input.name = 'id_size';
+            input.value = variant.size_id;
 
-                sizeOption.appendChild(input);
-                sizeOption.appendChild(label);
+            const label = document.createElement('label');
+            label.classList.add('form-check-label');
+            label.textContent = variant.size_name;
 
-                sizeOptionsContainer.appendChild(sizeOption);
-            });
-        }
-    </script>
+            const quantityLabel = document.createElement('label');
+            label.classList.add('variant-quantity');
+            quantityLabel.textContent = variant.variant_quantity;
+
+            sizeOption.appendChild(quantityLabel);
+            sizeOption.appendChild(input);
+            sizeOption.appendChild(label);
+
+            sizeOptionsContainer.appendChild(sizeOption);
+        });
+    }
+</script>
+
     <script>
         $(document).ready(function () {
             $(".big-img").imagezoomsl({

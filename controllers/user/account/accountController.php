@@ -7,7 +7,7 @@ class AccountController
 {
     public $account;
     public  $color;
-
+    public $cart;
     public $size;
 
     public function __construct()
@@ -15,6 +15,7 @@ class AccountController
         $this->account = new UserModels();
         $this->color = new ColorModel();
         $this->size = new SizeModel();
+        $this->cart = new CartModel();
     }
     public function insert()
     {
@@ -109,8 +110,10 @@ class AccountController
     
             if (!$err) {
                 $checkacc = $this->account->checklogin($_POST['email'], $_POST['password']);
+               
                 if ($checkacc) {
                     $_SESSION['account'] = $checkacc;
+                    
                     if($_SESSION['account']['status'] == 1) {
                         $_SESSION['login_err'] = 'Tài khoản của bạn đã bị khóa vui lòng liên hệ admin để biết thêm chi tiết';
                         unset($_SESSION['account']); 
