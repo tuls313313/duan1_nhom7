@@ -133,7 +133,7 @@
       <p class="fs-4 text-success"><?php if (isset($_SESSION['success'])) echo $_SESSION['success'];
                                     unset($_SESSION['success']); ?></p>
       <a href="?act=product" class="btn btn-secondary fs-5">Tiếp tục mua sắm</a>
-      <a href="#" class="btn btn-success fs-5">Thanh toán</a>
+      <a href="?act=ttgiohang" class="btn btn-success fs-5">Thanh toán</a>
     </div>
   </div>
 </div>
