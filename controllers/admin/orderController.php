@@ -25,6 +25,7 @@ class OrderController
         // var_dump($id_order);die;
 
         $detail = $this->order->detailOrder($id_order);
+        $detailOrderItem = $this->order->detailOrderItem($id_order);
         // var_dump($detail); die;
         // if($detail){ 
         require_once './views/admin/Orders/detailOrder.php';
