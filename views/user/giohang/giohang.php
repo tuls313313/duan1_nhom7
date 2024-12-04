@@ -86,50 +86,51 @@
     </div>
     <h1 class="text-danger mt-2 mb-2"><?php if(isset($_SESSION['err'])) echo $_SESSION['err']; unset($_SESSION['err']); ?></h1>
     <div class="cart-body">
+
       <?php
-      $tongTienGioHanng = 0;
-      foreach ($listCart as $cart):?>
-      
+      foreach ($listCart as $cart): var_dump($cart);?>
+          <form action="?act=xoagiohang&id=<?= $cart['cart_detail_id'] ?>" method="post">
         <div class="row cart-item align-items-center text-center">
           <div class="col-2">
             <img src="./uploads/upimg/<?= $cart['product_image'] ?>" class="cart-img" alt="">
             <div class="text-small"><?= $cart['product_name'] ?></div>
           </div>
-          <div class="col-2 fs-5"><?= number_format($cart['product_price'], 0, ',', '.') . ' VNĐ' ?></div>
+          <input type="hidden" name="cart_detail_money" value="<?= $cart['cart_detail_money'] ?>"> 
+          <div class="col-2 fs-5"><?= number_format($cart['cart_detail_money'], 0, ',', '.') . ' VNĐ' ?></div>
           <div class="col-2 fs-5">
             <div class="d-flex justify-content-center align-items-center">
-            <form action="?act=xoagiohang&id=<?= $cart['cart_detail_id'] ?>" method="post">
-
             <button class="quantity bg-blue mr-2"name="tru"><i class="bi bi-dash"></i></button>
-            <input type="number" name="quantity" value="<?= $cart['product_quantity'] ?>" class="quantity-input" readonly>
+            <input type="number" name="quantity" value="<?= $cart['cart_detail_quantity'] ?>" class="quantity-input" readonly>
             <button class="quantity ml-2" name="cong">+</button>
             </div>
-          <p><?php if(isset( $_SESSION['err_qua'])) echo $_SESSION['err_qua']; unset( $_SESSION['err_qua']);?></p>
+            <p class="text-danger"><?php if(isset( $_SESSION['err_qua'])) echo $_SESSION['err_qua']; unset( $_SESSION['err_qua']);?></p>
+
           </div>
           <div class="col-2 fs-5"><?= $cart['color_name'] ?></div>
           <div class="col-1 fs-5"><?= $cart['size_name'] ?></div>
           <div class="col-2 fs-5">
-            <?php
-            $tongTien = $cart['product_price'] * $cart['product_quantity'];
-            $tongTienGioHanng += $tongTien;
-            echo number_format($tongTien, 0, ',', '.') . ' VNĐ';
-            ?>
+            <?= number_format($cart['cart_total_money'],0,',','.') .' Vnđ';?>
           </div>
+
           <div class="col-1">
               <input type="hidden" name="cart_id" value="<?= $cart['cart_id'] ?>">
               <input type="hidden" name="cart_detail_id" value="<?= $cart['cart_detail_id'] ?>">
               <button name="delete" onclick="return confirm('Bạn có chắc muốn xóa sản phẩm này không?')" class="btn btn-danger">
                 Xóa
               </button>
-            </form>
           </div>
+
         </div>
+
+        </form>
+
       <?php $_SESSION['listcart'] = $listCart; endforeach; ?>
+
     </div>
     <hr>
 
     <div class="cart-total text-danger">
-      Thành tiền: <?= number_format($tongTienGioHanng, 0, ',', '.') . ' VNĐ' ?>
+      Thành tiền: 
     </div>
 
     <div class="cart-buttons">

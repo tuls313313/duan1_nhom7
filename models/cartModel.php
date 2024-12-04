@@ -31,8 +31,8 @@ class CartModel
                     c.status AS cart_status,
                     c.total_money AS cart_total_money,
                     cd.id_detail AS cart_detail_id,
-                    cd.quantity AS product_quantity,
-                    cd.money AS product_price,
+                    cd.quantity AS cart_detail_quantity,
+                    cd.money AS cart_detail_money,
                     p.id AS product_id,
                     p.name AS product_name,
                     p.img AS product_image,
@@ -65,13 +65,28 @@ class CartModel
         return $this->db->excute($sql_cart);
     }
 
-    public function congCartDetails($id){
-        $sql = "UPDATE `cart_details` SET `Quantity` = `Quantity` + 1 WHERE id_detail = $id;";
-        return $this->db->excute($sql);
+    public function congCartDetails($cart_detail_id,$cart_id,$quantity,$money){
+       
+        $sql_cs = "UPDATE `cart_details` SET `Quantity` = `Quantity` + 1 WHERE id_detail = $cart_detail_id;";
+        $this->db->excute( $sql_cs);
+
+        $sql_cs_sl = "SELECT  `Quantity` FROM `cart_details` WHERE id_detail = $cart_detail_id;";
+        $data_cs_sl = $this->db->getOne( $sql_cs_sl);
+
+        $total_money = $data_cs_sl['Quantity'] * $money;
+        $sql_c = "UPDATE `cart` SET `total_money`= $total_money WHERE id_cart = $cart_id";
+        return $this->db->excute($sql_c);
     }
-    public function truCartDetails($id){
-        $sql = "UPDATE `cart_details` SET `Quantity` = `Quantity` - 1 WHERE id_detail = $id;";
-        return $this->db->excute($sql);
+    public function truCartDetails($cart_detail_id,$cart_id,$quantity,$money){
+        $sql_cs = "UPDATE `cart_details` SET `Quantity` = `Quantity` - 1 WHERE id_detail = $cart_detail_id;";
+        $this->db->excute($sql_cs);
+
+        $sql_cs_sl = "SELECT  `Quantity` FROM `cart_details` WHERE id_detail = $cart_detail_id;";
+        $data_cs_sl = $this->db->getOne( $sql_cs_sl);
+
+        $total_money = $data_cs_sl['Quantity'] * $money;
+        $sql_c = "UPDATE `cart` SET `total_money`= $total_money WHERE id_cart = $cart_id";
+        return $this->db->excute($sql_c);
     }
 
 

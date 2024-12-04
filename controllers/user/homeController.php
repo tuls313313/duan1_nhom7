@@ -145,8 +145,6 @@ class HomeController
             header("Location: ?act=chitietsp&id=$id_pro");
             exit();
         }
-        
-
         if (isset($_POST['submitAdd'])) {
             
             $this->cart->addToCart($userId, $total_money, $id_pro, $id_color, $id_size, $quantity, $money);
@@ -170,38 +168,34 @@ class HomeController
         if (isset($_SESSION['account']['id'])) {
             $userId = intval($_SESSION['account']['id']);
             $listCart = $this->cart->getAllDetailCart($userId);
-            //  var_dump($listCart);
         }
         require_once './views/user/giohang/giohang.php';
     }
 
     public function xoacart()
     {
+        $cart_id = $_POST['cart_id'];
+        $cart_detail_id = $_POST['cart_detail_id'];
+        $quantity = $_POST['quantity'];
+        $money = $_POST['cart_detail_money'];
+        // var_dump($cart_detail_id,$cart_id,$quantity,$money);
         if(isset($_POST['delete'])){
-            $cart_id = $_POST['cart_id'];
-            $cart_detail_id = $_POST['cart_detail_id'];
-            $deleteCart = $this->cart->deleteCart($cart_detail_id,$cart_id);
+            $this->cart->deleteCart($cart_detail_id,$cart_id);
             $_SESSION['success'] = 'Xóa giỏ hàng thành công';
-           header('location: ?act=giohang');
+            header('location: ?act=giohang');
         }else if(isset($_POST['cong'])){
-            $id = $_GET['id'];
-            $this->cart->congCartDetails($id);
+            $this->cart->congCartDetails($cart_detail_id,$cart_id,$quantity,$money);
             header('location: ?act=giohang');
         }else if(isset($_POST['tru'])){
-            $quantity = $_POST['quantity']; 
             if ($quantity > 1) {
-                $id = $_GET['id'];
-                $this->cart->truCartDetails($id); 
+                $this->cart->truCartDetails($cart_detail_id,$cart_id,$quantity,$money); 
                 header('location: ?act=giohang'); 
                 exit(); 
             } else {
                 $_SESSION['err_qua'] = 'Số lượng không được nhỏ hơn 1'; 
                 header('location: ?act=giohang'); 
                 exit();
-            }
-            
-           
-           
+            } 
         }
     }
 
