@@ -178,7 +178,7 @@ class HomeController
         $cart_detail_id = $_POST['cart_detail_id'];
         $quantity = $_POST['quantity'];
         $money = $_POST['cart_detail_money'];
-        // var_dump($cart_detail_id,$cart_id,$quantity,$money);
+        var_dump($cart_detail_id,$cart_id,$quantity,$money);
         if(isset($_POST['delete'])){
             $this->cart->deleteCart($cart_detail_id,$cart_id);
             $_SESSION['success'] = 'Xóa giỏ hàng thành công';

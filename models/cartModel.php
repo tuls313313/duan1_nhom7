@@ -59,9 +59,9 @@ class CartModel
         return $this->db->getAll($sql);
     }
 
-    public function deleteCart($cart_id, $detail_id)
+    public function deleteCart( $cart_detail_id,$cart_id)
     {
-        $sqlCartDetails = "DELETE FROM `cart_details` WHERE id_detail = $detail_id";
+        $sqlCartDetails = "DELETE FROM `cart_details` WHERE id_detail = $cart_detail_id";
         $this->db->getOne($sqlCartDetails); 
 
         $sqlCart = "DELETE FROM `cart` WHERE id_cart = $cart_id";

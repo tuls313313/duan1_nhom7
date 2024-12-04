@@ -84,7 +84,7 @@
     <h1 class="text-danger mt-2 mb-2"><?php if (isset($_SESSION['err'])) echo $_SESSION['err']; unset($_SESSION['err']); ?></h1>
     <div class="cart-body">
       <?php
-      foreach ($listCart as $cart): var_dump($cart);?>
+      foreach ($listCart as $cart):?>
           <form action="?act=xoagiohang&id=<?= $cart['cart_detail_id'] ?>" method="post">
         <div class="row cart-item align-items-center text-center">
           <div class="col-2">
