@@ -9,12 +9,14 @@ class CartModel
         $this->db = new Database();
     }
 
-    public function getAllCart() {
+    public function getAllCart()
+    {
         $sql = "SELECT * FROM cart WHERE status = 0";
         return $this->db->getAll($sql);
     }
 
-    public function addToCart($userId,$total_money,$id_pro,$id_color,$id_size,$quantity,$money) {
+    public function addToCart($userId, $total_money, $id_pro, $id_color, $id_size, $quantity, $money)
+    {
         $sql = "INSERT INTO `cart`(`id_user`,`total_money`) 
         VALUES ($userId,$total_money)";
         $id_cart = $this->db->insert($sql);
@@ -57,12 +59,13 @@ class CartModel
         return $this->db->getAll($sql);
     }
 
-    public function deleteCart($cart_detail_id,$cart_id) 
+    public function deleteCart($cart_id, $detail_id)
     {
-        $sql_cart_details = "DELETE FROM `cart_details` WHERE id_detail = $cart_detail_id";
-        $this->db->excute($sql_cart_details); 
-        $sql_cart = "DELETE FROM cart WHERE id_cart = $cart_id";
-        return $this->db->excute($sql_cart);
+        $sqlCartDetails = "DELETE FROM `cart_details` WHERE id_detail = $detail_id";
+        $this->db->getOne($sqlCartDetails); 
+
+        $sqlCart = "DELETE FROM `cart` WHERE id_cart = $cart_id";
+        return $this->db->getOne($sqlCart);
     }
 
     public function congCartDetails($cart_detail_id,$cart_id,$quantity,$money){

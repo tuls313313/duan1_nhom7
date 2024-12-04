@@ -9,13 +9,13 @@
                     <div class="product__filter-trademark">
                         <h4 class="product__filter-heading">Thương hiệu</h4>
                         <ul id="thuonghieu" class="product__filter-ckeckbox">
-                            <?php foreach ($data_cate as $cate) {?>
+                            <?php if(isset($data_cate)) foreach ($data_cate as $cate) {?>
                                 <li class="product__filter-item">
                                     <input type="checkbox" class="form-check-input checkthuonghieu"
-                                        id="th<?= $cate['id'] ?>" name="option2"
-                                        value="<?= $cate['name'] ?>">
+                                        id="th<?= $cate['id'] ?? null ?>" name="option2"
+                                        value="<?= $cate['name'] ?? null ?>">
                                     <label class="form-check-label ml-4"
-                                        for="th<?= $cate['id'] ?>"><?= $cate['name'] ?> </label>
+                                        for="th<?= $cate['id'] ?? null ?>"><?= $cate['name'] ?? null ?> </label>
                                 </li>
                             <?php } ?>
                         </ul>
@@ -23,13 +23,13 @@
                     <div class="product__filter-size">
                         <h4 class="product__filter-heading">Size</h4>
                         <ul id="size" class="product__filter-ckeckbox">
-                            <?php foreach ($listSize as $size) {
+                            <?php if(isset($listSize)) foreach ($listSize as $size) {
                                 if ($size['status'] != 1) { ?>
                                     <li class="product__filter-item">
                                         <label class="form-check-label" for="size">
                                             <input type="checkbox" class="form-check-input checksize" id="size" name="option2"
-                                                value="<?= $size['id'] ?>">
-                                            <span><?= $size['name'] ?></span>
+                                                value="<?= $size['id'] ?? null ?>">
+                                            <span><?= $size['name'] ?? null ?></span>
                                         </label>
                                     </li>
                                 <?php }
@@ -43,6 +43,7 @@
                     <div class="sort-left col-12 col-lg-6">
                         <h1 class="coll-name">Tất cả sản phẩm</h1>
                     </div>
+                    
                     <div class="sort-right col-12 col-lg-6">
                         <div class="sortby">
                             <label for="">Sắp xếp theo:</label>
@@ -67,9 +68,10 @@
                         </div>
                     </div>
                 </div>
+                <h3 class="text-danger"><?php if (isset($_SESSION['err_search'])) echo $_SESSION['err_search']; unset($_SESSION['err_search']); ?></h3>
                 <div class="loadmore row">
                     <!-- <?php var_dump($datasp) ?> -->
-                    <?php foreach ($datasp as $value) { ?>
+                    <?php if(isset($datasp)) foreach ($datasp as $value) { ?>
                         <div class="col-lg-4 col-md-6 col-12 mb-4">
                             <a href="?act=chitietsp&id=<?= $value['id']; ?>" class="product__new-item">
                                 <div class="card h-100">

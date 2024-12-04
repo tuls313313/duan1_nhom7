@@ -3,7 +3,6 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
 
 <style>
-  
   .cart-container {
     background-color: #ffffff;
     padding: 20px;
@@ -67,8 +66,6 @@
     width: 50px;
     font-size: 14px;
   }
-
-  
 </style>
 
 <div class="container">
@@ -84,9 +81,8 @@
         <div class="col-1 fs-4">Hành động</div>
       </div>
     </div>
-    <h1 class="text-danger mt-2 mb-2"><?php if(isset($_SESSION['err'])) echo $_SESSION['err']; unset($_SESSION['err']); ?></h1>
+    <h1 class="text-danger mt-2 mb-2"><?php if (isset($_SESSION['err'])) echo $_SESSION['err']; unset($_SESSION['err']); ?></h1>
     <div class="cart-body">
-
       <?php
       foreach ($listCart as $cart): var_dump($cart);?>
           <form action="?act=xoagiohang&id=<?= $cart['cart_detail_id'] ?>" method="post">
@@ -119,13 +115,9 @@
                 Xóa
               </button>
           </div>
-
         </div>
-
         </form>
-
       <?php $_SESSION['listcart'] = $listCart; endforeach; ?>
-
     </div>
     <hr>
 
@@ -134,7 +126,8 @@
     </div>
 
     <div class="cart-buttons">
-      <p class="fs-4 text-success"><?php if(isset($_SESSION['success'])) echo $_SESSION['success']; unset($_SESSION['success']); ?></p>
+      <p class="fs-4 text-success"><?php if (isset($_SESSION['success'])) echo $_SESSION['success'];
+                                    unset($_SESSION['success']); ?></p>
       <a href="?act=product" class="btn btn-secondary fs-5">Tiếp tục mua sắm</a>
       <a href="#" class="btn btn-success fs-5">Thanh toán</a>
     </div>
