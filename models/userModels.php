@@ -99,7 +99,7 @@ class UserModels
                     WHERE 
                         o.id_order = $id_oi;
                     ";
-        return $this->db->getOne($sql);
+        return $this->db->getAll($sql);
     }
 
     public function huydon($id){

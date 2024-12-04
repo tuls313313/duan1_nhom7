@@ -70,60 +70,40 @@ class OrderModel
        $sql_s = "INSERT INTO `order_items`(`order_id`, `product_id`, `id_color`, `id_size`, `quantity`, `price`) 
        VALUES ('$order_id','$product_id','$id_color','$id_size','$quantity','$price')";
        return $this->db->insert($sql_s);
-
-
     }
 
-    public function insertGiohang($id_cart, $user_id, $id_promotion, $name, $tel, $address, $payment) {
+    public function insertGioHang($user_id, $id_promotion, $name, $tel, $shipping_address, $payment, $total_amount, $total_money, 
+    $cart_id_str) {
+
         $name = "'$name'";
-        $address = "'$address'";
-    
-        $id_cart_arr = explode(",", $id_cart);
-        $order_ids = []; 
-    
-        foreach ($id_cart_arr as $id) {
-            $sql_o = "INSERT INTO orders (user_id, id_promotion, name, tel, shipping_address, total_amount, total_money, payment)
-                      SELECT $user_id, $id_promotion, $name, $tel, $address, SUM(cd.Quantity), SUM(cd.total_money), $payment
-                      FROM cart_details cd
-                      JOIN cart c ON c.id_cart = cd.id_cart
-                      WHERE cd.id_cart = $id
-                      GROUP BY cd.id_cart;";
-    
-            $data_o = $this->db->insert($sql_o); 
-            if ($data_o) {
-                $sql_oi = "INSERT INTO order_items (order_id, product_id, id_color, id_size, quantity, price)
-                           SELECT
-                               $data_o AS order_id,
-                               cd.id_pro,
-                               cd.id_color,
-                               cd.id_size,
-                               cd.Quantity,
-                               cd.money
-                           FROM cart_details cd
-                           WHERE cd.id_cart = $id;";
-                $this->db->insert($sql_oi);
-    
-                $sql_tran = "INSERT INTO transactions (id_order, status)
-                             VALUES ($data_o, 0);";
-                $this->db->excute($sql_tran);
-    
-                $sql_cart = "UPDATE cart
-                             SET status = 1
-                             WHERE id_cart = $id;";
-                $this->db->excute($sql_cart);
-    
-                $order_ids[] = $data_o;
-            }
-        }
-    
-        $_SESSION['data_o'] = $order_ids;
-        return $order_ids;
-    }
-    
-    
-    
-    
+        $shipping_address = "'$shipping_address'";
 
+        $sql_o = "INSERT INTO `orders` (`user_id`, `id_promotion`, `name`, `tel`, `shipping_address`, `payment`, `total_amount`, `total_money`) 
+                  VALUES ($user_id, $id_promotion, $name, $tel, $shipping_address, $payment, $total_amount, $total_money)";
+        $id_o = $this->db->insert($sql_o);
+        $_SESSION['id_o'] = $id_o;
+        if (!$id_o) {
+            return false; 
+        }
+        $sql_tran = "INSERT INTO `transactions` (`id_order`) VALUES ('$id_o')";
+        $id_tran = $this->db->insert($sql_tran);
+        $_SESSION['id_tran'] = $id_tran;
     
+        if (!$id_tran) {
+            return false; 
+        }
+        if (!is_array($cart_id_str)) {
+            $cart_id = [$cart_id_str]; 
+        }
+        $cart_id_str = implode(",", $cart_id);
+        $sql_oi = "INSERT INTO `order_items` (`order_id`, `cart_id`, `product_id`, `id_color`, `id_size`, `quantity`, `price`)
+                   SELECT $id_o, cd.id_cart, cd.id_pro, cd.id_color, cd.id_size, cd.Quantity, cd.money
+                   FROM cart_details cd
+                   WHERE cd.id_cart IN ($cart_id_str)";
+
+        $this->db->insert($sql_oi);
+        $sql_update = "UPDATE cart SET status = 1 WHERE id_cart IN ($cart_id_str);";
+        return $this->db->excute($sql_update);
+    }  
     
 }

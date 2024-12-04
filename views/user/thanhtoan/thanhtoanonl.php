@@ -1,10 +1,6 @@
 <?php
-use PHPMailer\PHPMailer\PHPMailer;
-use PHPMailer\PHPMailer\Exception;
-
 $email = 'tuntph46150@fpt.edu.vn';
 $emailA = 'pcls313313@gmail.com';
-
 $trangthai = 'đang tìm dữ liệu';
 $stk = '4729781';
 $bank = 'Acb';
@@ -18,49 +14,18 @@ $qr_url_1 = 'https://api.vietqr.io/' . $bank . '/' . $stk . '/' . $formatted_mon
 
 if (!empty($_SESSION['data_bank'])) {
     $dataBank = $_SESSION['data_bank'];
-    $found = false;
-
+    $check = false;
     foreach ($dataBank['transactions'] as $transaction) {
         if (strpos($transaction['description'], $magd) !== false) {
-            $found = true;
+            $check = true;
+            $trangthai = 'Hoàn thành';
             break;
         }
     }
-    if ($found) {
-        $mail = new PHPMailer(true);
-            try {
-                $mail->isSMTP();
-                $mail->Host = 'smtp.gmail.com';
-                $mail->SMTPAuth = true;
-                $mail->Username = $email;
-                $mail->Password = 'juyzncaekhnnkxzz';
-                $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
-                $mail->Port = 587;
-                $mail->CharSet = 'UTF-8';
-                $mail->setFrom($email, 'Nhóm 7');
-                $mail->addAddress($emailA);
-                $mail->isHTML(true);
-                $mail->Subject = 'Thông báo thanh toán ' .$magd;
-                $mail->Body = '
-                    Tài khoản: ' . $name . '.
-                    <br>Atm ' . $bank . ' stk:' . $stk . '.
-                    <br>số tiền: ' . $formatted_money1 . '.
-                    <br><br>
-                    <hr>
-                    <p><strong>Thông tin liên hệ:</strong><br>
-                    Nhóm 7<br>
-                    Email: <a href="mailto:' . $email . '">' . $email . '</a><br>
-                    Tel: +84 123 456 789</p>
-                    <p><small>&copy; 2024 Nhóm 7. Tất cả các thông tin đều được bảo mật.</small></p>
-                ';
-                $mail->send();
-                $_SESSION['success'] = 'bạn đã thanh toán thành công ' . $magd . '';
-                header("Location: ?act=user/order_history&msg=thanhtoanthanhcong");
-                exit();
-            } catch (Exception $e) {
-                $_SESSION['err'] = "Không thể gửi email. Lỗi: " . $mail->ErrorInfo;
-                exit();
-            }; 
+    if ($check) {
+        sleep(6);
+        $_SESSION['success'] = 'bạn đã thanh toán thành công ' . $magd . '';
+        header("Location: ?act=user/order_history&msg=thanhtoanthanhcong");
     }
     
 }

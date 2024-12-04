@@ -7,7 +7,7 @@ class ApiModel{
     }
 
     public function fetchTransactionHistory($password, $accountNumber, $token) {
-        $url = "https://.web2m.com/historyapiacbv3/$password/$accountNumber/$token";
+        $url = "https://api.web2m.com/historyapiacbv3/$password/$accountNumber/$token";
        
     
         $ch = curl_init();
@@ -32,14 +32,13 @@ class ApiModel{
             curl_close($ch);
             return null;
         }
-        
     
-        curl_close($ch);
+        curl_close(handle: $ch);
         return json_decode($response, true);
     }
 
     public function update($id){
-        $sql = "UPDATE transactions SET status=1 WHERE id = $id";
+        $sql = "UPDATE transactions SET status = 1 WHERE id = $id";
         return $this->api->insert($sql);
     }
     
