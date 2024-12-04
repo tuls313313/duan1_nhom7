@@ -72,8 +72,8 @@
   <div class="cart-container">
     <div class="cart-heading">
       <div class="row">
-        <div class="col-2 fs-4">Sản phẩm</div>
-        <div class="col-2 fs-4">Đơn giá</div>
+        <div class="col-3 fs-4">Sản phẩm</div>
+        <div class="col-1 fs-4">Đơn giá</div>
         <div class="col-2 fs-4">Số lượng</div>
         <div class="col-2 fs-4">Màu</div>
         <div class="col-1 fs-4">Kích thước</div>
@@ -88,12 +88,13 @@
       foreach ($listCart as $cart):?>
           <form action="?act=xoagiohang&id=<?= $cart['cart_detail_id'] ?>" method="post">
         <div class="row cart-item align-items-center text-center">
+          <div class="col-1"><input type="checkbox" name="checkbox" id=""></div>
           <div class="col-2">
             <img src="./uploads/upimg/<?= $cart['product_image'] ?>" class="cart-img" alt="">
             <div class="text-small"><?= $cart['product_name'] ?></div>
           </div>
           <input type="hidden" name="cart_detail_money" value="<?= $cart['cart_detail_money'] ?>"> 
-          <div class="col-2 fs-5"><?= number_format($cart['cart_detail_money'], 0, ',', '.') . ' VNĐ' ?></div>
+          <div class="col-1 fs-5"><?= number_format($cart['cart_detail_money'], 0, ',', '.') . ' VNĐ' ?></div>
           <div class="col-2 fs-5">
             <div class="d-flex justify-content-center align-items-center">
             <button class="quantity bg-blue mr-2"name="tru"><i class="bi bi-dash"></i></button>
