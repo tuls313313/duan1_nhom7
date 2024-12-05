@@ -173,7 +173,7 @@ class HomeController
             $userId = intval($_SESSION['account']['id']);
             $listCart = $this->cart->getAllDetailCart($userId);
             $_SESSION['list_cart'] = $listCart;
-        }else{
+        } else {
 
         }
         require_once './views/user/giohang/giohang.php';
@@ -208,6 +208,11 @@ class HomeController
 
     public function thanhtoan()
     {
+        if(!empty($_SESSION['data1'])){
+            header("Location: ?act=user/order_history");
+            $_SESSION['err_data1'] = 'Bạn có đơn hàng chưa thanh toán vui lòng thanh toán trước khi mua đơn mới';
+            exit();
+        }
         $user_id = $_SESSION['account']['id'];
         $id_promotion = "null";
         $name = $_POST['hoten'];
@@ -224,9 +229,19 @@ class HomeController
         // var_dump($_SESSION['buyNow']);
         if (isset($_POST['submit'])) {
             $id_order = $this->order->insertOrder(
-                $user_id,$id_promotion,$name,$tel,$address,$payment,
-                $total_amount,$total_money,$product_id,
-                $id_color,$id_size,$quantity,$price
+                $user_id,
+                $id_promotion,
+                $name,
+                $tel,
+                $address,
+                $payment,
+                $total_amount,
+                $total_money,
+                $product_id,
+                $id_color,
+                $id_size,
+                $quantity,
+                $price
             );
             $data = $this->order->getOneOrder_detail($id_order);
             $data1 = $this->order->getOneOrder($data['order_id']);
@@ -243,14 +258,21 @@ class HomeController
         }
     }
 
-    public function ttgiohang(){
+    public function ttgiohang()
+    {
         // echo '<pre>';
         // var_dump($_SESSION['list_cart']);
         // echo '</pre>';
         require_once './views/user/thanhtoan/thanhtoangiohang.php';
     }
 
-    public function next_tt_giohang(){
+    public function next_tt_giohang()
+    {
+        if(!empty($_SESSION['data1'])){
+            header("Location: ?act=user/order_history");
+            $_SESSION['err_data1'] = 'Bạn có đơn hàng chưa thanh toán vui lòng thanh toán trước khi mua đơn mới';
+            exit();
+        }
         $err = false;
         $user_id = $_SESSION['account']['id'];
         $id_promotion = "null";
@@ -261,15 +283,24 @@ class HomeController
         $total_amount = $_POST['total_amount'];
         $total_money = $_POST['total_money'];
         $cart_id = $_POST['cart_id'];
-        if(empty($cart_id)){     
+        if (empty($cart_id)) {
             header("Location: ?act=product");
         }
         $cart_id_str = implode(',', $cart_id);
-        if(isset($_POST['submit'])){
-            $this->order->insertGioHang($user_id,$id_promotion,$name,$tel,
-            $address,$payment,$total_amount,$total_money,$cart_id_str);
+        if (isset($_POST['submit'])) {
+            $this->order->insertGioHang(
+                $user_id,
+                $id_promotion,
+                $name,
+                $tel,
+                $address,
+                $payment,
+                $total_amount,
+                $total_money,
+                $cart_id_str
+            );
             unset($_SESSION['list_cart']);
-            $id_o = $_SESSION['id_o'] ;
+            $id_o = $_SESSION['id_o'];
             $data = $this->order->getOneOrder_detail($id_o);
             $data1 = $this->order->getOneOrder($id_o);
             // var_dump( $data);
@@ -281,7 +312,7 @@ class HomeController
                 header("Location: ?act=user/order_history");
             } else {
                 header("Location: ?act=user/orderOnl&id=$magd");
-    
+
             }
         }
     }
@@ -291,11 +322,12 @@ class HomeController
         require_once './views/user/thanhtoan/thanhtoanonl.php';
     }
 
-    public function get_tt_onl(){
+    public function get_tt_onl()
+    {
         $password = 'Tu3132004';
         $accountNumber = '4729781';
         $token = '5972E99F-7D13-D6F9-6104-104038B2FDB6';
-        $data = $this->api->fetchTransactionHistory($password, $accountNumber, $token);
+        $data = $this->api->fetchTransaction($password, $accountNumber, $token);
         $_SESSION['data_bank'] = $data;
         echo '<pre>';
         print_r($data);
@@ -313,6 +345,7 @@ class HomeController
             if ($check) {
                 $id = $_SESSION['id_tran'];
                 $this->api->update($id);
+                unset($_SESSION['data'],$_SESSION['data1']);
             }
         }
     }

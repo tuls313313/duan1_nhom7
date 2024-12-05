@@ -1,6 +1,4 @@
 <?php
-$email = 'tuntph46150@fpt.edu.vn';
-$emailA = 'pcls313313@gmail.com';
 $trangthai = 'đang tìm dữ liệu';
 $stk = '4729781';
 $bank = 'Acb';
@@ -23,7 +21,6 @@ if (!empty($_SESSION['data_bank'])) {
         }
     }
     if ($check) {
-        sleep(6);
         $_SESSION['success'] = 'bạn đã thanh toán thành công ' . $magd . '';
         header("Location: ?act=user/order_history&msg=thanhtoanthanhcong");
     }

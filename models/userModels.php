@@ -75,7 +75,8 @@ class UserModels
         FROM account a
         INNER JOIN orders o ON a.id = o.user_id
         LEFT JOIN transactions t ON o.id_order = t.id_order
-        WHERE a.id = $id;";
+        WHERE a.id = $id 
+        ORDER BY o.id_order DESC;";
 
         return $this->db->getAll($sql);
     }

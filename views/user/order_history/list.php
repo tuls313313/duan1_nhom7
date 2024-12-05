@@ -18,6 +18,8 @@
         <div class="card-body">
             <h5 class="text-success"><?php if (isset($_SESSION['success']))
                 echo $_SESSION['success']; unset($_SESSION['success']) ?></h5>
+             <h5 class="text-danger"><?php if (isset($_SESSION['err_data1']))
+                echo $_SESSION['err_data1']; unset($_SESSION['err_data1']) ?></h5>
                 <p class="fs-custom"><strong> Tên tài khoản: </strong> <?= $_SESSION['account']['user']; ?></p>
             <p class="fs-custom"><strong> Email: </strong> <?= $_SESSION['account']['email']; ?></p>
             <p class="fs-custom"> <strong> Số điện thoại: </strong> <?= $_SESSION['account']['tel']; ?></p>
@@ -73,12 +75,15 @@
                             <button type="submit" name="xemchitiet" class="btn btn-primary">Xem chi tiết</button>
                         <?php
                             if ($data['status_o'] != 4 && $data['status_o'] != 3 && $data['status_o'] != 2) { 
+                                if($data['payment_status'] != 1){
                         ?>
-                                <button type="submit" name="huydon" class="btn btn-danger ml-1">Hủy đơn</button>
+                            <button type="submit" name="huydon" class="btn btn-danger ml-1">Hủy đơn</button>
                         <?php
-                                }
+                                }}
                         ?>
-
+                        <?php if(($data['payment_status'] != 1 && $data['payment_or'] == 1 &&$data['status_o'] != 4 && $data['status_o'] != 3 && $data['status_o'] != 2) ){?>
+                         <a href="?act=user/orderOnl&id=<?= $data['id_o'] ?>" class="btn btn-danger ml-1">Thanh toán</a>
+                          <?php } ?>
                         </form>
                     </div>
                 </div>

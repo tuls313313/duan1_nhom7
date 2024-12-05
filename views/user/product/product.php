@@ -79,11 +79,6 @@
                                         <img class="card-img-top" src="./uploads/upimg/<?= $value['img'] ?>"
                                             alt="Card image cap">
                                         <form action="" class="hover-icon">
-                                            <input type="hidden">
-                                            <a href="?act=thanhtoan&id=<?= $value['id']; ?>" class="btn-add-to-cart"
-                                                title="Mua ngay">
-                                                <i class="fas fa-cart-plus"></i>
-                                            </a>
                                             <a href="?act=chitietsp&id=<?= $value['id']; ?>" class="btn-add-to-cart"
                                                 title="Xem nhanh">
                                                 <i class="fas fa-search"></i>
