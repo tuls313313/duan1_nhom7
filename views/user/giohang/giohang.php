@@ -72,8 +72,8 @@
   <div class="cart-container">
     <div class="cart-heading">
       <div class="row">
-        <div class="col-2 fs-4">Sản phẩm</div>
-        <div class="col-2 fs-4">Đơn giá</div>
+        <div class="col-3 fs-4">Sản phẩm</div>
+        <div class="col-1 fs-4">Đơn giá</div>
         <div class="col-2 fs-4">Số lượng</div>
         <div class="col-2 fs-4">Màu</div>
         <div class="col-1 fs-4">Kích thước</div>
@@ -84,16 +84,17 @@
     <h1 class="text-danger mt-2 mb-2"><?php if (isset($_SESSION['err'])) echo $_SESSION['err']; unset($_SESSION['err']); ?></h1>
     <div class="cart-body">
       <?php
-      foreach ($listCart as $cart): ?>
-       
+      $tongTienGioHang = 0;
+      foreach ($listCart as $cart):?>
           <form action="?act=xoagiohang&id=<?= $cart['cart_detail_id'] ?>" method="post">
         <div class="row cart-item align-items-center text-center">
+          <div class="col-1"><input type="checkbox" name="checkbox" id=""></div>
           <div class="col-2">
             <img src="./uploads/upimg/<?= $cart['product_image'] ?>" class="cart-img" alt="">
             <div class="text-small"><?= $cart['product_name'] ?></div>
           </div>
           <input type="hidden" name="cart_detail_money" value="<?= $cart['cart_detail_money'] ?>"> 
-          <div class="col-2 fs-5"><?= number_format($cart['cart_detail_money'], 0, ',', '.') . ' VNĐ' ?></div>
+          <div class="col-1 fs-5"><?= number_format($cart['cart_detail_money'], 0, ',', '.') . ' VNĐ' ?></div>
           <div class="col-2 fs-5">
             <div class="d-flex justify-content-center align-items-center">
             <button class="quantity bg-blue mr-2"name="tru"><i class="bi bi-dash"></i></button>
@@ -106,14 +107,17 @@
           <div class="col-2 fs-5"><?= $cart['color_name'] ?></div>
           <div class="col-1 fs-5"><?= $cart['size_name'] ?></div>
           <div class="col-2 fs-5">
-            <?= number_format($cart['cart_total_money'],0,',','.') .' Vnđ';?>
+            <?php
+            $tongTien = $cart['cart_detail_quantity'] * $cart['cart_detail_money'];
+            $tongTienGioHang += $tongTien;
+            echo number_format($tongTien,0,',','.') .' Vnđ';?>
           </div>
 
           <div class="col-1">
               <input type="hidden" name="cart_id" value="<?= $cart['cart_id'] ?>">
               <input type="hidden" name="cart_detail_id" value="<?= $cart['cart_detail_id'] ?>">
               <button name="delete" onclick="return confirm('Bạn có chắc muốn xóa sản phẩm này không?')" class="btn btn-danger">
-                Xóa
+                <!-- Xóa --><i class="far fa-trash-alt"></i>
               </button>
           </div>
         </div>
@@ -123,7 +127,7 @@
     <hr>
 
     <div class="cart-total text-danger">
-      Thành tiền: 
+      Thành tiền: <div class="col-2"><?= number_format($tongTienGioHang, 0, ',', '.') . ' VNĐ' ?></div>
     </div>
 
     <div class="cart-buttons">

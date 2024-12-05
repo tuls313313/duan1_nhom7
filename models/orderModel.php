@@ -22,14 +22,70 @@ class OrderModel
 
     public function detailOrder($id_order)
     {
-        $sql = "SELECT orders.*, account.*, orders.update_at AS update_at_orders , orders.create_at as create_at_orders FROM orders
-                INNER JOIN account ON orders.user_id = account.id
-                WHERE orders.id_order = $id_order";
-
+        $sql = "SELECT 
+                    o.*,
+                    a.user AS account_user,
+                    a.email AS account_email,
+                    a.address AS account_address,
+                    a.tel AS account_tel,
+                    oi.quantity AS order_item_quantity,
+                    oi.price AS order_item_price,
+                    p.name AS product_name,
+                    p.price AS product_price,
+                    p.img AS product_image,
+                    c.name AS color_name,
+                    s.name AS size_name
+                FROM 
+                    orders o
+                INNER JOIN 
+                    account a ON o.user_id = a.id
+                INNER JOIN 
+                    order_items oi ON o.id_order = oi.order_id
+                INNER JOIN 
+                    product p ON oi.product_id = p.id
+                INNER JOIN 
+                    color c ON oi.id_color = c.id
+                INNER JOIN 
+                    size s ON oi.id_size = s.id
+                WHERE
+                    o.id_order = $id_order;
+                ";
         // var_dump($sql);die;
-        
-        // $sql = "SELECT * FROM orders WHERE id=$id";
         return $this->db->getOne($sql);
+    }
+
+    public function detailOrderItem($id_order)
+    {
+        $sql = "SELECT 
+                    o.*,
+                    a.user AS account_user,
+                    a.email AS account_email,
+                    a.address AS account_address,
+                    a.tel AS account_tel,
+                    oi.quantity AS order_item_quantity,
+                    oi.price AS order_item_price,
+                    p.name AS product_name,
+                    p.price AS product_price,
+                    p.img AS product_image,
+                    c.name AS color_name,
+                    s.name AS size_name
+                FROM 
+                    orders o
+                INNER JOIN 
+                    account a ON o.user_id = a.id
+                INNER JOIN 
+                    order_items oi ON o.id_order = oi.order_id
+                INNER JOIN 
+                    product p ON oi.product_id = p.id
+                INNER JOIN 
+                    color c ON oi.id_color = c.id
+                INNER JOIN 
+                    size s ON oi.id_size = s.id
+                WHERE
+                    o.id_order = $id_order
+                ";
+        // var_dump($sql);die;
+        return $this->db->getAll($sql);
     }
 
     public function getOneOrder($id_order)
