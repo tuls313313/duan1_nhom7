@@ -185,11 +185,12 @@ class HomeController
         $cart_detail_id = $_POST['cart_detail_id'];
         $quantity = $_POST['quantity'];
         $money = $_POST['cart_detail_money'];
-        var_dump($cart_detail_id, $cart_id, $quantity, $money);
+        // var_dump($cart_detail_id, $cart_id, $quantity, $money);
         if (isset($_POST['delete'])) {
             $this->cart->deleteCart($cart_detail_id, $cart_id);
             $_SESSION['success'] = 'Xóa giỏ hàng thành công';
             header('location: ?act=giohang');
+            exit();
         } else if (isset($_POST['cong'])) {
             $this->cart->congCartDetails($cart_detail_id, $cart_id, $quantity, $money);
             header('location: ?act=giohang');
@@ -204,6 +205,8 @@ class HomeController
                 exit();
             }
         }
+
+       
     }
 
     public function thanhtoan()
@@ -335,7 +338,11 @@ class HomeController
         if (!empty($_SESSION['data_bank'])) {
             $dataBank = $_SESSION['data_bank'];
             $check = false;
-            $magd = $_SESSION['data1']['id_order'];
+            if(isset($_SESSION['data1']['id_order'])){
+                $magd = $_SESSION['data1']['id_order'];
+            }
+           
+           if(isset($magd ))
             foreach ($dataBank['transactions'] as $transaction) {
                 if (strpos($transaction['description'], $magd) !== false) {
                     $check = true;

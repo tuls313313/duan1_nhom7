@@ -80,8 +80,6 @@ match ($act) {
   'user/get_tt_onl' => $home->get_tt_onl(),
   'search_product' => $home->search_product(),
 
-
-
   //  đăng ký đăng nhập
   'user/dangky' => $User->insert(),
   'user/nextdangky' => $User->nextinsert(),
