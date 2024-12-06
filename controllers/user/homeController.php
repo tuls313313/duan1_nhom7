@@ -216,6 +216,7 @@ class HomeController
         $address = $_POST['diachi'];
         $tel = $_POST['sdt'];
         $payment = $_POST['payment'];
+        $_SESSION['payment'] = $payment;
         if($payment == 1){
             if(!empty($_SESSION['data1'])){
                 header("Location: ?act=user/order_history");

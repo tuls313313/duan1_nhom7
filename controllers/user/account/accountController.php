@@ -137,6 +137,13 @@ class AccountController
     
     public function dangxuat()
     {
+        if($_SESSION['payment'] == 1){
+            if(!empty($_SESSION['data1'])){
+                header("Location: ?act=user/order_history");
+                $_SESSION['err_data1'] = 'Bạn có đơn hàng chưa thanh toán vui lòng thanh toán trước khi mua đơn mới';
+                exit();
+            }
+        }
         session_unset();
         header('location: ?act=trangchu');
     }
