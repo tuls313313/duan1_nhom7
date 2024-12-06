@@ -60,10 +60,21 @@ class OrderController
                 $_SESSION['status'] = 'đơn đã hủy không thể thay đổi';
                 $err = true;
             }
+            $transaction_status = $_POST['transaction_status'];
+            var_dump($transaction_status);
+            if($transaction_status == 1){
+                if($status_order == 4 ){
+                    $_SESSION['status'] = 'đơn đã thanh toán không thể hủy';
+                    $err = true;
+                }
+            }
+
+            $id_tran = $_POST['id_tran'];
             $payment = $_POST['payment'];
             $total_amount = $_POST['total_amount'];
             $total_money = $_POST['total_money'];
             $shipping_address = $_POST['shipping_address'];
+            
             if (!$err) {
                 $this->order->editOrder(
                     $id_order,
@@ -72,9 +83,9 @@ class OrderController
                     $payment,
                     $total_amount,
                     $total_money,
-                    $shipping_address
+                    $shipping_address,$id_tran
                 );
-                $_SESSION['success'] = 'đã cập nhật thành công';
+                $_SESSION['success'] = 'đã cập nhật thành công '.$id_order.'';
                 header("Location: ?act=admin/order&message=success");
             } else {
                 header("Location: ?act=admin/order/edit&id=$id_order");

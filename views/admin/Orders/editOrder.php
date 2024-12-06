@@ -11,20 +11,14 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-12">
+                    <!-- <?php var_dump($edit); ?> -->
                     <form action="?act=admin/order/editOrder&id_order=<?= $edit['id_order'] ?>" method="post">
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="card card-primary">
                                     <div class="card-header">
                                         <h3 class="card-title">Sửa Thông Tin Đơn Hàng:
-                                            <?php
-                                            $userName = '';
-                                            foreach ($dataUser as $user) {
-                                                if ($edit['user_id'] == $user['id']) {
-                                                    echo $userName = $user['user'];
-                                                }
-                                            }
-                                            ?>
+                                            <?= $edit['user'] ?> 
                                         </h3>
                                     </div>
                                     <div class="card-body">
@@ -35,14 +29,14 @@
                                                     value="<?= $edit['id_order'] ?>" readonly>
                                             </div>
                                             <div class="col-md-6">
-                                                <label for="user_id">User_id</label>
+                                                <label for="user_id">Usname</label>
                                                 <input type="number" name="user_id" class="form-control"
                                                     value="<?= $edit['user_id'] ?>" readonly>
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <div class="col-md-6">
-                                                <label for="status_order">status_order</label>
+                                                <label for="status_order">Trạng thái đơn hàng</label>
                                                 <select name="status_order" class="form-control">
                                                     <option value="1" <?= $edit['status_order'] == 1 ? 'selected' : '' ?>>
                                                         Đang chờ</option>
@@ -58,7 +52,7 @@
                                                 unset($_SESSION['status']); ?>
                                             </div>
                                             <div class="col-md-6">
-                                                <label for="payment">Payment</label>
+                                                <label for="payment">Phương thức thanh toán</label>
                                                 <input type="text" class="form-control"
                                                     value="<?= $edit['payment'] == 0 ? 'Thanh toán khi nhận hàng' : 'Thanh toán online' ?>"
                                                     readonly>
@@ -69,34 +63,45 @@
 
                                         <div class="form-group row">
                                             <div class="col-md-6">
-                                                <label for="total_amount">Total_amount</label>
+                                                <label for="total_amount">Tổng số lượng</label>
                                                 <input type="number" name="total_amount" class="form-control"
                                                     value="<?= $edit['total_amount'] ?>" readonly>
                                             </div>
                                             <div class="col-md-6">
-                                                <label for="total_money">Total_money</label>
-                                                <input type="number" name="total_money" class="form-control"
+                                                <label for="total_money">Tổng tiền</label>
+                                                <input type="hidden" name="total_money" class="form-control"
                                                     value="<?= $edit['total_money'] ?>" readonly>
-                                            </div>
-                                        </div>
+                                                <p class="form-control" readonly> <?= number_format($edit['total_money'] ?? 0, 0, ',', '.') . ' Vnđ' ?></p>
 
-                                        <div class="form-group">
-                                            <label for="shipping_address">Shipping_address</label>
-                                            <input type="text" name="shipping_address" class="form-control"
-                                                value="<?= $edit['shipping_address'] ?>" readonly>
+                                            </div>
                                         </div>
                                         <div class="form-group row">
                                             <div class="col-md-6">
-                                                <label for="create_at">Create_at</label>
+                                                <label for="shipping_address">Địa chỉ</label>
+                                                <input type="text" name="shipping_address" class="form-control"
+                                                    value="<?= $edit['shipping_address'] ?>" readonly>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label for="transaction_status">Trạng thái thanh toán</label>
+                                                <input type="text" name="" class="form-control"
+                                                    value=" <?= $edit['transaction_status'] == 0 ? 'chưa thanh toán' : 'Đã thanh toán' ?>" readonly>
+                                                <input type="hidden" name="transaction_status" class="form-control"
+                                                    value=" <?= $edit['transaction_status'] ?>" readonly>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <div class="col-md-6">
+                                                <label for="create_at">Ngày tạo đơn</label>
                                                 <input type="text" name="create_at" class="form-control"
                                                     value="<?= $edit['create_at'] ?>" readonly>
                                             </div>
                                             <div class="col-md-6">
-                                                <label for="update_at">Update_at</label>
+                                                <label for="update_at">Ngày cập nhật</label>
                                                 <input type="text" name="update_at" class="form-control"
                                                     value="<?= $edit['update_at'] ?>" readonly>
                                             </div>
                                         </div>
+                                        <input type="hidden" name="id_tran" value="<?= $edit['id_tran'] ?>">
                                         <button type="submit" class="btn btn-success" name="editOrder">
                                             Submit
                                         </button>

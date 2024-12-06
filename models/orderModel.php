@@ -90,22 +90,44 @@ class OrderModel
 
     public function getOneOrder($id_order)
     {
-        $sql = "SELECT * FROM orders WHERE id_order=$id_order";
-        return $this->db->getOne($sql);
+        $sql = "SELECT 
+            o.id_order, 
+            o.user_id, 
+            o.id_promotion, 
+            o.name, 
+            o.tel, 
+            o.shipping_address, 
+            o.status_order, 
+            o.payment, 
+            o.total_amount, 
+            o.total_money, 
+            o.create_at, 
+            o.update_at, 
+            t.status AS transaction_status,
+            t.id As id_tran,
+            a.user
+        FROM orders o
+        INNER JOIN transactions t ON o.id_order = t.id_order
+        INNER JOIN account a ON o.user_id = a.id
+        WHERE o.id_order = $id_order";
+
+return $this->db->getOne($sql);
+
     }
+
     public function getOneOrder_detail($id)
     {
         $sql = "SELECT * FROM order_items WHERE id=$id";
         return $this->db->getOne($sql);
     }
 
-    public function editOrder($id_order,$user_id,$status_order,$payment,$total_amount,$total_money,$shipping_address,)
+    public function editOrder($id_order,$user_id,$status_order,$payment,$total_amount,$total_money,$shipping_address,$id_tran)
     {
         $sql = "UPDATE `orders` SET `user_id` = '$user_id', `status_order` = '$status_order', `payment` = '$payment', `total_amount` = '$total_amount', 
         `total_money` = '$total_money', `shipping_address` = '$shipping_address' 
         WHERE `id_order` = $id_order";
         if($status_order ==3){
-            $sql_tran = "UPDATE transactions SET status=1 WHERE id = 6";
+            $sql_tran = "UPDATE transactions SET status = 1 WHERE id = $id_tran";
             $this->db->insert($sql_tran);
         }
         return $this->db->insert($sql);
@@ -130,8 +152,7 @@ class OrderModel
        return $this->db->insert($sql_s);
     }
 
-    public function insertGioHang($user_id, $id_promotion, $name, $tel, $shipping_address, $payment, $total_amount, $total_money, 
-    $cart_id_str) {
+    public function insertGioHang($user_id, $id_promotion, $name, $tel, $shipping_address, $payment, $total_amount, $total_money,$cart_id_str) {
 
         $name = "'$name'";
         $shipping_address = "'$shipping_address'";
