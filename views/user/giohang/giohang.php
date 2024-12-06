@@ -88,8 +88,7 @@
       foreach ($listCart as $cart):?>
           <form action="?act=xoagiohang&id=<?= $cart['cart_detail_id'] ?>" method="post">
         <div class="row cart-item align-items-center text-center">
-          <div class="col-1"><input type="checkbox" name="checkbox" id=""></div>
-          <div class="col-2">
+          <div class="col-3">
             <img src="./uploads/upimg/<?= $cart['product_image'] ?>" class="cart-img" alt="">
             <div class="text-small"><?= $cart['product_name'] ?></div>
           </div>
