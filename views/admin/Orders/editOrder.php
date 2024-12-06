@@ -5,7 +5,17 @@
 
 <?php include_once './views/admin/layout/siderbar.php'; ?>
 
+<style>
+    .text-danger {
+        color: red;
+        /* Màu đỏ cho chưa thanh toán */
+    }
 
+    .text-success {
+        color: green;
+        /* Màu xanh cho đã thanh toán */
+    }
+</style>
 <div class="content-wrapper">
     <section class="mt-2">
         <div class="container-fluid">
@@ -18,7 +28,7 @@
                                 <div class="card card-primary">
                                     <div class="card-header">
                                         <h3 class="card-title">Sửa Thông Tin Đơn Hàng:
-                                            <?= $edit['user'] ?> 
+                                            <?= $edit['user'] ?>
                                         </h3>
                                     </div>
                                     <div class="card-body">
@@ -71,7 +81,9 @@
                                                 <label for="total_money">Tổng tiền</label>
                                                 <input type="hidden" name="total_money" class="form-control"
                                                     value="<?= $edit['total_money'] ?>" readonly>
-                                                <p class="form-control" readonly> <?= number_format($edit['total_money'] ?? 0, 0, ',', '.') . ' Vnđ' ?></p>
+                                                <p class="form-control" readonly>
+                                                    <?= number_format($edit['total_money'] ?? 0, 0, ',', '.') . ' Vnđ' ?>
+                                                </p>
 
                                             </div>
                                         </div>
@@ -83,10 +95,12 @@
                                             </div>
                                             <div class="col-md-6">
                                                 <label for="transaction_status">Trạng thái thanh toán</label>
-                                                <input type="text" name="" class="form-control"
-                                                    value=" <?= $edit['transaction_status'] == 0 ? 'chưa thanh toán' : 'Đã thanh toán' ?>" readonly>
+                                                <input type="text" name=""
+                                                    class="form-control <?php echo $edit['transaction_status'] == 0 ? 'text-danger' : 'text-success'; ?>"
+                                                    value="<?= $edit['transaction_status'] == 0 ? 'Chưa thanh toán' : 'Đã thanh toán' ?>"
+                                                    readonly>
                                                 <input type="hidden" name="transaction_status" class="form-control"
-                                                    value=" <?= $edit['transaction_status'] ?>" readonly>
+                                                    value="<?= $edit['transaction_status'] ?>" readonly>
                                             </div>
                                         </div>
                                         <div class="form-group row">

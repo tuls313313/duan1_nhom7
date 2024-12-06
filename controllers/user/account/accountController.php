@@ -249,7 +249,7 @@ class AccountController
             if(isset($_POST['huydon'])){
                 $this->account->huydon($id_oi);
                 $_SESSION['success'] = 'đã hủy thành công '.$id_oi.'';
-                 unset($_SESSION['data'],$_SESSION['data1']);
+                 unset($_SESSION['data'],$_SESSION['data1'],$_SESSION['payment']);
                 header('location: ?act=user/order_history');
                 
             }
