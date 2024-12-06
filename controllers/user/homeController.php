@@ -205,8 +205,7 @@ class HomeController
                 exit();
             }
         }
-
-       
+        
     }
 
     public function thanhtoan(){
