@@ -14,6 +14,34 @@
 <div class="container mt-4">
 
   <h2 class=" mb-4">Xem chi tiết đơn hàng</h2>
+  <div class="row">
+      <div class="col-12">
+        <h4>
+          <i class="fas fa-globe"></i> Thông tin đơn hàng
+          <small class="float-right">
+            <p>Ngày đặt:</p><?= date($data_oi_one ['create_at']) ?>
+          </small>
+        </h4>
+      </div>
+    </div>
+    <div class="row invoice-info">
+      <div class="col-sm-4 invoice-col">
+        <address>
+          <strong>Thông tin người đặt:</strong><br>
+          <p>Họ và Tên: <?= $data_oi_one ['name_a'] ?></p>
+          <p>Số điện thoại: <?= $data_oi_one ['tel_a'] ?></p>
+          <p>Địa chỉ: <?= $data_oi_one ['ship_a'] ?></p>
+        </address>
+      </div>
+      <div class="col-sm-4 invoice-col">
+        <address>
+          <strong>Thông tin người nhận:</strong><br>
+          <p>Họ và Tên: <?= $data_oi_one ['name_o'] ?></p>
+          <p>Số điện thoại: <?= $data_oi_one ['tel_o'] ?></p>
+          <p>Địa chỉ: <?= $data_oi_one ['ship_o'] ?></p>
+        </address>
+      </div>
+    </div>
   <table class="table table-striped table-bordered fs-5">
     <thead class="table-dark">
       <tr>
@@ -28,7 +56,7 @@
     <tbody>
       <?php foreach ($data_oi as $value) { ?>
         <tr>
-          <td><?= $value['id_oi'] ?></td>
+          <td><?= $value['id_o'] ?></td>
           <td><?= $value['name_p'] ?></td>
           <td>
             <?php
@@ -52,6 +80,7 @@
       <?php } ?>
     </tbody>
   </table>
+  
   <a class="btn btn-primary mb-2 fs" href="?act=user/order_history">Quay lại lịch sử mua hàng</a>
 
 </div>

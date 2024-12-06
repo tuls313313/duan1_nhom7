@@ -31,6 +31,7 @@
                     <div class="card">
                         <div class="card-body">
                             <table id="example1" class="table table-bordered table-striped">
+                            <h4 class="text-success"><?php if(isset($_SESSION['success'])) echo $_SESSION['success']; unset($_SESSION['success']); ?></h4>
                                 <thead>
                                     <tr>
                                         <th>id</th>

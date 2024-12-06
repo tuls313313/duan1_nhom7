@@ -83,24 +83,60 @@ class UserModels
 
     public function history_order($id_oi)
     {
-        $sql = "SELECT
-                        oi.order_id as id_oi, 
-                        oi.id_color as color_oi, 
-                        oi.id_size as size_oi, 
-                        oi.quantity as quantity_oi, 
-                        oi.price as price_oi,
-                        p.name as name_p
-                    FROM 
-                        orders o
-                    INNER JOIN 
-                        order_items oi ON o.id_order = oi.order_id
-                    INNER JOIN 
-                        product p ON oi.product_id = p.id
-                    
-                    WHERE 
-                        o.id_order = $id_oi;
-                    ";
+        $sql = "SELECT a.user as name,
+                o.id_order as id_o,
+                o.name as name_o,
+                o.tel as tel_o,
+                o.shipping_address as ship_o,
+                o.status_order as status_o,
+                o.payment as payment,
+                o.total_amount as amount,
+                o.total_money as money,
+                o.create_at as create_at,
+                o.payment as payment_or,
+                t.status as payment_status,
+                p.name as name_p,
+                oi.id_color as color_oi,
+                oi.id_size as size_oi,
+                oi.quantity as quantity_oi,
+                oi.price as price_oi
+        FROM account a
+        INNER JOIN orders o ON a.id = o.user_id
+        INNER JOIN order_items oi On o.id_order = oi.order_id
+        INNER JOIN transactions t ON o.id_order = t.id_order
+        INNER JOIN product p ON oi.product_id = p.id
+        WHERE o.id_order = $id_oi;";
         return $this->db->getAll($sql);
+    }
+    public function history_order_one($id_oi)
+    {
+        $sql = "SELECT 
+                a.user as name_a,
+                a.tel as tel_a,
+                a.address as ship_a,
+                o.id_order as id_o,
+                o.name as name_o,
+                o.tel as tel_o,
+                o.shipping_address as ship_o,
+                o.status_order as status_o,
+                o.payment as payment,
+                o.total_amount as amount,
+                o.total_money as money,
+                o.create_at as create_at,
+                o.payment as payment_or,
+                t.status as payment_status,
+                p.name as name_p,
+                oi.id_color as color_oi,
+                oi.id_size as size_oi,
+                oi.quantity as quantity_oi,
+                oi.price as price_oi
+        FROM account a
+        INNER JOIN orders o ON a.id = o.user_id
+        INNER JOIN order_items oi On o.id_order = oi.order_id
+        INNER JOIN transactions t ON o.id_order = t.id_order
+        INNER JOIN product p ON oi.product_id = p.id
+        WHERE o.id_order = $id_oi;";
+        return $this->db->getOne($sql);
     }
 
     public function huydon($id){

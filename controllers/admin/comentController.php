@@ -25,6 +25,7 @@ class ComentController{
     public function nextEditCmt(){
         if(empty($_POST['submit'])){
             $this->cmt->updateCmt( $_GET['id_cmt'] ,$_POST['id_user'],$_POST['id_pro'],$_POST['conten'],$_POST['status']);
+            $_SESSION['success'] = 'Edit thành công id: '.$_GET['id_cmt'];
             header('location: ?act=admin/comment/list&success');
         }
     }
@@ -33,6 +34,7 @@ class ComentController{
         $id_cmt = $_GET['id_cmt'];
         $this->cmt->deleteCmt($id_cmt);
         header('location: ?act=admin/comment/list&success');
+        $_SESSION['success'] = 'Xóa thành công id: '.$_GET['id_cmt'];
     }
 
 }

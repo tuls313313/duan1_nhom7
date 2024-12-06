@@ -21,17 +21,6 @@
             </div>
         </div><!-- /.container-fluid -->
     </section>
-    <?php if (isset($_SESSION['errors']) && !empty($_SESSION['errors'])): ?>
-        <h3>
-            <ul class="text-danger">
-                <?php foreach ($_SESSION['errors'] as $error): ?>
-                    <li><?php echo htmlspecialchars($error); ?></li>
-                <?php endforeach; ?>
-            </ul>
-        </h3>
-        <?php unset($_SESSION['errors']); // Xóa lỗi sau khi hiển thị 
-            ?>
-    <?php endif; ?>
     <!-- Main content -->
     <section class="content">
         <div class="container-fluid">
@@ -41,6 +30,8 @@
                         <!-- /.card-header -->
                         <div class="card-body">
                             <table id="example1" class="table table-bordered table-striped">
+                            <h4 class="text-success"> <?php if(isset($_SESSION['success'])) echo $_SESSION['success']; unset($_SESSION['success']); ?></h4>
+
                                 <thead>
                                     <tr>
                                         <th>ID</th>

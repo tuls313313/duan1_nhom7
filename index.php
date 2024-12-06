@@ -128,7 +128,8 @@ match ($act) {
   'admin/product/list' => $adminProduct->getAllProduct(),
   'admin/product/edit' => $adminProduct->editProduct(),
   "admin/product/nextedit" => $adminProduct->nexteditProduct(),
-  "admin/product/add" => $adminProduct->insertProduct(),
+  "admin/product/add" => $adminProduct->addProduct(),
+  "admin/product/insert" => $adminProduct->insertProduct(),
   "admin/product/delete" => $adminProduct->DeleteProduct(),
 
   // quản lý thống kê

@@ -36,7 +36,19 @@ class CommentModel{
     }
 
     public function getOneCmt($id_cmt){
-        $sql = "SELECT * FROM comment WHERE id_cmt=$id_cmt";
+        $sql = "SELECT 
+        c.id_cmt,
+        a.user as user_a,
+        c.conten,
+        c.id_pro,
+        c.id_user,
+        c.time_comment,
+        c.status,
+        p.name as name_p
+        FROM comment c
+        INNER JOIN account a ON c.id_user = a.id
+        INNER JOIN product p ON c.id_pro = p.id
+        WHERE c.id_cmt=$id_cmt";
         return $this->db->getOne($sql);
     }
 
@@ -55,7 +67,8 @@ class CommentModel{
         $sql = "SELECT comment.*, account.user 
             FROM comment
             INNER JOIN account ON comment.id_user = account.id
-            WHERE comment.id_pro = $id AND comment.status = 1";
+            WHERE comment.id_pro = $id AND comment.status = 1
+            ORDER BY comment.id_cmt desc";
         return $this->db->getAll($sql);
     }
 

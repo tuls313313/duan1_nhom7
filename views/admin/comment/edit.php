@@ -21,17 +21,7 @@
             </div>
         </div><!-- /.container-fluid -->
     </section>
-    <?php if (isset($_SESSION['errors']) && !empty($_SESSION['errors'])): ?>
-        <h3>
-            <ul class="text-danger">
-                <?php foreach ($_SESSION['errors'] as $error): ?>
-                    <li><?php echo htmlspecialchars($error); ?></li>
-                <?php endforeach; ?>
-            </ul>
-        </h3>
-        <?php unset($_SESSION['errors']); // Xóa lỗi sau khi hiển thị 
-            ?>
-    <?php endif; ?>
+  
     <!-- Main content -->
     <section class="content">
         <div class="container-fluid">
@@ -39,23 +29,27 @@
                 <div class="col-12">
                     <form action="?act=admin/comment/nexteditcmt&id_cmt=<?= $dataOneCmt['id_cmt'] ?>" method="POST">
                         <div class="form-group">
-                            <label for="id_user">id_user </label>
-                            <input class="form-control" type="text" name="id_user" value="<?= $dataOneCmt['id_user'] ?>" readonly>
+                            <label for="id_user">Usname</label>
+                            <input class="form-control" type="hidden" name="id_user" value="<?= $dataOneCmt['id_user'] ?>" readonly>
+                            <input class="form-control" type="text"  value="<?= $dataOneCmt['user_a'] ?>" readonly>
+
                         </div>
                         <div class="form-group">
-                            <label for="id_pro">id_pro</label>
-                            <input class="form-control" type="text" name="id_pro" value="<?= $dataOneCmt['id_pro'] ?>" readonly>
+                            <label for="id_pro">Sản phẩm</label>
+                            <input class="form-control" type="hidden" name="id_pro" value="<?= $dataOneCmt['id_pro'] ?>" readonly>
+                            <input class="form-control" type="text" value="<?= $dataOneCmt['name_p'] ?>" readonly>
+
                         </div>
                         <div class="form-group">
-                            <label for="conten">conten</label>
+                            <label for="conten">Nội dung</label>
                             <input class="form-control" type="text" name="conten" value="<?= $dataOneCmt['conten'] ?>" readonly>
                         </div>
                         <div class="form-group">
-                            <label for="time_comment">time_comment</label>
+                            <label for="time_comment">Thời gian comment</label>
                             <input class="form-control" type="text" name="" value="<?= $dataOneCmt['time_comment'] ?>" readonly>
                         </div>
                         <div class="form-group">
-                                <label for="status">status</label>
+                                <label for="status">Trạng thái</label>
                                 <select class="form-control" name="status">
                                     <option value="0" name="status" <?php echo $dataOneCmt['status'] == 0 ? 'selected' : ''; ?>>
                                         Chờ duyệt</option>

@@ -242,6 +242,8 @@ class AccountController
         $id_oi = $_GET['id'];
         if(isset($_POST['xemchitiet'])){
             $data_oi = $this->account->history_order( $id_oi); 
+            $data_oi_one = $this->account->history_order_one( $id_oi); 
+
             $color = $this->color->getAllColor();
             $size = $this->size->getAllSize();
             require_once "./views/user/order_history/view_order_details.php";
