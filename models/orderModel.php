@@ -112,7 +112,7 @@ class OrderModel
     }
 
     public function insertOrder($user_id, $id_promotion , $name, $tel, $shipping_address, $payment, $total_amount, $total_money,
-    $product_id,$id_color,$id_size,$quantity,$price) {
+    $product_id,$id_color,$id_size,$quantity,$price,$id_var) {
        $name = "' $name'";
        $shipping_address = "' $shipping_address'";
        $sql = "INSERT INTO `orders` (`user_id`, `id_promotion`, `name`, `tel`, `shipping_address`, `payment`, `total_amount`, `total_money`) 
@@ -123,6 +123,8 @@ class OrderModel
 
        $id_tran = $this->db->insert($sql_tran);
        $_SESSION['id_tran'] =  $id_tran;
+
+       $sql = "UPDATE `varianti` SET `quantity`= `quantity` - $quantity  WHERE id_var = $id_var";
        $sql_s = "INSERT INTO `order_items`(`order_id`, `product_id`, `id_color`, `id_size`, `quantity`, `price`) 
        VALUES ('$order_id','$product_id','$id_color','$id_size','$quantity','$price')";
        return $this->db->insert($sql_s);

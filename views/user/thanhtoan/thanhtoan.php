@@ -68,9 +68,9 @@
                     <div class="mb-3">
                         <label for="promotion" class="form-label fw-semibold">Nhập mã giảm giá</label>
                         <div class="input-group">
-                            <input type="text" name="promotion" id="promotion" class="form-control"
+                            <input type="text" name="code" id="code" class="form-control"
                                 placeholder="Nhập mã tại đây">
-                            <button type="button" class="btn btn-outline-primary">Áp dụng</button>
+                            <button type="button" name="checkmakm" class="btn btn-outline-primary">Áp dụng</button>
                         </div>
                     </div>
 

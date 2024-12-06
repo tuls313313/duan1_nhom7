@@ -209,21 +209,23 @@ class HomeController
        
     }
 
-    public function thanhtoan()
-    {
-        if(!empty($_SESSION['data1'])){
-            header("Location: ?act=user/order_history");
-            $_SESSION['err_data1'] = 'Bạn có đơn hàng chưa thanh toán vui lòng thanh toán trước khi mua đơn mới';
-            exit();
-        }
+    public function thanhtoan(){
         $user_id = $_SESSION['account']['id'];
         $id_promotion = "null";
         $name = $_POST['hoten'];
         $address = $_POST['diachi'];
         $tel = $_POST['sdt'];
         $payment = $_POST['payment'];
+        if($payment == 1){
+            if(!empty($_SESSION['data1'])){
+                header("Location: ?act=user/order_history");
+                $_SESSION['err_data1'] = 'Bạn có đơn hàng chưa thanh toán vui lòng thanh toán trước khi mua đơn mới';
+                exit();
+            }
+        }
         $total_amount = $_SESSION['buyNow']['quantity'];
         $product_id = $_SESSION['buyNow']['id_pro'];
+        $id_var =  $_SESSION['chitietspone']['variant_id'];
         $id_color = $_SESSION['buyNow']['id_size'];
         $id_size = $_SESSION['buyNow']['id_color'];
         $quantity = $_SESSION['buyNow']['quantity'];
@@ -232,19 +234,9 @@ class HomeController
         // var_dump($_SESSION['buyNow']);
         if (isset($_POST['submit'])) {
             $id_order = $this->order->insertOrder(
-                $user_id,
-                $id_promotion,
-                $name,
-                $tel,
-                $address,
-                $payment,
-                $total_amount,
-                $total_money,
-                $product_id,
-                $id_color,
-                $id_size,
-                $quantity,
-                $price
+                $user_id,$id_promotion,$name,$tel,$address,
+                $payment,$total_amount,$total_money,$product_id,
+                $id_color,$id_size,$quantity,$price, $id_var
             );
             $data = $this->order->getOneOrder_detail($id_order);
             $data1 = $this->order->getOneOrder($data['order_id']);
@@ -271,11 +263,7 @@ class HomeController
 
     public function next_tt_giohang()
     {
-        if(!empty($_SESSION['data1'])){
-            header("Location: ?act=user/order_history");
-            $_SESSION['err_data1'] = 'Bạn có đơn hàng chưa thanh toán vui lòng thanh toán trước khi mua đơn mới';
-            exit();
-        }
+        
         $err = false;
         $user_id = $_SESSION['account']['id'];
         $id_promotion = "null";
@@ -283,6 +271,13 @@ class HomeController
         $address = $_POST['diachi'];
         $tel = $_POST['sdt'];
         $payment = $_POST['payment'];
+        if($payment == 1){
+            if(!empty($_SESSION['data1'])){
+                header("Location: ?act=user/order_history");
+                $_SESSION['err_data1'] = 'Bạn có đơn hàng chưa thanh toán vui lòng thanh toán trước khi mua đơn mới';
+                exit();
+            }
+        }
         $total_amount = $_POST['total_amount'];
         $total_money = $_POST['total_money'];
         $cart_id = $_POST['cart_id'];
@@ -315,7 +310,6 @@ class HomeController
                 header("Location: ?act=user/order_history");
             } else {
                 header("Location: ?act=user/orderOnl&id=$magd");
-
             }
         }
     }

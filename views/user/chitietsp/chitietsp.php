@@ -225,7 +225,7 @@
                 <div class="infor-oder">
                     Loại sản phẩm: <b><?= $chitietspone['categories_name'] ?></b>
                 </div>
-
+                <!-- <?php var_dump($chitietspone); ?> -->
                 <form action="?act=themgiohang&id=<?= $chitietspone['product_id'] ?>" method="post">
                     <div class="product__price">
                         <input type="hidden" name="money" value="<?php echo $chitietspone['product_price'] ?>">
@@ -254,9 +254,7 @@
                                         <?= $colorName; ?>
                                     </label>                                    
                                     <input type="radio" id="color_<?= $colorId ?>" class="form-check-input circle-1"
-                                        name="id_color" value="<?= $colorId ?>"
-                                        onclick="filterSizesByColor(<?= $colorId ?>)">
-                                    
+                                        name="id_color" value="<?= $colorId ?>"onclick="filterSizesByColor(<?= $colorId ?>)">
                                 </div>
 
                             <?php } ?>
@@ -281,7 +279,6 @@
                                     echo '<input type="radio" class="form-check-input circle-1" name="id_size" value="' . $variant['size_id'] . '" id="size_' . $variant['size_id'] . '">';
                                     echo '<label class="form-check-label" for="size_' . $variant['size_id'] . '">' . $variant['size_name'] . '</label>';
                                     echo '</div>';
-
                                     $sizeDisplayed[] = $variant['size_name'];
                                 }
                             }
