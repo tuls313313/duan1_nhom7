@@ -37,12 +37,14 @@
                   <div class="col-12">
                     <div class="callout callout-info">
                       <h5>Status:
-                        <?php if ($detail['status_order'] == 0) {
+                        <?php if ($detail['status_order'] == 1) {
                           echo 'Đang chờ';
-                        } elseif ($detail['status_order'] == 1) {
+                        } else if ($detail['status_order'] == 2) {
                           echo 'Đang giao';
-                        } else {
+                        } else if ($detail['status_order'] == 3) {
                           echo 'Hoàn thành';
+                        }else {
+                          echo 'Hủy đơn';
                         }
                         ?>
                       </h5>
@@ -66,20 +68,20 @@
                         <div class="col-sm-4 invoice-col">
                           <address>
                             <strong>Thông tin người đặt:</strong><br>
-                            <p>Họ và Tên: <?= $detail['user'] ?></p>
-                            <p>Email: <?= $detail['email'] ?></p>
-                            <p>Số điện thoại: <?= $detail['tel'] ?></p>
-                            <p>Địa chỉ: <?= $detail['address'] ?></p>
+                            <p>Họ và Tên: <?= $detail['account_user'] ?></p>
+                            <p>Email: <?= $detail['account_email'] ?></p>
+                            <p>Số điện thoại: <?= $detail['account_tel'] ?></p>
+                            <p>Địa chỉ: <?= $detail['account_address'] ?></p>
                           </address>
                         </div>
                         <!-- /.col -->
                         <div class="col-sm-4 invoice-col">
                           <address>
                             <strong>Thông tin người nhận:</strong><br>
-                            <p>Họ và Tên: <?= $detail['user'] ?></p>
-                            <p>Email: <?= $detail['email'] ?></p>
-                            <p>Số điện thoại: <?= $detail['tel'] ?></p>
-                            <p>Địa chỉ: <?= $detail['shipping_address'] ?></p>
+                            <p>Họ và Tên: <?= $detail['account_user'] ?></p>
+                            <p>Email: <?= $detail['account_email'] ?></p>
+                            <p>Số điện thoại: <?= $detail['account_tel'] ?></p>
+                            <p>Địa chỉ: <?= $detail['account_address'] ?></p>
                           </address>
                         </div>
                       </div>
@@ -91,29 +93,25 @@
                           <table class="table table-striped">
                             <thead>
                               <tr>
-                                <th>id_order</th>
-                                <th>user_id</th>
-                                <th>status_order</th>
-                                <th>payment</th>
-                                <th>total_amount</th>
-                                <th>total_money</th>
-                                <th>Shipping_address</th>
-                                <th>create_at</th>
-                                <th>update_at</th>
+                                <th>Mã đơn</th>
+                                <th>Tên sản phẩm</th>
+                                <th>Màu</th>
+                                <th>Size</th>
+                                <th>Số lượng</th>
+                                <th>Giá</th>
                               </tr>
                             </thead>
                             <tbody>
+                              <?php foreach($detailOrderItem as $value) : ?>
                                 <tr>
-                                  <td><?= $detail['id_order'] ?></td>
-                                  <td><?= $detail['user'] ?></td>
-                                  <td><?= $detail['status_order'] == 0 ? 'Đăng chờ' : ($detail['status_order'] == 1 ? 'Đang giao' : 'Hoàn thành') ?></td>
-                                  <td><?= $detail['payment'] == 0 ? 'Thanh toán khi nhận hàng' : 'Thanh toán online' ?></td>
-                                  <td><?= $detail['total_amount'] ?></td>
-                                  <td><?= $detail['total_money'] ?></td>
-                                  <td><?= $detail['shipping_address'] ?></td>
-                                  <td><?= $detail['create_at_orders'] ?></td>
-                                  <td><?= $detail['update_at_orders'] ?></td>
+                                  <td><?= $value['id_order'] ?></td>
+                                  <td><?= $value['product_name'] ?></td>
+                                  <td><?= $value['color_name'] ?></td>
+                                  <td><?= $value['size_name'] ?></td>
+                                  <td><?= $value['order_item_quantity'] ?></td>
+                                  <td><?= $value['order_item_price'] ?></td>
                                 </tr>
+                                <?php endforeach ?>
                             </tbody>
                           </table>
                         </div>

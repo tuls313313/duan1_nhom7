@@ -11,8 +11,8 @@ class OrderController
         $this->user = new UserModels();
     }
 
-    public function getAllOrder()
-    {   
+    public function listOder()
+    {
         $listOrder = $this->order->getAllOrder();
         if ($listOrder) {
             require_once './views/admin/Orders/litsOrder.php';
@@ -25,6 +25,7 @@ class OrderController
         // var_dump($id_order);die;
 
         $detail = $this->order->detailOrder($id_order);
+        $detailOrderItem = $this->order->detailOrderItem($id_order);
         // var_dump($detail); die;
         // if($detail){ 
         require_once './views/admin/Orders/detailOrder.php';
@@ -45,24 +46,51 @@ class OrderController
     public function postOrder()
     {
         if (isset($_POST['editOrder'])) {
-            $error = [];
-            // var_dump(value: $_POST['editDonHang']); die;
+            $err = false;
             $id_order = $_GET['id_order'];
             $user_id = $_POST['user_id'];
-            $status_order = $_POST['status_order'];
+            $edit = $this->order->getOneOrder($id_order);
+            $current_status = $edit['status_order'];
+            $status_order = $_POST['status_order']; 
+            if($current_status == 3){
+                $_SESSION['status'] = 'đơn đã thành công không thể thay đổi';
+                $err = true;
+            }
+            else if($current_status == 4){
+                $_SESSION['status'] = 'đơn đã hủy không thể thay đổi';
+                $err = true;
+            }
+            $transaction_status = $_POST['transaction_status'];
+            var_dump($transaction_status);
+            if($transaction_status == 1){
+                if($status_order == 4 ){
+                    $_SESSION['status'] = 'đơn đã thanh toán không thể hủy';
+                    $err = true;
+                }
+            }
+
+            $id_tran = $_POST['id_tran'];
             $payment = $_POST['payment'];
             $total_amount = $_POST['total_amount'];
             $total_money = $_POST['total_money'];
             $shipping_address = $_POST['shipping_address'];
-            if (empty($error)) {
-                $this->order->editOrder($id_order, $user_id, 
-                $status_order, $payment, $total_amount, 
-                $total_money, $shipping_address);
+            
+            if (!$err) {
+                $this->order->editOrder(
+                    $id_order,
+                    $user_id,
+                    $status_order,
+                    $payment,
+                    $total_amount,
+                    $total_money,
+                    $shipping_address,$id_tran
+                );
+                $_SESSION['success'] = 'đã cập nhật thành công '.$id_order.'';
                 header("Location: ?act=admin/order&message=success");
-            }else{
-                header("Location: ?act=admin/order&message=error");
+            } else {
+                header("Location: ?act=admin/order/edit&id=$id_order");
             }
-        }else{
+        } else {
             header("Location: ?act=admin/order&message=error.");
         }
     }

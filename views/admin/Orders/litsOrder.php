@@ -1,17 +1,11 @@
 <?php include_once './views/admin/layout/header.php'; ?>
 
-<!-- Navbar -->
 <?php include_once './views/admin/layout/navbar.php'; ?>
 
-<!-- /.navbar -->
-
-<!-- Main Sidebar Container -->
 <?php include_once './views/admin/layout/siderbar.php'; ?>
 
 
-<!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
-  <!-- Content Header (Page header) -->
   <section class="content-header">
     <div class="container-fluid">
       <div class="row mb-2">
@@ -19,10 +13,8 @@
           <h1>Trang Admin Đơn Hàng</h1>
         </div>
       </div>
-    </div><!-- /.container-fluid -->
+    </div>
   </section>
-
-  <!-- Main content -->
   <section class="content">
     <div class="container-fluid">
       <div class="row">
@@ -31,8 +23,10 @@
             <div class="card-header">
               <h3 class="card-title">Danh sách đơn hàng</h3>
             </div>
-            <!--/.card-header -->
             <div class="card-body">
+              <?php if (isset($_SESSION['success']))
+                echo "<p class='text-success'> " . $_SESSION['success'] . "</p>";
+              unset($_SESSION['success']); ?>
               <table id="example1" class="table table-bordered table-striped">
                 <thead>
                   <tr>
@@ -52,8 +46,14 @@
                   <?php foreach ($listOrder as $value) { ?>
                     <tr>
                       <td><?= $value['id_order'] ?></td>
-                      <td><?= $value['user_id'] ?></td>
-                      <td><?= $value['status_order'] == 0 ? 'Đang chờ' : ( $value['status_order'] == 1  ? 'Đang giao' : 'Hoàn Thành' ); ?></td>
+                      <td><?= $value['user_name'] ?></td>
+                      <td>
+                        <?=
+                          $value['status_order'] == 1 ? 'Đang chờ' :
+                          ($value['status_order'] == 2 ? 'Đang giao' :
+                            ($value['status_order'] == 3 ? 'Hoàn Thành' :
+                              ($value['status_order'] == 4 ? 'Hủy đơn' : 'Chưa xác định'))); ?>
+                      </td>
                       <td><?= $value['payment'] == 0 ? 'Thanh toán khi nhận hàng' : 'Thanh toán online' ?></td>
                       <td><?= $value['total_amount'] ?></td>
                       <td><?= $value['total_money'] ?></td>
@@ -69,18 +69,10 @@
                 </tbody>
               </table>
             </div>
-            <!-- /.card-body -->
           </div>
-          <!-- /.card -->
         </div>
-        <!-- /.col -->
       </div>
-      <!-- /.row -->
     </div>
-    <!-- /.container-fluid -->
   </section>
-  <!-- /.content -->
 </div>
-<!-- /.content-wrapper -->
 <?php include_once './views/admin/layout/footer.php'; ?>
-

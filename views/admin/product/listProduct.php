@@ -26,7 +26,7 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-12">
-                    <div class="card">
+                    <iv class="card">
                         <div class="card">
                             <div class="card-header">
                                 <h3 class="card-title"> Danh Sách Sản Phẩm </h3>
@@ -34,7 +34,9 @@
                             <!-- card header -->
                             <div class="card-body">
                                 <table id="example1" class="table table-bordered table-striped">
-                                <a class="btn btn-success mb-2" href="?act=admin/product/add" data-toggle="modal" data-target="#addModal">Thêm sản phẩm</a>
+                               <a class="btn btn-success mb-2" href="?act=admin/product/add">Thêm sản phẩm</a>
+                               <h4 class="text-success"><?php if(isset($_SESSION['success'])) echo $_SESSION['success']; unset($_SESSION['success']); ?></h4>
+
                                     <thead>
                                         <tr>
                                             <th>id</th>
@@ -52,11 +54,20 @@
                                             <tr>
                                                 <td><?= $value['id'] ?></td>
                                                 <td><?= $value['name'] ?></td>
-                                                <td><?= $value['price'] ?></td>
-                                            
-                                                <td><img src="../upimgs/<?= $value['img'] ?>" alt="<?= $value['img'] ?>"></td>
-                                                <td><?= $value['description'] ?></td>
-                                                <td><?= $value['id_categories'] ?></td>
+                                                <td><?php echo number_format($value['price'] ?? 0, 0, ',', '.') . ' VND'; ?></td>
+                                                <td class="text-center"><img src="./uploads/upimg/<?= $value['img'] ?>" alt="<?= $value['img'] ?>" style="height: 50px; width=50px;"></td>
+                                                <td style="max-width: 150px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;"><?= $value['description'] ?></td>
+                                                <td>
+                                                    <?php
+                                                    foreach ($listCategories as $listCategori) {
+                                                        if($listCategori['id'] == $value['id_categories']){
+                                                            echo $listCategori['name'] ;
+                                                        }
+                                                       
+                                                    }
+                                                   
+                                                    ?>
+                                                </td>
                                                 <td><?= $value['status'] == 0 ? 'Hoạt Động' : 'Không Hoạt Động'; ?> </td>
                                                 <td>
                                                     <a class="btn btn-primary" href="?act=admin/product/edit&id=<?= $value['id'] ?>">Sửa</a>
@@ -66,48 +77,6 @@
                                         <?php } ?>
                                     </tbody>
                                 </table>
-                            </div>
-                        </div>
-                        <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="addModalLabel"
-                            aria-hidden="true">
-                            <div class="modal-dialog" role="document">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h3 class="modal-title" id="addModalLabel">Thêm Sản Phẩm</h3>
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <!-- Form thêm thành viên -->
-                                        <form action="?act=admin/product/add" method="POST" enctype="multipart/form-data">
-                                            <!-- Các trường nhập dữ liệu -->
-                                            <div class="form-group">
-                                                <label for="name">Name</label>
-                                                <input type="text" class="form-control" name="name">
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="price">Price</label>
-                                                <input type="number" class="form-control" name="price">
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="img">Img</label>
-                                                <input type="file" class="form-control" name="img">
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="description">Description</label>
-                                                <input type="text" class="form-control" name="description">
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="id_categories">Id_categories</label>
-                                                <input type="number" class="form-control" name="id_categories">
-                                            </div>
-                                          
-                                            <!-- Thêm các trường khác ở đây -->
-                                            <button type="submit" name="addProduct" class="btn btn-success">Thêm</button>
-                                        </form>
-                                    </div>
-                                </div>
                             </div>
                         </div>
                     </div>

@@ -30,7 +30,7 @@
                     <form action="?act=admin/categories/add" method="POST">
                         <div class="form-group">
                             <label for="name">Name</label>
-                            <input type="text" class="form-control" name="name" placeholder="Vui lòng nhập name">
+                            <input type="text" class="form-control" name="name" placeholder="Vui lòng nhập tên danh mục">
                             <?php
                             if (!empty($_SESSION['error'])) {
                                 foreach ($_SESSION['error'] as $error) {

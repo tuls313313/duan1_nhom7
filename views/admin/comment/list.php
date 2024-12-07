@@ -21,17 +21,6 @@
             </div>
         </div><!-- /.container-fluid -->
     </section>
-    <?php if (isset($_SESSION['errors']) && !empty($_SESSION['errors'])): ?>
-        <h3>
-            <ul class="text-danger">
-                <?php foreach ($_SESSION['errors'] as $error): ?>
-                    <li><?php echo htmlspecialchars($error); ?></li>
-                <?php endforeach; ?>
-            </ul>
-        </h3>
-        <?php unset($_SESSION['errors']); // Xóa lỗi sau khi hiển thị 
-            ?>
-    <?php endif; ?>
     <!-- Main content -->
     <section class="content">
         <div class="container-fluid">
@@ -41,25 +30,28 @@
                         <!-- /.card-header -->
                         <div class="card-body">
                             <table id="example1" class="table table-bordered table-striped">
-                            <a class="btn btn-success mb-2" href="?act=admin/comment/add">Add Bình luận</a>
+                            <h4 class="text-success"> <?php if(isset($_SESSION['success'])) echo $_SESSION['success']; unset($_SESSION['success']); ?></h4>
+
                                 <thead>
                                     <tr>
-                                        <th>id_cmt</th>
-                                        <th>id_user</th>
-                                        <th>id_pro</th>
-                                        <th>conten</th>
-                                        <th>status</th>
-                                        <th>time_comment</th>
-                                        <th>action</th>
+                                        <th>ID</th>
+                                        <th>User</th>
+                                        <th>Sản phẩm</th>
+                                        <th>Nội dung</th>
+                                        <th>Đánh giá</th>
+                                        <th>Trạng thái</th>
+                                        <th>Thời gian cmt</th>
+                                        <th>Hành động</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <?php foreach ($listCmt as $cmt) { ?>
                                         <tr>
                                             <td><?= $cmt['id_cmt'] ?></td>
-                                            <td><?= $cmt['id_user'] ?></td>
-                                            <td><?= $cmt['id_pro'] ?></td>
+                                            <td><?= $cmt['user_name'] ?></td>
+                                            <td><?= $cmt['product_name'] ?></td>
                                             <td><?= $cmt['conten'] ?></td>
+                                            <td><?= $cmt['rating'] ?></td>
                                             <td><?= $cmt['status'] == 0 ? 'chờ duyệt' : 'đã duyệt' ?></td>
                                             <td><?= $cmt['time_comment'] ?></td>
                                             <td class="text-center">

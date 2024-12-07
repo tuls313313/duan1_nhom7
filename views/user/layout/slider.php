@@ -12,13 +12,13 @@
                 <div class="carousel-item active">
                   <img src="./views/user/assets/img/slideshow/1.jpg" alt="Los Angeles" width="1100" height="550">
                   <div class="carousel-caption">
-                    <a href="./Product.html" class="click-slideshow">Xem chi tiết</a>
+                    <a href="?act=product" class="click-slideshow">Xem chi tiết</a>
                   </div>
                 </div>
                 <div class="carousel-item">
                   <img src="./views/user/assets/img/slideshow/3.jpg" alt="New York" width="1100" height="550">
                   <div class="carousel-caption">
-                    <a href="./Product.html" class="click-slideshow">Xem chi tiết</a>
+                    <a href="?act=product" class="click-slideshow">Xem chi tiết</a>
                   </div>
                 </div>
               </div>

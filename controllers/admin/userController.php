@@ -16,8 +16,7 @@ class HomeAdminController
         // }
         // var_dump(value: $data);
     }
-
-
+    
     public function insertUser()
     {
         require_once './views/admin/user/add.php';
@@ -64,9 +63,6 @@ class HomeAdminController
         }
     }
 
-
-
-
     public function editUser()
     {
         if (isset($_GET['id'])) {
@@ -105,6 +101,7 @@ class HomeAdminController
             if (empty($error)) {
                 $this->user->editUser($id, $_POST['user'], $_POST['password'], $_POST['email'], $_POST['address'], $_POST['tel'], $_POST['role'], $_POST['status']);
                 header("Location: ?act=admin/user/list&message=success");
+                $_SESSION['success'] = "Đã chỉnh sửa thành công id: $id";
             } else {
                 $_SESSION['errors'] = $error;
                 header("Location: ?act=admin/user/edit&id=$id");
@@ -120,6 +117,7 @@ class HomeAdminController
             $id = $_GET['id'];
             $dataOneUser = $this->user->deleteUser($id);
             header("Location: ?act=admin/user/list&message=success");
+            $_SESSION['success'] = "Đã Xóa sửa thành công id: $id";
         }
     }
 }

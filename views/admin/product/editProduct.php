@@ -17,34 +17,53 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-12">
-                    <form action="?act=admin/product/nextedit&id=<?= $dataOneProduct['id'] ?>" method="POST">
+                    <form action="?act=admin/product/nextedit&id=<?= $dataOneProduct['id'] ?>" method="POST"
+                        enctype="multipart/form-data">
                         <div class="form-group">
-                            <label for="name">Name</label>
+                            <label for="name">Tên sản phẩm</label>
                             <input type="text" class="form-control" name="name"
-                                value="<?php echo $dataOneProduct['name']; ?>" >
+                                value="<?php echo $dataOneProduct['name']; ?>">
                         </div>
                         <div class="form-group">
-                            <label for="price">Price</label>
+                            <label for="price">Giá</label>
                             <input type="number" class="form-control" name="price"
-                                value="<?php echo $dataOneProduct['price']; ?>" >
+                                value="<?php echo $dataOneProduct['price']; ?>">
                         </div>
                         <div class="form-group">
-                            <label for="img">Img</label>
-                            <input type="text" class="form-control" name="img"
-                                value="<?php echo $dataOneProduct['img']; ?>" >
+                            <label for="img">Hình ảnh</label>
+                            <input type="file" class="form-control" name="img">
+                            <p> <img src="./uploads/upimg/<?= $dataOneProduct['img'] ?>"
+                                    alt="<?= $dataOneProduct['img'] ?>" style="height: 50px; width=50px;"> </p>
                         </div>
                         <div class="form-group">
-                            <label for="description">Description</label>
-                            <input type="text" class="form-control" name="description"
-                                value="<?php echo $dataOneProduct['description']; ?>" >
+                        <label for="description">Mô tả</label>
+                        <textarea name="description" cols="30" rows="10" class="form-control"><?= $dataOneProduct['description']; ?>
+                        </textarea>
+                    </div>
+
+                        <div class="form-group">
+                            <label for="id_categories">Danh mục</label>
+                            <select name="id_categories" class="form-control">
+                                <?php
+                                foreach ($listCategories as $listCategori) {
+                                    if ($listCategori['id'] == $dataOneProduct['id_categories']) { ?>
+                                        <option value="<?php echo $listCategori['id']; ?>" selected>
+                                            <?php echo $listCategori['name']; ?>
+                                        </option>
+                                    <?php }
+                                }
+                                foreach ($listCategories as $listCategori) {
+                                    if ($listCategori['id'] != $dataOneProduct['id_categories']) { ?>
+                                        <option value="<?php echo $listCategori['id']; ?>">
+                                            <?php echo $listCategori['name']; ?>
+                                        </option>
+                                    <?php }
+                                }
+                                ?>
+                            </select>
                         </div>
                         <div class="form-group">
-                            <label for="id_categories">id_categories</label>
-                            <input type="text" class="form-control" name="id_categories"
-                                value="<?php echo $dataOneProduct['id_categories']; ?>" >
-                        </div>
-                        <div class="form-group">
-                            <label for="status">Status</label>
+                            <label for="status">Trạng thái</label>
                             <select name="status" class="form-control custom-select">
                                 <option value="0" <?= $dataOneProduct['status'] == 0 ? 'selected' : '' ?>>Hoạt Động
                                 </option>

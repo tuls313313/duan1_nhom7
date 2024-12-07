@@ -1,219 +1,145 @@
-
 <?php include './views/user/layout/header.php'; ?>
-<!-- <div class="container"> -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
 
-<!-- <?php include './views/user/layout/slider.php'; ?> -->
 <style>
-  form.example input[type=text] {
-    padding: 10px;
-    font-size: 17px;
-    border: 1px solid grey;
-    float: left;
-    width: 80%;
-    background: #f1f1f1;
+  .cart-container {
+    background-color: #ffffff;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin-top: 20px;
   }
-  
-  form.example button {
-    float: left;
-    width: 20%;
-    padding: 10px;
-    background: #2196F3;
-    color: white;
-    font-size: 17px;
-    border: 1px solid grey;
-    border-left: none;
-    cursor: pointer;
-  }
-  
-  form.example button:hover {
-    background: #0b7dda;
-  }
-  
-  form.example::after {
-    content: "";
-    clear: both;
-    display: table;
-  }
-        /* Mobile & tablet  */
-@media (max-width: 1023px) {
-}
-/* tablet */
-@media (min-width: 740px) and (max-width: 1023px) {
-  .cart-wrap {
-    padding-top: 8px;
-    padding-bottom: 46px
-  }
-  .cart-body-left {
-    width: 100%;
-  }
-  .cart-body-right {
-    margin-top: 8px;
-    width: 100%;
-    padding: 16px;
-  }
-}
-/* mobile */
-@media (max-width: 739px) {
-  .cart-wrap {
-    padding-top:8px;
-    padding-bottom: 46px;
-  }
-  .cart-body-left {
-    width: 100%;
-  }
-  .cart-body-right {
-    margin-top: 8px;
-    width: 100%;
-    padding: 16px;
-  }
-  .cart-body-row {
-    flex-direction: row;
-    /* margin-left: -12px;
-    margin-right: -12px; */
-  }
-  .card-info {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-  }
-  .card-info-img {
-    grid-row: span 3;
-  }
-  .cart-quantity {
-    margin-top: 5px;
-  }
-}
-  </style>
-    <div class="cart">
-        <div class="container">
-            <div class="cart-wrap">
-              <div class="cart-content">
-                  <form action="" class="form-cart">
-                      <div class="cart-body-left">
-                          <div class="cart-heding hidden-xs">
-                              <div class="row cart-row"> 
-                                  <div class="col-11" style="text-align: center;">
-                                      <div class="row">
-                                          <div class="col-5">Sản phẩm</div>
-                                          <div class="col-2">Đơn giá</div>
-                                          <div class="col-3">Số lượng</div>
-                                          <div class="col-2">Thành tiền</div>
-                                      </div>
-                                  </div>
-                                  <div class="col-1"></div>
-                              </div>
-                          </div>
-                          <div class="cart-body">
-                              <div class="row cart-body-row cart-body-row-1" style="align-items: center;">
-                                  <div class="col-md-11 col-10" style="text-align: center;">
-                                      <div class="row card-info" style="align-items: center;">
-                                          <div class="col-md-2 col-12 card-info-img">
-                                              <a href=""><img class="cart-img" src="./views/user/assets/img/product/addidas1.jpg" alt=""></a>
-                                          </div>
-                                          <div class="col-md-3 col-12">
-                                              <a href="" class="cart-name" ><h5>ÁO THỦ MÔN ĐTVN 2021 GRAND SPORT - 038-322 - VÀNG CAM</h5></a>
-                                          </div>
-                                          <div class="col-md-2 col-12" style="font-size: 16px;">
-                                              <span>625,000₫</span>
-                                          </div>
-                                          <div class="col-md-3 col-12">
-                                            <div class="cart-quantity">
-                                              <input type="button" value="-" class="control" onclick="tru(1)">
-                                              <input type="text" value="1" class="text-input" id="text_so_luong-1" onkeypress='validate(event)'> 
-                                              <input type="button" value="+" class="control" onclick="cong(1)">
-                                            </div>
-                                          </div>
-                                          <div class="col-md-2 col-12 hidden-xs" style="font-size: 16px;">
-                                            <span>625,000₫</span>
-                                          </div>
-                                      </div>
-                                  </div>
-                                  <div class="col-md-1 col-2 text-right">
-                                    <a onclick="xoa(1)"><i class="fas fa-trash"></i></a>
-                                </div>
-                              </div>
-                              <div class="row cart-body-row cart-body-row-2" style="align-items: center;">
-                                <div class="col-md-11 col-10" style="text-align: center;">
-                                    <div class="row card-info" style="align-items: center;">
-                                        <div class="col-md-2 col-12 card-info-img">
-                                            <a href=""><img class="cart-img" src="./views/user/assets/img/product/addidas1.jpg" alt=""></a>
-                                        </div>
-                                        <div class="col-md-3 col-12">
-                                            <a href="" class="cart-name" ><h5>ÁO THỦ MÔN ĐTVN 2021 GRAND SPORT - 038-322 - VÀNG CAM</h5></a>
-                                        </div>
-                                        <div class="col-md-2 col-12" style="font-size: 16px;">
-                                            <span>625,000₫</span>
-                                        </div>
-                                        <div class="col-md-3 col-12">
-                                          <div class="cart-quantity">
-                                            <input type="button" value="-" class="control" onclick="tru(2)">
-                                            <input type="text" value="1" class="text-input" id="text_so_luong-2" onkeypress='validate(event)'> 
-                                            <input type="button" value="+" class="control" onclick="cong(2)">
-                                          </div>
-                                        </div>
-                                        <div class="col-md-2 col-12 hidden-xs" style="font-size: 16px;">
-                                          <span>625,000₫</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-1 col-2 text-right">
-                                  <a  onclick="xoa(2)"><i class="fas fa-trash"></i></a>
-                              </div>
-                            </div>
-                            <div class="row cart-body-row cart-body-row-3" style="align-items: center;">
-                              <div class="col-md-11 col-10" style="text-align: center;">
-                                  <div class="row card-info" style="align-items: center;">
-                                      <div class="col-md-2 col-12 card-info-img">
-                                          <a href=""><img class="cart-img" src="./views/user/assets/img/product/addidas1.jpg" alt=""></a>
-                                      </div>
-                                      <div class="col-md-3 col-12">
-                                          <a href="" class="cart-name" ><h5>ÁO THỦ MÔN ĐTVN 2021 GRAND SPORT - 038-322 - VÀNG CAM</h5></a>
-                                      </div>
-                                      <div class="col-md-2 col-12" style="font-size: 16px;">
-                                          <span>625,000₫</span>
-                                      </div>
-                                      <div class="col-md-3 col-12">
-                                        <div class="cart-quantity">
-                                          <input type="button" value="-" class="control" onclick="tru(3)">
-                                          <input type="text" value="1" class="text-input" id="text_so_luong-3" onkeypress='validate(event)'> 
-                                          <input type="button" value="+" class="control" onclick="cong(3)">
-                                        </div>
-                                      </div>
-                                      <div class="col-md-2 col-12 hidden-xs" style="font-size: 16px;">
-                                        <span>625,000₫</span>
-                                      </div>
-                                  </div>
-                              </div>
-                              <div class="col-md-1 col-2 text-right">
-                                <a onclick="xoa(3)" class="xoa"><i class="fas fa-trash"></i></a>
-                            </div>
-                          </div>
-                          </div>
-                          <div class="cart-footer">
-                              <div class="row cart-footer-row">
-                                  <div class="col-1"></div>
-                                  <div class="col-11 continue">
-                                      <a href="?act=trangchu">
-                                        <i class="fas fa-chevron-left"></i>
-                                        Tiếp tục mua sắm
-                                      </a>
-                                  </div>
-                              </div>
-                          </div>
-                      </div>
-                      <div class="cart-body-right">
-                          <div class="cart-total">
-                              <label for="">Thành tiền:</label>
-                              <span class="total__price">1,415,000₫</span>
-                          </div>
-                          <div class="cart-buttons">
-                              <a style="display: block; text-align: center;" href="?act=thanhtoan" class="chekout">THANH TOÁN</a>
-                          </div>
-                      </div>
-                  </form>
-              </div>
-            </div>
-        </div>
-      </div>
 
+  .cart-heading {
+    background-color: #f8f9fa;
+    padding: 10px;
+    font-weight: bold;
+    text-align: center;
+    border-bottom: 2px solid #007bff;
+  }
+
+  .cart-item {
+    padding: 10px 0;
+    border-bottom: 1px solid #ddd;
+  }
+
+  .cart-item:last-child {
+    border-bottom: none;
+  }
+
+  .cart-img {
+    max-width: 60px;
+    height: auto;
+    border-radius: 5px;
+  }
+
+  .cart-total {
+    text-align: right;
+    font-weight: bold;
+    font-size: 18px;
+    margin-top: 15px;
+  }
+
+  .cart-buttons {
+    text-align: right;
+    margin-top: 20px;
+  }
+
+  .btn-primary,
+  .btn-success {
+    margin-left: 10px;
+  }
+
+  .text-small {
+    font-size: 14px;
+  }
+
+  .quantity-btn {
+    font-size: 20px;
+    cursor: pointer;
+    padding: 5px;
+  }
+
+  .quantity-input {
+    text-align: center;
+    width: 50px;
+    font-size: 14px;
+  }
+</style>
+
+<div class="container">
+  <div class="cart-container">
+    <div class="cart-heading">
+      <div class="row">
+        <div class="col-3 fs-4">Sản phẩm</div>
+        <div class="col-1 fs-4">Đơn giá</div>
+        <div class="col-2 fs-4">Số lượng</div>
+        <div class="col-2 fs-4">Màu</div>
+        <div class="col-1 fs-4">Kích thước</div>
+        <div class="col-2 fs-4">Thành tiền</div>
+        <div class="col-1 fs-4">Hành động</div>
+      </div>
+    </div>
+    <h1 class="text-danger mt-2 mb-2"><?php if (isset($_SESSION['err'])) echo $_SESSION['err']; unset($_SESSION['err']); ?></h1>
+    <div class="cart-body">
+      <?php
+      $tongTienGioHang = 0;
+      foreach ($listCart as $cart):?>
+          <form action="?act=xoagiohang&id=<?= $cart['cart_detail_id'] ?>" method="post">
+        <div class="row cart-item align-items-center text-center">
+          <div class="col-1"><input type="checkbox" name="checkbox" id=""></div>
+          <div class="col-2">
+            <img src="./uploads/upimg/<?= $cart['product_image'] ?>" class="cart-img" alt="">
+            <div class="text-small"><?= $cart['product_name'] ?></div>
+          </div>
+          <input type="hidden" name="cart_detail_money" value="<?= $cart['cart_detail_money'] ?>"> 
+          <div class="col-1 fs-5"><?= number_format($cart['cart_detail_money'], 0, ',', '.') . ' VNĐ' ?></div>
+          <div class="col-2 fs-5">
+            <div class="d-flex justify-content-center align-items-center">
+            <button class="quantity bg-blue mr-2"name="tru"><i class="bi bi-dash"></i></button>
+            <input type="number" name="quantity" value="<?= $cart['cart_detail_quantity'] ?>" class="quantity-input" readonly>
+            <button class="quantity ml-2" name="cong">+</button>
+            </div>
+            <p class="text-danger"><?php if(isset( $_SESSION['err_qua'])) echo $_SESSION['err_qua']; unset( $_SESSION['err_qua']);?></p>
+
+          </div>
+          <div class="col-2 fs-5"><?= $cart['color_name'] ?></div>
+          <div class="col-1 fs-5"><?= $cart['size_name'] ?></div>
+          <div class="col-2 fs-5">
+            <?php
+            $tongTien = $cart['cart_detail_quantity'] * $cart['cart_detail_money'];
+            $tongTienGioHang += $tongTien;
+            echo number_format($tongTien,0,',','.') .' Vnđ';?>
+          </div>
+
+          <div class="col-1">
+              <input type="hidden" name="cart_id" value="<?= $cart['cart_id'] ?>">
+              <input type="hidden" name="cart_detail_id" value="<?= $cart['cart_detail_id'] ?>">
+              <button name="delete" onclick="return confirm('Bạn có chắc muốn xóa sản phẩm này không?')" class="btn btn-danger">
+                <!-- Xóa --><i class="far fa-trash-alt"></i>
+              </button>
+          </div>
+        </div>
+        </form>
+      <?php endforeach; ?>
+    </div>
+    <hr>
+
+    <div class="cart-total text-danger">
+      Thành tiền: <div class="col-2"><?= number_format($tongTienGioHang, 0, ',', '.') . ' VNĐ' ?></div>
+    </div>
+
+    <div class="cart-buttons">
+      <p class="fs-4 text-success"><?php if (isset($_SESSION['success'])) echo $_SESSION['success'];
+                                    unset($_SESSION['success']); ?></p>
+      <a href="?act=product" class="btn btn-secondary fs-5">Tiếp tục mua sắm</a>
+      <?php
+      if (!empty($listCart)) {
+      echo '<a href="?act=ttgiohang" name="thanhtoan" class="btn btn-success fs-5">Thanh toán</a>'; 
+      }?>
+    </div>
+  </div>
+</div>
 
 <?php include './views/user/layout/footer.php'; ?>
