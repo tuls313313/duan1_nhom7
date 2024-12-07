@@ -321,9 +321,9 @@ class HomeController
 
     public function get_tt_onl()
     {
-        $password = 'Tu31304';
-        $accountNumber = '472971';
-        $token = '5972E99F-D6F9-6104-104038B2FDB6';
+        $password = '';
+        $accountNumber = '';
+        $token = '';
         $data = $this->api->fetchTransaction($password, $accountNumber, $token);
         $_SESSION['data_bank'] = $data;
         echo '<pre>';
